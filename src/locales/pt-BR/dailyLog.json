@@ -1,6 +1,22 @@
 {
-  "title": "Registro Diário de Sintomas",
-  "subtitle": "Como seu intestino se comportou hoje?",
+  "title": "Acompanhamento Diário",
+  "subtitle": "Monitore suas idas ao banheiro e bem-estar",
+  "editingBadge": "Editando evacuação de {{date}} ({{time}})",
+  "backToToday": "Voltar para Hoje",
+  "newEntry": "Nova Ida ao Banheiro",
+  "newEntrySubtitle": "Registre consistência, sangue e dor deste episódio",
+  "todayTimeline": "Episódios Registrados",
+  "emptyTimeline": "Nenhuma ida ao banheiro registrada para este dia ainda.",
+  "addNewMovement": "Registrar Ida ao Banheiro",
+  "entryNumber": "Evacuação #{{number}}",
+  "entryTime": "Horário: {{time}}",
+  "dailySummaryTitle": "Resumo do Dia ({{count}} evacuações)",
+  "deletePromptTitle": "Excluir este episódio?",
+  "deletePromptMessage": "Este registro de evacuação será removido permanentemente.",
+  "deleteSuccess": "Registro excluído com sucesso.",
+  "cancelEdit": "Cancelar Edição",
+  "timePicker": "Horário da Evacuação",
+  "now": "Agora",
   "bristol": {
     "title": "Consistência das Fezes (Escala Bristol)",
     "type_1": {
@@ -52,8 +68,10 @@
     "placeholder": "Alimentação diferente, estresse, cansaço..."
   },
   "actions": {
-    "submit": "Salvar Registro de Sintomas",
+    "submit": "Salvar Evacuação",
+    "update": "Atualizar Evacuação",
+    "editingDate": "Registrando para {{date}}",
     "saving": "Salvando...",
-    "success": "Registro diário salvo com sucesso!"
+    "success": "Registro salvo com sucesso!"
   }
 }

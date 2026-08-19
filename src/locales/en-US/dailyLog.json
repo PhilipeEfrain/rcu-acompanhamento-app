@@ -1,6 +1,22 @@
 {
-  "title": "Daily Symptom Log",
-  "subtitle": "How did your gut feel today?",
+  "title": "Daily Tracking",
+  "subtitle": "Track your bowel movements and wellness gently",
+  "editingBadge": "Editing bowel movement of {{date}} ({{time}})",
+  "backToToday": "Back to Today",
+  "newEntry": "New Bowel Movement",
+  "newEntrySubtitle": "Log stool consistency, blood and pain for this episode",
+  "todayTimeline": "Logged Episodes",
+  "emptyTimeline": "No bowel movements logged for this day yet.",
+  "addNewMovement": "+ Log Bowel Movement",
+  "entryNumber": "Bowel Movement #{{number}}",
+  "entryTime": "Time: {{time}}",
+  "dailySummaryTitle": "Daily Summary ({{count}} bowel movements)",
+  "deletePromptTitle": "Delete this episode?",
+  "deletePromptMessage": "This bowel movement record will be permanently removed.",
+  "deleteSuccess": "Log deleted successfully.",
+  "cancelEdit": "Cancel Editing",
+  "timePicker": "Bowel Movement Time",
+  "now": "Now",
   "bristol": {
     "title": "Stool Consistency (Bristol Scale)",
     "type_1": {
@@ -52,8 +68,10 @@
     "placeholder": "Unusual foods, stress, fatigue..."
   },
   "actions": {
-    "submit": "Save Symptom Log",
+    "submit": "Save Bowel Movement",
+    "update": "Update Bowel Movement",
+    "editingDate": "Logging for {{date}}",
     "saving": "Saving...",
-    "success": "Daily log saved successfully!"
+    "success": "Log saved successfully!"
   }
 }
