@@ -27,10 +27,10 @@
     "typescript": "~6.0.3"
   },
   "scripts": {
-    "start": "NODE_OPTIONS=\"--no-experimental-strip-types\" expo start",
-    "android": "NODE_OPTIONS=\"--no-experimental-strip-types\" expo start --android",
-    "ios": "NODE_OPTIONS=\"--no-experimental-strip-types\" expo start --ios",
-    "web": "NODE_OPTIONS=\"--no-experimental-strip-types\" expo start --web"
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
   },
   "private": true
 }
