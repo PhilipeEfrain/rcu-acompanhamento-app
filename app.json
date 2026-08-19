@@ -22,10 +22,9 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-localization",
       "expo-sqlite",
-      "expo-sharing",
-      "expo-secure-store"
+      "expo-secure-store",
+      "expo-local-authentication"
     ]
   }
 }
