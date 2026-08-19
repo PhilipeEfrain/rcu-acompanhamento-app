@@ -24,7 +24,8 @@
     "plugins": [
       "expo-sqlite",
       "expo-secure-store",
-      "expo-local-authentication"
+      "expo-local-authentication",
+      "expo-localization"
     ]
   }
 }

@@ -6,9 +6,11 @@
 - **Comandos GitHub CLI (`gh`):**
   - Validar issue clinicamente:
     ```bash
-    gh issue comment <ISSUE_ID> --body "✔ Lógica clínica validada: Escore de Mayo compatível. Função evaluateCrisis parametrizada com chaves de tradução."
+    gh issue comment <ISSUE_ID> --body "✔ Lógica clínica validada: Escore de Mayo compatível. Regras clínicas parametrizadas com chaves de tradução."
     gh issue edit <ISSUE_ID> --add-label "clinical-approved"
     ```
 - **Responsabilidade:**
-  1. Fornecer funções puras TypeScript (`evaluateCrisis`) retornando chaves semânticas de internacionalização (nunca strings acopladas).
-  2. Garantir que as mensagens de crise transmitam acolhimento ("vai passar, calma") aliadas a diretrizes práticas (hidratação, corte estrito de AINEs).
+  1. Especificar a lógica e parâmetros clínicos de Retocolite Ulcerativa (Escore de Mayo Parcial, Escala de Bristol 1-7, marcadores de alarme).
+  2. Mapear chaves semânticas de internacionalização para orientações de crise (ex: hidratação, corte de AINEs, acolhimento ao usuário).
+  3. Validar a acurácia médica das regras de negócio implementadas.
+- **Regra Estrita:** **NÃO escreve código fonte.** Fornece as especificações clínicas para implementação exclusiva pelo `@agent-dev`.
