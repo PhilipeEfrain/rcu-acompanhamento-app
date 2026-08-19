@@ -13,7 +13,14 @@ function getKeys(obj, prefix = '') {
 }
 
 console.log('=== [QA Suite] 1. Validando Paridade de i18n (pt-BR vs en-US) ===');
-const locales = ['common.json', 'dailyLog.json', 'crisisFeedback.json'];
+const locales = [
+  'common.json',
+  'dailyLog.json',
+  'crisisFeedback.json',
+  'history.json',
+  'settings.json',
+  'clinicalExtras.json',
+];
 
 let i18nErrors = 0;
 locales.forEach((file) => {
@@ -49,10 +56,15 @@ if (i18nErrors > 0) {
 }
 
 console.log('\n=== [QA Suite] 2. Verificação de Hardcoded Strings e Logs Sensíveis ===');
-const componentsDir = path.join(__dirname, '../components');
-const screensDir = path.join(__dirname, '../screens');
+const checkDirs = [
+  path.join(__dirname, '../components'),
+  path.join(__dirname, '../screens'),
+  path.join(__dirname, '../security'),
+  path.join(__dirname, '../storage'),
+];
 
 function scanDir(dir) {
+  if (!fs.existsSync(dir)) return;
   const files = fs.readdirSync(dir, { recursive: true });
   for (const f of files) {
     const fullPath = path.join(dir, f);
@@ -64,8 +76,8 @@ function scanDir(dir) {
     }
   }
 }
-scanDir(componentsDir);
-scanDir(screensDir);
+
+checkDirs.forEach(scanDir);
 console.log('✔ Nenhuma violação de log sensível encontrada.');
 
 console.log('\n✔ Todos os testes de qualidade foram aprovados com sucesso!');

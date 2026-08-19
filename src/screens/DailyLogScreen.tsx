@@ -4,7 +4,6 @@ import {
   Alert,
   KeyboardAvoidingView,
   Platform,
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
@@ -12,39 +11,63 @@ import {
   View,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useSymptomStore } from '../store/useSymptomStore';
 import { DailyHeader } from '../components/daily-log/DailyHeader';
+import { DailyTimeline } from '../components/daily-log/DailyTimeline';
+import { TimePickerInput } from '../components/daily-log/TimePickerInput';
 import { BristolPicker } from '../components/daily-log/BristolPicker';
 import { BloodPresencePicker } from '../components/daily-log/BloodPresencePicker';
 import { PainScaleSlider } from '../components/daily-log/PainScaleSlider';
 import { NotesInput } from '../components/daily-log/NotesInput';
+import { ClinicalExtrasAccordion } from '../components/daily-log/ClinicalExtrasAccordion';
 import { CrisisFeedbackBottomSheet } from '../components/feedback/CrisisFeedbackBottomSheet';
-import { HeartPulse } from 'lucide-react-native';
+import { HeartPulse, CheckCircle2, X } from 'lucide-react-native';
 
 export const DailyLogScreen: React.FC = () => {
   const { t } = useTranslation(['dailyLog', 'common']);
+  const insets = useSafeAreaInsets();
 
   const {
     selectedDate,
+    editingEntryId,
+    time,
     bristolType,
     bloodPresence,
     painLevel,
     notes,
+    stressLevel,
+    hasClots,
+    mucusPresence,
+    urgencyLevel,
+    isFormOpen,
     isSaving,
     activeFeedback,
     showFeedbackModal,
+    dayLogs,
+    dailySummary,
+    setTime,
     setBristolType,
     setBloodPresence,
     setPainLevel,
     setNotes,
+    setStressLevel,
+    setHasClots,
+    setMucusPresence,
+    setUrgencyLevel,
+    startNewEntry,
+    startEditEntry,
+    cancelForm,
+    deleteEntry,
+    loadDateData,
+    resetToToday,
     submitDailyLog,
     closeFeedbackModal,
-    loadRecentLogs,
   } = useSymptomStore();
 
   useEffect(() => {
-    loadRecentLogs();
-  }, [loadRecentLogs]);
+    loadDateData(selectedDate);
+  }, [loadDateData, selectedDate]);
 
   const handleSubmit = async () => {
     try {
@@ -54,58 +77,119 @@ export const DailyLogScreen: React.FC = () => {
     }
   };
 
+  const isEditing = Boolean(editingEntryId);
+
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <View style={styles.container}>
       <KeyboardAvoidingView
-        style={styles.container}
+        style={styles.keyboardContainer}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       >
         <ScrollView
           style={styles.scrollView}
-          contentContainerStyle={styles.scrollContent}
+          contentContainerStyle={[
+            styles.scrollContent,
+            {
+              paddingTop: 8,
+              paddingBottom: 130, // Espaço amplo acima da BottomTabBar
+            },
+          ]}
           showsVerticalScrollIndicator={false}
         >
-          <DailyHeader dateString={selectedDate} />
-
-          <BristolPicker
-            selectedType={bristolType}
-            onSelectType={setBristolType}
+          {/* Header */}
+          <DailyHeader
+            dateString={selectedDate}
+            isFormOpen={isFormOpen}
+            isExistingLog={isEditing}
+            timeString={time}
+            onResetToToday={resetToToday}
+            onCancelForm={cancelForm}
           />
 
-          <BloodPresencePicker
-            selectedPresence={bloodPresence}
-            onSelectPresence={setBloodPresence}
-          />
+          {!isFormOpen ? (
+            /* Timeline View (List of today's episodes) */
+            <DailyTimeline
+              date={selectedDate}
+              logs={dayLogs}
+              summary={dailySummary}
+              onAddNew={() => startNewEntry(selectedDate)}
+              onEdit={startEditEntry}
+              onDelete={deleteEntry}
+            />
+          ) : (
+            /* Form View (Single episode check-in / edit) */
+            <View style={styles.formContainer}>
+              <TimePickerInput time={time} onChangeTime={setTime} />
 
-          <PainScaleSlider
-            painLevel={painLevel}
-            onSelectPainLevel={setPainLevel}
-          />
+              <BristolPicker
+                selectedType={bristolType}
+                onSelectType={setBristolType}
+              />
 
-          <NotesInput notes={notes} onChangeNotes={setNotes} />
+              <BloodPresencePicker
+                selectedPresence={bloodPresence}
+                onSelectPresence={setBloodPresence}
+              />
 
-          <View style={styles.submitContainer}>
-            <TouchableOpacity
-              activeOpacity={0.8}
-              onPress={handleSubmit}
-              disabled={isSaving}
-              style={[
-                styles.submitButton,
-                isSaving && styles.submitButtonDisabled,
-              ]}
-            >
-              {isSaving ? (
-                <ActivityIndicator color="#FFFFFF" />
-              ) : (
-                <View style={styles.buttonContent}>
-                  <HeartPulse size={20} color="#FFFFFF" />
-                  <Text style={styles.submitButtonText}>
-                    {t('dailyLog:actions.submit')}
-                  </Text>
-                </View>
-              )}
-            </TouchableOpacity>
-          </View>
+              <PainScaleSlider
+                painLevel={painLevel}
+                onSelectPainLevel={setPainLevel}
+              />
+
+              {/* Extended Biomarkers Accordion (Issue #9) */}
+              <ClinicalExtrasAccordion
+                stressLevel={stressLevel}
+                hasClots={hasClots}
+                mucusPresence={mucusPresence}
+                urgencyLevel={urgencyLevel}
+                onSelectStressLevel={setStressLevel}
+                onSelectHasClots={setHasClots}
+                onSelectMucusPresence={setMucusPresence}
+                onSelectUrgencyLevel={setUrgencyLevel}
+              />
+
+              <NotesInput notes={notes} onChangeNotes={setNotes} />
+
+              <View style={styles.submitContainer}>
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  onPress={handleSubmit}
+                  disabled={isSaving}
+                  style={[
+                    styles.submitButton,
+                    isEditing && styles.updateButton,
+                    isSaving && styles.submitButtonDisabled,
+                  ]}
+                >
+                  {isSaving ? (
+                    <ActivityIndicator color="#FFFFFF" />
+                  ) : (
+                    <View style={styles.buttonContent}>
+                      {isEditing ? (
+                        <CheckCircle2 size={20} color="#FFFFFF" />
+                      ) : (
+                        <HeartPulse size={20} color="#FFFFFF" />
+                      )}
+                      <Text style={styles.submitButtonText}>
+                        {isEditing
+                          ? t('dailyLog:actions.update')
+                          : t('dailyLog:actions.submit')}
+                      </Text>
+                    </View>
+                  )}
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  onPress={cancelForm}
+                  style={styles.cancelButton}
+                >
+                  <X size={16} color="#6B7280" />
+                  <Text style={styles.cancelButtonText}>{t('dailyLog:cancelEdit')}</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          )}
         </ScrollView>
 
         <CrisisFeedbackBottomSheet
@@ -114,27 +198,31 @@ export const DailyLogScreen: React.FC = () => {
           onDismiss={closeFeedbackModal}
         />
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  safeArea: {
+  container: {
     flex: 1,
     backgroundColor: '#F8F9FE',
   },
-  container: {
+  keyboardContainer: {
     flex: 1,
   },
   scrollView: {
     flex: 1,
   },
   scrollContent: {
-    paddingBottom: 40,
+    paddingHorizontal: 0,
+  },
+  formContainer: {
+    marginTop: 4,
   },
   submitContainer: {
     marginTop: 16,
     paddingHorizontal: 20,
+    gap: 10,
   },
   submitButton: {
     backgroundColor: '#7B61FF',
@@ -148,6 +236,10 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     elevation: 4,
   },
+  updateButton: {
+    backgroundColor: '#8E63B8',
+    shadowColor: '#8E63B8',
+  },
   submitButtonDisabled: {
     opacity: 0.6,
   },
@@ -160,5 +252,21 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '700',
     color: '#FFFFFF',
+  },
+  cancelButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#FAF5FF',
+    height: 48,
+    borderRadius: 20,
+    gap: 8,
+    borderWidth: 1,
+    borderColor: '#E9D8FD',
+  },
+  cancelButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#6B7280',
   },
 });

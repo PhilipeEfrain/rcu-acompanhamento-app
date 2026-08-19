@@ -11,5 +11,15 @@
   "success": "Sucesso",
   "greetingMorning": "Bom dia",
   "greetingAfternoon": "Boa tarde",
-  "greetingEvening": "Boa noite"
+  "greetingEvening": "Boa noite",
+  "nav": {
+    "today": "Hoje",
+    "history": "Histórico",
+    "settings": "Privacidade"
+  },
+  "status": {
+    "remission": "Remissão",
+    "mild_activity": "Alerta Leve",
+    "moderate_to_severe_flare": "Crise Ativa"
+  }
 }

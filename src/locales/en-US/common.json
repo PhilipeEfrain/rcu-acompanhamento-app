@@ -1,5 +1,5 @@
 {
-  "appName": "UC Tracker",
+  "appName": "UC Care",
   "today": "Today",
   "yesterday": "Yesterday",
   "cancel": "Cancel",
@@ -11,5 +11,15 @@
   "success": "Success",
   "greetingMorning": "Good morning",
   "greetingAfternoon": "Good afternoon",
-  "greetingEvening": "Good evening"
+  "greetingEvening": "Good evening",
+  "nav": {
+    "today": "Today",
+    "history": "History",
+    "settings": "Privacy"
+  },
+  "status": {
+    "remission": "Remission",
+    "mild_activity": "Mild Alert",
+    "moderate_to_severe_flare": "Active Flare"
+  }
 }
