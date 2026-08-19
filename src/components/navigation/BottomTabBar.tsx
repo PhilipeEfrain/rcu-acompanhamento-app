@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { HeartHandshake, CalendarDays, ShieldCheck } from 'lucide-react-native';
 
 export type AppTab = 'today' | 'history' | 'settings';
@@ -13,7 +12,6 @@ interface BottomTabBarProps {
 
 export const BottomTabBar: React.FC<BottomTabBarProps> = ({ activeTab, onTabChange }) => {
   const { t } = useTranslation('common');
-  const insets = useSafeAreaInsets();
 
   const tabs: { id: AppTab; labelKey: string; icon: typeof HeartHandshake }[] = [
     { id: 'today', labelKey: 'nav.today', icon: HeartHandshake },
@@ -22,14 +20,7 @@ export const BottomTabBar: React.FC<BottomTabBarProps> = ({ activeTab, onTabChan
   ];
 
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          paddingBottom: Math.max(insets.bottom, 12),
-        },
-      ]}
-    >
+    <View style={styles.container}>
       <View style={styles.bar}>
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id;
@@ -62,13 +53,10 @@ export const BottomTabBar: React.FC<BottomTabBarProps> = ({ activeTab, onTabChan
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    paddingHorizontal: 20,
-    backgroundColor: 'transparent',
-    pointerEvents: 'box-none',
+    paddingHorizontal: 16,
+    paddingTop: 6,
+    paddingBottom: 8,
+    backgroundColor: '#F8F9FE',
   },
   bar: {
     flexDirection: 'row',
@@ -78,10 +66,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     justifyContent: 'space-around',
     shadowColor: '#8E63B8',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.12,
-    shadowRadius: 18,
-    elevation: 8,
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.1,
+    shadowRadius: 14,
+    elevation: 4,
     borderWidth: 1,
     borderColor: '#F0EFF5',
   },

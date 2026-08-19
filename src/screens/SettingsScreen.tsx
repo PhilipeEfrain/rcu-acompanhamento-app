@@ -110,7 +110,7 @@ export const SettingsScreen: React.FC = () => {
           styles.contentContainer,
           {
             paddingTop: 12,
-            paddingBottom: 130, // Espaço amplo acima da BottomTabBar
+            paddingBottom: 28,
           },
         ]}
         showsVerticalScrollIndicator={false}

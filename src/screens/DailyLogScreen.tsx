@@ -91,7 +91,7 @@ export const DailyLogScreen: React.FC = () => {
             styles.scrollContent,
             {
               paddingTop: 8,
-              paddingBottom: 130, // Espaço amplo acima da BottomTabBar
+              paddingBottom: 28,
             },
           ]}
           showsVerticalScrollIndicator={false}

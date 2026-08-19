@@ -68,10 +68,10 @@ function MainApp() {
         {activeTab === 'settings' && <SettingsScreen />}
       </View>
 
-      {/* Flo-style Bottom Tab Navigation with Safe Area Support */}
+      {/* Menu / Barra de Navegação Inferior Separada */}
       <BottomTabBar activeTab={activeTab} onTabChange={setActiveTab} />
 
-      {/* Barra de Área Segura Inferior 100% Sólida e Opaca */}
+      {/* Barra de Área Segura Inferior 100% Sólida e Opaca (Não Transparente) */}
       <View style={[styles.bottomSafeAreaFill, { height: insets.bottom }]} />
 
       {/* Security Privacy Shield */}
@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
   bottomSafeAreaFill: {
     backgroundColor: '#F8F9FE',
     width: '100%',
+    zIndex: 999,
   },
   content: {
     flex: 1,
