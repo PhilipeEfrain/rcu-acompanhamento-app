@@ -1,0 +1,59 @@
+{
+  "title": "Daily Symptom Log",
+  "subtitle": "How did your gut feel today?",
+  "bristol": {
+    "title": "Stool Consistency (Bristol Scale)",
+    "type_1": {
+      "label": "Type 1: Separate hard lumps",
+      "desc": "Like nuts, hard to pass"
+    },
+    "type_2": {
+      "label": "Type 2: Sausage-shaped, lumpy",
+      "desc": "Firm, uneven and bulky"
+    },
+    "type_3": {
+      "label": "Type 3: Sausage with cracks",
+      "desc": "Normal and consistent"
+    },
+    "type_4": {
+      "label": "Type 4: Smooth and soft sausage",
+      "desc": "Ideal shape, easy to pass"
+    },
+    "type_5": {
+      "label": "Type 5: Soft blobs with clear edges",
+      "desc": "Clear cut edges, low fiber"
+    },
+    "type_6": {
+      "label": "Type 6: Fluffy pieces, ragged edges",
+      "desc": "Mushy stool / mild diarrhea"
+    },
+    "type_7": {
+      "label": "Type 7: Entirely liquid",
+      "desc": "No solid pieces / severe diarrhea"
+    }
+  },
+  "blood": {
+    "title": "Blood Presence",
+    "none": "No blood",
+    "traces": "Traces or streaks",
+    "moderate": "Evident blood",
+    "severe": "Mostly blood / severe"
+  },
+  "pain": {
+    "title": "Abdominal Pain Level",
+    "none": "No pain (0)",
+    "mild": "Mild pain (1 - 3)",
+    "moderate": "Moderate pain (4 - 6)",
+    "severe": "Severe pain (7 - 10)",
+    "score_label": "Pain level: {{score}}/10"
+  },
+  "notes": {
+    "title": "Additional Notes (Optional)",
+    "placeholder": "Unusual foods, stress, fatigue..."
+  },
+  "actions": {
+    "submit": "Save Symptom Log",
+    "saving": "Saving...",
+    "success": "Daily log saved successfully!"
+  }
+}

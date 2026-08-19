@@ -1,0 +1,15 @@
+{
+  "appName": "UC Tracker",
+  "today": "Today",
+  "yesterday": "Yesterday",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "back": "Back",
+  "save": "Save",
+  "loading": "Loading...",
+  "error": "An error occurred",
+  "success": "Success",
+  "greetingMorning": "Good morning",
+  "greetingAfternoon": "Good afternoon",
+  "greetingEvening": "Good evening"
+}

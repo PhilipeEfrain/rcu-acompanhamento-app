@@ -1,0 +1,27 @@
+{
+  "remission": {
+    "title": "Stable Condition / In Remission",
+    "message": "Great news! Your logs indicate gut stability today. Keep up your healthy habits and prescribed medications.",
+    "care_habits": "Maintain a balanced diet and regular daily hydration.",
+    "care_medication": "Continue maintenance therapy as prescribed by your gastroenterologist."
+  },
+  "mild": {
+    "title": "Mild Activity Observed",
+    "message": "We noticed mild fluctuations today. Stay well hydrated, avoid trigger foods, and continue monitoring your stools.",
+    "care_hydration": "Drink at least 2 to 3 liters of water and clear fluids throughout the day.",
+    "care_diet": "Avoid greasy foods, ultra-processed items, excess caffeine, and lactose if sensitive.",
+    "care_monitor": "Monitor if symptoms persist for more than 48 hours."
+  },
+  "flare": {
+    "title": "Flare-up Alert: Support & Guidance",
+    "message": "Take a deep breath; flare-ups are challenging but temporary. We are here with you. Please review the safety guidelines below:",
+    "care_hydration": "Rehydrate with water, oral rehydration solutions, or electrolyte drinks to replace losses.",
+    "care_no_nsaids": "WARNING: NEVER take NSAIDs (like ibuprofen, ketoprofen, or diclofenac), as they worsen gut inflammation.",
+    "care_contact_doctor": "Notify your gastroenterologist about increased bowel frequency or blood in stool.",
+    "care_red_flags": "Go to the emergency room immediately if you have fever > 38°C (100.4°F), severe dizziness, extreme weakness, or continuous heavy bleeding."
+  },
+  "actions": {
+    "view_guidance": "View Clinical Guidance",
+    "dismiss": "Understood, thank you!"
+  }
+}

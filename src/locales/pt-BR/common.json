@@ -1,0 +1,15 @@
+{
+  "appName": "RCU Acompanhamento",
+  "today": "Hoje",
+  "yesterday": "Ontem",
+  "cancel": "Cancelar",
+  "confirm": "Confirmar",
+  "back": "Voltar",
+  "save": "Salvar",
+  "loading": "Carregando...",
+  "error": "Ocorreu um erro",
+  "success": "Sucesso",
+  "greetingMorning": "Bom dia",
+  "greetingAfternoon": "Boa tarde",
+  "greetingEvening": "Boa noite"
+}

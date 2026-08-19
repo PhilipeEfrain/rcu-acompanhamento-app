@@ -1,0 +1,36 @@
+{
+  "name": "rcu-acompanhamento",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "dependencies": {
+    "@gorhom/bottom-sheet": "^5.2.14",
+    "drizzle-orm": "^0.45.2",
+    "expo": "^53.0.27",
+    "expo-local-authentication": "~57.0.2",
+    "expo-localization": "~57.0.1",
+    "expo-print": "~57.0.1",
+    "expo-secure-store": "~57.0.1",
+    "expo-sharing": "^14.0.8",
+    "expo-sqlite": "~57.0.1",
+    "expo-status-bar": "~57.0.1",
+    "i18next": "^26.3.6",
+    "lucide-react-native": "^1.32.0",
+    "react": "19.2.3",
+    "react-i18next": "^17.0.11",
+    "react-native": "^0.72.17",
+    "react-native-gesture-handler": "~2.32.0",
+    "react-native-reanimated": "^4.2.2",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@types/react": "~19.2.2",
+    "typescript": "~6.0.3"
+  },
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "private": true
+}

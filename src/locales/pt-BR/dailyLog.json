@@ -1,0 +1,59 @@
+{
+  "title": "Registro Diário de Sintomas",
+  "subtitle": "Como seu intestino se comportou hoje?",
+  "bristol": {
+    "title": "Consistência das Fezes (Escala Bristol)",
+    "type_1": {
+      "label": "Tipo 1: Caroços duros separados",
+      "desc": "Como nozes, difíceis de evacuar"
+    },
+    "type_2": {
+      "label": "Tipo 2: Em forma de salsicha, nodoso",
+      "desc": "Firme, irregular e grumoso"
+    },
+    "type_3": {
+      "label": "Tipo 3: Salsicha com fendas",
+      "desc": "Consistência normal e consistente"
+    },
+    "type_4": {
+      "label": "Tipo 4: Salsicha suave e macia",
+      "desc": "Formato ideal, fácil de evacuar"
+    },
+    "type_5": {
+      "label": "Tipo 5: Pedaços macios separados",
+      "desc": "Bordas nítidas, pouca fibra"
+    },
+    "type_6": {
+      "label": "Tipo 6: Pedaços fofos e esfarrapados",
+      "desc": "Fezes pastosas / diarreia leve"
+    },
+    "type_7": {
+      "label": "Tipo 7: Totalmente líquido",
+      "desc": "Sem pedaços sólidos / diarreia severa"
+    }
+  },
+  "blood": {
+    "title": "Presença de Sangue",
+    "none": "Nenhum sangue",
+    "traces": "Traços ou estrias",
+    "moderate": "Sangue evidente",
+    "severe": "Apenas sangue / Intenso"
+  },
+  "pain": {
+    "title": "Nível de Dor Abdominal",
+    "none": "Sem dor (0)",
+    "mild": "Dor Leve (1 - 3)",
+    "moderate": "Dor Moderada (4 - 6)",
+    "severe": "Dor Intensa (7 - 10)",
+    "score_label": "Nível de dor: {{score}}/10"
+  },
+  "notes": {
+    "title": "Anotações Adicionais (Opcional)",
+    "placeholder": "Alimentação diferente, estresse, cansaço..."
+  },
+  "actions": {
+    "submit": "Salvar Registro de Sintomas",
+    "saving": "Salvando...",
+    "success": "Registro diário salvo com sucesso!"
+  }
+}
