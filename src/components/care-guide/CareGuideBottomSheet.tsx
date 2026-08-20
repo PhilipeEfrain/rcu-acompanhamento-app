@@ -82,6 +82,7 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
             contentContainerStyle={styles.tabsScroll}
             style={styles.tabsContainer}
           >
+            {/* 1. SUS */}
             <TouchableOpacity
               activeOpacity={0.8}
               onPress={() => setActiveTab('sus')}
@@ -102,6 +103,7 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
               </Text>
             </TouchableOpacity>
 
+            {/* 2. Manipulação */}
             <TouchableOpacity
               activeOpacity={0.8}
               onPress={() => setActiveTab('compounding')}
@@ -122,26 +124,7 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
               </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity
-              activeOpacity={0.8}
-              onPress={() => setActiveTab('rights')}
-              style={[
-                styles.tabPill,
-                activeTab === 'rights' && styles.tabPillActive,
-              ]}
-            >
-              <Scale size={18} color={activeTab === 'rights' ? '#FFFFFF' : '#64748B'} />
-              <Text
-                numberOfLines={1}
-                style={[
-                  styles.tabPillText,
-                  activeTab === 'rights' && styles.tabPillTextActive,
-                ]}
-              >
-                {t('careGuide:tabs.rights', { defaultValue: 'Seus Direitos' })}
-              </Text>
-            </TouchableOpacity>
-
+            {/* 3. Cuidados em Crise */}
             <TouchableOpacity
               activeOpacity={0.8}
               onPress={() => setActiveTab('flareCare')}
@@ -162,6 +145,7 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
               </Text>
             </TouchableOpacity>
 
+            {/* 4. Consulta Médica */}
             <TouchableOpacity
               activeOpacity={0.8}
               onPress={() => setActiveTab('doctorPrep')}
@@ -179,6 +163,27 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
                 ]}
               >
                 {t('careGuide:tabs.doctorPrep', { defaultValue: 'Consulta Médica' })}
+              </Text>
+            </TouchableOpacity>
+
+            {/* 5. Seus Direitos */}
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => setActiveTab('rights')}
+              style={[
+                styles.tabPill,
+                activeTab === 'rights' && styles.tabPillActive,
+              ]}
+            >
+              <Scale size={18} color={activeTab === 'rights' ? '#FFFFFF' : '#64748B'} />
+              <Text
+                numberOfLines={1}
+                style={[
+                  styles.tabPillText,
+                  activeTab === 'rights' && styles.tabPillTextActive,
+                ]}
+              >
+                {t('careGuide:tabs.rights', { defaultValue: 'Seus Direitos' })}
               </Text>
             </TouchableOpacity>
           </ScrollView>
@@ -287,43 +292,7 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
               </View>
             )}
 
-            {/* 3. PATIENT RIGHTS */}
-            {activeTab === 'rights' && (
-              <View style={styles.sectionCard}>
-                <View style={styles.cardHeaderRow}>
-                  <View style={[styles.badge, { backgroundColor: '#E0E7FF' }]}>
-                    <Text style={[styles.badgeText, { color: '#3730A3' }]}>
-                      {t('careGuide:rightsSection.badge')}
-                    </Text>
-                  </View>
-                </View>
-
-                <Text style={styles.cardTitle}>{t('careGuide:rightsSection.title')}</Text>
-                <Text style={styles.cardDesc}>{t('careGuide:rightsSection.desc')}</Text>
-
-                <View style={styles.rightCard}>
-                  <Text style={styles.rightTitle}>🚻 {t('careGuide:rightsSection.right1Title')}</Text>
-                  <Text style={styles.rightDesc}>{t('careGuide:rightsSection.right1Desc')}</Text>
-                </View>
-
-                <View style={styles.rightCard}>
-                  <Text style={styles.rightTitle}>🪪 {t('careGuide:rightsSection.right2Title')}</Text>
-                  <Text style={styles.rightDesc}>{t('careGuide:rightsSection.right2Desc')}</Text>
-                </View>
-
-                <View style={styles.rightCard}>
-                  <Text style={styles.rightTitle}>⚡ {t('careGuide:rightsSection.right3Title')}</Text>
-                  <Text style={styles.rightDesc}>{t('careGuide:rightsSection.right3Desc')}</Text>
-                </View>
-
-                <View style={styles.rightCard}>
-                  <Text style={styles.rightTitle}>⚖️ {t('careGuide:rightsSection.right4Title')}</Text>
-                  <Text style={styles.rightDesc}>{t('careGuide:rightsSection.right4Desc')}</Text>
-                </View>
-              </View>
-            )}
-
-            {/* 4. FLARE CARE */}
+            {/* 3. FLARE CARE */}
             {activeTab === 'flareCare' && (
               <View style={styles.sectionCard}>
                 <View style={styles.cardHeaderRow}>
@@ -363,7 +332,7 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
               </View>
             )}
 
-            {/* 5. DOCTOR PREPARATION */}
+            {/* 4. DOCTOR PREPARATION */}
             {activeTab === 'doctorPrep' && (
               <View style={styles.sectionCard}>
                 <View style={styles.cardHeaderRow}>
@@ -399,6 +368,42 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
                     🚨 {t('careGuide:doctorPrepSection.prep3Title')}{'\n'}
                     {t('careGuide:doctorPrepSection.prep3Desc')}
                   </Text>
+                </View>
+              </View>
+            )}
+
+            {/* 5. PATIENT RIGHTS */}
+            {activeTab === 'rights' && (
+              <View style={styles.sectionCard}>
+                <View style={styles.cardHeaderRow}>
+                  <View style={[styles.badge, { backgroundColor: '#E0E7FF' }]}>
+                    <Text style={[styles.badgeText, { color: '#3730A3' }]}>
+                      {t('careGuide:rightsSection.badge')}
+                    </Text>
+                  </View>
+                </View>
+
+                <Text style={styles.cardTitle}>{t('careGuide:rightsSection.title')}</Text>
+                <Text style={styles.cardDesc}>{t('careGuide:rightsSection.desc')}</Text>
+
+                <View style={styles.rightCard}>
+                  <Text style={styles.rightTitle}>🚻 {t('careGuide:rightsSection.right1Title')}</Text>
+                  <Text style={styles.rightDesc}>{t('careGuide:rightsSection.right1Desc')}</Text>
+                </View>
+
+                <View style={styles.rightCard}>
+                  <Text style={styles.rightTitle}>🪪 {t('careGuide:rightsSection.right2Title')}</Text>
+                  <Text style={styles.rightDesc}>{t('careGuide:rightsSection.right2Desc')}</Text>
+                </View>
+
+                <View style={styles.rightCard}>
+                  <Text style={styles.rightTitle}>⚡ {t('careGuide:rightsSection.right3Title')}</Text>
+                  <Text style={styles.rightDesc}>{t('careGuide:rightsSection.right3Desc')}</Text>
+                </View>
+
+                <View style={styles.rightCard}>
+                  <Text style={styles.rightTitle}>⚖️ {t('careGuide:rightsSection.right4Title')}</Text>
+                  <Text style={styles.rightDesc}>{t('careGuide:rightsSection.right4Desc')}</Text>
                 </View>
               </View>
             )}
