@@ -20,6 +20,7 @@
   "status": {
     "remission": "Remissão",
     "mild_activity": "Alerta Leve",
-    "moderate_to_severe_flare": "Crise Ativa"
+    "moderate_to_severe_flare": "Crise Ativa",
+    "severe_emergency": "Emergência Médica"
   }
 }

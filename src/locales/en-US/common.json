@@ -19,7 +19,8 @@
   },
   "status": {
     "remission": "Remission",
-    "mild_activity": "Mild Alert",
-    "moderate_to_severe_flare": "Active Flare"
+    "mild_activity": "Mild Flare",
+    "moderate_to_severe_flare": "Active Flare",
+    "severe_emergency": "Medical Emergency"
   }
 }

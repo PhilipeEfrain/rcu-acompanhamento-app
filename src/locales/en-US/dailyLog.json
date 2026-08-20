@@ -36,9 +36,17 @@
     "title": "Bleeding Aspect",
     "none": "None",
     "streaks": "Streaks / Traces",
-    "mixed": "Mixed",
-    "pure_blood": "Pure Bright Blood",
-    "clots": "Clots"
+    "mixed": "Mixed in Stool",
+    "pure_blood": "Pure Fresh Blood",
+    "clots": "Blood Clots"
+  },
+  "systemicSymptoms": {
+    "title": "Systemic Symptoms & Warning Signs",
+    "subtitle": "Check if you are experiencing any body-wide symptoms",
+    "fever": "Fever (> 37.8°C / 100°F)",
+    "dizziness": "Dizziness / Weakness",
+    "extremeFatigue": "Extreme Fatigue",
+    "tachycardia": "Rapid Heartbeat"
   },
   "bristol": {
     "title": "Stool Consistency (Bristol Scale)",

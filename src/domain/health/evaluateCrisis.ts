@@ -22,11 +22,16 @@ interface EvaluateCrisisParams {
   hasClots?: boolean;
   mucusPresence?: MucusPresence;
   urgencyLevel?: UrgencyLevel;
+  hasFever?: boolean;
+  hasDizziness?: boolean;
+  hasExtremeFatigue?: boolean;
+  hasTachycardia?: boolean;
 }
 
 /**
  * Pure clinical decision function for a single bowel movement / symptom assessment.
- * Evaluates core symptoms (Bristol, Blood, Pain, Output Type, Period) plus extended biomarkers.
+ * Evaluates core symptoms (Bristol, Blood, Pain, Output Type, Period), extended biomarkers,
+ * and systemic alarm signals (Truelove & Witts criteria: Fever, Dizziness, Fatigue, Tachycardia).
  */
 export function evaluateCrisis({
   bristolType,
@@ -38,15 +43,21 @@ export function evaluateCrisis({
   hasClots,
   mucusPresence,
   urgencyLevel,
+  hasFever,
+  hasDizziness,
+  hasExtremeFatigue,
+  hasTachycardia,
 }: EvaluateCrisisParams): CrisisEvaluation {
   const isSevereBristol = outputType === 'feces' && (bristolType === 'type_6' || bristolType === 'type_7');
   const isSevereBlood =
     bloodPresence === 'severe' ||
-    bloodAspect === 'pure_blood' ||
-    bloodPresence === 'moderate';
-  const isSeverePain = painLevel >= 7;
-  const isSevereUrgency = urgencyLevel === 'severe';
+    bloodAspect === 'pure_blood';
   const isClotsPresent = Boolean(hasClots) || bloodAspect === 'clots';
+  const isModerateOrSevereBlood = isSevereBlood || isClotsPresent || bloodPresence === 'moderate';
+
+  const isSeverePain = painLevel >= 7;
+  const isExcruciatingPain = painLevel >= 9;
+  const isSevereUrgency = urgencyLevel === 'severe';
 
   const isModerateBristol = outputType === 'feces' && (bristolType === 'type_5' || bristolType === 'type_1');
   const isModerateBlood = bloodPresence === 'traces' || bloodAspect === 'traces' || bloodAspect === 'mixed';
@@ -54,17 +65,33 @@ export function evaluateCrisis({
   const isModerateUrgency = urgencyLevel === 'moderate';
   const isMucusPresent = mucusPresence === 'mild' || mucusPresence === 'abundant' || outputType === 'blood_mucus_only';
 
+  const hasSystemicRedFlags = Boolean(hasFever || hasDizziness || hasTachycardia || hasExtremeFatigue);
+
   let severity: CrisisSeverity = 'remission';
 
+  // 1. Level 4: Severe Emergency (Red Flag / ASUC / Acute abdomen)
   if (
-    isSevereBlood ||
+    isExcruciatingPain ||
+    (isModerateOrSevereBlood && (hasFever || hasDizziness || hasTachycardia)) ||
+    (isClotsPresent && hasSystemicRedFlags) ||
+    (isSevereBlood && isSeverePain) ||
+    (hasFever && (bloodPresence !== 'none' || mucusPresence !== 'none' || isSeverePain))
+  ) {
+    severity = 'severe_emergency';
+  }
+  // 2. Level 3: Moderate to Severe Flare
+  else if (
+    isModerateOrSevereBlood ||
     (isSevereBristol && isModerateBlood) ||
     isSeverePain ||
     isClotsPresent ||
-    isSevereUrgency
+    isSevereUrgency ||
+    hasSystemicRedFlags
   ) {
     severity = 'moderate_to_severe_flare';
-  } else if (
+  }
+  // 3. Level 2: Mild Activity
+  else if (
     isModerateBristol ||
     isModerateBlood ||
     isModeratePain ||
@@ -74,7 +101,9 @@ export function evaluateCrisis({
     outputType === 'gas_bloody_false_alarm'
   ) {
     severity = 'mild_activity';
-  } else {
+  }
+  // 4. Level 1: Remission
+  else {
     severity = 'remission';
   }
 
@@ -86,9 +115,26 @@ export function evaluateCrisis({
     period === 'waking_morning' &&
     (outputType === 'blood_mucus_only' || isModerateBlood || isMucusPresent) &&
     !isSevereBlood &&
-    !isClotsPresent
+    !isClotsPresent &&
+    !hasSystemicRedFlags
   ) {
     contextualFeedbackKey = 'crisisFeedback:poolingMorning';
+  }
+
+  if (severity === 'severe_emergency') {
+    return {
+      severity,
+      titleKey: 'crisisFeedback:emergency.title',
+      messageKey: 'crisisFeedback:emergency.message',
+      guidelinesKeys: [
+        'crisisFeedback:emergency.care_hospital',
+        'crisisFeedback:emergency.care_hydration',
+        'crisisFeedback:emergency.care_no_nsaids',
+        'crisisFeedback:emergency.care_monitor',
+      ],
+      badgeColor: '#DC2626',
+      contextualFeedbackKey,
+    };
   }
 
   if (severity === 'moderate_to_severe_flare') {
@@ -137,7 +183,8 @@ export function evaluateCrisis({
 
 /**
  * Evaluates the consolidated clinical status of an entire day given all its bowel movement logs.
- * Combines stool frequency (Mayo subscore), bleeding, consistency, pain, clots, mucus, tenesmus and morning pooling.
+ * Combines stool frequency (Mayo subscore), bleeding, consistency, pain, clots, mucus, tenesmus,
+ * morning pooling and systemic red flags (Truelove & Witts).
  */
 export function evaluateDailySummary(date: string, entries: DailySymptomEntry[]): DailyAggregatedSummary {
   if (entries.length === 0) {
@@ -156,6 +203,10 @@ export function evaluateDailySummary(date: string, entries: DailySymptomEntry[])
       hasAbundantMucus: false,
       hasSevereUrgency: false,
       maxStress: 0,
+      hasFever: false,
+      hasDizziness: false,
+      hasExtremeFatigue: false,
+      hasTachycardia: false,
     };
   }
 
@@ -176,10 +227,16 @@ export function evaluateDailySummary(date: string, entries: DailySymptomEntry[])
   let hasSevereUrgency = false;
   let worstBristol: BristolType = 'type_4';
 
+  let hasFever = false;
+  let hasDizziness = false;
+  let hasExtremeFatigue = false;
+  let hasTachycardia = false;
+
   const severityLevels: Record<CrisisSeverity, number> = {
     remission: 0,
     mild_activity: 1,
     moderate_to_severe_flare: 2,
+    severe_emergency: 3,
   };
 
   let maxSeverityScore = 0;
@@ -194,18 +251,22 @@ export function evaluateDailySummary(date: string, entries: DailySymptomEntry[])
     if (entry.stressLevel && entry.stressLevel > maxStress) maxStress = entry.stressLevel;
     if (entry.bloodPresence !== 'none' || (entry.bloodAspect && entry.bloodAspect !== 'none')) hasBlood = true;
     if (
-      entry.bloodPresence === 'moderate' ||
       entry.bloodPresence === 'severe' ||
       entry.bloodAspect === 'pure_blood'
     ) {
       hasSevereBlood = true;
     }
-    if (entry.bloodPresence === 'traces' || entry.bloodAspect === 'traces' || entry.bloodAspect === 'mixed') {
+    if (entry.bloodPresence === 'traces' || entry.bloodAspect === 'traces' || entry.bloodAspect === 'mixed' || entry.bloodPresence === 'moderate') {
       hasModerateBlood = true;
     }
     if (entry.hasClots || entry.bloodAspect === 'clots') hasClots = true;
     if (entry.mucusPresence === 'abundant') hasAbundantMucus = true;
     if (entry.urgencyLevel === 'severe') hasSevereUrgency = true;
+
+    if (entry.hasFever) hasFever = true;
+    if (entry.hasDizziness) hasDizziness = true;
+    if (entry.hasExtremeFatigue) hasExtremeFatigue = true;
+    if (entry.hasTachycardia) hasTachycardia = true;
 
     if (outType === 'feces' && (entry.bristolType === 'type_7' || entry.bristolType === 'type_6')) {
       hasLiquidStool = true;
@@ -226,18 +287,33 @@ export function evaluateDailySummary(date: string, entries: DailySymptomEntry[])
 
   let overallSeverity: CrisisSeverity = 'remission';
 
-  // Mayo Criteria: Fecal movement frequency >= 6 or severe clinical biomarkers
+  // Level 4: Severe Emergency
   if (
+    maxSeverityScore >= 3 ||
+    maxPain >= 9 ||
+    ((hasSevereBlood || hasClots) && (hasFever || hasDizziness || hasTachycardia)) ||
+    (totalFecesMovements >= 6 && hasBlood && (hasFever || hasDizziness || maxPain >= 8))
+  ) {
+    overallSeverity = 'severe_emergency';
+  }
+  // Level 3: Moderate to Severe Flare
+  else if (
+    maxSeverityScore >= 2 ||
     totalFecesMovements >= 6 ||
     totalMovements >= 8 ||
     hasSevereBlood ||
     maxPain >= 7 ||
     hasClots ||
     hasSevereUrgency ||
-    (totalFecesMovements >= 4 && hasModerateBlood)
+    (totalFecesMovements >= 4 && hasModerateBlood) ||
+    hasFever ||
+    hasDizziness ||
+    hasExtremeFatigue
   ) {
     overallSeverity = 'moderate_to_severe_flare';
-  } else if (
+  }
+  // Level 2: Mild Activity
+  else if (
     totalFecesMovements >= 3 ||
     totalTenesmusCount >= 2 ||
     totalBloodMucusOnlyCount >= 1 ||
@@ -248,7 +324,9 @@ export function evaluateDailySummary(date: string, entries: DailySymptomEntry[])
     maxSeverityScore >= 1
   ) {
     overallSeverity = 'mild_activity';
-  } else {
+  }
+  // Level 1: Remission
+  else {
     overallSeverity = 'remission';
   }
 
@@ -267,6 +345,11 @@ export function evaluateDailySummary(date: string, entries: DailySymptomEntry[])
     hasAbundantMucus,
     hasSevereUrgency,
     maxStress,
+    hasFever,
+    hasDizziness,
+    hasExtremeFatigue,
+    hasTachycardia,
   };
 }
+
 

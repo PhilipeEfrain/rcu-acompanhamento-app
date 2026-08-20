@@ -11,7 +11,7 @@ export const dailySymptomLogs = sqliteTable('daily_symptom_logs', {
   severity: text('severity').notNull(), // remission, mild_activity, moderate_to_severe_flare
   createdAt: integer('created_at').notNull(), // Epoch timestamp
 
-  // Extended clinical biomarkers (Issue #9 & #16)
+  // Extended clinical biomarkers (Issue #9, #16 & #18)
   outputType: text('output_type'), // feces, blood_mucus_only, gas_bloody_false_alarm
   period: text('period'), // waking_morning, afternoon, night
   bloodAspect: text('blood_aspect'), // none, streaks, mixed, pure_blood, clots
@@ -19,6 +19,12 @@ export const dailySymptomLogs = sqliteTable('daily_symptom_logs', {
   hasClots: integer('has_clots', { mode: 'boolean' }),
   mucusPresence: text('mucus_presence'),
   urgencyLevel: text('urgency_level'),
+
+  // Systemic Alarms (Issue #18)
+  hasFever: integer('has_fever', { mode: 'boolean' }),
+  hasDizziness: integer('has_dizziness', { mode: 'boolean' }),
+  hasExtremeFatigue: integer('has_extreme_fatigue', { mode: 'boolean' }),
+  hasTachycardia: integer('has_tachycardia', { mode: 'boolean' }),
 });
 
 export type DailySymptomLogRow = typeof dailySymptomLogs.$inferSelect;

@@ -46,6 +46,10 @@ export const symptomRepository = {
       hasClots: entry.hasClots !== undefined ? entry.hasClots : null,
       mucusPresence: entry.mucusPresence || null,
       urgencyLevel: entry.urgencyLevel || null,
+      hasFever: entry.hasFever !== undefined ? entry.hasFever : null,
+      hasDizziness: entry.hasDizziness !== undefined ? entry.hasDizziness : null,
+      hasExtremeFatigue: entry.hasExtremeFatigue !== undefined ? entry.hasExtremeFatigue : null,
+      hasTachycardia: entry.hasTachycardia !== undefined ? entry.hasTachycardia : null,
     };
 
     await db.insert(dailySymptomLogs).values(row).onConflictDoUpdate({
@@ -64,6 +68,10 @@ export const symptomRepository = {
         hasClots: row.hasClots,
         mucusPresence: row.mucusPresence,
         urgencyLevel: row.urgencyLevel,
+        hasFever: row.hasFever,
+        hasDizziness: row.hasDizziness,
+        hasExtremeFatigue: row.hasExtremeFatigue,
+        hasTachycardia: row.hasTachycardia,
       },
     });
 
@@ -102,6 +110,10 @@ export const symptomRepository = {
       hasClots: r.hasClots ?? undefined,
       mucusPresence: (r.mucusPresence as MucusPresence) || undefined,
       urgencyLevel: (r.urgencyLevel as UrgencyLevel) || undefined,
+      hasFever: r.hasFever ?? undefined,
+      hasDizziness: r.hasDizziness ?? undefined,
+      hasExtremeFatigue: r.hasExtremeFatigue ?? undefined,
+      hasTachycardia: r.hasTachycardia ?? undefined,
     }));
   },
 
@@ -131,6 +143,10 @@ export const symptomRepository = {
       hasClots: r.hasClots ?? undefined,
       mucusPresence: (r.mucusPresence as MucusPresence) || undefined,
       urgencyLevel: (r.urgencyLevel as UrgencyLevel) || undefined,
+      hasFever: r.hasFever ?? undefined,
+      hasDizziness: r.hasDizziness ?? undefined,
+      hasExtremeFatigue: r.hasExtremeFatigue ?? undefined,
+      hasTachycardia: r.hasTachycardia ?? undefined,
     };
   },
 
@@ -163,6 +179,10 @@ export const symptomRepository = {
       hasClots: r.hasClots ?? undefined,
       mucusPresence: (r.mucusPresence as MucusPresence) || undefined,
       urgencyLevel: (r.urgencyLevel as UrgencyLevel) || undefined,
+      hasFever: r.hasFever ?? undefined,
+      hasDizziness: r.hasDizziness ?? undefined,
+      hasExtremeFatigue: r.hasExtremeFatigue ?? undefined,
+      hasTachycardia: r.hasTachycardia ?? undefined,
     }));
   },
 
@@ -189,6 +209,10 @@ export const symptomRepository = {
       hasClots: r.hasClots ?? undefined,
       mucusPresence: (r.mucusPresence as MucusPresence) || undefined,
       urgencyLevel: (r.urgencyLevel as UrgencyLevel) || undefined,
+      hasFever: r.hasFever ?? undefined,
+      hasDizziness: r.hasDizziness ?? undefined,
+      hasExtremeFatigue: r.hasExtremeFatigue ?? undefined,
+      hasTachycardia: r.hasTachycardia ?? undefined,
     }));
   },
 
@@ -219,6 +243,10 @@ export const symptomRepository = {
       hasClots: r.hasClots ?? undefined,
       mucusPresence: (r.mucusPresence as MucusPresence) || undefined,
       urgencyLevel: (r.urgencyLevel as UrgencyLevel) || undefined,
+      hasFever: r.hasFever ?? undefined,
+      hasDizziness: r.hasDizziness ?? undefined,
+      hasExtremeFatigue: r.hasExtremeFatigue ?? undefined,
+      hasTachycardia: r.hasTachycardia ?? undefined,
     }));
   },
 

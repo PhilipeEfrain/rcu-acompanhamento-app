@@ -24,6 +24,7 @@ import { BloodPresencePicker } from '../components/daily-log/BloodPresencePicker
 import { PainScaleSlider } from '../components/daily-log/PainScaleSlider';
 import { NotesInput } from '../components/daily-log/NotesInput';
 import { ClinicalExtrasAccordion } from '../components/daily-log/ClinicalExtrasAccordion';
+import { SystemicSymptomsSelector } from '../components/daily-log/SystemicSymptomsSelector';
 import { CrisisFeedbackBottomSheet } from '../components/feedback/CrisisFeedbackBottomSheet';
 import { EmotionalSupportCard } from '../components/feedback/EmotionalSupportCard';
 import { DailyMedicationTracker } from '../components/medications/DailyMedicationTracker';
@@ -50,6 +51,10 @@ export const DailyLogScreen: React.FC = () => {
     hasClots,
     mucusPresence,
     urgencyLevel,
+    hasFever,
+    hasDizziness,
+    hasExtremeFatigue,
+    hasTachycardia,
     isFormOpen,
     isSaving,
     activeFeedback,
@@ -67,6 +72,10 @@ export const DailyLogScreen: React.FC = () => {
     setHasClots,
     setMucusPresence,
     setUrgencyLevel,
+    toggleFever,
+    toggleDizziness,
+    toggleExtremeFatigue,
+    toggleTachycardia,
     startNewEntry,
     startEditEntry,
     cancelForm,
@@ -196,6 +205,18 @@ export const DailyLogScreen: React.FC = () => {
               <PainScaleSlider
                 painLevel={painLevel}
                 onSelectPainLevel={setPainLevel}
+              />
+
+              {/* Systemic Alarm Symptoms (Issue #18) */}
+              <SystemicSymptomsSelector
+                hasFever={hasFever}
+                hasDizziness={hasDizziness}
+                hasExtremeFatigue={hasExtremeFatigue}
+                hasTachycardia={hasTachycardia}
+                onToggleFever={toggleFever}
+                onToggleDizziness={toggleDizziness}
+                onToggleExtremeFatigue={toggleExtremeFatigue}
+                onToggleTachycardia={toggleTachycardia}
               />
 
               {/* Extended Biomarkers Accordion (Issue #9) */}

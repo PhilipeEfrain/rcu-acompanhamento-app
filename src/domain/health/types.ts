@@ -33,7 +33,8 @@ export type BloodAspect =
 export type CrisisSeverity =
   | 'remission'
   | 'mild_activity'
-  | 'moderate_to_severe_flare';
+  | 'moderate_to_severe_flare'
+  | 'severe_emergency';
 
 export type MucusPresence =
   | 'none'
@@ -56,7 +57,7 @@ export interface DailySymptomEntry {
   severity: CrisisSeverity;
   createdAt: number; // Epoch timestamp
 
-  // Extended clinical biomarkers (Issue #9 & #16)
+  // Extended clinical biomarkers (Issue #9, #16 & #18)
   outputType?: OutputType;
   period?: TimePeriod;
   bloodAspect?: BloodAspect;
@@ -64,6 +65,12 @@ export interface DailySymptomEntry {
   hasClots?: boolean;
   mucusPresence?: MucusPresence;
   urgencyLevel?: UrgencyLevel;
+
+  // Systemic Alarms (Issue #18)
+  hasFever?: boolean;
+  hasDizziness?: boolean;
+  hasExtremeFatigue?: boolean;
+  hasTachycardia?: boolean;
 }
 
 export interface CrisisEvaluation {
@@ -90,5 +97,11 @@ export interface DailyAggregatedSummary {
   hasAbundantMucus?: boolean;
   hasSevereUrgency?: boolean;
   maxStress?: number;
+
+  // Systemic Alarms
+  hasFever?: boolean;
+  hasDizziness?: boolean;
+  hasExtremeFatigue?: boolean;
+  hasTachycardia?: boolean;
 }
 

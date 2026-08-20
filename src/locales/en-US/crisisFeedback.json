@@ -32,8 +32,18 @@
     "message": "Rectal mucosal inflammation triggers false urgency signals to the brain. Feeling intense urgency but only passing gas or blood traces is part of active inflammation.",
     "action": "Take a deep breath. You are doing everything right."
   },
+  "emergency": {
+    "title": "🚨 RED ALERT: Seek Immediate Emergency Medical Care",
+    "badge": "Medical Emergency",
+    "message": "We detected a combination of high-risk symptoms (heavy bleeding associated with systemic signs of fever/dizziness or acute severe abdominal pain). Please seek immediate emergency medical evaluation.",
+    "care_hospital": "Proceed to the emergency room or contact your gastroenterologist urgently.",
+    "care_hydration": "Sip water or oral electrolyte solution in small sips during transport.",
+    "care_no_nsaids": "WARNING: NEVER take NSAIDs (ibuprofen, diclofenac, ketoprofen), as they exacerbate gastrointestinal hemorrhage.",
+    "care_monitor": "Show your symptom timeline or export the PDF report at hospital triage."
+  },
   "actions": {
     "view_guidance": "View Clinical Guidance",
-    "dismiss": "Understood, thank you!"
+    "dismiss": "Understood, thank you!",
+    "emergency_dismiss": "Understood, seek medical care"
   }
 }

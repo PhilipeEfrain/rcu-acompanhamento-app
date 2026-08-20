@@ -297,6 +297,34 @@ export function buildReportHtml(stats: ReportStats, t: TFunction): string {
         </div>
       `);
     }
+    if (log.hasFever) {
+      extras.push(`
+        <div style="margin-bottom: 3px; color: #DC2626; font-weight: 700;">
+          🌡️ ${t('dailyLog:systemicSymptoms.fever', { defaultValue: 'Febre (> 37,8°C)' })}
+        </div>
+      `);
+    }
+    if (log.hasDizziness) {
+      extras.push(`
+        <div style="margin-bottom: 3px; color: #D97706; font-weight: 700;">
+          💫 ${t('dailyLog:systemicSymptoms.dizziness', { defaultValue: 'Tontura / Fraqueza' })}
+        </div>
+      `);
+    }
+    if (log.hasExtremeFatigue) {
+      extras.push(`
+        <div style="margin-bottom: 3px; color: #7C3AED; font-weight: 700;">
+          🥱 ${t('dailyLog:systemicSymptoms.extremeFatigue', { defaultValue: 'Cansaço Extremo' })}
+        </div>
+      `);
+    }
+    if (log.hasTachycardia) {
+      extras.push(`
+        <div style="margin-bottom: 3px; color: #E11D48; font-weight: 700;">
+          💓 ${t('dailyLog:systemicSymptoms.tachycardia', { defaultValue: 'Taquicardia / Coração Acelerado' })}
+        </div>
+      `);
+    }
 
     const extraContent = extras.length > 0
       ? extras.join('')

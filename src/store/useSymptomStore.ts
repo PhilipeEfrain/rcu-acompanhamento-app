@@ -48,11 +48,15 @@ interface SymptomState {
   dayLogs: DailySymptomEntry[];
   dailySummary: DailyAggregatedSummary | null;
 
-  // Extended clinical biomarkers (Issue #9 & #16)
+  // Extended clinical biomarkers (Issue #9, #16 & #18)
   stressLevel: number | null;
   hasClots: boolean;
   mucusPresence: MucusPresence;
   urgencyLevel: UrgencyLevel;
+  hasFever: boolean;
+  hasDizziness: boolean;
+  hasExtremeFatigue: boolean;
+  hasTachycardia: boolean;
 
   // Actions
   setSelectedDate: (date: string) => Promise<void>;
@@ -68,6 +72,14 @@ interface SymptomState {
   setHasClots: (hasClots: boolean) => void;
   setMucusPresence: (mucus: MucusPresence) => void;
   setUrgencyLevel: (urgency: UrgencyLevel) => void;
+  setHasFever: (hasFever: boolean) => void;
+  setHasDizziness: (hasDizziness: boolean) => void;
+  setHasExtremeFatigue: (hasExtremeFatigue: boolean) => void;
+  setHasTachycardia: (hasTachycardia: boolean) => void;
+  toggleFever: () => void;
+  toggleDizziness: () => void;
+  toggleExtremeFatigue: () => void;
+  toggleTachycardia: () => void;
 
   startNewEntry: (date?: string) => void;
   startEditEntry: (entry: DailySymptomEntry) => void;
@@ -103,6 +115,10 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
   hasClots: false,
   mucusPresence: 'none',
   urgencyLevel: 'normal',
+  hasFever: false,
+  hasDizziness: false,
+  hasExtremeFatigue: false,
+  hasTachycardia: false,
 
   setSelectedDate: async (date: string) => {
     set({ selectedDate: date });
@@ -132,6 +148,14 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
   setHasClots: (hasClots: boolean) => set({ hasClots }),
   setMucusPresence: (mucusPresence: MucusPresence) => set({ mucusPresence }),
   setUrgencyLevel: (urgencyLevel: UrgencyLevel) => set({ urgencyLevel }),
+  setHasFever: (hasFever: boolean) => set({ hasFever }),
+  setHasDizziness: (hasDizziness: boolean) => set({ hasDizziness }),
+  setHasExtremeFatigue: (hasExtremeFatigue: boolean) => set({ hasExtremeFatigue }),
+  setHasTachycardia: (hasTachycardia: boolean) => set({ hasTachycardia }),
+  toggleFever: () => set((state) => ({ hasFever: !state.hasFever })),
+  toggleDizziness: () => set((state) => ({ hasDizziness: !state.hasDizziness })),
+  toggleExtremeFatigue: () => set((state) => ({ hasExtremeFatigue: !state.hasExtremeFatigue })),
+  toggleTachycardia: () => set((state) => ({ hasTachycardia: !state.hasTachycardia })),
 
   startNewEntry: (date?: string) => {
     const targetDate = date || get().selectedDate;
@@ -150,6 +174,10 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
       hasClots: false,
       mucusPresence: 'none',
       urgencyLevel: 'normal',
+      hasFever: false,
+      hasDizziness: false,
+      hasExtremeFatigue: false,
+      hasTachycardia: false,
       isFormOpen: true,
     });
   },
@@ -161,15 +189,19 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
       time: entry.time || getCurrentTimeString(),
       outputType: entry.outputType || 'feces',
       period: entry.period || getCurrentPeriod(),
-      bristolType: entry.bristolType || 'type_4',
-      bloodPresence: entry.bloodPresence || 'none',
-      bloodAspect: entry.bloodAspect || (entry.hasClots ? 'clots' : (entry.bloodPresence as BloodAspect) || 'none'),
+      bristolType: entry.bristolType,
+      bloodPresence: entry.bloodPresence,
+      bloodAspect: entry.bloodAspect || (entry.hasClots ? 'clots' : entry.bloodPresence === 'severe' ? 'pure_blood' : entry.bloodPresence === 'moderate' ? 'mixed' : entry.bloodPresence === 'traces' ? 'traces' : 'none'),
       painLevel: entry.painLevel,
       notes: entry.notes || '',
-      stressLevel: entry.stressLevel ?? null,
+      stressLevel: entry.stressLevel !== undefined ? entry.stressLevel : null,
       hasClots: Boolean(entry.hasClots),
       mucusPresence: entry.mucusPresence || 'none',
       urgencyLevel: entry.urgencyLevel || 'normal',
+      hasFever: Boolean(entry.hasFever),
+      hasDizziness: Boolean(entry.hasDizziness),
+      hasExtremeFatigue: Boolean(entry.hasExtremeFatigue),
+      hasTachycardia: Boolean(entry.hasTachycardia),
       isFormOpen: true,
     });
   },
@@ -235,6 +267,10 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
       hasClots,
       mucusPresence,
       urgencyLevel,
+      hasFever,
+      hasDizziness,
+      hasExtremeFatigue,
+      hasTachycardia,
     } = get();
 
     set({ isSaving: true });
@@ -249,6 +285,10 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
       hasClots,
       mucusPresence,
       urgencyLevel,
+      hasFever,
+      hasDizziness,
+      hasExtremeFatigue,
+      hasTachycardia,
     });
 
     const entry: DailySymptomEntry = {
@@ -268,6 +308,10 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
       hasClots: hasClots || bloodAspect === 'clots',
       mucusPresence,
       urgencyLevel,
+      hasFever,
+      hasDizziness,
+      hasExtremeFatigue,
+      hasTachycardia,
     };
 
     try {

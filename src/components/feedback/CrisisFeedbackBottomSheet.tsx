@@ -35,11 +35,19 @@ export const CrisisFeedbackBottomSheet: React.FC<CrisisFeedbackBottomSheetProps>
 
   if (!feedback) return null;
 
+  const isEmergency = feedback.severity === 'severe_emergency';
   const isFlare = feedback.severity === 'moderate_to_severe_flare';
   const isMild = feedback.severity === 'mild_activity';
   const isRemission = feedback.severity === 'remission';
 
   const getHeaderIcon = () => {
+    if (isEmergency) {
+      return (
+        <View style={[styles.iconWrapper, { backgroundColor: '#FEE2E2', borderColor: '#DC2626', borderWidth: 2 }]}>
+          <ShieldAlert size={38} color="#DC2626" />
+        </View>
+      );
+    }
     if (isFlare) {
       return (
         <View style={[styles.iconWrapper, { backgroundColor: '#FEE2E2' }]}>
@@ -129,11 +137,11 @@ export const CrisisFeedbackBottomSheet: React.FC<CrisisFeedbackBottomSheetProps>
               onPress={onDismiss}
               style={[
                 styles.dismissButton,
-                { backgroundColor: isFlare ? '#EF4444' : '#7B61FF' },
+                { backgroundColor: isEmergency ? '#DC2626' : isFlare ? '#EF4444' : '#7B61FF' },
               ]}
             >
               <Text style={styles.dismissButtonText}>
-                {t('crisisFeedback:actions.dismiss')}
+                {isEmergency ? t('crisisFeedback:actions.emergency_dismiss', { defaultValue: 'Entendido, buscar atendimento' }) : t('crisisFeedback:actions.dismiss')}
               </Text>
             </TouchableOpacity>
           </View>

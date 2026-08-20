@@ -32,8 +32,18 @@
     "message": "A inflamação na mucosa retal envia sinais falsos de urgência ao cérebro. Sentir necessidade intensa e eliminar apenas gases ou raias faz parte do quadro inflamatório.",
     "action": "Respire fundo. Você não fez nada de errado."
   },
+  "emergency": {
+    "title": "🚨 ALERTA VERMELHO: Procure Atendimento Médico Imediatamente",
+    "badge": "Emergência Médica",
+    "message": "Identificamos uma combinação de sintomas com potencial risco à sua saúde (sangramento expressivo associado a sinais sistêmicos de febre/tontura ou dor aguda). Não hesite em buscar um pronto-atendimento hospitalar agora.",
+    "care_hospital": "Dirija-se ao pronto-socorro ou contate seu médico gastroenterologista com urgência.",
+    "care_hydration": "Mantenha-se hidratado em pequenos goles com água ou soro caseiro no deslocamento.",
+    "care_no_nsaids": "ATENÇÃO: NUNCA tome anti-inflamatórios (ibuprofeno, diclofenaco, cetoprofeno), pois agravam gravemente o sangramento intestinal.",
+    "care_monitor": "Apresente o histórico do aplicativo ou exporte o relatório PDF na triagem médica."
+  },
   "actions": {
     "view_guidance": "Ver Orientações Clínicas",
-    "dismiss": "Entendido, obrigado!"
+    "dismiss": "Entendido, obrigado!",
+    "emergency_dismiss": "Entendido, buscar atendimento"
   }
 }

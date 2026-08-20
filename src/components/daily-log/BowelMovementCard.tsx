@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Alert } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { Activity, Droplet, Flame, FileText, Clock, Edit3, Trash2, Brain, ShieldAlert, Sparkles, Zap } from 'lucide-react-native';
+import { Activity, Droplet, Flame, FileText, Clock, Edit3, Trash2, Brain, ShieldAlert, Sparkles, Zap, Thermometer, HeartPulse, BatteryLow } from 'lucide-react-native';
 import { DailySymptomEntry } from '../../domain/health/types';
 
 interface BowelMovementCardProps {
@@ -24,9 +24,9 @@ export const BowelMovementCard: React.FC<BowelMovementCardProps> = ({
       t('dailyLog:deletePromptTitle'),
       t('dailyLog:deletePromptMessage'),
       [
-        { text: t('common:cancel', { defaultValue: 'Cancelar' }), style: 'cancel' },
+        { text: t('common:cancel'), style: 'cancel' },
         {
-          text: t('common:confirm', { defaultValue: 'Confirmar' }),
+          text: t('dailyLog:delete'),
           style: 'destructive',
           onPress: () => {
             if (entry.id) onDelete(entry.id);
@@ -41,21 +41,29 @@ export const BowelMovementCard: React.FC<BowelMovementCardProps> = ({
   let severityTextColor = '#276749';
   let statusKey = 'status.remission';
 
-  if (entry.severity === 'mild_activity') {
+  if (entry.severity === 'severe_emergency') {
+    severityBg = '#FEE2E2';
+    severityTextColor = '#DC2626';
+    statusKey = 'status.severe_emergency';
+  } else if (entry.severity === 'moderate_to_severe_flare') {
+    severityBg = '#FFF1F2';
+    severityTextColor = '#BE123C';
+    statusKey = 'status.moderate_to_severe_flare';
+  } else if (entry.severity === 'mild_activity') {
     severityBg = '#FEF3C7';
     severityTextColor = '#92400E';
     statusKey = 'status.mild_activity';
-  } else if (entry.severity === 'moderate_to_severe_flare') {
-    severityBg = '#FEE2E2';
-    severityTextColor = '#991B1B';
-    statusKey = 'status.moderate_to_severe_flare';
   }
 
   const hasExtraBiomarkers =
     entry.stressLevel !== undefined ||
     entry.hasClots ||
     (entry.mucusPresence && entry.mucusPresence !== 'none') ||
-    (entry.urgencyLevel && entry.urgencyLevel !== 'normal');
+    (entry.urgencyLevel && entry.urgencyLevel !== 'normal') ||
+    entry.hasFever ||
+    entry.hasDizziness ||
+    entry.hasExtremeFatigue ||
+    entry.hasTachycardia;
 
   return (
     <View style={styles.card}>
@@ -192,6 +200,42 @@ export const BowelMovementCard: React.FC<BowelMovementCardProps> = ({
               <Brain size={12} color="#8E63B8" />
               <Text style={[styles.extraChipText, { color: '#8E63B8' }]}>
                 {t('clinicalExtras:stress.scoreLabel', { score: entry.stressLevel })}
+              </Text>
+            </View>
+          ) : null}
+
+          {entry.hasFever ? (
+            <View style={[styles.extraChip, { backgroundColor: '#FEF2F2', borderColor: '#FCA5A5', borderWidth: 1 }]}>
+              <Thermometer size={12} color="#DC2626" />
+              <Text style={[styles.extraChipText, { color: '#DC2626', fontWeight: '700' }]}>
+                {t('dailyLog:systemicSymptoms.fever')}
+              </Text>
+            </View>
+          ) : null}
+
+          {entry.hasDizziness ? (
+            <View style={[styles.extraChip, { backgroundColor: '#FFFBEB', borderColor: '#FCD34D', borderWidth: 1 }]}>
+              <Zap size={12} color="#D97706" />
+              <Text style={[styles.extraChipText, { color: '#D97706', fontWeight: '700' }]}>
+                {t('dailyLog:systemicSymptoms.dizziness')}
+              </Text>
+            </View>
+          ) : null}
+
+          {entry.hasExtremeFatigue ? (
+            <View style={[styles.extraChip, { backgroundColor: '#F5F3FF', borderColor: '#C4B5FD', borderWidth: 1 }]}>
+              <BatteryLow size={12} color="#7C3AED" />
+              <Text style={[styles.extraChipText, { color: '#7C3AED', fontWeight: '700' }]}>
+                {t('dailyLog:systemicSymptoms.extremeFatigue')}
+              </Text>
+            </View>
+          ) : null}
+
+          {entry.hasTachycardia ? (
+            <View style={[styles.extraChip, { backgroundColor: '#FFF1F2', borderColor: '#FDA4AF', borderWidth: 1 }]}>
+              <HeartPulse size={12} color="#E11D48" />
+              <Text style={[styles.extraChipText, { color: '#E11D48', fontWeight: '700' }]}>
+                {t('dailyLog:systemicSymptoms.tachycardia')}
               </Text>
             </View>
           ) : null}

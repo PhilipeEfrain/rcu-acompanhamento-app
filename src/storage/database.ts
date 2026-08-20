@@ -22,7 +22,11 @@ expoDb.execSync(`
     stress_level INTEGER,
     has_clots INTEGER,
     mucus_presence TEXT,
-    urgency_level TEXT
+    urgency_level TEXT,
+    has_fever INTEGER,
+    has_dizziness INTEGER,
+    has_extreme_fatigue INTEGER,
+    has_tachycardia INTEGER
   );
 
   CREATE TABLE IF NOT EXISTS medications (
@@ -59,6 +63,10 @@ const migrations = [
   'ALTER TABLE daily_symptom_logs ADD COLUMN has_clots INTEGER;',
   'ALTER TABLE daily_symptom_logs ADD COLUMN mucus_presence TEXT;',
   'ALTER TABLE daily_symptom_logs ADD COLUMN urgency_level TEXT;',
+  'ALTER TABLE daily_symptom_logs ADD COLUMN has_fever INTEGER;',
+  'ALTER TABLE daily_symptom_logs ADD COLUMN has_dizziness INTEGER;',
+  'ALTER TABLE daily_symptom_logs ADD COLUMN has_extreme_fatigue INTEGER;',
+  'ALTER TABLE daily_symptom_logs ADD COLUMN has_tachycardia INTEGER;',
   'ALTER TABLE medications ADD COLUMN times TEXT;',
 ];
 

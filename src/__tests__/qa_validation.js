@@ -151,5 +151,32 @@ if (
 }
 console.log('✔ Resumo diário agrega totalFecesMovements, totalTenesmusCount e hasMorningPooling corretamente.');
 
+// 4. Severe Emergency (Truelove & Witts / ASUC)
+const emergencyEval = evaluateCrisis({
+  bristolType: 'type_7',
+  bloodPresence: 'severe',
+  bloodAspect: 'pure_blood',
+  painLevel: 8,
+  hasFever: true,
+  hasDizziness: true,
+});
+if (emergencyEval.severity !== 'severe_emergency' || emergencyEval.titleKey !== 'crisisFeedback:emergency.title') {
+  console.error('❌ Falha no disparo de Alerta Vermelho de Emergência!', emergencyEval);
+  process.exit(1);
+}
+console.log('✔ Protocolo de Emergência Vermelha (severe_emergency) ativado com sucesso para sangue severo + febre/tontura.');
+
+const emergencyPainEval = evaluateCrisis({
+  bristolType: 'type_4',
+  bloodPresence: 'none',
+  painLevel: 9,
+});
+if (emergencyPainEval.severity !== 'severe_emergency') {
+  console.error('❌ Falha no disparo de emergência para dor aguda extrema (>= 9)!', emergencyPainEval);
+  process.exit(1);
+}
+console.log('✔ Dor abdominal aguda extrema (>= 9) dispara Alerta Vermelho de Emergência.');
+
 console.log('\n✔ Todos os testes de qualidade foram aprovados com sucesso!');
+
 

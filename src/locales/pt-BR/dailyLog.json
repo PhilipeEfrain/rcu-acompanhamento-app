@@ -40,6 +40,14 @@
     "pure_blood": "Sangue Vivo Puro",
     "clots": "Coágulos"
   },
+  "systemicSymptoms": {
+    "title": "Sintomas Sistêmicos e Sinais de Alerta",
+    "subtitle": "Marque se estiver sentindo algum reflexo no corpo",
+    "fever": "Febre (> 37,8°C)",
+    "dizziness": "Tontura / Fraqueza",
+    "extremeFatigue": "Cansaço Extremo",
+    "tachycardia": "Coração Acelerado"
+  },
   "bristol": {
     "title": "Consistência das Fezes (Escala Bristol)",
     "type_1": {

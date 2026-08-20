@@ -30,16 +30,21 @@ export const DailyTimeline: React.FC<DailyTimelineProps> = ({
   let summaryIcon = Sparkles;
   let statusKey = 'status.remission';
 
-  if (summary?.overallSeverity === 'mild_activity') {
+  if (summary?.overallSeverity === 'severe_emergency') {
+    summaryBg = '#FEE2E2';
+    summaryTextColor = '#B91C1C';
+    summaryIcon = ShieldAlert;
+    statusKey = 'status.severe_emergency';
+  } else if (summary?.overallSeverity === 'moderate_to_severe_flare') {
+    summaryBg = '#FFF1F2';
+    summaryTextColor = '#BE123C';
+    summaryIcon = ShieldAlert;
+    statusKey = 'status.moderate_to_severe_flare';
+  } else if (summary?.overallSeverity === 'mild_activity') {
     summaryBg = '#FEF3C7';
     summaryTextColor = '#92400E';
     summaryIcon = AlertCircle;
     statusKey = 'status.mild_activity';
-  } else if (summary?.overallSeverity === 'moderate_to_severe_flare') {
-    summaryBg = '#FEE2E2';
-    summaryTextColor = '#991B1B';
-    summaryIcon = ShieldAlert;
-    statusKey = 'status.moderate_to_severe_flare';
   }
 
   const SummaryIconComponent = summaryIcon;
