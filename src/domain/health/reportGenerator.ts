@@ -273,35 +273,35 @@ export function buildReportHtml(stats: ReportStats, t: TFunction): string {
 
     const extraContent = extras.length > 0
       ? extras.join('')
-      : `<span style="color: #94A3B8; font-style: italic;">Sem alterações</span>`;
+      : `<span style="color: #64748B !important; font-style: italic;">Sem alterações</span>`;
 
     const notesContent = log.notes && log.notes.trim().length > 0
-      ? `<div style="background: #F8FAFC; border-left: 3px solid #7B61FF; padding: 4px 8px; border-radius: 4px; font-style: italic; color: #334155;">"${log.notes}"</div>`
-      : `<span style="color: #94A3B8;">-</span>`;
+      ? `<div style="background-color: #F8FAFC !important; border-left: 3px solid #7B61FF !important; padding: 4px 8px !important; border-radius: 4px !important; font-style: italic !important; color: #1E293B !important; font-size: 10px !important;">"${log.notes}"</div>`
+      : `<span style="color: #94A3B8 !important;">-</span>`;
 
     return `
       <tr>
-        <td style="font-weight: 700; white-space: nowrap;">
+        <td style="font-weight: 700 !important; color: #0F172A !important; white-space: nowrap;">
           ${log.date}<br>
-          <span style="font-weight: 500; color: #64748B; font-size: 10px;">⏰ ${log.time || '--:--'}</span>
+          <span style="font-weight: 600 !important; color: #475569 !important; font-size: 10px !important;">⏰ ${log.time || '--:--'}</span>
         </td>
-        <td>
+        <td style="color: #0F172A !important;">
           <span class="badge bristol-${log.bristolType}" style="margin-bottom: 4px;">#${bristolTypeNum}</span><br>
-          <span style="font-size: 10px; color: #334155; font-weight: 600;">${bristolFullName}</span>
+          <span style="font-size: 10px !important; color: #0F172A !important; font-weight: 700 !important; display: block;">${bristolFullName}</span>
         </td>
-        <td>
+        <td style="color: #0F172A !important;">
           <span class="badge blood-${log.bloodPresence}" style="margin-bottom: 4px;">${bloodLabel}</span>
         </td>
-        <td style="white-space: nowrap;">
-          <div style="font-weight: 700; font-size: 12px; color: ${log.painLevel >= 5 ? '#DC2626' : '#1E293B'};">
+        <td style="white-space: nowrap; color: #0F172A !important;">
+          <div style="font-weight: 800 !important; font-size: 12px !important; color: ${log.painLevel >= 5 ? '#DC2626' : '#0F172A'} !important;">
             ${log.painLevel}/10
           </div>
-          <span style="font-size: 9.5px; color: #64748B;">${painText}</span>
+          <span style="font-size: 9.5px !important; color: #475569 !important; font-weight: 600 !important;">${painText}</span>
         </td>
-        <td style="font-size: 10px; line-height: 1.3;">
+        <td style="font-size: 10px !important; line-height: 1.35 !important; color: #0F172A !important;">
           ${extraContent}
         </td>
-        <td style="font-size: 10px; min-width: 140px;">
+        <td style="font-size: 10px !important; color: #0F172A !important;">
           ${notesContent}
         </td>
       </tr>
@@ -310,145 +310,179 @@ export function buildReportHtml(stats: ReportStats, t: TFunction): string {
 
   return `
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR" style="color-scheme: light; background-color: #FFFFFF;">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">
   <title>${t('clinicalReport:pdf.documentTitle')}</title>
   <style>
-    * {
-      box-sizing: border-box;
+    :root {
+      color-scheme: light !important;
+      supported-color-schemes: light !important;
     }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      color: #0F172A;
-      margin: 0;
-      padding: 20px;
-      font-size: 11.5px;
-      line-height: 1.45;
-      background-color: #FFFFFF;
+    * {
+      box-sizing: border-box !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    @media (prefers-color-scheme: dark) {
+      html, body, table, tr, th, td, div, span, p, h1, h2, h3 {
+        background-color: #FFFFFF !important;
+        color: #0F172A !important;
+      }
+      .metric-card {
+        background-color: #FAF5FF !important;
+      }
+      .meta-bar {
+        background-color: #F8F9FE !important;
+      }
+      th {
+        background-color: #F1F5F9 !important;
+        color: #1E293B !important;
+      }
+    }
+    html, body {
+      font-family: -apple-system, BlinkMacSystemFont, Arial, Helvetica, sans-serif !important;
+      color: #0F172A !important;
+      background-color: #FFFFFF !important;
+      margin: 0 !important;
+      padding: 16px !important;
+      font-size: 11px !important;
+      line-height: 1.4 !important;
     }
     .header {
-      border-bottom: 2.5px solid #7B61FF;
-      padding-bottom: 12px;
-      margin-bottom: 16px;
+      border-bottom: 2.5px solid #7B61FF !important;
+      padding-bottom: 10px !important;
+      margin-bottom: 14px !important;
     }
     .header h1 {
-      font-size: 18px;
-      font-weight: 800;
-      color: #0F172A;
-      margin: 0 0 4px 0;
-      letter-spacing: -0.3px;
+      font-size: 17px !important;
+      font-weight: 800 !important;
+      color: #0F172A !important;
+      margin: 0 0 4px 0 !important;
     }
     .header .subtitle {
-      font-size: 11.5px;
-      color: #64748B;
-      margin: 0;
+      font-size: 11px !important;
+      color: #475569 !important;
+      margin: 0 !important;
     }
     .meta-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #F8F9FE;
-      padding: 8px 12px;
-      border-radius: 8px;
-      margin-top: 10px;
-      font-size: 11px;
-      color: #334155;
-      border: 1px solid #E9D8FD;
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      background-color: #F8F9FE !important;
+      padding: 8px 12px !important;
+      border-radius: 8px !important;
+      margin-top: 10px !important;
+      font-size: 10.5px !important;
+      color: #334155 !important;
+      border: 1px solid #E9D8FD !important;
     }
     .grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-bottom: 16px;
+      display: grid !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 10px !important;
+      margin-bottom: 14px !important;
     }
     .metric-card {
-      background: #FAF5FF;
-      border: 1px solid #E9D8FD;
-      border-radius: 10px;
-      padding: 10px 8px;
-      text-align: center;
+      background-color: #FAF5FF !important;
+      border: 1px solid #E9D8FD !important;
+      border-radius: 10px !important;
+      padding: 10px 6px !important;
+      text-align: center !important;
     }
     .metric-val {
-      font-size: 18px;
-      font-weight: 800;
-      color: #7B61FF;
-      margin: 2px 0;
+      font-size: 18px !important;
+      font-weight: 800 !important;
+      color: #7B61FF !important;
+      margin: 2px 0 !important;
     }
     .metric-label {
-      font-size: 9.5px;
-      font-weight: 700;
-      color: #64748B;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
+      font-size: 9px !important;
+      font-weight: 700 !important;
+      color: #64748B !important;
+      text-transform: uppercase !important;
     }
     .section-title {
-      font-size: 12.5px;
-      font-weight: 800;
-      color: #0F172A;
-      border-bottom: 1.5px solid #E2E8F0;
-      padding-bottom: 4px;
-      margin: 16px 0 10px 0;
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
+      font-size: 12px !important;
+      font-weight: 800 !important;
+      color: #0F172A !important;
+      border-bottom: 1.5px solid #E2E8F0 !important;
+      padding-bottom: 4px !important;
+      margin: 14px 0 8px 0 !important;
+      text-transform: uppercase !important;
     }
     .two-cols {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 14px;
-      margin-bottom: 16px;
+      display: grid !important;
+      grid-template-columns: 1.1fr 0.9fr !important;
+      gap: 12px !important;
+      margin-bottom: 14px !important;
     }
     .chart-box {
-      background: #FFFFFF;
-      border: 1px solid #E2E8F0;
-      border-radius: 10px;
-      padding: 12px;
+      background-color: #FFFFFF !important;
+      border: 1px solid #CBD5E1 !important;
+      border-radius: 10px !important;
+      padding: 10px !important;
     }
     table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 8px;
-      font-size: 10.5px;
+      width: 100% !important;
+      border-collapse: collapse !important;
+      table-layout: fixed !important;
+      margin-top: 8px !important;
+      background-color: #FFFFFF !important;
+      page-break-inside: auto !important;
     }
-    th, td {
-      border: 1px solid #E2E8F0;
-      padding: 7px 8px;
-      text-align: left;
-      vertical-align: top;
-      color: #0F172A;
-    }
-    th {
-      background: #F1F5F9;
-      font-weight: 800;
-      color: #1E293B;
-      font-size: 10px;
-      text-transform: uppercase;
+    tr {
+      background-color: #FFFFFF !important;
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
     }
     tr:nth-child(even) {
-      background: #FAFAFD;
+      background-color: #F8FAFC !important;
+    }
+    th {
+      background-color: #F1F5F9 !important;
+      color: #0F172A !important;
+      font-weight: 800 !important;
+      font-size: 10px !important;
+      text-transform: uppercase !important;
+      border: 1px solid #CBD5E1 !important;
+      padding: 7px 6px !important;
+      text-align: left !important;
+    }
+    td {
+      border: 1px solid #CBD5E1 !important;
+      padding: 7px 6px !important;
+      text-align: left !important;
+      vertical-align: top !important;
+      color: #0F172A !important;
+      word-wrap: break-word !important;
+      overflow-wrap: break-word !important;
     }
     .badge {
-      display: inline-block;
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-size: 9.5px;
-      font-weight: 700;
+      display: inline-block !important;
+      padding: 2px 6px !important;
+      border-radius: 4px !important;
+      font-size: 9.5px !important;
+      font-weight: 700 !important;
     }
-    .blood-none { background: #DCFCE7; color: #166534; }
-    .blood-traces { background: #FEF3C7; color: #92400E; }
-    .blood-moderate { background: #FFEDD5; color: #9A3412; }
-    .blood-severe { background: #FEE2E2; color: #991B1B; }
-    .bristol-type_4, .bristol-type_3 { background: #DCFCE7; color: #166534; }
-    .bristol-type_1, .bristol-type_2, .bristol-type_5 { background: #FEF3C7; color: #92400E; }
-    .bristol-type_6, .bristol-type_7 { background: #FEE2E2; color: #991B1B; }
+    .blood-none { background-color: #DCFCE7 !important; color: #166534 !important; }
+    .blood-traces { background-color: #FEF3C7 !important; color: #92400E !important; }
+    .blood-moderate { background-color: #FFEDD5 !important; color: #9A3412 !important; }
+    .blood-severe { background-color: #FEE2E2 !important; color: #991B1B !important; }
+    .bristol-type_4, .bristol-type_3 { background-color: #DCFCE7 !important; color: #166534 !important; }
+    .bristol-type_1, .bristol-type_2, .bristol-type_5 { background-color: #FEF3C7 !important; color: #92400E !important; }
+    .bristol-type_6, .bristol-type_7 { background-color: #FEE2E2 !important; color: #991B1B !important; }
     .footer {
-      margin-top: 24px;
-      border-top: 1px solid #CBD5E1;
-      padding-top: 8px;
-      font-size: 9px;
-      color: #64748B;
-      text-align: center;
-      line-height: 1.4;
+      margin-top: 20px !important;
+      border-top: 1px solid #CBD5E1 !important;
+      padding-top: 8px !important;
+      font-size: 8.5px !important;
+      color: #64748B !important;
+      text-align: center !important;
+      line-height: 1.4 !important;
     }
   </style>
 </head>
