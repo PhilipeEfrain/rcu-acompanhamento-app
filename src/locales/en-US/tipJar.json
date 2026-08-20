@@ -1,0 +1,25 @@
+{
+  "title": "Support UC Care",
+  "subtitle": "Voluntary tip jar to keep the project free, private, and evolving",
+  "cardTitle": "Voluntary Support & Sustainability",
+  "cardDesc": "UC Care is 100% free, open source, and ad-free for all IBD patients.",
+  "philosophyBadge": "100% Free & Open",
+  "philosophyTitle": "Why is UC Care Free?",
+  "philosophyDesc": "We believe health tracking should never have paywalls. No clinical feature in this app is or will ever be restricted. Your donation is a voluntary contribution to help cover developer fees, security updates, and continuous clinical tools.",
+  "pixSectionTitle": "Instant Donation via PIX (Brazil)",
+  "pixSectionDesc": "Donate any amount directly from your Brazilian bank account without fees:",
+  "pixKeyLabel": "PIX Key (E-mail):",
+  "pixRecipientLabel": "Recipient:",
+  "copyPixButton": "Copy PIX Key",
+  "copiedPixToast": "PIX Key copied to clipboard!",
+  "pasteInBankTip": "💡 Open your banking app and paste under PIX > E-mail Key.",
+  "internationalTitle": "International Support / Card",
+  "internationalDesc": "Prefer donating with a credit card or supporting open source?",
+  "buyMeCoffeeButton": "Buy Me a Coffee ☕",
+  "githubSponsorsButton": "View Project on GitHub",
+  "thankYouTitle": "Heartfelt Thank You! 💜",
+  "thankYouDesc": "Thank you to everyone who supports and helps build a safer, more welcoming tool for people living with IBD.",
+  "actions": {
+    "close": "Close"
+  }
+}

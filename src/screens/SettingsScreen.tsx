@@ -32,16 +32,18 @@ import { MedicationManagerBottomSheet } from '../components/medications/Medicati
 import { MedicationModal } from '../components/medications/MedicationModal';
 import { CareGuideBottomSheet } from '../components/care-guide/CareGuideBottomSheet';
 import { BristolGuideBottomSheet } from '../components/daily-log/BristolGuideBottomSheet';
+import { TipJarBottomSheet } from '../components/support/TipJarBottomSheet';
 import { useMedicationStore } from '../store/useMedicationStore';
 
 export const SettingsScreen: React.FC = () => {
-  const { t, i18n } = useTranslation(['settings', 'clinicalReport', 'medications', 'careGuide', 'bristolGuide']);
+  const { t, i18n } = useTranslation(['settings', 'clinicalReport', 'medications', 'careGuide', 'bristolGuide', 'tipJar']);
   const insets = useSafeAreaInsets();
   const [biometricsEnabled, setBiometricsEnabled] = useState(false);
   const [biometricsAvailable, setBiometricsAvailable] = useState(false);
   const [isExportPdfOpen, setIsExportPdfOpen] = useState(false);
   const [isCareGuideOpen, setIsCareGuideOpen] = useState(false);
   const [isBristolGuideOpen, setIsBristolGuideOpen] = useState(false);
+  const [isTipJarOpen, setIsTipJarOpen] = useState(false);
 
   const {
     medications,
@@ -348,6 +350,30 @@ export const SettingsScreen: React.FC = () => {
           </TouchableOpacity>
         </View>
 
+        {/* Section: Support & Ethical Donation (Tip Jar) */}
+        <View style={[styles.sectionCard, { borderColor: '#E9D5FF', backgroundColor: '#FAF5FF' }]}>
+          <View style={styles.sectionHeader}>
+            <Heart size={20} color="#7B61FF" fill="#EDE9FE" />
+            <Text style={[styles.sectionTitle, { color: '#6B21A8' }]}>{t('settings:tipJarSection')}</Text>
+          </View>
+
+          <TouchableOpacity
+            style={[styles.actionRow, { borderBottomWidth: 0, paddingBottom: 0 }]}
+            onPress={() => setIsTipJarOpen(true)}
+            activeOpacity={0.7}
+          >
+            <View style={styles.actionInfo}>
+              <Text style={[styles.actionTitle, { color: '#6B21A8', fontWeight: '700' }]}>
+                {t('settings:tipJarLinkTitle')}
+              </Text>
+              <Text style={[styles.actionDesc, { color: '#7E22CE' }]}>
+                {t('settings:tipJarLinkDesc')}
+              </Text>
+            </View>
+            <Sparkles size={18} color="#7B61FF" />
+          </TouchableOpacity>
+        </View>
+
         {/* Section: About */}
         <View style={styles.aboutCard}>
           <View style={styles.aboutHeader}>
@@ -361,6 +387,11 @@ export const SettingsScreen: React.FC = () => {
       <ExportPdfBottomSheet
         visible={isExportPdfOpen}
         onClose={() => setIsExportPdfOpen(false)}
+      />
+
+      <TipJarBottomSheet
+        visible={isTipJarOpen}
+        onClose={() => setIsTipJarOpen(false)}
       />
 
       <CareGuideBottomSheet
