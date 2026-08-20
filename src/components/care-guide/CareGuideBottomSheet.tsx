@@ -92,12 +92,13 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
             >
               <Building2 size={18} color={activeTab === 'sus' ? '#FFFFFF' : '#64748B'} />
               <Text
+                numberOfLines={1}
                 style={[
                   styles.tabPillText,
                   activeTab === 'sus' && styles.tabPillTextActive,
                 ]}
               >
-                {t('careGuide:tabs.sus')}
+                {t('careGuide:tabs.sus', { defaultValue: 'Remédios pelo SUS' })}
               </Text>
             </TouchableOpacity>
 
@@ -111,12 +112,13 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
             >
               <Pill size={18} color={activeTab === 'compounding' ? '#FFFFFF' : '#64748B'} />
               <Text
+                numberOfLines={1}
                 style={[
                   styles.tabPillText,
                   activeTab === 'compounding' && styles.tabPillTextActive,
                 ]}
               >
-                {t('careGuide:tabs.compounding')}
+                {t('careGuide:tabs.compounding', { defaultValue: 'Manipulação' })}
               </Text>
             </TouchableOpacity>
 
@@ -130,12 +132,13 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
             >
               <Scale size={18} color={activeTab === 'rights' ? '#FFFFFF' : '#64748B'} />
               <Text
+                numberOfLines={1}
                 style={[
                   styles.tabPillText,
                   activeTab === 'rights' && styles.tabPillTextActive,
                 ]}
               >
-                {t('careGuide:tabs.rights')}
+                {t('careGuide:tabs.rights', { defaultValue: 'Seus Direitos' })}
               </Text>
             </TouchableOpacity>
 
@@ -149,12 +152,13 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
             >
               <HeartPulse size={18} color={activeTab === 'flareCare' ? '#FFFFFF' : '#64748B'} />
               <Text
+                numberOfLines={1}
                 style={[
                   styles.tabPillText,
                   activeTab === 'flareCare' && styles.tabPillTextActive,
                 ]}
               >
-                {t('careGuide:tabs.flareCare')}
+                {t('careGuide:tabs.flareCare', { defaultValue: 'Cuidados em Crise' })}
               </Text>
             </TouchableOpacity>
 
@@ -168,12 +172,13 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
             >
               <Stethoscope size={18} color={activeTab === 'doctorPrep' ? '#FFFFFF' : '#64748B'} />
               <Text
+                numberOfLines={1}
                 style={[
                   styles.tabPillText,
                   activeTab === 'doctorPrep' && styles.tabPillTextActive,
                 ]}
               >
-                {t('careGuide:tabs.doctorPrep')}
+                {t('careGuide:tabs.doctorPrep', { defaultValue: 'Consulta Médica' })}
               </Text>
             </TouchableOpacity>
           </ScrollView>
@@ -488,6 +493,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     gap: 10,
     alignItems: 'center',
+    flexDirection: 'row',
   },
   tabPill: {
     flexDirection: 'row',
@@ -500,6 +506,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#F8FAFC',
     borderWidth: 1.5,
     borderColor: '#E2E8F0',
+    flexShrink: 0,
+    minHeight: 44,
   },
   tabPillActive: {
     backgroundColor: '#7B61FF',
@@ -514,6 +522,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '700',
     color: '#334155',
+    flexShrink: 0,
   },
   tabPillTextActive: {
     color: '#FFFFFF',
