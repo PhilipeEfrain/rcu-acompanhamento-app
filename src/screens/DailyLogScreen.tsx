@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -17,6 +17,7 @@ import { DailyHeader } from '../components/daily-log/DailyHeader';
 import { DailyTimeline } from '../components/daily-log/DailyTimeline';
 import { TimePickerInput } from '../components/daily-log/TimePickerInput';
 import { BristolPicker } from '../components/daily-log/BristolPicker';
+import { BristolGuideBottomSheet } from '../components/daily-log/BristolGuideBottomSheet';
 import { BloodPresencePicker } from '../components/daily-log/BloodPresencePicker';
 import { PainScaleSlider } from '../components/daily-log/PainScaleSlider';
 import { NotesInput } from '../components/daily-log/NotesInput';
@@ -64,6 +65,8 @@ export const DailyLogScreen: React.FC = () => {
     submitDailyLog,
     closeFeedbackModal,
   } = useSymptomStore();
+
+  const [isBristolGuideOpen, setIsBristolGuideOpen] = useState(false);
 
   useEffect(() => {
     loadDateData(selectedDate);
@@ -124,6 +127,7 @@ export const DailyLogScreen: React.FC = () => {
               <BristolPicker
                 selectedType={bristolType}
                 onSelectType={setBristolType}
+                onOpenGuide={() => setIsBristolGuideOpen(true)}
               />
 
               <BloodPresencePicker
@@ -191,6 +195,13 @@ export const DailyLogScreen: React.FC = () => {
             </View>
           )}
         </ScrollView>
+
+        <BristolGuideBottomSheet
+          visible={isBristolGuideOpen}
+          selectedType={bristolType}
+          onSelectType={setBristolType}
+          onClose={() => setIsBristolGuideOpen(false)}
+        />
 
         <CrisisFeedbackBottomSheet
           visible={showFeedbackModal}

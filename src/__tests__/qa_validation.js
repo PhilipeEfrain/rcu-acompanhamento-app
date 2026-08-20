@@ -20,6 +20,7 @@ const locales = [
   'history.json',
   'settings.json',
   'clinicalExtras.json',
+  'bristolGuide.json',
 ];
 
 let i18nErrors = 0;

@@ -1,0 +1,44 @@
+{
+  "title": "Bristol Stool Chart Guide",
+  "subtitle": "Understand stool shapes and their meaning in UC",
+  "selectPrompt": "Tap a type to select directly",
+  "type1": {
+    "title": "Type 1: Hard lumps",
+    "meaning": "Severe constipation. Hard, separate lumps that are difficult to pass."
+  },
+  "type2": {
+    "title": "Type 2: Lumpy sausage",
+    "meaning": "Mild constipation. Sausage-shaped but lumpy."
+  },
+  "type3": {
+    "title": "Type 3: Sausage with cracks",
+    "meaning": "Normal. Healthy shape with cracks on its surface."
+  },
+  "type4": {
+    "title": "Type 4: Smooth, soft sausage",
+    "meaning": "Ideal. Gold standard of stool consistency and gut health."
+  },
+  "type5": {
+    "title": "Type 5: Soft blobs",
+    "meaning": "Tending towards diarrhea. Soft blobs with clear-cut edges, easy to pass."
+  },
+  "type6": {
+    "title": "Type 6: Fluffy pieces",
+    "meaning": "Mild diarrhea / Mushy stool. Common during UC flare-ups or inflammation."
+  },
+  "type7": {
+    "title": "Type 7: Entirely liquid",
+    "meaning": "Severe diarrhea. Watery, no solid pieces. High alert for hydration and clinical review."
+  },
+  "status": {
+    "constipation": "Constipation",
+    "mildConstipation": "Mild Constipation",
+    "normal": "Normal",
+    "ideal": "Ideal",
+    "mildDiarrhea": "Loose",
+    "diarrhea": "Diarrhea",
+    "severeDiarrhea": "Severe Diarrhea"
+  },
+  "close": "Close Guide",
+  "guideButton": "Bristol Guide"
+}

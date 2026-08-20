@@ -1,0 +1,44 @@
+{
+  "title": "Guia da Escala de Bristol",
+  "subtitle": "Entenda o formato das fezes e o impacto na RCU",
+  "selectPrompt": "Toque em um tipo para selecionar diretamente",
+  "type1": {
+    "title": "Tipo 1: Caroços duros",
+    "meaning": "Constipação severa. Fezes em pedaços separados e duros, difíceis de evacuar."
+  },
+  "type2": {
+    "title": "Tipo 2: Salsicha nodosa",
+    "meaning": "Constipação leve. Fezes compactas e com relevo irregular."
+  },
+  "type3": {
+    "title": "Tipo 3: Salsicha com rachaduras",
+    "meaning": "Normal. Formato comum e saudável com fissuras na superfície."
+  },
+  "type4": {
+    "title": "Tipo 4: Salsicha suave e macia",
+    "meaning": "Ideal. Padrão ouro de consistência e saúde intestinal."
+  },
+  "type5": {
+    "title": "Tipo 5: Pedaços macios",
+    "meaning": "Tendência a diarreia. Bordas bem delimitadas, fácil de passar."
+  },
+  "type6": {
+    "title": "Tipo 6: Pedaços fofos e pastosos",
+    "meaning": "Diarreia leve / Fezes pastosas. Comum em períodos de hiperatividade da RCU."
+  },
+  "type7": {
+    "title": "Tipo 7: Totalmente líquido",
+    "meaning": "Diarreia severa. Sem pedaços sólidos. Alerta para hidratação e avaliação médica."
+  },
+  "status": {
+    "constipation": "Constipação",
+    "mildConstipation": "Constipação Leve",
+    "normal": "Normal",
+    "ideal": "Ideal",
+    "mildDiarrhea": "Amolecido",
+    "diarrhea": "Diarreia",
+    "severeDiarrhea": "Diarreia Severa"
+  },
+  "close": "Fechar Guia",
+  "guideButton": "Guia Bristol"
+}

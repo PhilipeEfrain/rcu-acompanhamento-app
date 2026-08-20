@@ -2,11 +2,12 @@ import React from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { BristolType } from '../../domain/health/types';
-import { CheckCircle2 } from 'lucide-react-native';
+import { BookOpen, CheckCircle2 } from 'lucide-react-native';
 
 interface BristolPickerProps {
   selectedType: BristolType;
   onSelectType: (type: BristolType) => void;
+  onOpenGuide?: () => void;
 }
 
 const BRISTOL_TYPES: BristolType[] = [
@@ -22,8 +23,9 @@ const BRISTOL_TYPES: BristolType[] = [
 export const BristolPicker: React.FC<BristolPickerProps> = ({
   selectedType,
   onSelectType,
+  onOpenGuide,
 }) => {
-  const { t } = useTranslation('dailyLog');
+  const { t } = useTranslation(['dailyLog', 'bristolGuide']);
 
   const getCardStatusColor = (type: BristolType, isSelected: boolean) => {
     if (!isSelected) return '#F8F9FE';
@@ -41,7 +43,22 @@ export const BristolPicker: React.FC<BristolPickerProps> = ({
 
   return (
     <View style={styles.container}>
-      <Text style={styles.sectionTitle}>{t('bristol.title')}</Text>
+      <View style={styles.headerRow}>
+        <Text style={styles.sectionTitle}>{t('dailyLog:bristol.title')}</Text>
+        {onOpenGuide && (
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={onOpenGuide}
+            style={styles.guideButton}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          >
+            <BookOpen size={14} color="#7B61FF" />
+            <Text style={styles.guideButtonText}>
+              {t('bristolGuide:guideButton')}
+            </Text>
+          </TouchableOpacity>
+        )}
+      </View>
 
       <ScrollView
         horizontal
@@ -102,12 +119,34 @@ const styles = StyleSheet.create({
   container: {
     marginVertical: 10,
   },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    marginBottom: 12,
+  },
   sectionTitle: {
     fontSize: 16,
     fontWeight: '700',
     color: '#1E293B',
-    paddingHorizontal: 20,
-    marginBottom: 12,
+    flex: 1,
+  },
+  guideButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    backgroundColor: '#F3E8FF',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#E9D8FD',
+  },
+  guideButtonText: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#7B61FF',
   },
   scrollContent: {
     paddingHorizontal: 20,
