@@ -30,12 +30,14 @@ import { EmotionalSupportCard } from '../components/feedback/EmotionalSupportCar
 import { DailyMedicationTracker } from '../components/medications/DailyMedicationTracker';
 import { MedicationModal } from '../components/medications/MedicationModal';
 import { MedicationManagerBottomSheet } from '../components/medications/MedicationManagerBottomSheet';
+import { CareGuideBottomSheet } from '../components/care-guide/CareGuideBottomSheet';
 import { useMedicationStore } from '../store/useMedicationStore';
 import { HeartPulse, CheckCircle2, X } from 'lucide-react-native';
 
 export const DailyLogScreen: React.FC = () => {
   const { t } = useTranslation(['dailyLog', 'common']);
   const insets = useSafeAreaInsets();
+  const [isCareGuideOpen, setIsCareGuideOpen] = useState(false);
 
   const {
     selectedDate,
@@ -170,6 +172,7 @@ export const DailyLogScreen: React.FC = () => {
                 }
                 onOpenManager={openManager}
                 onAddNew={openNewModal}
+                onOpenCareGuide={() => setIsCareGuideOpen(true)}
                 style={{ marginHorizontal: 20, marginBottom: 20 }}
               />
               <EmotionalSupportCard />
@@ -280,6 +283,11 @@ export const DailyLogScreen: React.FC = () => {
           selectedType={bristolType}
           onSelectType={setBristolType}
           onClose={() => setIsBristolGuideOpen(false)}
+        />
+
+        <CareGuideBottomSheet
+          visible={isCareGuideOpen}
+          onClose={() => setIsCareGuideOpen(false)}
         />
 
         <CrisisFeedbackBottomSheet

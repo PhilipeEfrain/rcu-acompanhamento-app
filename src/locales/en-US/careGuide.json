@@ -1,0 +1,81 @@
+{
+  "title": "Care Guide & Patient Rights",
+  "subtitle": "Practical guidance for medication access, legal rights, and daily flare management",
+  "tabs": {
+    "sus": "Public Healthcare / Meds",
+    "compounding": "Compounding",
+    "rights": "Patient Rights",
+    "flareCare": "Flare Management",
+    "doctorPrep": "Doctor Prep"
+  },
+  "susSection": {
+    "title": "How to Access Free / Subsidized IBD Medications",
+    "badge": "High-Cost Pharmacy",
+    "desc": "Public healthcare systems and specialized programs provide comprehensive treatment for Ulcerative Colitis through clinical protocols.",
+    "stepTitle": "Required Documentation (Checklist):",
+    "step1": "Specialized Medication Request Form filled and signed by your Gastroenterologist.",
+    "step2": "Valid medical prescription with active ingredient name (e.g. Mesalamine 800mg or 1200mg) issued within 30-90 days.",
+    "step3": "Detailed Medical Report containing clinical history, ICD-10 K51 (Ulcerative Colitis), and dosage rationale.",
+    "step4": "Colonoscopy and Biopsy (histopathology) report confirming IBD diagnosis.",
+    "step5": "Copies of personal documents: ID card, social security / health card, and recent proof of address.",
+    "medsTitle": "Medications Covered by Clinical Protocols:",
+    "medsList": "Mesalamine (oral tablets, enemas, and suppositories), Sulfasalazine, Azathioprine, and Biologics / Small Molecules (Infliximab, Vedolizumab, Ustekinumab, Tofacitinib, etc.).",
+    "tip": "💡 Pro Tip: Renew your documentation every 3 to 6 months according to your local healthcare jurisdiction to prevent treatment interruptions."
+  },
+  "compoundingSection": {
+    "title": "Savings with Certified Compounding Pharmacies",
+    "badge": "Cost-Saving Tip",
+    "desc": "For topical formulations (mesalamine suppositories and retention enemas), licensed compounding pharmacies offer identical formulations with major cost savings.",
+    "benefit1Title": "Up to 60% to 70% Cost Reduction:",
+    "benefit1Desc": "Compounded 500mg or 1g suppositories and 3g or 4g enemas cost substantially less than commercial brand-name counterparts.",
+    "benefit2Title": "Medical Prescription Required:",
+    "benefit2Desc": "Ask your gastroenterologist to prescribe 'Compounded mesalamine suppositories/enemas' with the exact dosage and volume.",
+    "benefit3Title": "Quality & Certification:",
+    "benefit3Desc": "Always select pharmacies with good manufacturing practices and rigorous raw material testing."
+  },
+  "rightsSection": {
+    "title": "Your Legal Rights & Patient Protections",
+    "badge": "Legislation & Support",
+    "desc": "Understand legal protections and accessibility rights for Inflammatory Bowel Disease patients.",
+    "right1Title": "Restroom Access Acts / Urgent Access:",
+    "right1Desc": "Many jurisdictions have passed Restroom Access Acts mandating immediate access to employee restrooms in commercial venues for individuals with IBD.",
+    "right2Title": "Patient Identification & Medical Cards:",
+    "right2Desc": "Medical certificates and recognized IBD association cards (like CCFA or regional groups) serve as proof for priority seating and restroom access.",
+    "right3Title": "Priority Lines & Accommodations:",
+    "right3Desc": "Patients during active flares qualify for priority customer service and workplace accommodations.",
+    "right4Title": "Disability & Workplace Protections:",
+    "right4Desc": "Severe or refractory cases may qualify for temporary medical leave or disability benefits under labor regulations."
+  },
+  "flareCareSection": {
+    "title": "Practical Tips for Flare Management",
+    "badge": "Relief & Protection",
+    "desc": "Essential complementary measures to protect your bowel and soothe discomfort.",
+    "care1Title": "Continuous Electrolyte Hydration:",
+    "care1Desc": "With frequent loose stools, drink oral rehydration solutions, coconut water, or diluted electrolyte drinks in small sips to prevent dehydration and potassium loss.",
+    "care2Title": "Perianal Skin Care & Hygiene:",
+    "care2Desc": "Avoid dry toilet paper. Use warm water bidets or handheld showers with neutral soap, and pat dry gently. Zinc oxide barrier creams protect against painful irritation.",
+    "care3Title": "Low-Residue Diet During Flares:",
+    "care3Desc": "During active inflammation, favor easily digestible cooked foods (white rice, boiled potatoes, baked poultry, bananas). Avoid insoluble fiber, seeds, deep-fried foods, dairy, and excess caffeine.",
+    "care4Title": "CRITICAL: NEVER Take NSAIDs:",
+    "care4Desc": "NSAIDs like ibuprofen, naproxen, and diclofenac erode mucosal lining and can trigger severe bleeding or precipitate a severe flare."
+  },
+  "doctorPrepSection": {
+    "title": "Preparing for Your Gastroenterology Visit",
+    "badge": "Doctor Checklist",
+    "desc": "Get the most out of your consultation by bringing structured, objective data.",
+    "prep1Title": "Bring Your App PDF Report:",
+    "prep1Desc": "Export your 30 to 90-day summary from the History tab with frequency trends, blood tracking, and pain metrics.",
+    "prep2Title": "Essential Questions to Ask:",
+    "q1": "1. 'Is my mesalamine dosage optimized for mucosal healing and long-term remission?'",
+    "q2": "2. 'Should we order a Fecal Calprotectin test to assess endoscopic mucosal healing?'",
+    "q3": "3. 'Do I need to update non-live vaccinations before starting immunosuppressants or biologics?'",
+    "q4": "4. 'What routine blood panels (CBC, ferritin, CRP, Vitamin D/B12) should we monitor?'",
+    "prep3Title": "Alarm Symptoms to Report:",
+    "prep3Desc": "Always report any fever, nocturnal awakenings to defecate, or escalating severe abdominal pain."
+  },
+  "actions": {
+    "close": "Close Guide",
+    "openSusWebsite": "Browse Health Protocols",
+    "exportPdfReport": "Export Clinical PDF Report"
+  }
+}

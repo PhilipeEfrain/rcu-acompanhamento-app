@@ -23,8 +23,8 @@ import {
 
 interface BristolGuideBottomSheetProps {
   visible: boolean;
-  selectedType: BristolType;
-  onSelectType: (type: BristolType) => void;
+  selectedType?: BristolType;
+  onSelectType?: (type: BristolType) => void;
   onClose: () => void;
 }
 
@@ -174,7 +174,7 @@ export const BristolGuideBottomSheet: React.FC<BristolGuideBottomSheetProps> = (
   const [activeTab, setActiveTab] = useState<TabCategory>('all');
 
   const handleSelect = (type: BristolType) => {
-    onSelectType(type);
+    if (onSelectType) onSelectType(type);
     onClose();
   };
 
