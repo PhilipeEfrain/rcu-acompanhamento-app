@@ -94,13 +94,14 @@ export const PeriodSelector: React.FC<PeriodSelectorProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 16,
+    marginVertical: 8,
+    paddingHorizontal: 20,
   },
   sectionTitle: {
-    fontSize: 14,
+    fontSize: 15,
     fontWeight: '700',
-    color: '#334155',
-    marginBottom: 8,
+    color: '#1E293B',
+    marginBottom: 10,
     letterSpacing: 0.2,
   },
   pillRow: {
@@ -113,13 +114,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 6,
-    paddingVertical: 10,
-    paddingHorizontal: 8,
-    borderRadius: 16,
-    backgroundColor: '#F8FAFC',
+    paddingVertical: 12,
+    paddingHorizontal: 6,
+    borderRadius: 18,
+    backgroundColor: '#FFFFFF',
     borderWidth: 1.5,
     borderColor: '#E2E8F0',
-    minHeight: 48,
+    minHeight: 50,
   },
   pillText: {
     fontSize: 12,

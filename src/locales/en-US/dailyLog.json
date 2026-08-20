@@ -24,13 +24,13 @@
     "night": "Night / Early Hours"
   },
   "outputType": {
-    "title": "What was passed?",
-    "feces": "Formed Stool",
-    "fecesSubtitle": "Classify with Bristol Scale (1 to 7)",
-    "blood_mucus_only": "Blood / Mucus Only",
-    "blood_mucus_onlySubtitle": "Inflammatory discharge without formed stool",
+    "title": "What was passed during this episode?",
+    "feces": "Formed Stool / Diarrhea",
+    "fecesSubtitle": "Bowel movement with stool or loose consistency (Bristol 1 to 7)",
+    "blood_mucus_only": "Blood / Mucus Only (No Stool)",
+    "blood_mucus_onlySubtitle": "Passing inflammatory mucus or blood without formed stool",
     "gas_bloody_false_alarm": "Gas with Blood / Tenesmus",
-    "gas_bloody_false_alarmSubtitle": "Urgency with gas or blood streaks (false alarm)"
+    "gas_bloody_false_alarmSubtitle": "Urgency sensation with only gas or blood streaks (false alarm)"
   },
   "bloodAspect": {
     "title": "Bleeding Aspect",

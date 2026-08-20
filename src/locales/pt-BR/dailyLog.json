@@ -24,13 +24,13 @@
     "night": "Noite / Madrugada"
   },
   "outputType": {
-    "title": "O que você eliminou?",
-    "feces": "Fezes Formadas",
-    "fecesSubtitle": "Classificar pela Escala Bristol (1 a 7)",
-    "blood_mucus_only": "Apenas Sangue / Muco",
-    "blood_mucus_onlySubtitle": "Secreção inflamatória sem bolo fecal",
+    "title": "O que você eliminou nesta ida ao banheiro?",
+    "feces": "Fezes Formadas / Diarreia",
+    "fecesSubtitle": "Evacuação com bolo fecal ou consistência líquida (Bristol 1 a 7)",
+    "blood_mucus_only": "Apenas Sangue / Muco (Sem Fezes)",
+    "blood_mucus_onlySubtitle": "Secreção inflamatória ou muco puro sem presença de bolo fecal",
     "gas_bloody_false_alarm": "Gases com Sangue / Tenesmo",
-    "gas_bloody_false_alarmSubtitle": "Urgência com saída de ar/raias (falso alarme)"
+    "gas_bloody_false_alarmSubtitle": "Sensação de urgência com saída de gases ou raias (falso alarme)"
   },
   "bloodAspect": {
     "title": "Aspecto do Sangramento",

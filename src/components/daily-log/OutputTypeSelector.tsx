@@ -111,7 +111,8 @@ export const OutputTypeSelector: React.FC<OutputTypeSelectorProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 20,
+    marginVertical: 8,
+    paddingHorizontal: 20,
   },
   sectionTitle: {
     fontSize: 15,
@@ -126,17 +127,18 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 12,
-    borderRadius: 18,
+    paddingVertical: 12,
+    paddingHorizontal: 14,
+    borderRadius: 20,
     backgroundColor: '#FFFFFF',
     borderWidth: 1.5,
     borderColor: '#E2E8F0',
-    minHeight: 58,
+    minHeight: 64,
   },
   iconCircle: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 42,
+    height: 42,
+    borderRadius: 21,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 12,
@@ -145,14 +147,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   cardTitle: {
-    fontSize: 14,
+    fontSize: 14.5,
     fontWeight: '600',
     color: '#1E293B',
     marginBottom: 2,
   },
   cardSubtitle: {
-    fontSize: 11.5,
+    fontSize: 12,
     color: '#64748B',
-    lineHeight: 15,
+    lineHeight: 16,
   },
 });
