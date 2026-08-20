@@ -17,6 +17,29 @@
   "cancelEdit": "Cancelar Edição",
   "timePicker": "Horário da Evacuação",
   "now": "Agora",
+  "period": {
+    "title": "Período do Registro",
+    "waking_morning": "Ao Acordar / Manhã",
+    "afternoon": "Tarde",
+    "night": "Noite / Madrugada"
+  },
+  "outputType": {
+    "title": "O que você eliminou?",
+    "feces": "Fezes Formadas",
+    "fecesSubtitle": "Classificar pela Escala Bristol (1 a 7)",
+    "blood_mucus_only": "Apenas Sangue / Muco",
+    "blood_mucus_onlySubtitle": "Secreção inflamatória sem bolo fecal",
+    "gas_bloody_false_alarm": "Gases com Sangue / Tenesmo",
+    "gas_bloody_false_alarmSubtitle": "Urgência com saída de ar/raias (falso alarme)"
+  },
+  "bloodAspect": {
+    "title": "Aspecto do Sangramento",
+    "none": "Nenhum",
+    "streaks": "Raias / Fios",
+    "mixed": "Misturado",
+    "pure_blood": "Sangue Vivo Puro",
+    "clots": "Coágulos"
+  },
   "bristol": {
     "title": "Consistência das Fezes (Escala Bristol)",
     "type_1": {

@@ -68,6 +68,15 @@ export const BowelMovementCard: React.FC<BowelMovementCardProps> = ({
             </Text>
           </View>
 
+          {entry.period && (
+            <View style={styles.periodBadge}>
+              <Text style={styles.periodBadgeText}>
+                {entry.period === 'waking_morning' ? '🌅 ' : entry.period === 'afternoon' ? '🌤️ ' : '🌙 '}
+                {t(`dailyLog:period.${entry.period}`)}
+              </Text>
+            </View>
+          )}
+
           {entry.time && (
             <View style={styles.timeBadge}>
               <Clock size={13} color="#6B7280" />
@@ -107,13 +116,29 @@ export const BowelMovementCard: React.FC<BowelMovementCardProps> = ({
 
       {/* Core Metrics Row */}
       <View style={styles.metricsRow}>
-        {/* Bristol */}
-        <View style={styles.metricChip}>
-          <Activity size={14} color="#8E63B8" />
-          <Text style={styles.metricChipText}>
-            {t(`dailyLog:bristol.${entry.bristolType}.label`)}
-          </Text>
-        </View>
+        {/* Output Type / Bristol */}
+        {entry.outputType === 'gas_bloody_false_alarm' ? (
+          <View style={[styles.metricChip, { backgroundColor: '#FFFBEB', borderColor: '#F59E0B', borderWidth: 1 }]}>
+            <Activity size={14} color="#D97706" />
+            <Text style={[styles.metricChipText, { color: '#B45309', fontWeight: '700' }]}>
+              {t('dailyLog:outputType.gas_bloody_false_alarm')}
+            </Text>
+          </View>
+        ) : entry.outputType === 'blood_mucus_only' ? (
+          <View style={[styles.metricChip, { backgroundColor: '#FFF1F2', borderColor: '#E11D48', borderWidth: 1 }]}>
+            <Droplet size={14} color="#E11D48" />
+            <Text style={[styles.metricChipText, { color: '#BE123C', fontWeight: '700' }]}>
+              {t('dailyLog:outputType.blood_mucus_only')}
+            </Text>
+          </View>
+        ) : (
+          <View style={styles.metricChip}>
+            <Activity size={14} color="#8E63B8" />
+            <Text style={styles.metricChipText}>
+              {t(`dailyLog:bristol.${entry.bristolType}.label`)}
+            </Text>
+          </View>
+        )}
 
         {/* Blood */}
         <View style={[styles.metricChip, { backgroundColor: '#FFF0F5' }]}>
@@ -221,6 +246,19 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '700',
     color: '#8E63B8',
+  },
+  periodBadge: {
+    backgroundColor: '#F5F3FF',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#EDE9FE',
+  },
+  periodBadgeText: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#7C3AED',
   },
   timeBadge: {
     flexDirection: 'row',

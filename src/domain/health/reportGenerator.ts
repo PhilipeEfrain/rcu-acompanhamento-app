@@ -221,9 +221,36 @@ export function buildReportHtml(stats: ReportStats, t: TFunction): string {
     };
     const bloodLabel = bloodDescMap[log.bloodPresence] || log.bloodPresence;
 
-    // Bristol descriptive title
-    const bristolTypeNum = log.bristolType.replace('type_', '');
-    const bristolFullName = bristolNames[log.bristolType] || `Tipo ${bristolTypeNum}`;
+    // Output Type & Bristol descriptive title
+    let bristolDisplayHtml = '';
+    if (log.outputType === 'gas_bloody_false_alarm') {
+      bristolDisplayHtml = `
+        <span class="badge" style="background-color: #FEF3C7 !important; color: #B45309 !important; margin-bottom: 4px;">💨 Tenesmo</span><br>
+        <span style="font-size: 10px !important; color: #0F172A !important; font-weight: 700 !important; display: block;">${t('dailyLog:outputType.gas_bloody_false_alarm', { defaultValue: 'Gases com Sangue / Falso Alarme' })}</span>
+      `;
+    } else if (log.outputType === 'blood_mucus_only') {
+      bristolDisplayHtml = `
+        <span class="badge" style="background-color: #FEE2E2 !important; color: #991B1B !important; margin-bottom: 4px;">🩸 Sangue/Muco</span><br>
+        <span style="font-size: 10px !important; color: #0F172A !important; font-weight: 700 !important; display: block;">${t('dailyLog:outputType.blood_mucus_only', { defaultValue: 'Apenas Sangue / Muco' })}</span>
+      `;
+    } else {
+      const bristolTypeNum = log.bristolType ? log.bristolType.replace('type_', '') : '4';
+      const bristolFullName = bristolNames[log.bristolType] || `Tipo ${bristolTypeNum}`;
+      bristolDisplayHtml = `
+        <span class="badge bristol-${log.bristolType}" style="margin-bottom: 4px;">#${bristolTypeNum}</span><br>
+        <span style="font-size: 10px !important; color: #0F172A !important; font-weight: 700 !important; display: block;">${bristolFullName}</span>
+      `;
+    }
+
+    // Period label
+    let periodBadge = '';
+    if (log.period === 'waking_morning') {
+      periodBadge = `<span style="font-size: 9px; font-weight: 700; color: #7C3AED; background: #EDE9FE; padding: 1px 4px; border-radius: 4px; display: inline-block; margin-top: 2px;">🌅 ${t('dailyLog:period.waking_morning', { defaultValue: 'Ao acordar' })}</span>`;
+    } else if (log.period === 'afternoon') {
+      periodBadge = `<span style="font-size: 9px; font-weight: 700; color: #B45309; background: #FEF3C7; padding: 1px 4px; border-radius: 4px; display: inline-block; margin-top: 2px;">🌤️ ${t('dailyLog:period.afternoon', { defaultValue: 'Tarde' })}</span>`;
+    } else if (log.period === 'night') {
+      periodBadge = `<span style="font-size: 9px; font-weight: 700; color: #1E40AF; background: #DBEAFE; padding: 1px 4px; border-radius: 4px; display: inline-block; margin-top: 2px;">🌙 ${t('dailyLog:period.night', { defaultValue: 'Noite' })}</span>`;
+    }
 
     // Pain description
     let painText = 'Sem dor';
@@ -245,7 +272,7 @@ export function buildReportHtml(stats: ReportStats, t: TFunction): string {
         </div>
       `);
     }
-    if (log.hasClots) {
+    if (log.hasClots || log.bloodAspect === 'clots') {
       extras.push(`
         <div style="margin-bottom: 3px; color: #DC2626; font-weight: 700;">
           🩸 ${t('clinicalExtras:clots.yes', { defaultValue: 'Coágulos visíveis' })}
@@ -283,11 +310,11 @@ export function buildReportHtml(stats: ReportStats, t: TFunction): string {
       <tr>
         <td style="font-weight: 700 !important; color: #0F172A !important; white-space: nowrap;">
           ${log.date}<br>
-          <span style="font-weight: 600 !important; color: #475569 !important; font-size: 10px !important;">⏰ ${log.time || '--:--'}</span>
+          <span style="font-weight: 600 !important; color: #475569 !important; font-size: 10px !important;">⏰ ${log.time || '--:--'}</span><br>
+          ${periodBadge}
         </td>
         <td style="color: #0F172A !important;">
-          <span class="badge bristol-${log.bristolType}" style="margin-bottom: 4px;">#${bristolTypeNum}</span><br>
-          <span style="font-size: 10px !important; color: #0F172A !important; font-weight: 700 !important; display: block;">${bristolFullName}</span>
+          ${bristolDisplayHtml}
         </td>
         <td style="color: #0F172A !important;">
           <span class="badge blood-${log.bloodPresence}" style="margin-bottom: 4px;">${bloodLabel}</span>

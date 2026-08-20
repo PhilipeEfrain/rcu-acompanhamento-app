@@ -82,6 +82,27 @@ export const CrisisFeedbackBottomSheet: React.FC<CrisisFeedbackBottomSheetProps>
               <Text style={styles.message}>{t(feedback.messageKey)}</Text>
             </View>
 
+            {/* Contextual Psychoeducational Feedback (Issue #16 - Morning Pooling / Tenesmus) */}
+            {feedback.contextualFeedbackKey && (
+              <View style={styles.contextualBox}>
+                <View style={styles.contextualHeader}>
+                  <Sparkles size={16} color="#7C3AED" />
+                  <Text style={styles.contextualBadge}>
+                    {t(`${feedback.contextualFeedbackKey}.badge`)}
+                  </Text>
+                </View>
+                <Text style={styles.contextualTitle}>
+                  {t(`${feedback.contextualFeedbackKey}.title`)}
+                </Text>
+                <Text style={styles.contextualMessage}>
+                  {t(`${feedback.contextualFeedbackKey}.message`)}
+                </Text>
+                <Text style={styles.contextualAction}>
+                  💡 {t(`${feedback.contextualFeedbackKey}.action`)}
+                </Text>
+              </View>
+            )}
+
             <View style={styles.guidelinesBox}>
               <View style={styles.guidelinesHeader}>
                 <HeartHandshake size={18} color="#7B61FF" />
@@ -174,6 +195,44 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 21,
     paddingHorizontal: 10,
+  },
+  contextualBox: {
+    backgroundColor: '#F5F3FF',
+    borderRadius: 20,
+    padding: 16,
+    borderWidth: 1.5,
+    borderColor: '#DDD6FE',
+    marginBottom: 14,
+  },
+  contextualHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    marginBottom: 6,
+  },
+  contextualBadge: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: '#7C3AED',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+  },
+  contextualTitle: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: '#4C1D95',
+    marginBottom: 4,
+  },
+  contextualMessage: {
+    fontSize: 13,
+    color: '#5B21B6',
+    lineHeight: 18,
+    marginBottom: 8,
+  },
+  contextualAction: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#6D28D9',
   },
   guidelinesBox: {
     backgroundColor: '#F8F9FE',

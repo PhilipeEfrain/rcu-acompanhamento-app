@@ -84,4 +84,72 @@ function scanDir(dir) {
 checkDirs.forEach(scanDir);
 console.log('✔ Nenhuma violação de log sensível encontrada.');
 
+console.log('\n=== [QA Suite] 3. Validação de Lógica Clínica (Tenesmo, Pooling & Mayo) ===');
+const { evaluateCrisis, evaluateDailySummary } = require('../domain/health/evaluateCrisis');
+
+// 1. Tenesmus / False Alarm
+const tenesmusEval = evaluateCrisis({
+  bristolType: 'type_4',
+  bloodPresence: 'traces',
+  painLevel: 2,
+  outputType: 'gas_bloody_false_alarm',
+  period: 'afternoon',
+});
+if (tenesmusEval.contextualFeedbackKey !== 'crisisFeedback:tenesmusSupport') {
+  console.error('❌ Falha na detecção de feedback para Tenesmo!');
+  process.exit(1);
+}
+console.log('✔ Tenesmo retal gera feedback contextual de acolhimento (tenesmusSupport).');
+
+// 2. Morning Pooling
+const morningEval = evaluateCrisis({
+  bristolType: 'type_4',
+  bloodPresence: 'traces',
+  painLevel: 2,
+  outputType: 'blood_mucus_only',
+  period: 'waking_morning',
+});
+if (morningEval.contextualFeedbackKey !== 'crisisFeedback:poolingMorning') {
+  console.error('❌ Falha na detecção de pooling matinal!');
+  process.exit(1);
+}
+console.log('✔ Saída com sangue/muco ao acordar identifica pooling matinal (poolingMorning).');
+
+// 3. Daily Summary with Tenesmus & Stool breakdown
+const mockDailyLogs = [
+  {
+    date: '2026-08-20',
+    outputType: 'gas_bloody_false_alarm',
+    period: 'waking_morning',
+    bristolType: 'type_4',
+    bloodPresence: 'traces',
+    painLevel: 2,
+    severity: 'mild_activity',
+    createdAt: Date.now() - 3600000,
+  },
+  {
+    date: '2026-08-20',
+    outputType: 'feces',
+    period: 'afternoon',
+    bristolType: 'type_4',
+    bloodPresence: 'none',
+    painLevel: 0,
+    severity: 'remission',
+    createdAt: Date.now(),
+  },
+];
+
+const dailySummary = evaluateDailySummary('2026-08-20', mockDailyLogs);
+if (
+  dailySummary.totalMovements !== 2 ||
+  dailySummary.totalFecesMovements !== 1 ||
+  dailySummary.totalTenesmusCount !== 1 ||
+  !dailySummary.hasMorningPooling
+) {
+  console.error('❌ Falha na agregação do resumo diário:', dailySummary);
+  process.exit(1);
+}
+console.log('✔ Resumo diário agrega totalFecesMovements, totalTenesmusCount e hasMorningPooling corretamente.');
+
 console.log('\n✔ Todos os testes de qualidade foram aprovados com sucesso!');
+

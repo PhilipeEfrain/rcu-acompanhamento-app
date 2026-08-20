@@ -17,6 +17,29 @@
   "cancelEdit": "Cancel Editing",
   "timePicker": "Bowel Movement Time",
   "now": "Now",
+  "period": {
+    "title": "Time Period",
+    "waking_morning": "Upon Waking / Morning",
+    "afternoon": "Afternoon",
+    "night": "Night / Early Hours"
+  },
+  "outputType": {
+    "title": "What was passed?",
+    "feces": "Formed Stool",
+    "fecesSubtitle": "Classify with Bristol Scale (1 to 7)",
+    "blood_mucus_only": "Blood / Mucus Only",
+    "blood_mucus_onlySubtitle": "Inflammatory discharge without formed stool",
+    "gas_bloody_false_alarm": "Gas with Blood / Tenesmus",
+    "gas_bloody_false_alarmSubtitle": "Urgency with gas or blood streaks (false alarm)"
+  },
+  "bloodAspect": {
+    "title": "Bleeding Aspect",
+    "none": "None",
+    "streaks": "Streaks / Traces",
+    "mixed": "Mixed",
+    "pure_blood": "Pure Bright Blood",
+    "clots": "Clots"
+  },
   "bristol": {
     "title": "Stool Consistency (Bristol Scale)",
     "type_1": {

@@ -1,5 +1,16 @@
 import { create } from 'zustand';
-import { BloodPresence, BristolType, CrisisEvaluation, DailyAggregatedSummary, DailySymptomEntry, MucusPresence, UrgencyLevel } from '../domain/health/types';
+import {
+  BloodAspect,
+  BloodPresence,
+  BristolType,
+  CrisisEvaluation,
+  DailyAggregatedSummary,
+  DailySymptomEntry,
+  MucusPresence,
+  OutputType,
+  TimePeriod,
+  UrgencyLevel,
+} from '../domain/health/types';
 import { evaluateCrisis, evaluateDailySummary } from '../domain/health/evaluateCrisis';
 import { symptomRepository } from '../storage/symptomRepository';
 
@@ -10,14 +21,24 @@ const getCurrentTimeString = () => {
   return `${hours}:${minutes}`;
 };
 
+const getCurrentPeriod = (): TimePeriod => {
+  const hours = new Date().getHours();
+  if (hours >= 5 && hours < 12) return 'waking_morning';
+  if (hours >= 12 && hours < 18) return 'afternoon';
+  return 'night';
+};
+
 const getTodayDateString = () => new Date().toISOString().split('T')[0];
 
 interface SymptomState {
   selectedDate: string;
   editingEntryId: string | null;
   time: string;
+  outputType: OutputType;
+  period: TimePeriod;
   bristolType: BristolType;
   bloodPresence: BloodPresence;
+  bloodAspect: BloodAspect;
   painLevel: number;
   notes: string;
   isFormOpen: boolean;
@@ -27,7 +48,7 @@ interface SymptomState {
   dayLogs: DailySymptomEntry[];
   dailySummary: DailyAggregatedSummary | null;
 
-  // Extended clinical biomarkers (Issue #9)
+  // Extended clinical biomarkers (Issue #9 & #16)
   stressLevel: number | null;
   hasClots: boolean;
   mucusPresence: MucusPresence;
@@ -36,8 +57,11 @@ interface SymptomState {
   // Actions
   setSelectedDate: (date: string) => Promise<void>;
   setTime: (time: string) => void;
+  setOutputType: (outputType: OutputType) => void;
+  setPeriod: (period: TimePeriod) => void;
   setBristolType: (type: BristolType) => void;
   setBloodPresence: (blood: BloodPresence) => void;
+  setBloodAspect: (aspect: BloodAspect) => void;
   setPainLevel: (level: number) => void;
   setNotes: (notes: string) => void;
   setStressLevel: (level: number | null) => void;
@@ -60,8 +84,11 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
   selectedDate: getTodayDateString(),
   editingEntryId: null,
   time: getCurrentTimeString(),
+  outputType: 'feces',
+  period: getCurrentPeriod(),
   bristolType: 'type_4',
   bloodPresence: 'none',
+  bloodAspect: 'none',
   painLevel: 0,
   notes: '',
   isFormOpen: false,
@@ -83,8 +110,22 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
   },
 
   setTime: (time: string) => set({ time }),
+  setOutputType: (outputType: OutputType) => set({ outputType }),
+  setPeriod: (period: TimePeriod) => set({ period }),
   setBristolType: (bristolType: BristolType) => set({ bristolType }),
   setBloodPresence: (bloodPresence: BloodPresence) => set({ bloodPresence }),
+  setBloodAspect: (bloodAspect: BloodAspect) => {
+    let bloodPresence: BloodPresence = 'none';
+    let hasClots = get().hasClots;
+    if (bloodAspect === 'traces') bloodPresence = 'traces';
+    else if (bloodAspect === 'mixed') bloodPresence = 'moderate';
+    else if (bloodAspect === 'pure_blood') bloodPresence = 'severe';
+    else if (bloodAspect === 'clots') {
+      bloodPresence = 'severe';
+      hasClots = true;
+    }
+    set({ bloodAspect, bloodPresence, hasClots });
+  },
   setPainLevel: (painLevel: number) => set({ painLevel }),
   setNotes: (notes: string) => set({ notes }),
   setStressLevel: (stressLevel: number | null) => set({ stressLevel }),
@@ -98,8 +139,11 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
       selectedDate: targetDate,
       editingEntryId: null,
       time: getCurrentTimeString(),
+      outputType: 'feces',
+      period: getCurrentPeriod(),
       bristolType: 'type_4',
       bloodPresence: 'none',
+      bloodAspect: 'none',
       painLevel: 0,
       notes: '',
       stressLevel: null,
@@ -115,8 +159,11 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
       selectedDate: entry.date,
       editingEntryId: entry.id || null,
       time: entry.time || getCurrentTimeString(),
-      bristolType: entry.bristolType,
-      bloodPresence: entry.bloodPresence,
+      outputType: entry.outputType || 'feces',
+      period: entry.period || getCurrentPeriod(),
+      bristolType: entry.bristolType || 'type_4',
+      bloodPresence: entry.bloodPresence || 'none',
+      bloodAspect: entry.bloodAspect || (entry.hasClots ? 'clots' : (entry.bloodPresence as BloodAspect) || 'none'),
       painLevel: entry.painLevel,
       notes: entry.notes || '',
       stressLevel: entry.stressLevel ?? null,
@@ -177,8 +224,11 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
       selectedDate,
       editingEntryId,
       time,
+      outputType,
+      period,
       bristolType,
       bloodPresence,
+      bloodAspect,
       painLevel,
       notes,
       stressLevel,
@@ -190,9 +240,12 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
     set({ isSaving: true });
 
     const feedback = evaluateCrisis({
-      bristolType,
+      bristolType: outputType === 'feces' ? bristolType : 'type_4',
       bloodPresence,
       painLevel,
+      outputType,
+      period,
+      bloodAspect,
       hasClots,
       mucusPresence,
       urgencyLevel,
@@ -202,14 +255,17 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
       id: editingEntryId || undefined,
       date: selectedDate,
       time,
-      bristolType,
+      outputType,
+      period,
+      bristolType: outputType === 'feces' ? bristolType : 'type_4',
       bloodPresence,
+      bloodAspect,
       painLevel,
       notes: notes.trim() || undefined,
       severity: feedback.severity,
       createdAt: Date.now(),
       stressLevel: stressLevel !== null ? stressLevel : undefined,
-      hasClots,
+      hasClots: hasClots || bloodAspect === 'clots',
       mucusPresence,
       urgencyLevel,
     };
@@ -233,3 +289,4 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
     }
   },
 }));
+

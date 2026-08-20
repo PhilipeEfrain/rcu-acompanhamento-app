@@ -1,37 +1,58 @@
-import { BloodPresence, BristolType, CrisisEvaluation, CrisisSeverity, DailyAggregatedSummary, DailySymptomEntry, MucusPresence, UrgencyLevel } from './types';
+import {
+  BloodAspect,
+  BloodPresence,
+  BristolType,
+  CrisisEvaluation,
+  CrisisSeverity,
+  DailyAggregatedSummary,
+  DailySymptomEntry,
+  MucusPresence,
+  OutputType,
+  TimePeriod,
+  UrgencyLevel,
+} from './types';
 
 interface EvaluateCrisisParams {
   bristolType: BristolType;
   bloodPresence: BloodPresence;
   painLevel: number;
+  outputType?: OutputType;
+  period?: TimePeriod;
+  bloodAspect?: BloodAspect;
   hasClots?: boolean;
   mucusPresence?: MucusPresence;
   urgencyLevel?: UrgencyLevel;
 }
 
 /**
- * Pure clinical decision function for a single bowel movement symptom assessment.
- * Evaluates core symptoms (Bristol, Blood, Pain) plus extended biomarkers (Clots, Mucus, Urgency).
+ * Pure clinical decision function for a single bowel movement / symptom assessment.
+ * Evaluates core symptoms (Bristol, Blood, Pain, Output Type, Period) plus extended biomarkers.
  */
 export function evaluateCrisis({
   bristolType,
   bloodPresence,
   painLevel,
+  outputType = 'feces',
+  period,
+  bloodAspect,
   hasClots,
   mucusPresence,
   urgencyLevel,
 }: EvaluateCrisisParams): CrisisEvaluation {
-  const isSevereBristol = bristolType === 'type_6' || bristolType === 'type_7';
-  const isSevereBlood = bloodPresence === 'moderate' || bloodPresence === 'severe';
+  const isSevereBristol = outputType === 'feces' && (bristolType === 'type_6' || bristolType === 'type_7');
+  const isSevereBlood =
+    bloodPresence === 'severe' ||
+    bloodAspect === 'pure_blood' ||
+    bloodPresence === 'moderate';
   const isSeverePain = painLevel >= 7;
   const isSevereUrgency = urgencyLevel === 'severe';
-  const isClotsPresent = Boolean(hasClots);
+  const isClotsPresent = Boolean(hasClots) || bloodAspect === 'clots';
 
-  const isModerateBristol = bristolType === 'type_5' || bristolType === 'type_1';
-  const isModerateBlood = bloodPresence === 'traces';
+  const isModerateBristol = outputType === 'feces' && (bristolType === 'type_5' || bristolType === 'type_1');
+  const isModerateBlood = bloodPresence === 'traces' || bloodAspect === 'traces' || bloodAspect === 'mixed';
   const isModeratePain = painLevel >= 3 && painLevel < 7;
   const isModerateUrgency = urgencyLevel === 'moderate';
-  const isMucusPresent = mucusPresence === 'mild' || mucusPresence === 'abundant';
+  const isMucusPresent = mucusPresence === 'mild' || mucusPresence === 'abundant' || outputType === 'blood_mucus_only';
 
   let severity: CrisisSeverity = 'remission';
 
@@ -49,11 +70,25 @@ export function evaluateCrisis({
     isModeratePain ||
     isSevereBristol ||
     isModerateUrgency ||
-    isMucusPresent
+    isMucusPresent ||
+    outputType === 'gas_bloody_false_alarm'
   ) {
     severity = 'mild_activity';
   } else {
     severity = 'remission';
+  }
+
+  // Contextual Psychoeducational Feedback (Issue #16)
+  let contextualFeedbackKey: string | undefined;
+  if (outputType === 'gas_bloody_false_alarm') {
+    contextualFeedbackKey = 'crisisFeedback:tenesmusSupport';
+  } else if (
+    period === 'waking_morning' &&
+    (outputType === 'blood_mucus_only' || isModerateBlood || isMucusPresent) &&
+    !isSevereBlood &&
+    !isClotsPresent
+  ) {
+    contextualFeedbackKey = 'crisisFeedback:poolingMorning';
   }
 
   if (severity === 'moderate_to_severe_flare') {
@@ -68,6 +103,7 @@ export function evaluateCrisis({
         'crisisFeedback:flare.care_red_flags',
       ],
       badgeColor: '#FF6B81',
+      contextualFeedbackKey,
     };
   }
 
@@ -82,6 +118,7 @@ export function evaluateCrisis({
         'crisisFeedback:mild.care_monitor',
       ],
       badgeColor: '#F59E0B',
+      contextualFeedbackKey,
     };
   }
 
@@ -94,18 +131,23 @@ export function evaluateCrisis({
       'crisisFeedback:remission.care_medication',
     ],
     badgeColor: '#10B981',
+    contextualFeedbackKey,
   };
 }
 
 /**
  * Evaluates the consolidated clinical status of an entire day given all its bowel movement logs.
- * Combines stool frequency (Mayo subscore), bleeding, consistency, pain, clots, mucus and tenesmus.
+ * Combines stool frequency (Mayo subscore), bleeding, consistency, pain, clots, mucus, tenesmus and morning pooling.
  */
 export function evaluateDailySummary(date: string, entries: DailySymptomEntry[]): DailyAggregatedSummary {
   if (entries.length === 0) {
     return {
       date,
       totalMovements: 0,
+      totalFecesMovements: 0,
+      totalTenesmusCount: 0,
+      totalBloodMucusOnlyCount: 0,
+      hasMorningPooling: false,
       overallSeverity: 'remission',
       maxPain: 0,
       hasBlood: false,
@@ -118,6 +160,11 @@ export function evaluateDailySummary(date: string, entries: DailySymptomEntry[])
   }
 
   const totalMovements = entries.length;
+  let totalFecesMovements = 0;
+  let totalTenesmusCount = 0;
+  let totalBloodMucusOnlyCount = 0;
+  let hasMorningPooling = false;
+
   let maxPain = 0;
   let maxStress = 0;
   let hasBlood = false;
@@ -138,18 +185,38 @@ export function evaluateDailySummary(date: string, entries: DailySymptomEntry[])
   let maxSeverityScore = 0;
 
   for (const entry of entries) {
+    const outType = entry.outputType || 'feces';
+    if (outType === 'feces') totalFecesMovements++;
+    else if (outType === 'gas_bloody_false_alarm') totalTenesmusCount++;
+    else if (outType === 'blood_mucus_only') totalBloodMucusOnlyCount++;
+
     if (entry.painLevel > maxPain) maxPain = entry.painLevel;
     if (entry.stressLevel && entry.stressLevel > maxStress) maxStress = entry.stressLevel;
-    if (entry.bloodPresence !== 'none') hasBlood = true;
-    if (entry.bloodPresence === 'moderate' || entry.bloodPresence === 'severe') hasSevereBlood = true;
-    if (entry.bloodPresence === 'traces') hasModerateBlood = true;
-    if (entry.hasClots) hasClots = true;
+    if (entry.bloodPresence !== 'none' || (entry.bloodAspect && entry.bloodAspect !== 'none')) hasBlood = true;
+    if (
+      entry.bloodPresence === 'moderate' ||
+      entry.bloodPresence === 'severe' ||
+      entry.bloodAspect === 'pure_blood'
+    ) {
+      hasSevereBlood = true;
+    }
+    if (entry.bloodPresence === 'traces' || entry.bloodAspect === 'traces' || entry.bloodAspect === 'mixed') {
+      hasModerateBlood = true;
+    }
+    if (entry.hasClots || entry.bloodAspect === 'clots') hasClots = true;
     if (entry.mucusPresence === 'abundant') hasAbundantMucus = true;
     if (entry.urgencyLevel === 'severe') hasSevereUrgency = true;
 
-    if (entry.bristolType === 'type_7' || entry.bristolType === 'type_6') {
+    if (outType === 'feces' && (entry.bristolType === 'type_7' || entry.bristolType === 'type_6')) {
       hasLiquidStool = true;
       worstBristol = entry.bristolType;
+    }
+
+    if (
+      entry.period === 'waking_morning' &&
+      (outType === 'blood_mucus_only' || entry.bloodPresence !== 'none' || entry.bloodAspect !== 'none')
+    ) {
+      hasMorningPooling = true;
     }
 
     const singleEval = evaluateCrisis(entry);
@@ -159,18 +226,21 @@ export function evaluateDailySummary(date: string, entries: DailySymptomEntry[])
 
   let overallSeverity: CrisisSeverity = 'remission';
 
-  // Mayo Criteria & Extended Biomarkers: frequency >= 6 OR severe blood OR intense pain OR clots OR severe urgency
+  // Mayo Criteria: Fecal movement frequency >= 6 or severe clinical biomarkers
   if (
-    totalMovements >= 6 ||
+    totalFecesMovements >= 6 ||
+    totalMovements >= 8 ||
     hasSevereBlood ||
     maxPain >= 7 ||
     hasClots ||
     hasSevereUrgency ||
-    (totalMovements >= 4 && hasModerateBlood)
+    (totalFecesMovements >= 4 && hasModerateBlood)
   ) {
     overallSeverity = 'moderate_to_severe_flare';
   } else if (
-    totalMovements >= 3 ||
+    totalFecesMovements >= 3 ||
+    totalTenesmusCount >= 2 ||
+    totalBloodMucusOnlyCount >= 1 ||
     hasModerateBlood ||
     hasLiquidStool ||
     maxPain >= 3 ||
@@ -185,6 +255,10 @@ export function evaluateDailySummary(date: string, entries: DailySymptomEntry[])
   return {
     date,
     totalMovements,
+    totalFecesMovements,
+    totalTenesmusCount,
+    totalBloodMucusOnlyCount,
+    hasMorningPooling,
     overallSeverity,
     maxPain,
     hasBlood,
@@ -195,3 +269,4 @@ export function evaluateDailySummary(date: string, entries: DailySymptomEntry[])
     maxStress,
   };
 }
+

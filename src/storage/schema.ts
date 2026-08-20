@@ -11,7 +11,10 @@ export const dailySymptomLogs = sqliteTable('daily_symptom_logs', {
   severity: text('severity').notNull(), // remission, mild_activity, moderate_to_severe_flare
   createdAt: integer('created_at').notNull(), // Epoch timestamp
 
-  // Extended clinical biomarkers (Issue #9)
+  // Extended clinical biomarkers (Issue #9 & #16)
+  outputType: text('output_type'), // feces, blood_mucus_only, gas_bloody_false_alarm
+  period: text('period'), // waking_morning, afternoon, night
+  bloodAspect: text('blood_aspect'), // none, streaks, mixed, pure_blood, clots
   stressLevel: integer('stress_level'),
   hasClots: integer('has_clots', { mode: 'boolean' }),
   mucusPresence: text('mucus_presence'),

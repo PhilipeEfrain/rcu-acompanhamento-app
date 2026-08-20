@@ -20,6 +20,18 @@
     "care_contact_doctor": "Avise seu médico gastroenterologista sobre o aumento da frequência ou presença de sangue.",
     "care_red_flags": "Procure o pronto-socorro imediatamente se tiver febre acima de 38°C, tonturas intensas, fraqueza extrema ou sangramento volumoso contínuo."
   },
+  "poolingMorning": {
+    "title": "Acúmulo Noturno de Sangue (Pooling)",
+    "badge": "Informativo Clínico",
+    "message": "Durante a noite, o repouso facilita o acúmulo de sangue e muco na ampola retal. Ao acordar, a expulsão desse volume com gases é esperada e não indica necessariamente um sangramento ativo contínuo.",
+    "action": "Acompanhe as próximas evacuações do dia com calma."
+  },
+  "tenesmusSupport": {
+    "title": "Urgência com Gases (Tenesmo Retal)",
+    "badge": "Acolhimento",
+    "message": "A inflamação na mucosa retal envia sinais falsos de urgência ao cérebro. Sentir necessidade intensa e eliminar apenas gases ou raias faz parte do quadro inflamatório.",
+    "action": "Respire fundo. Você não fez nada de errado."
+  },
   "actions": {
     "view_guidance": "Ver Orientações Clínicas",
     "dismiss": "Entendido, obrigado!"

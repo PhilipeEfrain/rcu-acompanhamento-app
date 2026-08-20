@@ -7,11 +7,28 @@ export type BristolType =
   | 'type_6'
   | 'type_7';
 
+export type OutputType =
+  | 'feces'
+  | 'blood_mucus_only'
+  | 'gas_bloody_false_alarm';
+
+export type TimePeriod =
+  | 'waking_morning'
+  | 'afternoon'
+  | 'night';
+
 export type BloodPresence =
   | 'none'
   | 'traces'
   | 'moderate'
   | 'severe';
+
+export type BloodAspect =
+  | 'none'
+  | 'traces'
+  | 'mixed'
+  | 'pure_blood'
+  | 'clots';
 
 export type CrisisSeverity =
   | 'remission'
@@ -39,7 +56,10 @@ export interface DailySymptomEntry {
   severity: CrisisSeverity;
   createdAt: number; // Epoch timestamp
 
-  // Extended clinical biomarkers (Issue #9)
+  // Extended clinical biomarkers (Issue #9 & #16)
+  outputType?: OutputType;
+  period?: TimePeriod;
+  bloodAspect?: BloodAspect;
   stressLevel?: number; // 0 to 10
   hasClots?: boolean;
   mucusPresence?: MucusPresence;
@@ -52,11 +72,16 @@ export interface CrisisEvaluation {
   messageKey: string;
   guidelinesKeys: string[];
   badgeColor: string;
+  contextualFeedbackKey?: string;
 }
 
 export interface DailyAggregatedSummary {
   date: string;
   totalMovements: number;
+  totalFecesMovements?: number;
+  totalTenesmusCount?: number;
+  totalBloodMucusOnlyCount?: number;
+  hasMorningPooling?: boolean;
   overallSeverity: CrisisSeverity;
   maxPain: number;
   hasBlood: boolean;
@@ -66,3 +91,4 @@ export interface DailyAggregatedSummary {
   hasSevereUrgency?: boolean;
   maxStress?: number;
 }
+
