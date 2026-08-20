@@ -1,0 +1,26 @@
+{
+  "appName": "UC Care",
+  "today": "Today",
+  "yesterday": "Yesterday",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "back": "Back",
+  "save": "Save",
+  "loading": "Loading...",
+  "error": "An error occurred",
+  "success": "Success",
+  "greetingMorning": "Good morning",
+  "greetingAfternoon": "Good afternoon",
+  "greetingEvening": "Good evening",
+  "nav": {
+    "today": "Today",
+    "history": "History",
+    "settings": "Privacy"
+  },
+  "status": {
+    "remission": "Remission",
+    "mild_activity": "Mild Flare",
+    "moderate_to_severe_flare": "Active Flare",
+    "severe_emergency": "Medical Emergency"
+  }
+}

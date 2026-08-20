@@ -1,0 +1,49 @@
+{
+  "remission": {
+    "title": "Quadro Estável / Em Remissão",
+    "message": "Ótima notícia! Seus registros indicam estabilidade intestinal hoje. Continue mantendo seus hábitos e medicações prescritas.",
+    "care_habits": "Mantenha a dieta balanceada e a hidratação diária.",
+    "care_medication": "Continue com o tratamento de manutenção conforme prescrito pelo seu médico."
+  },
+  "mild": {
+    "title": "Atividade Leve Observada",
+    "message": "Notamos algumas alterações leves. Beba bastante água, evite alimentos irritantes e continue monitorando suas próximas evacuações.",
+    "care_hydration": "Beba pelo menos 2 a 3 litros de água e líquidos claros ao longo do dia.",
+    "care_diet": "Evite alimentos gordurosos, ultraprocessados, excesso de café e lactose se for sensível.",
+    "care_monitor": "Acompanhe se os sintomas persistem por mais de 48 horas."
+  },
+  "flare": {
+    "title": "Alerta de Crise: Acolhimento e Cuidados",
+    "message": "Respire fundo, momentos de crise são desafiadores mas temporários. Estamos com você. Veja as orientações de segurança abaixo:",
+    "care_hydration": "Hidrate-se com água e soro caseiro ou soluções eletrolíticas para repor perdas.",
+    "care_no_nsaids": "ATENÇÃO: NUNCA tome anti-inflamatórios (AINEs como ibuprofeno, cetoprofeno ou diclofenaco), pois eles inflamam a mucosa intestinal.",
+    "care_contact_doctor": "Avise seu médico gastroenterologista sobre o aumento da frequência ou presença de sangue.",
+    "care_red_flags": "Procure o pronto-socorro imediatamente se tiver febre acima de 38°C, tonturas intensas, fraqueza extrema ou sangramento volumoso contínuo."
+  },
+  "poolingMorning": {
+    "title": "Acúmulo Noturno de Sangue (Pooling)",
+    "badge": "Informativo Clínico",
+    "message": "Durante a noite, o repouso facilita o acúmulo de sangue e muco na ampola retal. Ao acordar, a expulsão desse volume com gases é esperada e não indica necessariamente um sangramento ativo contínuo.",
+    "action": "Acompanhe as próximas evacuações do dia com calma."
+  },
+  "tenesmusSupport": {
+    "title": "Urgência com Gases (Tenesmo Retal)",
+    "badge": "Acolhimento",
+    "message": "A inflamação na mucosa retal envia sinais falsos de urgência ao cérebro. Sentir necessidade intensa e eliminar apenas gases ou raias faz parte do quadro inflamatório.",
+    "action": "Respire fundo. Você não fez nada de errado."
+  },
+  "emergency": {
+    "title": "🚨 ALERTA VERMELHO: Procure Atendimento Médico Imediatamente",
+    "badge": "Emergência Médica",
+    "message": "Identificamos uma combinação de sintomas com potencial risco à sua saúde (sangramento expressivo associado a sinais sistêmicos de febre/tontura ou dor aguda). Não hesite em buscar um pronto-atendimento hospitalar agora.",
+    "care_hospital": "Dirija-se ao pronto-socorro ou contate seu médico gastroenterologista com urgência.",
+    "care_hydration": "Mantenha-se hidratado em pequenos goles com água ou soro caseiro no deslocamento.",
+    "care_no_nsaids": "ATENÇÃO: NUNCA tome anti-inflamatórios (ibuprofeno, diclofenaco, cetoprofeno), pois agravam gravemente o sangramento intestinal.",
+    "care_monitor": "Apresente o histórico do aplicativo ou exporte o relatório PDF na triagem médica."
+  },
+  "actions": {
+    "view_guidance": "Ver Orientações Clínicas",
+    "dismiss": "Entendido, obrigado!",
+    "emergency_dismiss": "Entendido, buscar atendimento"
+  }
+}

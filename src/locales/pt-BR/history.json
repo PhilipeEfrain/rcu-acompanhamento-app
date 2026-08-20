@@ -1,0 +1,60 @@
+{
+  "title": "Histórico e Padrões",
+  "subtitle": "Acompanhe a evolução do seu bem-estar",
+  "monthlySummary": "Resumo do Mês",
+  "remissionDays": "Dias em Remissão",
+  "mildDays": "Dias de Alerta",
+  "flareDays": "Dias de Crise",
+  "totalMovements": "Total de Evacuações",
+  "noLogsThisMonth": "Nenhum registro encontrado para este mês.",
+  "selectedDayTitle": "Registro do dia {{date}}",
+  "noLogSelectedDay": "Nenhuma evacuação registrada neste dia.",
+  "quickAddToday": "Registrar sintomas de hoje",
+  "editDayLog": "Editar",
+  "addPastLog": "Registrar ida ao banheiro",
+  "dayMovements": "Evacuações do Dia ({{count}})",
+  "movementsCount": "{{count}} evacuações",
+  "addNewMovementForDay": "Nova Evacuação neste Dia",
+  "legend": {
+    "title": "Legenda Clínica",
+    "remission": "Remissão / Estável",
+    "mild": "Alerta Leve",
+    "flare": "Crise Moderada / Severa",
+    "unlogged": "Sem registro"
+  },
+  "trendChart": {
+    "title": "Gráfico de Tendência (Evacuações/Dia)",
+    "subtitle": "Visualize a frequência e picos inflamatórios no período",
+    "target": "Meta de remissão (≤ 2/dia)",
+    "empty": "Sem registros suficientes no período"
+  },
+  "metrics": {
+    "bristol": "Bristol",
+    "blood": "Sangue",
+    "pain": "Dor",
+    "notes": "Notas"
+  },
+  "weekDays": {
+    "sun": "Dom",
+    "mon": "Seg",
+    "tue": "Ter",
+    "wed": "Qua",
+    "thu": "Qui",
+    "fri": "Sex",
+    "sat": "Sáb"
+  },
+  "months": {
+    "jan": "Janeiro",
+    "feb": "Fevereiro",
+    "mar": "Março",
+    "apr": "Abril",
+    "may": "Maio",
+    "jun": "Junho",
+    "jul": "Julho",
+    "aug": "Agosto",
+    "sep": "Setembro",
+    "oct": "Outubro",
+    "nov": "Novembro",
+    "dec": "Dezembro"
+  }
+}

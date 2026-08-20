@@ -1,0 +1,108 @@
+{
+  "title": "Acompanhamento Diário",
+  "subtitle": "Monitore suas idas ao banheiro e bem-estar",
+  "editingBadge": "Editando evacuação de {{date}} ({{time}})",
+  "backToToday": "Voltar para Hoje",
+  "newEntry": "Nova Ida ao Banheiro",
+  "newEntrySubtitle": "Registre consistência, sangue e dor deste episódio",
+  "todayTimeline": "Episódios Registrados",
+  "emptyTimeline": "Nenhuma ida ao banheiro registrada para este dia ainda.",
+  "addNewMovement": "Registrar Ida ao Banheiro",
+  "entryNumber": "Evacuação #{{number}}",
+  "entryTime": "Horário: {{time}}",
+  "dailySummaryTitle": "Resumo do Dia ({{count}} evacuações)",
+  "deletePromptTitle": "Excluir este episódio?",
+  "deletePromptMessage": "Este registro de evacuação será removido permanentemente.",
+  "deleteSuccess": "Registro excluído com sucesso.",
+  "cancelEdit": "Cancelar Edição",
+  "timePicker": "Horário da Evacuação",
+  "now": "Agora",
+  "period": {
+    "title": "Período do Registro",
+    "waking_morning": "Manhã",
+    "afternoon": "Tarde",
+    "night": "Noite"
+  },
+  "outputType": {
+    "title": "O que você eliminou nesta ida ao banheiro?",
+    "feces": "Fezes Formadas / Diarreia",
+    "fecesSubtitle": "Evacuação com bolo fecal ou consistência líquida (Bristol 1 a 7)",
+    "blood_mucus_only": "Apenas Sangue / Muco (Sem Fezes)",
+    "blood_mucus_onlySubtitle": "Secreção inflamatória ou muco puro sem presença de bolo fecal",
+    "gas_bloody_false_alarm": "Gases com Sangue / Tenesmo",
+    "gas_bloody_false_alarmSubtitle": "Sensação de urgência com saída de gases ou raias (falso alarme)"
+  },
+  "bloodAspect": {
+    "title": "Aspecto do Sangramento",
+    "none": "Nenhum",
+    "streaks": "Raias / Fios",
+    "mixed": "Misturado",
+    "pure_blood": "Sangue Vivo Puro",
+    "clots": "Coágulos"
+  },
+  "systemicSymptoms": {
+    "title": "Sintomas Sistêmicos e Sinais de Alerta",
+    "subtitle": "Marque se estiver sentindo algum reflexo no corpo",
+    "fever": "Febre (> 37,8°C)",
+    "dizziness": "Tontura / Fraqueza",
+    "extremeFatigue": "Cansaço Extremo",
+    "tachycardia": "Coração Acelerado"
+  },
+  "bristol": {
+    "title": "Consistência das Fezes (Escala Bristol)",
+    "type_1": {
+      "label": "Tipo 1: Caroços duros separados",
+      "desc": "Como nozes, difíceis de evacuar"
+    },
+    "type_2": {
+      "label": "Tipo 2: Em forma de salsicha, nodoso",
+      "desc": "Firme, irregular e grumoso"
+    },
+    "type_3": {
+      "label": "Tipo 3: Salsicha com fendas",
+      "desc": "Consistência normal e consistente"
+    },
+    "type_4": {
+      "label": "Tipo 4: Salsicha suave e macia",
+      "desc": "Formato ideal, fácil de evacuar"
+    },
+    "type_5": {
+      "label": "Tipo 5: Pedaços macios separados",
+      "desc": "Bordas nítidas, pouca fibra"
+    },
+    "type_6": {
+      "label": "Tipo 6: Pedaços fofos e esfarrapados",
+      "desc": "Fezes pastosas / diarreia leve"
+    },
+    "type_7": {
+      "label": "Tipo 7: Totalmente líquido",
+      "desc": "Sem pedaços sólidos / diarreia severa"
+    }
+  },
+  "blood": {
+    "title": "Presença de Sangue",
+    "none": "Nenhum sangue",
+    "traces": "Traços ou estrias",
+    "moderate": "Sangue evidente",
+    "severe": "Apenas sangue / Intenso"
+  },
+  "pain": {
+    "title": "Nível de Dor Abdominal",
+    "none": "Sem dor (0)",
+    "mild": "Dor Leve (1 - 3)",
+    "moderate": "Dor Moderada (4 - 6)",
+    "severe": "Dor Intensa (7 - 10)",
+    "score_label": "Nível de dor: {{score}}/10"
+  },
+  "notes": {
+    "title": "Anotações Adicionais (Opcional)",
+    "placeholder": "Alimentação diferente, estresse, cansaço..."
+  },
+  "actions": {
+    "submit": "Salvar Evacuação",
+    "update": "Atualizar Evacuação",
+    "editingDate": "Registrando para {{date}}",
+    "saving": "Salvando...",
+    "success": "Registro salvo com sucesso!"
+  }
+}

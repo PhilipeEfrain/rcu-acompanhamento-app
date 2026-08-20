@@ -1,0 +1,30 @@
+{
+  "sectionTitle": "Acolhimento & Suporte",
+  "sectionSubtitle": "Cuidado integral do corpo, mente e eixo cérebro-intestino",
+  "quotes": {
+    "quote1": "Seu corpo não está falhando; ele está enfrentando um momento de inflamação que exige calma e tempo.",
+    "quote2": "A dor e o cansaço da RCU são reais. Respeite os limites do seu corpo e permita-se descansar sem culpa.",
+    "quote3": "O cérebro e o intestino dialogam o tempo todo. Acalmar a respiração e a mente é parte ativa do seu tratamento.",
+    "quote4": "Um dia com mais episódios não anula o seu progresso. Respire fundo: um momento por vez."
+  },
+  "guidelinesAccordion": {
+    "title": "Orientações Práticas de Cuidado",
+    "subtitle": "Toque para ver cuidados recomendados",
+    "hydrationTitle": "Hidratação Constante",
+    "hydrationDesc": "Em períodos de fezes moles ou diarreia, reponha líquidos com água, soro de reidratação oral e água de coco para evitar fraqueza e perda de sais.",
+    "foodTitle": "Alimentação Suave e Fracionada",
+    "foodDesc": "Prefira porções menores ao longo do dia. Evite alimentos ultraprocessados, picantes ou ricos em cafeína que possam sensibilizar o cólon.",
+    "restTitle": "Descanso e Respiração Consciente",
+    "restDesc": "O estresse ativa vias inflamatórias no intestino. Pausas para respirar e repouso de qualidade ajudam a modular o eixo neuroimunológico."
+  },
+  "gastroCard": {
+    "title": "Equipe Médica & Gastroenterologista",
+    "desc": "Se os sintomas persistirem por mais de 48h ou se houver febre, entre em contato com seu gastro. Não altere doses de medicamentos sozinho.",
+    "tag": "Cuidado Clínico"
+  },
+  "psychoCard": {
+    "title": "Cuidado Emocional & Psicoterapia",
+    "desc": "Viver com DII impacta as emoções e o sono. O acompanhamento psicológico auxilia no manejo do estresse e na qualidade de vida.",
+    "tag": "Eixo Cérebro-Intestino"
+  }
+}

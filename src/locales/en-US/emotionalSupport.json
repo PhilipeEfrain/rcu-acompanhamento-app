@@ -1,0 +1,30 @@
+{
+  "sectionTitle": "Care & Support",
+  "sectionSubtitle": "Holistic care for body, mind and gut-brain axis",
+  "quotes": {
+    "quote1": "Your body is not failing; it is navigating an inflammatory process that needs patience and gentle time.",
+    "quote2": "The fatigue and discomfort of UC are real. Honor your body's signals and allow yourself to rest without guilt.",
+    "quote3": "The gut and brain communicate constantly. Calming your breath and mind is an active part of your healing.",
+    "quote4": "A day with more bowel movements does not erase your progress. Breathe gently: one moment at a time."
+  },
+  "guidelinesAccordion": {
+    "title": "Practical Care Guidelines",
+    "subtitle": "Tap to view recommended care",
+    "hydrationTitle": "Continuous Hydration",
+    "hydrationDesc": "During periods of loose stool or diarrhea, replenish fluids with water, oral rehydration salts, and coconut water to prevent electrolyte loss.",
+    "foodTitle": "Gentle, Frequent Meals",
+    "foodDesc": "Opt for smaller portions throughout the day. Avoid ultra-processed, spicy, or high-caffeine foods that may irritate your mucosal lining.",
+    "restTitle": "Rest and Mindful Breathing",
+    "restDesc": "Stress activates inflammatory pathways in the bowel. Gentle breathing pauses and quality rest help soothe the gut-brain axis."
+  },
+  "gastroCard": {
+    "title": "Medical Team & Gastroenterologist",
+    "desc": "If symptoms persist for over 48 hours or fever occurs, contact your GI specialist. Never adjust medication doses alone.",
+    "tag": "Clinical Care"
+  },
+  "psychoCard": {
+    "title": "Emotional Wellbeing & Mental Health",
+    "desc": "Living with IBD affects emotions and sleep. Specialized therapy provides valuable support for stress and gut health.",
+    "tag": "Gut-Brain Axis"
+  }
+}

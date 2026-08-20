@@ -1,0 +1,108 @@
+{
+  "title": "Daily Tracking",
+  "subtitle": "Track your bowel movements and wellness gently",
+  "editingBadge": "Editing bowel movement of {{date}} ({{time}})",
+  "backToToday": "Back to Today",
+  "newEntry": "New Bowel Movement",
+  "newEntrySubtitle": "Log stool consistency, blood and pain for this episode",
+  "todayTimeline": "Logged Episodes",
+  "emptyTimeline": "No bowel movements logged for this day yet.",
+  "addNewMovement": "+ Log Bowel Movement",
+  "entryNumber": "Bowel Movement #{{number}}",
+  "entryTime": "Time: {{time}}",
+  "dailySummaryTitle": "Daily Summary ({{count}} bowel movements)",
+  "deletePromptTitle": "Delete this episode?",
+  "deletePromptMessage": "This bowel movement record will be permanently removed.",
+  "deleteSuccess": "Log deleted successfully.",
+  "cancelEdit": "Cancel Editing",
+  "timePicker": "Bowel Movement Time",
+  "now": "Now",
+  "period": {
+    "title": "Time Period",
+    "waking_morning": "Morning",
+    "afternoon": "Afternoon",
+    "night": "Night"
+  },
+  "outputType": {
+    "title": "What was passed during this episode?",
+    "feces": "Formed Stool / Diarrhea",
+    "fecesSubtitle": "Bowel movement with stool or loose consistency (Bristol 1 to 7)",
+    "blood_mucus_only": "Blood / Mucus Only (No Stool)",
+    "blood_mucus_onlySubtitle": "Passing inflammatory mucus or blood without formed stool",
+    "gas_bloody_false_alarm": "Gas with Blood / Tenesmus",
+    "gas_bloody_false_alarmSubtitle": "Urgency sensation with only gas or blood streaks (false alarm)"
+  },
+  "bloodAspect": {
+    "title": "Bleeding Aspect",
+    "none": "None",
+    "streaks": "Streaks / Traces",
+    "mixed": "Mixed in Stool",
+    "pure_blood": "Pure Fresh Blood",
+    "clots": "Blood Clots"
+  },
+  "systemicSymptoms": {
+    "title": "Systemic Symptoms & Warning Signs",
+    "subtitle": "Check if you are experiencing any body-wide symptoms",
+    "fever": "Fever (> 37.8°C / 100°F)",
+    "dizziness": "Dizziness / Weakness",
+    "extremeFatigue": "Extreme Fatigue",
+    "tachycardia": "Rapid Heartbeat"
+  },
+  "bristol": {
+    "title": "Stool Consistency (Bristol Scale)",
+    "type_1": {
+      "label": "Type 1: Separate hard lumps",
+      "desc": "Like nuts, hard to pass"
+    },
+    "type_2": {
+      "label": "Type 2: Sausage-shaped, lumpy",
+      "desc": "Firm, uneven and bulky"
+    },
+    "type_3": {
+      "label": "Type 3: Sausage with cracks",
+      "desc": "Normal and consistent"
+    },
+    "type_4": {
+      "label": "Type 4: Smooth and soft sausage",
+      "desc": "Ideal shape, easy to pass"
+    },
+    "type_5": {
+      "label": "Type 5: Soft blobs with clear edges",
+      "desc": "Clear cut edges, low fiber"
+    },
+    "type_6": {
+      "label": "Type 6: Fluffy pieces, ragged edges",
+      "desc": "Mushy stool / mild diarrhea"
+    },
+    "type_7": {
+      "label": "Type 7: Entirely liquid",
+      "desc": "No solid pieces / severe diarrhea"
+    }
+  },
+  "blood": {
+    "title": "Blood Presence",
+    "none": "No blood",
+    "traces": "Traces or streaks",
+    "moderate": "Evident blood",
+    "severe": "Mostly blood / severe"
+  },
+  "pain": {
+    "title": "Abdominal Pain Level",
+    "none": "No pain (0)",
+    "mild": "Mild pain (1 - 3)",
+    "moderate": "Moderate pain (4 - 6)",
+    "severe": "Severe pain (7 - 10)",
+    "score_label": "Pain level: {{score}}/10"
+  },
+  "notes": {
+    "title": "Additional Notes (Optional)",
+    "placeholder": "Unusual foods, stress, fatigue..."
+  },
+  "actions": {
+    "submit": "Save Bowel Movement",
+    "update": "Update Bowel Movement",
+    "editingDate": "Logging for {{date}}",
+    "saving": "Saving...",
+    "success": "Log saved successfully!"
+  }
+}

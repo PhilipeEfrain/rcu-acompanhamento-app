@@ -1,0 +1,28 @@
+{
+  "sectionTitle": "Detalhes Clínicos Complementares",
+  "sectionSubtitle": "Opcional: estresse, muco, coágulos e urgência",
+  "stress": {
+    "title": "Nível de Estresse / Ansiedade",
+    "scoreLabel": "Estresse: {{score}}/10",
+    "calm": "Calmo (0-2)",
+    "moderate": "Moderado (3-6)",
+    "high": "Crise / Picos de Ansiedade (7-10)"
+  },
+  "clots": {
+    "title": "Presença de Coágulos",
+    "no": "Sem coágulos",
+    "yes": "Coágulos visíveis"
+  },
+  "mucus": {
+    "title": "Eliminação de Muco ou Pus",
+    "none": "Nenhum muco",
+    "mild": "Pouco muco",
+    "abundant": "Muco abundante / Pus"
+  },
+  "urgency": {
+    "title": "Urgência Evacuatória (Tenesmo)",
+    "normal": "Normal (consegue aguardar)",
+    "moderate": "Urgência moderada",
+    "severe": "Extrema / Incontinência"
+  }
+}

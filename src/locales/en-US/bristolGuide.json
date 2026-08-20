@@ -1,0 +1,80 @@
+{
+  "title": "Bristol Stool Chart Guide",
+  "subtitle": "Understand stool consistency and its meaning for your UC",
+  "selectPrompt": "Tap any card to select it directly into your daily log",
+  "tabs": {
+    "all": "All (7)",
+    "constipation": "Constipation (1-2)",
+    "ideal": "Ideal / Remission (3-4)",
+    "diarrhea": "Diarrhea / Flare (5-7)"
+  },
+  "headerTip": {
+    "title": "How to interpret this in Ulcerative Colitis?",
+    "desc": "Type 4 is the gold standard for clinical remission (calmed, healed mucosa). Types 6 & 7 indicate rapid colonic transit caused by active inflammation, requiring hydration and symptom tracking."
+  },
+  "labels": {
+    "transit": "Colonic transit:",
+    "meaning": "Meaning in UC:",
+    "care": "Recommended care:"
+  },
+  "type1": {
+    "title": "Type 1: Separate hard lumps",
+    "shapeDesc": "Hard, dry little balls resembling nuts, difficult to pass and requiring straining.",
+    "transitTime": "> 100 hours (excessively slow transit)",
+    "clinicalMeaning": "Severe constipation. The colon has absorbed nearly all water. May cause straining and fissures.",
+    "actionTip": "Increase your daily fluid intake and speak with your GI doctor regarding safe soluble fibers for UC."
+  },
+  "type2": {
+    "title": "Type 2: Lumpy sausage-shaped",
+    "shapeDesc": "Firm cylindrical mass with multiple compacted lumps and an irregular surface.",
+    "transitTime": "~72 hours (slow transit)",
+    "clinicalMeaning": "Mild constipation. Compacted stool indicating prolonged passage through the large intestine.",
+    "actionTip": "Maintain steady hydration throughout the day and avoid delaying bowel movement urges."
+  },
+  "type3": {
+    "title": "Type 3: Sausage-shaped with cracks",
+    "shapeDesc": "Long sausage shape with shallow surface fissures, passing easily without strain.",
+    "transitTime": "~48 hours (normal transit)",
+    "clinicalMeaning": "Healthy, balanced consistency. Indicates proper nutrient absorption and adequate hydration.",
+    "actionTip": "Excellent consistency. Continue with your regular diet and prescribed maintenance medication."
+  },
+  "type4": {
+    "title": "Type 4: Smooth, soft snake or sausage",
+    "shapeDesc": "Soft, smooth sausage or snake shape. Slides out effortlessly with zero pain.",
+    "transitTime": "~30 to 40 hours (gold standard)",
+    "clinicalMeaning": "Ideal! Represents the clinical goal of UC remission, reflecting a calmed, healthy colonic mucosa.",
+    "actionTip": "Goal achieved! Maintain strict adherence to your prescribed UC maintenance treatment."
+  },
+  "type5": {
+    "title": "Type 5: Soft blobs with clear-cut edges",
+    "shapeDesc": "Soft pasty pieces with distinct, well-defined borders that pass easily.",
+    "transitTime": "~18 to 24 hours (accelerated transit)",
+    "clinicalMeaning": "Tendency toward diarrhea. The colon is accelerating stool passage before full water reabsorption.",
+    "actionTip": "Monitor whether consistency turns more liquid in subsequent episodes and reinforce hydration."
+  },
+  "type6": {
+    "title": "Type 6: Fluffy, mushy pieces with ragged edges",
+    "shapeDesc": "Pasty, shapeless stool with torn, ragged fragments and lacking solid form.",
+    "transitTime": "~10 to 14 hours (fast transit)",
+    "clinicalMeaning": "Mild to moderate diarrhea. Common during UC inflammation flare-ups or food intolerances.",
+    "actionTip": "Avoid processed or irritating foods, hydrate with water and electrolyte drinks, and track blood/mucus."
+  },
+  "type7": {
+    "title": "Type 7: Watery, entirely liquid with no solids",
+    "shapeDesc": "Completely watery and fluid consistency, with no solid chunks whatsoever.",
+    "transitTime": "< 10 hours (very fast transit)",
+    "clinicalMeaning": "Severe diarrhea / Inflammatory hyperactivity. The inflamed mucosa cannot retain water.",
+    "actionTip": "Dehydration alert! Drink oral rehydration salts/coconut water. Contact your GI doctor if it persists."
+  },
+  "status": {
+    "constipation": "Severe Constipation",
+    "mildConstipation": "Mild Constipation",
+    "normal": "Normal / Healthy",
+    "ideal": "UC Goal (Ideal)",
+    "mildDiarrhea": "Loose Stool",
+    "diarrhea": "Diarrhea / Flare",
+    "severeDiarrhea": "Severe Diarrhea / Flare"
+  },
+  "close": "Close Guide",
+  "guideButton": "Bristol Guide"
+}
