@@ -109,6 +109,7 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 20,
     marginTop: 8,
+    marginBottom: 20,
   },
   summaryBanner: {
     flexDirection: 'row',

@@ -161,7 +161,7 @@ export const DailyLogScreen: React.FC = () => {
                 }
                 onOpenManager={openManager}
                 onAddNew={openNewModal}
-                style={{ marginHorizontal: 20, marginBottom: 16 }}
+                style={{ marginHorizontal: 20, marginBottom: 20 }}
               />
               <EmotionalSupportCard />
             </View>
