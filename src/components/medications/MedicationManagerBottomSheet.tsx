@@ -145,12 +145,17 @@ export const MedicationManagerBottomSheet: React.FC<MedicationManagerBottomSheet
                       <Text style={styles.frequencyBadge}>
                         {t(`form.frequencies.${med.frequency}`)}
                       </Text>
-                      {med.time && (
+                      {med.times && med.times.length > 0 ? (
                         <View style={styles.timeBadge}>
-                          <Clock size={11} color="#64748B" />
+                          <Clock size={11} color="#7B61FF" />
+                          <Text style={styles.timeBadgeText}>{med.times.join(' • ')}</Text>
+                        </View>
+                      ) : med.time ? (
+                        <View style={styles.timeBadge}>
+                          <Clock size={11} color="#7B61FF" />
                           <Text style={styles.timeBadgeText}>{med.time}</Text>
                         </View>
-                      )}
+                      ) : null}
                     </View>
 
                     {med.instructions && (

@@ -26,7 +26,8 @@ export const medications = sqliteTable('medications', {
   name: text('name').notNull(),
   dosage: text('dosage').notNull(),
   frequency: text('frequency').notNull(), // daily, twice_daily, three_times_daily, weekly, biweekly, every_eight_weeks
-  time: text('time'), // e.g. "08:00"
+  time: text('time'), // Legacy single time e.g. "08:00"
+  times: text('times'), // JSON array of times e.g. '["08:00", "14:00", "20:00"]'
   instructions: text('instructions'),
   active: integer('active', { mode: 'boolean' }).notNull().default(true),
   createdAt: integer('created_at').notNull(),
@@ -39,7 +40,9 @@ export const medicationLogs = sqliteTable('medication_logs', {
   id: text('id').primaryKey(),
   medicationId: text('medication_id').notNull(),
   date: text('date').notNull(), // Format YYYY-MM-DD
-  time: text('time'), // Format HH:mm
+  doseIndex: integer('dose_index').default(0), // 0, 1, 2
+  scheduledTime: text('scheduled_time'), // e.g. "08:00"
+  time: text('time'), // Format HH:mm (actual taken time)
   status: text('status').notNull(), // 'taken' | 'skipped'
   takenAt: integer('taken_at').notNull(),
 });

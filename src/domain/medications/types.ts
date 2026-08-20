@@ -11,7 +11,8 @@ export interface Medication {
   name: string;
   dosage: string;
   frequency: MedicationFrequency;
-  time?: string;
+  times: string[]; // List of times, e.g. ['08:00', '14:00', '20:00']
+  time?: string; // Legacy fallback
   instructions?: string;
   active: boolean;
   createdAt: number;
@@ -21,14 +22,23 @@ export interface MedicationLog {
   id: string;
   medicationId: string;
   date: string;
+  doseIndex: number;
+  scheduledTime?: string;
   time?: string;
   status: 'taken' | 'skipped';
   takenAt: number;
 }
 
-export interface DailyMedicationItem {
+export interface DailyMedicationDoseItem {
+  id: string; // Unique ID: `${medication.id}_${doseIndex}`
   medication: Medication;
+  doseIndex: number; // 0-indexed (0, 1, 2)
+  totalDosesForDay: number;
+  scheduledTime?: string;
   isTaken: boolean;
   takenAtTime?: string;
   logId?: string;
 }
+
+// Backward compatibility alias
+export type DailyMedicationItem = DailyMedicationDoseItem;

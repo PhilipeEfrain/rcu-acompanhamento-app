@@ -149,7 +149,9 @@ export const DailyLogScreen: React.FC = () => {
               <DailyMedicationTracker
                 date={selectedDate}
                 items={dailyItems}
-                onToggleTaken={(id) => toggleTaken(id, selectedDate)}
+                onToggleTaken={(id, doseIndex, scheduledTime) =>
+                  toggleTaken(id, selectedDate, doseIndex, scheduledTime)
+                }
                 onOpenManager={openManager}
                 onAddNew={openNewModal}
                 style={{ marginHorizontal: 20, marginBottom: 16 }}

@@ -1,10 +1,10 @@
 import { create } from 'zustand';
-import { Medication, DailyMedicationItem, MedicationFrequency } from '../domain/medications/types';
+import { Medication, DailyMedicationDoseItem, MedicationFrequency } from '../domain/medications/types';
 import { medicationRepository } from '../storage/medicationRepository';
 
 interface MedicationState {
   medications: Medication[];
-  dailyItems: DailyMedicationItem[];
+  dailyItems: DailyMedicationDoseItem[];
   isLoading: boolean;
   isModalOpen: boolean;
   isManagerOpen: boolean;
@@ -13,12 +13,18 @@ interface MedicationState {
   // Actions
   loadMedications: () => Promise<void>;
   loadDailyItems: (date: string) => Promise<void>;
-  toggleTaken: (medicationId: string, date: string) => Promise<void>;
+  toggleTaken: (
+    medicationId: string,
+    date: string,
+    doseIndex?: number,
+    scheduledTime?: string
+  ) => Promise<void>;
   saveMedication: (data: {
     id?: string;
     name: string;
     dosage: string;
     frequency: MedicationFrequency;
+    times?: string[];
     time?: string;
     instructions?: string;
     active?: boolean;
@@ -62,20 +68,30 @@ export const useMedicationStore = create<MedicationState>((set, get) => ({
     }
   },
 
-  toggleTaken: async (medicationId: string, date: string) => {
+  toggleTaken: async (medicationId: string, date: string, doseIndex = 0, scheduledTime?: string) => {
     const { dailyItems } = get();
-    const currentItem = dailyItems.find((i) => i.medication.id === medicationId);
+    const currentItem = dailyItems.find(
+      (i) => i.medication.id === medicationId && i.doseIndex === doseIndex
+    );
     const newStatus = !currentItem?.isTaken;
 
     // Optimistic UI update
     set({
       dailyItems: dailyItems.map((i) =>
-        i.medication.id === medicationId ? { ...i, isTaken: newStatus } : i
+        i.medication.id === medicationId && i.doseIndex === doseIndex
+          ? { ...i, isTaken: newStatus }
+          : i
       ),
     });
 
     try {
-      await medicationRepository.toggleMedicationTaken(medicationId, date, newStatus);
+      await medicationRepository.toggleMedicationDoseTaken(
+        medicationId,
+        date,
+        doseIndex,
+        scheduledTime,
+        newStatus
+      );
       await get().loadDailyItems(date);
     } catch {
       // Rollback on error
@@ -91,7 +107,8 @@ export const useMedicationStore = create<MedicationState>((set, get) => ({
         name: data.name,
         dosage: data.dosage,
         frequency: data.frequency,
-        time: data.time,
+        times: data.times || (data.time ? [data.time] : ['08:00']),
+        time: data.time || (data.times && data.times[0]) || '08:00',
         instructions: data.instructions,
         active: data.active !== undefined ? data.active : true,
       });

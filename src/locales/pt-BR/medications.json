@@ -12,7 +12,8 @@
     "manageButton": "Gerenciar",
     "emptyTitle": "Nenhum medicamento ativo cadastrado",
     "emptyDesc": "Cadastre seus tratamentos contínuos para acompanhar sua rotina e adesão.",
-    "addFirst": "Cadastrar Medicamento"
+    "addFirst": "Cadastrar Medicamento",
+    "doseLabel": "{{current}}/{{total}}ª dose"
   },
   "form": {
     "addTitle": "Novo Medicamento",
@@ -32,6 +33,9 @@
     },
     "timeLabel": "Horário Habitual",
     "timePlaceholder": "08:00",
+    "timesLabel": "Horários Programados das Doses",
+    "doseTime": "Horário da {{index}}ª dose",
+    "doseCountDesc": "Defina os {{count}} horários ao longo do dia para este medicamento",
     "instructionsLabel": "Instruções ou Observações (Opcional)",
     "instructionsPlaceholder": "Ex: Tomar após o almoço com água",
     "quickSuggestions": "Tratamentos comuns de RCU:",

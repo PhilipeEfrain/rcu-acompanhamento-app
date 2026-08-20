@@ -8,19 +8,18 @@ import {
 import { useTranslation } from 'react-i18next';
 import {
   Check,
-  CheckCircle2,
   Clock,
   Pill,
   Plus,
   Settings,
   Sparkles,
 } from 'lucide-react-native';
-import { DailyMedicationItem } from '../../domain/medications/types';
+import { DailyMedicationDoseItem } from '../../domain/medications/types';
 
 interface DailyMedicationTrackerProps {
   date: string;
-  items: DailyMedicationItem[];
-  onToggleTaken: (medicationId: string) => void;
+  items: DailyMedicationDoseItem[];
+  onToggleTaken: (medicationId: string, doseIndex: number, scheduledTime?: string) => void;
   onOpenManager: () => void;
   onAddNew: () => void;
   style?: object;
@@ -116,12 +115,13 @@ export const DailyMedicationTracker: React.FC<DailyMedicationTrackerProps> = ({
           {items.map((item) => {
             const med = item.medication;
             const isTaken = item.isTaken;
+            const isMultiDose = item.totalDosesForDay > 1;
 
             return (
               <TouchableOpacity
-                key={med.id}
+                key={item.id}
                 activeOpacity={0.8}
-                onPress={() => onToggleTaken(med.id)}
+                onPress={() => onToggleTaken(med.id, item.doseIndex, item.scheduledTime)}
                 style={[
                   styles.pillCard,
                   isTaken ? styles.pillCardTaken : styles.pillCardPending,
@@ -143,20 +143,33 @@ export const DailyMedicationTracker: React.FC<DailyMedicationTrackerProps> = ({
 
                 {/* Medication Info */}
                 <View style={styles.pillInfo}>
-                  <Text
-                    style={[
-                      styles.medName,
-                      isTaken && styles.medNameTaken,
-                    ]}
-                  >
-                    {med.name}
-                  </Text>
+                  <View style={styles.nameRow}>
+                    <Text
+                      style={[
+                        styles.medName,
+                        isTaken && styles.medNameTaken,
+                      ]}
+                    >
+                      {med.name}
+                    </Text>
+                    {isMultiDose && (
+                      <View style={styles.multiDoseChip}>
+                        <Text style={styles.multiDoseChipText}>
+                          {t('dailyCard.doseLabel', {
+                            current: item.doseIndex + 1,
+                            total: item.totalDosesForDay,
+                          })}
+                        </Text>
+                      </View>
+                    )}
+                  </View>
+
                   <View style={styles.metaRow}>
                     <Text style={styles.medDosage}>{med.dosage}</Text>
-                    {med.time && (
+                    {item.scheduledTime && (
                       <View style={styles.timeTag}>
-                        <Clock size={10} color="#64748B" />
-                        <Text style={styles.timeText}>{med.time}</Text>
+                        <Clock size={10} color="#7B61FF" />
+                        <Text style={styles.timeText}>{item.scheduledTime}</Text>
                       </View>
                     )}
                   </View>
@@ -346,6 +359,11 @@ const styles = StyleSheet.create({
   pillInfo: {
     flex: 1,
   },
+  nameRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
   medName: {
     fontSize: 14,
     fontWeight: '700',
@@ -353,6 +371,17 @@ const styles = StyleSheet.create({
   },
   medNameTaken: {
     color: '#166534',
+  },
+  multiDoseChip: {
+    backgroundColor: '#EDE9FE',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 6,
+  },
+  multiDoseChipText: {
+    fontSize: 9.5,
+    fontWeight: '700',
+    color: '#7B61FF',
   },
   metaRow: {
     flexDirection: 'row',
@@ -377,7 +406,7 @@ const styles = StyleSheet.create({
   timeText: {
     fontSize: 10,
     color: '#475569',
-    fontWeight: '600',
+    fontWeight: '700',
   },
   actionBadge: {
     paddingHorizontal: 8,

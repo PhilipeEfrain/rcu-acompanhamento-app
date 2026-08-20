@@ -12,6 +12,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { Clock, Pill, Sparkles, X } from 'lucide-react-native';
 import { Medication, MedicationFrequency } from '../../domain/medications/types';
+import { getDefaultTimesForFrequency } from '../../storage/medicationRepository';
 
 interface MedicationModalProps {
   visible: boolean;
@@ -21,6 +22,7 @@ interface MedicationModalProps {
     name: string;
     dosage: string;
     frequency: MedicationFrequency;
+    times: string[];
     time?: string;
     instructions?: string;
   }) => Promise<void>;
@@ -28,12 +30,42 @@ interface MedicationModalProps {
 }
 
 const COMMON_SUGGESTIONS = [
-  { name: 'Mesalazina', dosage: '1200mg', frequency: 'daily' as MedicationFrequency },
-  { name: 'Mesalazina', dosage: '800mg', frequency: 'three_times_daily' as MedicationFrequency },
-  { name: 'Azatioprina', dosage: '50mg', frequency: 'daily' as MedicationFrequency },
-  { name: 'Infliximabe', dosage: '5mg/kg', frequency: 'every_eight_weeks' as MedicationFrequency },
-  { name: 'Vedolizumabe', dosage: '300mg', frequency: 'every_eight_weeks' as MedicationFrequency },
-  { name: 'Prednisona', dosage: '20mg', frequency: 'daily' as MedicationFrequency },
+  {
+    name: 'Mesalazina',
+    dosage: '1200mg',
+    frequency: 'daily' as MedicationFrequency,
+    times: ['08:00'],
+  },
+  {
+    name: 'Mesalazina',
+    dosage: '800mg',
+    frequency: 'three_times_daily' as MedicationFrequency,
+    times: ['08:00', '14:00', '20:00'],
+  },
+  {
+    name: 'Azatioprina',
+    dosage: '50mg',
+    frequency: 'daily' as MedicationFrequency,
+    times: ['08:00'],
+  },
+  {
+    name: 'Infliximabe',
+    dosage: '5mg/kg',
+    frequency: 'every_eight_weeks' as MedicationFrequency,
+    times: ['08:00'],
+  },
+  {
+    name: 'Vedolizumabe',
+    dosage: '300mg',
+    frequency: 'every_eight_weeks' as MedicationFrequency,
+    times: ['08:00'],
+  },
+  {
+    name: 'Prednisona',
+    dosage: '20mg',
+    frequency: 'daily' as MedicationFrequency,
+    times: ['08:00'],
+  },
 ];
 
 export const MedicationModal: React.FC<MedicationModalProps> = ({
@@ -47,7 +79,7 @@ export const MedicationModal: React.FC<MedicationModalProps> = ({
   const [name, setName] = useState('');
   const [dosage, setDosage] = useState('');
   const [frequency, setFrequency] = useState<MedicationFrequency>('daily');
-  const [time, setTime] = useState('08:00');
+  const [times, setTimes] = useState<string[]>(['08:00']);
   const [instructions, setInstructions] = useState('');
   const [isSaving, setIsSaving] = useState(false);
 
@@ -56,21 +88,38 @@ export const MedicationModal: React.FC<MedicationModalProps> = ({
       setName(medication.name);
       setDosage(medication.dosage);
       setFrequency(medication.frequency);
-      setTime(medication.time || '08:00');
+      const initialTimes =
+        medication.times && medication.times.length > 0
+          ? medication.times
+          : getDefaultTimesForFrequency(medication.frequency, medication.time);
+      setTimes(initialTimes);
       setInstructions(medication.instructions || '');
     } else {
       setName('');
       setDosage('');
       setFrequency('daily');
-      setTime('08:00');
+      setTimes(['08:00']);
       setInstructions('');
     }
   }, [medication, visible]);
+
+  const handleFrequencyChange = (newFreq: MedicationFrequency) => {
+    setFrequency(newFreq);
+    const defaultTimes = getDefaultTimesForFrequency(newFreq, times[0]);
+    setTimes(defaultTimes);
+  };
+
+  const handleTimeChange = (index: number, val: string) => {
+    const updated = [...times];
+    updated[index] = val;
+    setTimes(updated);
+  };
 
   const handleApplySuggestion = (sug: typeof COMMON_SUGGESTIONS[0]) => {
     setName(sug.name);
     setDosage(sug.dosage);
     setFrequency(sug.frequency);
+    setTimes(sug.times);
   };
 
   const handleSave = async () => {
@@ -79,6 +128,9 @@ export const MedicationModal: React.FC<MedicationModalProps> = ({
       return;
     }
 
+    // Clean times
+    const cleanedTimes = times.map((t) => t.trim() || '08:00');
+
     setIsSaving(true);
     try {
       await onSave({
@@ -86,7 +138,8 @@ export const MedicationModal: React.FC<MedicationModalProps> = ({
         name: name.trim(),
         dosage: dosage.trim(),
         frequency,
-        time: time.trim() || undefined,
+        times: cleanedTimes,
+        time: cleanedTimes[0],
         instructions: instructions.trim() || undefined,
       });
       onClose();
@@ -132,7 +185,7 @@ export const MedicationModal: React.FC<MedicationModalProps> = ({
           </View>
 
           <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
-            {/* Quick Suggestions for new meds */}
+            {/* Quick Suggestions */}
             {!medication && (
               <View style={styles.suggestionsContainer}>
                 <View style={styles.suggestionHeader}>
@@ -150,7 +203,7 @@ export const MedicationModal: React.FC<MedicationModalProps> = ({
                       activeOpacity={0.7}
                     >
                       <Text style={styles.suggestionChipText}>
-                        {sug.name} {sug.dosage}
+                        {sug.name} {sug.dosage} ({sug.times.length}x)
                       </Text>
                     </TouchableOpacity>
                   ))}
@@ -195,7 +248,7 @@ export const MedicationModal: React.FC<MedicationModalProps> = ({
                         styles.frequencyChip,
                         isSelected && styles.frequencyChipSelected,
                       ]}
-                      onPress={() => setFrequency(opt.key)}
+                      onPress={() => handleFrequencyChange(opt.key)}
                       activeOpacity={0.7}
                     >
                       <Text
@@ -212,19 +265,38 @@ export const MedicationModal: React.FC<MedicationModalProps> = ({
               </View>
             </View>
 
-            {/* Time Input */}
+            {/* Multiple Scheduled Dose Times (Issue #6 Update) */}
             <View style={styles.inputGroup}>
               <View style={styles.labelWithIcon}>
-                <Clock size={14} color="#64748B" />
-                <Text style={styles.label}>{t('form.timeLabel')}</Text>
+                <Clock size={14} color="#7B61FF" />
+                <Text style={styles.label}>{t('form.timesLabel')}</Text>
               </View>
-              <TextInput
-                style={styles.input}
-                placeholder={t('form.timePlaceholder')}
-                placeholderTextColor="#94A3B8"
-                value={time}
-                onChangeText={setTime}
-              />
+              <Text style={styles.helperText}>
+                {t('form.doseCountDesc', { count: times.length })}
+              </Text>
+
+              <View style={styles.timesContainer}>
+                {times.map((timeVal, idx) => (
+                  <View key={`time-${idx}`} style={styles.timeInputRow}>
+                    <View style={styles.doseNumberBadge}>
+                      <Text style={styles.doseNumberText}>{idx + 1}ª</Text>
+                    </View>
+                    <View style={styles.timeFieldWrapper}>
+                      <Text style={styles.timeFieldLabel}>
+                        {t('form.doseTime', { index: idx + 1 })}
+                      </Text>
+                      <TextInput
+                        style={styles.timeInput}
+                        placeholder="08:00"
+                        placeholderTextColor="#94A3B8"
+                        value={timeVal}
+                        onChangeText={(val) => handleTimeChange(idx, val)}
+                        maxLength={5}
+                      />
+                    </View>
+                  </View>
+                ))}
+              </View>
             </View>
 
             {/* Instructions Input */}
@@ -374,6 +446,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 5,
   },
+  helperText: {
+    fontSize: 11,
+    color: '#64748B',
+    marginBottom: 4,
+  },
   input: {
     backgroundColor: '#F8FAFC',
     borderWidth: 1,
@@ -413,6 +490,56 @@ const styles = StyleSheet.create({
   frequencyChipTextSelected: {
     color: '#FFFFFF',
     fontWeight: '700',
+  },
+  timesContainer: {
+    gap: 8,
+  },
+  timeInputRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#F8F9FE',
+    borderWidth: 1,
+    borderColor: '#E9D8FD',
+    borderRadius: 14,
+    padding: 10,
+    gap: 10,
+  },
+  doseNumberBadge: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: '#7B61FF',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  doseNumberText: {
+    fontSize: 11,
+    fontWeight: '800',
+    color: '#FFFFFF',
+  },
+  timeFieldWrapper: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  timeFieldLabel: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#475569',
+  },
+  timeInput: {
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#CBD5E1',
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#1E293B',
+    textAlign: 'center',
+    width: 76,
   },
   footer: {
     flexDirection: 'row',

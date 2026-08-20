@@ -1,7 +1,26 @@
 import { and, desc, eq } from 'drizzle-orm';
 import { db } from './database';
 import { medications, medicationLogs, InsertMedicationRow, InsertMedicationLogRow } from './schema';
-import { Medication, MedicationFrequency, MedicationLog, DailyMedicationItem } from '../domain/medications/types';
+import { Medication, MedicationFrequency, MedicationLog, DailyMedicationDoseItem } from '../domain/medications/types';
+
+export function getDefaultTimesForFrequency(
+  freq: MedicationFrequency,
+  legacyTime?: string
+): string[] {
+  const baseTime = legacyTime || '08:00';
+  switch (freq) {
+    case 'twice_daily':
+      return [baseTime, '20:00'];
+    case 'three_times_daily':
+      return [baseTime, '14:00', '20:00'];
+    case 'daily':
+    case 'weekly':
+    case 'biweekly':
+    case 'every_eight_weeks':
+    default:
+      return [baseTime];
+  }
+}
 
 export const medicationRepository = {
   async getAllMedications(): Promise<Medication[]> {
@@ -10,35 +29,35 @@ export const medicationRepository = {
       .from(medications)
       .orderBy(desc(medications.active), desc(medications.createdAt));
 
-    return rows.map((r) => ({
-      id: r.id,
-      name: r.name,
-      dosage: r.dosage,
-      frequency: r.frequency as MedicationFrequency,
-      time: r.time || undefined,
-      instructions: r.instructions || undefined,
-      active: Boolean(r.active),
-      createdAt: r.createdAt,
-    }));
+    return rows.map((r) => {
+      let times: string[] = [];
+      if (r.times) {
+        try {
+          times = JSON.parse(r.times);
+        } catch {
+          times = getDefaultTimesForFrequency(r.frequency as MedicationFrequency, r.time || undefined);
+        }
+      } else {
+        times = getDefaultTimesForFrequency(r.frequency as MedicationFrequency, r.time || undefined);
+      }
+
+      return {
+        id: r.id,
+        name: r.name,
+        dosage: r.dosage,
+        frequency: r.frequency as MedicationFrequency,
+        times,
+        time: times[0] || r.time || undefined,
+        instructions: r.instructions || undefined,
+        active: Boolean(r.active),
+        createdAt: r.createdAt,
+      };
+    });
   },
 
   async getActiveMedications(): Promise<Medication[]> {
-    const rows = await db
-      .select()
-      .from(medications)
-      .where(eq(medications.active, true))
-      .orderBy(medications.createdAt);
-
-    return rows.map((r) => ({
-      id: r.id,
-      name: r.name,
-      dosage: r.dosage,
-      frequency: r.frequency as MedicationFrequency,
-      time: r.time || undefined,
-      instructions: r.instructions || undefined,
-      active: true,
-      createdAt: r.createdAt,
-    }));
+    const all = await this.getAllMedications();
+    return all.filter((m) => m.active);
   },
 
   async saveMedication(
@@ -47,12 +66,18 @@ export const medicationRepository = {
     const id = med.id || `med_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
     const now = Date.now();
 
+    const times =
+      med.times && med.times.length > 0
+        ? med.times
+        : getDefaultTimesForFrequency(med.frequency, med.time);
+
     const row: InsertMedicationRow = {
       id,
       name: med.name.trim(),
       dosage: med.dosage.trim(),
       frequency: med.frequency,
-      time: med.time || null,
+      time: times[0] || null,
+      times: JSON.stringify(times),
       instructions: med.instructions ? med.instructions.trim() : null,
       active: med.active !== undefined ? med.active : true,
       createdAt: now,
@@ -65,6 +90,7 @@ export const medicationRepository = {
         dosage: row.dosage,
         frequency: row.frequency,
         time: row.time,
+        times: row.times,
         instructions: row.instructions,
         active: row.active,
       },
@@ -75,7 +101,8 @@ export const medicationRepository = {
       name: row.name,
       dosage: row.dosage,
       frequency: row.frequency as MedicationFrequency,
-      time: row.time || undefined,
+      times,
+      time: times[0],
       instructions: row.instructions || undefined,
       active: Boolean(row.active),
       createdAt: now,
@@ -101,26 +128,33 @@ export const medicationRepository = {
       id: r.id,
       medicationId: r.medicationId,
       date: r.date,
+      doseIndex: r.doseIndex ?? 0,
+      scheduledTime: r.scheduledTime || undefined,
       time: r.time || undefined,
       status: r.status as 'taken' | 'skipped',
       takenAt: r.takenAt,
     }));
   },
 
-  async toggleMedicationTaken(
+  async toggleMedicationDoseTaken(
     medicationId: string,
     date: string,
+    doseIndex: number,
+    scheduledTime: string | undefined,
     markTaken: boolean
   ): Promise<void> {
+    const id = `mlog_${medicationId}_${date}_${doseIndex}`;
+
     if (markTaken) {
       const now = new Date();
       const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
-      const id = `mlog_${medicationId}_${date}`;
 
       const row: InsertMedicationLogRow = {
         id,
         medicationId,
         date,
+        doseIndex,
+        scheduledTime: scheduledTime || null,
         time,
         status: 'taken',
         takenAt: Date.now(),
@@ -131,6 +165,8 @@ export const medicationRepository = {
         set: {
           status: 'taken',
           time,
+          scheduledTime: row.scheduledTime,
+          doseIndex,
           takenAt: Date.now(),
         },
       });
@@ -140,27 +176,45 @@ export const medicationRepository = {
         .where(
           and(
             eq(medicationLogs.medicationId, medicationId),
-            eq(medicationLogs.date, date)
+            eq(medicationLogs.date, date),
+            eq(medicationLogs.doseIndex, doseIndex)
           )
         );
     }
   },
 
-  async getDailyItems(date: string): Promise<DailyMedicationItem[]> {
+  async getDailyItems(date: string): Promise<DailyMedicationDoseItem[]> {
     const activeMeds = await this.getActiveMedications();
     const dateLogs = await this.getLogsForDate(date);
 
+    // Map by `${medicationId}_${doseIndex}`
     const logMap = new Map<string, MedicationLog>();
-    dateLogs.forEach((l) => logMap.set(l.medicationId, l));
+    dateLogs.forEach((l) => logMap.set(`${l.medicationId}_${l.doseIndex}`, l));
 
-    return activeMeds.map((med) => {
-      const log = logMap.get(med.id);
-      return {
-        medication: med,
-        isTaken: log ? log.status === 'taken' : false,
-        takenAtTime: log ? log.time : undefined,
-        logId: log ? log.id : undefined,
-      };
+    const result: DailyMedicationDoseItem[] = [];
+
+    activeMeds.forEach((med) => {
+      const times = med.times && med.times.length > 0
+        ? med.times
+        : getDefaultTimesForFrequency(med.frequency, med.time);
+
+      times.forEach((scheduledTime, doseIndex) => {
+        const key = `${med.id}_${doseIndex}`;
+        const log = logMap.get(key);
+
+        result.push({
+          id: key,
+          medication: med,
+          doseIndex,
+          totalDosesForDay: times.length,
+          scheduledTime,
+          isTaken: log ? log.status === 'taken' : false,
+          takenAtTime: log ? log.time : undefined,
+          logId: log ? log.id : undefined,
+        });
+      });
     });
+
+    return result;
   },
 };
