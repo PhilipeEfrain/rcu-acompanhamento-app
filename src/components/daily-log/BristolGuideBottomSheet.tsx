@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Modal,
   ScrollView,
@@ -12,7 +12,12 @@ import { BristolType } from '../../domain/health/types';
 import {
   BookOpen,
   CheckCircle2,
+  Clock,
+  HeartPulse,
+  Info,
+  Lightbulb,
   Sparkles,
+  Stethoscope,
   X,
 } from 'lucide-react-native';
 
@@ -23,11 +28,17 @@ interface BristolGuideBottomSheetProps {
   onClose: () => void;
 }
 
+type TabCategory = 'all' | 'constipation' | 'ideal' | 'diarrhea';
+
 interface BristolTypeDetail {
   type: BristolType;
   number: number;
+  category: 'constipation' | 'ideal' | 'diarrhea';
   titleKey: string;
+  shapeDescKey: string;
+  transitTimeKey: string;
   meaningKey: string;
+  actionTipKey: string;
   statusKey: string;
   isIdeal?: boolean;
   bgColor: string;
@@ -41,8 +52,12 @@ const BRISTOL_DETAILS: BristolTypeDetail[] = [
   {
     type: 'type_1',
     number: 1,
+    category: 'constipation',
     titleKey: 'bristolGuide:type1.title',
-    meaningKey: 'bristolGuide:type1.meaning',
+    shapeDescKey: 'bristolGuide:type1.shapeDesc',
+    transitTimeKey: 'bristolGuide:type1.transitTime',
+    meaningKey: 'bristolGuide:type1.clinicalMeaning',
+    actionTipKey: 'bristolGuide:type1.actionTip',
     statusKey: 'bristolGuide:status.constipation',
     bgColor: '#FFFBEB',
     borderColor: '#F59E0B',
@@ -53,8 +68,12 @@ const BRISTOL_DETAILS: BristolTypeDetail[] = [
   {
     type: 'type_2',
     number: 2,
+    category: 'constipation',
     titleKey: 'bristolGuide:type2.title',
-    meaningKey: 'bristolGuide:type2.meaning',
+    shapeDescKey: 'bristolGuide:type2.shapeDesc',
+    transitTimeKey: 'bristolGuide:type2.transitTime',
+    meaningKey: 'bristolGuide:type2.clinicalMeaning',
+    actionTipKey: 'bristolGuide:type2.actionTip',
     statusKey: 'bristolGuide:status.mildConstipation',
     bgColor: '#FFFBEB',
     borderColor: '#F59E0B',
@@ -65,8 +84,12 @@ const BRISTOL_DETAILS: BristolTypeDetail[] = [
   {
     type: 'type_3',
     number: 3,
+    category: 'ideal',
     titleKey: 'bristolGuide:type3.title',
-    meaningKey: 'bristolGuide:type3.meaning',
+    shapeDescKey: 'bristolGuide:type3.shapeDesc',
+    transitTimeKey: 'bristolGuide:type3.transitTime',
+    meaningKey: 'bristolGuide:type3.clinicalMeaning',
+    actionTipKey: 'bristolGuide:type3.actionTip',
     statusKey: 'bristolGuide:status.normal',
     bgColor: '#F0FDF4',
     borderColor: '#10B981',
@@ -77,8 +100,12 @@ const BRISTOL_DETAILS: BristolTypeDetail[] = [
   {
     type: 'type_4',
     number: 4,
+    category: 'ideal',
     titleKey: 'bristolGuide:type4.title',
-    meaningKey: 'bristolGuide:type4.meaning',
+    shapeDescKey: 'bristolGuide:type4.shapeDesc',
+    transitTimeKey: 'bristolGuide:type4.transitTime',
+    meaningKey: 'bristolGuide:type4.clinicalMeaning',
+    actionTipKey: 'bristolGuide:type4.actionTip',
     statusKey: 'bristolGuide:status.ideal',
     isIdeal: true,
     bgColor: '#ECFDF5',
@@ -90,8 +117,12 @@ const BRISTOL_DETAILS: BristolTypeDetail[] = [
   {
     type: 'type_5',
     number: 5,
+    category: 'diarrhea',
     titleKey: 'bristolGuide:type5.title',
-    meaningKey: 'bristolGuide:type5.meaning',
+    shapeDescKey: 'bristolGuide:type5.shapeDesc',
+    transitTimeKey: 'bristolGuide:type5.transitTime',
+    meaningKey: 'bristolGuide:type5.clinicalMeaning',
+    actionTipKey: 'bristolGuide:type5.actionTip',
     statusKey: 'bristolGuide:status.mildDiarrhea',
     bgColor: '#FFFBEB',
     borderColor: '#F59E0B',
@@ -102,8 +133,12 @@ const BRISTOL_DETAILS: BristolTypeDetail[] = [
   {
     type: 'type_6',
     number: 6,
+    category: 'diarrhea',
     titleKey: 'bristolGuide:type6.title',
-    meaningKey: 'bristolGuide:type6.meaning',
+    shapeDescKey: 'bristolGuide:type6.shapeDesc',
+    transitTimeKey: 'bristolGuide:type6.transitTime',
+    meaningKey: 'bristolGuide:type6.clinicalMeaning',
+    actionTipKey: 'bristolGuide:type6.actionTip',
     statusKey: 'bristolGuide:status.diarrhea',
     bgColor: '#FFF7ED',
     borderColor: '#F97316',
@@ -114,8 +149,12 @@ const BRISTOL_DETAILS: BristolTypeDetail[] = [
   {
     type: 'type_7',
     number: 7,
+    category: 'diarrhea',
     titleKey: 'bristolGuide:type7.title',
-    meaningKey: 'bristolGuide:type7.meaning',
+    shapeDescKey: 'bristolGuide:type7.shapeDesc',
+    transitTimeKey: 'bristolGuide:type7.transitTime',
+    meaningKey: 'bristolGuide:type7.clinicalMeaning',
+    actionTipKey: 'bristolGuide:type7.actionTip',
     statusKey: 'bristolGuide:status.severeDiarrhea',
     bgColor: '#FEF2F2',
     borderColor: '#EF4444',
@@ -132,11 +171,17 @@ export const BristolGuideBottomSheet: React.FC<BristolGuideBottomSheetProps> = (
   onClose,
 }) => {
   const { t } = useTranslation(['bristolGuide', 'common']);
+  const [activeTab, setActiveTab] = useState<TabCategory>('all');
 
   const handleSelect = (type: BristolType) => {
     onSelectType(type);
     onClose();
   };
+
+  const filteredList = BRISTOL_DETAILS.filter((item) => {
+    if (activeTab === 'all') return true;
+    return item.category === activeTab;
+  });
 
   return (
     <Modal
@@ -168,6 +213,97 @@ export const BristolGuideBottomSheet: React.FC<BristolGuideBottomSheetProps> = (
                 <X size={20} color="#64748B" />
               </TouchableOpacity>
             </View>
+
+            {/* Educational Tip Banner */}
+            <View style={styles.headerTipBox}>
+              <View style={styles.headerTipIconWrapper}>
+                <Lightbulb size={18} color="#7B61FF" />
+              </View>
+              <View style={styles.headerTipContent}>
+                <Text style={styles.headerTipTitle}>{t('bristolGuide:headerTip.title')}</Text>
+                <Text style={styles.headerTipDesc}>{t('bristolGuide:headerTip.desc')}</Text>
+              </View>
+            </View>
+
+            {/* Category Filter Tabs */}
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.tabsContainer}
+            >
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => setActiveTab('all')}
+                style={[
+                  styles.tabChip,
+                  activeTab === 'all' && styles.tabChipActive,
+                ]}
+              >
+                <Text
+                  style={[
+                    styles.tabChipText,
+                    activeTab === 'all' && styles.tabChipTextActive,
+                  ]}
+                >
+                  {t('bristolGuide:tabs.all')}
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => setActiveTab('constipation')}
+                style={[
+                  styles.tabChip,
+                  activeTab === 'constipation' && styles.tabChipActive,
+                ]}
+              >
+                <Text
+                  style={[
+                    styles.tabChipText,
+                    activeTab === 'constipation' && styles.tabChipTextActive,
+                  ]}
+                >
+                  {t('bristolGuide:tabs.constipation')}
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => setActiveTab('ideal')}
+                style={[
+                  styles.tabChip,
+                  activeTab === 'ideal' && styles.tabChipActive,
+                ]}
+              >
+                <Text
+                  style={[
+                    styles.tabChipText,
+                    activeTab === 'ideal' && styles.tabChipTextActive,
+                  ]}
+                >
+                  {t('bristolGuide:tabs.ideal')}
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => setActiveTab('diarrhea')}
+                style={[
+                  styles.tabChip,
+                  activeTab === 'diarrhea' && styles.tabChipActive,
+                ]}
+              >
+                <Text
+                  style={[
+                    styles.tabChipText,
+                    activeTab === 'diarrhea' && styles.tabChipTextActive,
+                  ]}
+                >
+                  {t('bristolGuide:tabs.diarrhea')}
+                </Text>
+              </TouchableOpacity>
+            </ScrollView>
+
             <View style={styles.promptBanner}>
               <Sparkles size={14} color="#7B61FF" />
               <Text style={styles.promptText}>{t('bristolGuide:selectPrompt')}</Text>
@@ -179,13 +315,13 @@ export const BristolGuideBottomSheet: React.FC<BristolGuideBottomSheetProps> = (
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.scrollContent}
           >
-            {BRISTOL_DETAILS.map((item) => {
+            {filteredList.map((item) => {
               const isSelected = selectedType === item.type;
 
               return (
                 <TouchableOpacity
                   key={item.type}
-                  activeOpacity={0.75}
+                  activeOpacity={0.8}
                   onPress={() => handleSelect(item.type)}
                   style={[
                     styles.typeCard,
@@ -196,6 +332,7 @@ export const BristolGuideBottomSheet: React.FC<BristolGuideBottomSheetProps> = (
                     },
                   ]}
                 >
+                  {/* Card Header with Badges */}
                   <View style={styles.cardHeader}>
                     <View style={styles.badgeGroup}>
                       <View
@@ -244,8 +381,45 @@ export const BristolGuideBottomSheet: React.FC<BristolGuideBottomSheetProps> = (
                     )}
                   </View>
 
+                  {/* Title & Shape Description */}
                   <Text style={styles.cardTitle}>{t(item.titleKey)}</Text>
-                  <Text style={styles.cardMeaning}>{t(item.meaningKey)}</Text>
+                  <Text style={styles.shapeDesc}>{t(item.shapeDescKey)}</Text>
+
+                  {/* Clinical Breakdown Box */}
+                  <View style={styles.clinicalBox}>
+                    {/* Transit Time */}
+                    <View style={styles.clinicalRow}>
+                      <Clock size={14} color="#64748B" style={styles.clinicalIcon} />
+                      <View style={styles.clinicalTextWrapper}>
+                        <Text style={styles.clinicalLabel}>
+                          {t('bristolGuide:labels.transit')}{' '}
+                          <Text style={styles.clinicalValue}>{t(item.transitTimeKey)}</Text>
+                        </Text>
+                      </View>
+                    </View>
+
+                    {/* Meaning in UC */}
+                    <View style={styles.clinicalRow}>
+                      <Stethoscope size={14} color="#7B61FF" style={styles.clinicalIcon} />
+                      <View style={styles.clinicalTextWrapper}>
+                        <Text style={styles.clinicalLabel}>
+                          {t('bristolGuide:labels.meaning')}{' '}
+                          <Text style={styles.clinicalValue}>{t(item.meaningKey)}</Text>
+                        </Text>
+                      </View>
+                    </View>
+
+                    {/* Action Care Tip */}
+                    <View style={styles.clinicalRow}>
+                      <HeartPulse size={14} color="#10B981" style={styles.clinicalIcon} />
+                      <View style={styles.clinicalTextWrapper}>
+                        <Text style={styles.clinicalLabel}>
+                          {t('bristolGuide:labels.care')}{' '}
+                          <Text style={styles.clinicalValue}>{t(item.actionTipKey)}</Text>
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
                 </TouchableOpacity>
               );
             })}
@@ -280,7 +454,7 @@ const styles = StyleSheet.create({
     paddingTop: 12,
     paddingBottom: 24,
     paddingHorizontal: 20,
-    maxHeight: '88%',
+    maxHeight: '92%',
   },
   dragIndicator: {
     width: 44,
@@ -291,7 +465,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   header: {
-    marginBottom: 14,
+    marginBottom: 12,
   },
   titleRow: {
     flexDirection: 'row',
@@ -327,19 +501,70 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     backgroundColor: '#F1F5F9',
   },
+  headerTipBox: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    backgroundColor: '#F8F9FE',
+    borderRadius: 16,
+    padding: 12,
+    gap: 10,
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+    marginBottom: 10,
+  },
+  headerTipIconWrapper: {
+    marginTop: 2,
+  },
+  headerTipContent: {
+    flex: 1,
+  },
+  headerTipTitle: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#1E293B',
+    marginBottom: 2,
+  },
+  headerTipDesc: {
+    fontSize: 11,
+    color: '#475569',
+    lineHeight: 16,
+  },
+  tabsContainer: {
+    flexDirection: 'row',
+    gap: 8,
+    paddingVertical: 2,
+    marginBottom: 10,
+  },
+  tabChip: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 12,
+    backgroundColor: '#F1F5F9',
+  },
+  tabChipActive: {
+    backgroundColor: '#7B61FF',
+  },
+  tabChipText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#64748B',
+  },
+  tabChipTextActive: {
+    color: '#FFFFFF',
+  },
   promptBanner: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
-    backgroundColor: '#F8F9FE',
+    backgroundColor: '#FAF5FF',
     paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 14,
+    paddingVertical: 6,
+    borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#E2E8F0',
+    borderColor: '#E9D8FD',
   },
   promptText: {
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: '600',
     color: '#7B61FF',
   },
@@ -348,7 +573,7 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   typeCard: {
-    borderRadius: 20,
+    borderRadius: 22,
     padding: 16,
   },
   cardHeader: {
@@ -406,15 +631,43 @@ const styles = StyleSheet.create({
     padding: 2,
   },
   cardTitle: {
-    fontSize: 14,
+    fontSize: 15,
     fontWeight: '700',
     color: '#1E293B',
     marginBottom: 4,
   },
-  cardMeaning: {
-    fontSize: 12,
-    color: '#475569',
+  shapeDesc: {
+    fontSize: 13,
+    color: '#334155',
     lineHeight: 18,
+    marginBottom: 10,
+  },
+  clinicalBox: {
+    backgroundColor: 'rgba(255, 255, 255, 0.75)',
+    borderRadius: 14,
+    padding: 10,
+    gap: 8,
+  },
+  clinicalRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 6,
+  },
+  clinicalIcon: {
+    marginTop: 2,
+  },
+  clinicalTextWrapper: {
+    flex: 1,
+  },
+  clinicalLabel: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: '#475569',
+    lineHeight: 16,
+  },
+  clinicalValue: {
+    fontWeight: '400',
+    color: '#1E293B',
   },
   footer: {
     paddingTop: 10,
