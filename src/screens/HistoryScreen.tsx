@@ -9,6 +9,7 @@ import { FloCalendar } from '../components/history/FloCalendar';
 import { DayDetailCard } from '../components/history/DayDetailCard';
 import { EmotionalSupportCard } from '../components/feedback/EmotionalSupportCard';
 import { ExportPdfBottomSheet } from '../components/history/ExportPdfBottomSheet';
+import { SymptomTrendChart } from '../components/history/SymptomTrendChart';
 import { useSymptomStore } from '../store/useSymptomStore';
 
 interface HistoryScreenProps {
@@ -187,6 +188,15 @@ export const HistoryScreen: React.FC<HistoryScreenProps> = ({ onNavigateToToday 
             </View>
           </View>
         </View>
+
+        {/* Daily Frequency & Severity Trend Chart */}
+        <SymptomTrendChart
+          logs={monthlyLogs}
+          days={15}
+          selectedDate={selectedDate}
+          onSelectDate={setSelectedDate}
+          style={{ marginBottom: 16 }}
+        />
 
         {/* Selected Day Details with multiple bowel movement episodes */}
         <DayDetailCard

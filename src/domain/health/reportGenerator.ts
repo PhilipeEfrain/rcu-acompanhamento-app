@@ -157,6 +157,53 @@ export function buildReportHtml(stats: ReportStats, t: TFunction): string {
     `;
   }).join('');
 
+  // Generate daily bars for HTML trend chart
+  const dailyCountsMap: Record<string, { count: number; hasSevereBlood: boolean; hasBlood: boolean }> = {};
+  stats.logs.forEach((log) => {
+    if (!dailyCountsMap[log.date]) {
+      dailyCountsMap[log.date] = { count: 0, hasSevereBlood: false, hasBlood: false };
+    }
+    dailyCountsMap[log.date].count++;
+    if (log.bloodPresence === 'severe' || log.bloodPresence === 'moderate') {
+      dailyCountsMap[log.date].hasSevereBlood = true;
+    }
+    if (log.bloodPresence !== 'none') {
+      dailyCountsMap[log.date].hasBlood = true;
+    }
+  });
+
+  const allDates: string[] = [];
+  const startD = new Date(stats.startDate);
+  const endD = new Date(stats.endDate);
+  for (let d = new Date(startD); d <= endD; d.setDate(d.getDate() + 1)) {
+    allDates.push(d.toISOString().split('T')[0]);
+  }
+
+  const maxDailyCount = Math.max(...allDates.map((date) => dailyCountsMap[date]?.count || 0), 4);
+
+  const trendBarsHtml = allDates.map((date) => {
+    const data = dailyCountsMap[date] || { count: 0, hasSevereBlood: false, hasBlood: false };
+    const count = data.count;
+    const dayLabel = date.split('-')[2];
+
+    let barColor = '#E2E8F0';
+    if (count > 0) {
+      if (count >= 5 || data.hasSevereBlood) barColor = '#EF4444';
+      else if (count >= 3 || data.hasBlood) barColor = '#F59E0B';
+      else barColor = '#10B981';
+    }
+
+    const heightPct = count > 0 ? Math.max((count / maxDailyCount) * 100, 12) : 4;
+
+    return `
+      <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; min-width: 8px;">
+        ${count > 0 ? `<span style="font-size: 8px; font-weight: 700; color: #475569; margin-bottom: 2px;">${count}</span>` : ''}
+        <div style="width: 80%; max-width: 14px; height: ${heightPct}%; background: ${barColor}; border-radius: 3px;"></div>
+        <span style="font-size: 8px; color: #94A3B8; margin-top: 4px;">${dayLabel}</span>
+      </div>
+    `;
+  }).join('');
+
   const tableRows = stats.logs.map((log) => {
     const bloodLabel = t(`clinicalReport:pdf.${log.bloodPresence}`, { defaultValue: log.bloodPresence });
     const extras: string[] = [];
@@ -349,6 +396,23 @@ export function buildReportHtml(stats: ReportStats, t: TFunction): string {
     <div class="metric-card">
       <div class="metric-val">${stats.averagePain}</div>
       <div class="metric-label">${t('clinicalReport:pdf.avgPain')}</div>
+    </div>
+  </div>
+
+  <div class="section-title">${t('clinicalReport:pdf.dailyTrendTitle')}</div>
+  <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 14px; margin-bottom: 20px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+      <span style="font-size: 10px; font-weight: 700; color: #166534; background: #DCFCE7; padding: 2px 8px; border-radius: 6px;">
+        ${t('clinicalReport:pdf.normalThreshold')}
+      </span>
+      <div style="display: flex; gap: 12px; font-size: 9.5px; color: #64748B;">
+        <span><strong style="color: #10B981;">●</strong> ${t('clinicalReport:pdf.chartLegend.remission')}</span>
+        <span><strong style="color: #F59E0B;">●</strong> ${t('clinicalReport:pdf.chartLegend.mild')}</span>
+        <span><strong style="color: #EF4444;">●</strong> ${t('clinicalReport:pdf.chartLegend.flare')}</span>
+      </div>
+    </div>
+    <div style="display: flex; align-items: flex-end; height: 90px; gap: 4px; border-bottom: 1px dashed #CBD5E1; padding-bottom: 4px;">
+      ${trendBarsHtml}
     </div>
   </div>
 

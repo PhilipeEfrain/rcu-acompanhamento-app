@@ -20,7 +20,13 @@
     "remission": "Remission / Stable",
     "mild": "Mild Alert",
     "flare": "Moderate / Severe Flare",
-    "unlogged": "No log"
+    "unlogged": "No records"
+  },
+  "trendChart": {
+    "title": "Trend Chart (Movements/Day)",
+    "subtitle": "Visualize daily frequency and inflammatory spikes over time",
+    "target": "Remission target (≤ 2/day)",
+    "empty": "Not enough records in this period"
   },
   "metrics": {
     "bristol": "Bristol",

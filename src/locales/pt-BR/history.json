@@ -22,6 +22,12 @@
     "flare": "Crise Moderada / Severa",
     "unlogged": "Sem registro"
   },
+  "trendChart": {
+    "title": "Gráfico de Tendência (Evacuações/Dia)",
+    "subtitle": "Visualize a frequência e picos inflamatórios no período",
+    "target": "Meta de remissão (≤ 2/dia)",
+    "empty": "Sem registros suficientes no período"
+  },
   "metrics": {
     "bristol": "Bristol",
     "blood": "Sangue",
