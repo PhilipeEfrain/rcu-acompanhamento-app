@@ -107,8 +107,9 @@ export const DailyLogScreen: React.FC = () => {
   const handleSubmit = async () => {
     try {
       await submitDailyLog();
-    } catch {
-      Alert.alert(t('common:error'), t('dailyLog:actions.saving'));
+    } catch (error) {
+      const message = error instanceof Error ? error.message : t('dailyLog:actions.saving');
+      Alert.alert(t('common:error'), message);
     }
   };
 
