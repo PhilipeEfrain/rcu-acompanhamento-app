@@ -18,6 +18,8 @@ import {
   Sparkles,
 } from 'lucide-react-native';
 
+import { EmotionalSupportCard } from './EmotionalSupportCard';
+
 interface CrisisFeedbackBottomSheetProps {
   visible: boolean;
   feedback: CrisisEvaluation | null;
@@ -95,6 +97,9 @@ export const CrisisFeedbackBottomSheet: React.FC<CrisisFeedbackBottomSheetProps>
                 </View>
               ))}
             </View>
+
+            {/* Emotional Support & Multidisciplinary Guidance (Issue #11) */}
+            <EmotionalSupportCard compact style={{ marginTop: 16 }} />
           </ScrollView>
 
           <View style={styles.footer}>

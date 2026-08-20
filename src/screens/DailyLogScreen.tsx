@@ -23,6 +23,7 @@ import { PainScaleSlider } from '../components/daily-log/PainScaleSlider';
 import { NotesInput } from '../components/daily-log/NotesInput';
 import { ClinicalExtrasAccordion } from '../components/daily-log/ClinicalExtrasAccordion';
 import { CrisisFeedbackBottomSheet } from '../components/feedback/CrisisFeedbackBottomSheet';
+import { EmotionalSupportCard } from '../components/feedback/EmotionalSupportCard';
 import { HeartPulse, CheckCircle2, X } from 'lucide-react-native';
 
 export const DailyLogScreen: React.FC = () => {
@@ -110,15 +111,18 @@ export const DailyLogScreen: React.FC = () => {
           />
 
           {!isFormOpen ? (
-            /* Timeline View (List of today's episodes) */
-            <DailyTimeline
-              date={selectedDate}
-              logs={dayLogs}
-              summary={dailySummary}
-              onAddNew={() => startNewEntry(selectedDate)}
-              onEdit={startEditEntry}
-              onDelete={deleteEntry}
-            />
+            /* Timeline View (List of today's episodes & Care Support) */
+            <View>
+              <DailyTimeline
+                date={selectedDate}
+                logs={dayLogs}
+                summary={dailySummary}
+                onAddNew={() => startNewEntry(selectedDate)}
+                onEdit={startEditEntry}
+                onDelete={deleteEntry}
+              />
+              <EmotionalSupportCard />
+            </View>
           ) : (
             /* Form View (Single episode check-in / edit) */
             <View style={styles.formContainer}>

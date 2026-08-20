@@ -9,6 +9,7 @@ import ptBRHistory from './pt-BR/history.json';
 import ptBRSettings from './pt-BR/settings.json';
 import ptBRClinicalExtras from './pt-BR/clinicalExtras.json';
 import ptBRBristolGuide from './pt-BR/bristolGuide.json';
+import ptBREmotionalSupport from './pt-BR/emotionalSupport.json';
 
 import enUSCommon from './en-US/common.json';
 import enUSDailyLog from './en-US/dailyLog.json';
@@ -17,6 +18,7 @@ import enUSHistory from './en-US/history.json';
 import enUSSettings from './en-US/settings.json';
 import enUSClinicalExtras from './en-US/clinicalExtras.json';
 import enUSBristolGuide from './en-US/bristolGuide.json';
+import enUSEmotionalSupport from './en-US/emotionalSupport.json';
 
 const resources = {
   'pt-BR': {
@@ -27,6 +29,7 @@ const resources = {
     settings: ptBRSettings,
     clinicalExtras: ptBRClinicalExtras,
     bristolGuide: ptBRBristolGuide,
+    emotionalSupport: ptBREmotionalSupport,
   },
   'en-US': {
     common: enUSCommon,
@@ -36,6 +39,7 @@ const resources = {
     settings: enUSSettings,
     clinicalExtras: enUSClinicalExtras,
     bristolGuide: enUSBristolGuide,
+    emotionalSupport: enUSEmotionalSupport,
   },
 };
 
@@ -48,7 +52,16 @@ i18n.use(initReactI18next).init({
   lng: initialLanguage,
   fallbackLng: 'pt-BR',
   defaultNS: 'common',
-  ns: ['common', 'dailyLog', 'crisisFeedback', 'history', 'settings', 'clinicalExtras', 'bristolGuide'],
+  ns: [
+    'common',
+    'dailyLog',
+    'crisisFeedback',
+    'history',
+    'settings',
+    'clinicalExtras',
+    'bristolGuide',
+    'emotionalSupport',
+  ],
   interpolation: {
     escapeValue: false,
   },

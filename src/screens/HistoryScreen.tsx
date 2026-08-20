@@ -7,6 +7,7 @@ import { symptomRepository, MonthlyStats } from '../storage/symptomRepository';
 import { DailySymptomEntry } from '../domain/health/types';
 import { FloCalendar } from '../components/history/FloCalendar';
 import { DayDetailCard } from '../components/history/DayDetailCard';
+import { EmotionalSupportCard } from '../components/feedback/EmotionalSupportCard';
 import { useSymptomStore } from '../store/useSymptomStore';
 
 interface HistoryScreenProps {
@@ -119,10 +120,10 @@ export const HistoryScreen: React.FC<HistoryScreenProps> = ({ onNavigateToToday 
 
           <View style={[styles.summaryCard, { backgroundColor: '#FEF3C7' }]}>
             <View style={styles.summaryIconBox}>
-              <AlertCircle size={15} color="#92400E" />
+              <AlertCircle size={15} color="#B45309" />
             </View>
-            <Text style={[styles.summaryCount, { color: '#92400E' }]}>{stats.mildDays}</Text>
-            <Text style={[styles.summaryLabel, { color: '#92400E' }]}>{t('mildDays')}</Text>
+            <Text style={[styles.summaryCount, { color: '#B45309' }]}>{stats.mildDays}</Text>
+            <Text style={[styles.summaryLabel, { color: '#B45309' }]}>{t('mildDays')}</Text>
           </View>
 
           <View style={[styles.summaryCard, { backgroundColor: '#FEE2E2' }]}>
@@ -179,6 +180,9 @@ export const HistoryScreen: React.FC<HistoryScreenProps> = ({ onNavigateToToday 
           onEditEntry={handleEditEntry}
           onDeleteEntry={handleDeleteEntry}
         />
+
+        {/* Emotional & Holistic Support Card (Issue #11) */}
+        <EmotionalSupportCard unpadded style={{ marginTop: 16 }} />
       </ScrollView>
     </View>
   );
