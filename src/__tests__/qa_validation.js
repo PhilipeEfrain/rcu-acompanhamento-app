@@ -24,6 +24,7 @@ const locales = [
   'emotionalSupport.json',
   'clinicalReport.json',
   'medications.json',
+  'careGuide.json',
 ];
 
 let i18nErrors = 0;

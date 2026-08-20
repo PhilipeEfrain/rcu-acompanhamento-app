@@ -13,6 +13,8 @@ import {
   Plus,
   Settings,
   Sparkles,
+  ChevronRight,
+  BookOpen,
 } from 'lucide-react-native';
 import { DailyMedicationDoseItem } from '../../domain/medications/types';
 
@@ -22,6 +24,7 @@ interface DailyMedicationTrackerProps {
   onToggleTaken: (medicationId: string, doseIndex: number, scheduledTime?: string) => void;
   onOpenManager: () => void;
   onAddNew: () => void;
+  onOpenCareGuide?: () => void;
   style?: object;
 }
 
@@ -31,6 +34,7 @@ export const DailyMedicationTracker: React.FC<DailyMedicationTrackerProps> = ({
   onToggleTaken,
   onOpenManager,
   onAddNew,
+  onOpenCareGuide,
   style,
 }) => {
   const { t } = useTranslation('medications');
@@ -195,6 +199,23 @@ export const DailyMedicationTracker: React.FC<DailyMedicationTrackerProps> = ({
             );
           })}
         </View>
+      )}
+
+      {/* Care Guide / SUS Quick Link */}
+      {onOpenCareGuide && (
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={onOpenCareGuide}
+          style={styles.careGuideBanner}
+        >
+          <View style={styles.careGuideBannerLeft}>
+            <BookOpen size={14} color="#7C3AED" />
+            <Text style={styles.careGuideBannerText}>
+              💡 {t('careGuide:susSection.title', { defaultValue: 'Como conseguir remédios pelo SUS e Farmácia de Alto Custo' })}
+            </Text>
+          </View>
+          <ChevronRight size={14} color="#7C3AED" />
+        </TouchableOpacity>
       )}
     </View>
   );
@@ -430,5 +451,29 @@ const styles = StyleSheet.create({
   },
   actionBadgeTextTaken: {
     color: '#166534',
+  },
+  careGuideBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#F5F3FF',
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    borderRadius: 14,
+    marginTop: 12,
+    borderWidth: 1,
+    borderColor: '#DDD6FE',
+  },
+  careGuideBannerLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    flex: 1,
+  },
+  careGuideBannerText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#6D28D9',
+    flex: 1,
   },
 });

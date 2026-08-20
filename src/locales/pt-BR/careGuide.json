@@ -1,0 +1,81 @@
+{
+  "title": "Guia de Cuidados & Direitos",
+  "subtitle": "Orientações práticas de acesso a remédios pelo SUS, direitos e dicas para o dia a dia",
+  "tabs": {
+    "sus": "Remédios pelo SUS",
+    "compounding": "Manipulação",
+    "rights": "Seus Direitos",
+    "flareCare": "Cuidados em Crise",
+    "doctorPrep": "Consulta Médica"
+  },
+  "susSection": {
+    "title": "Como Conseguir Medicamentos Gratuitos pelo SUS (CEAF / Alto Custo)",
+    "badge": "Farmácia de Alto Custo",
+    "desc": "O SUS disponibiliza tratamento completo para Retocolite Ulcerativa através do Componente Especializado da Assistência Farmacêutica (CEAF).",
+    "stepTitle": "Documentos Necessários (Checklist):",
+    "step1": "LME (Laudo de Solicitação de Medicamentos Especializados) preenchido e assinado pelo seu Gastroenterologista.",
+    "step2": "Receita Médica em duas vias com o princípio ativo (ex: Mesalazina 800mg ou 1200mg) emitida nos últimos 30-90 dias.",
+    "step3": "Relatório Médico detalhado contendo histórico clínico, CID-10 K51 (Retocolite Ulcerativa) e justificativa da dosagem.",
+    "step4": "Laudo da Colonoscopia com Biópsia (histopatológico) comprovando o diagnóstico de DII.",
+    "step5": "Cópia dos documentos pessoais: RG, CPF, Cartão Nacional do SUS (CNS) e Comprovante de Residência recente.",
+    "medsTitle": "Medicamentos Fornecidos pelo Protocolo:",
+    "medsList": "Mesalazina (comprimidos, enemas e supositórios), Sulfassalazina, Azatioprina e Terapias Biológicas / Pequenas Moléculas (Infliximabe, Vedolizumabe, Ustequinumabe, Tofacitinibe, etc.).",
+    "tip": "💡 Dica de Ouro: Renove sua documentação a cada 3 a 6 meses conforme as regras da Farmácia de Alto Custo do seu estado para não interromper o tratamento."
+  },
+  "compoundingSection": {
+    "title": "Economia com Farmácias de Manipulação Autorizadas",
+    "badge": "Dica de Economia",
+    "desc": "Para apresentações tópicas (enemas e supositórios de mesalazina), as farmácias de manipulação de confiança oferecem alternativas idênticas com grande economia.",
+    "benefit1Title": "Economia de até 60% a 70%:",
+    "benefit1Desc": "Supositórios de 500mg ou 1g e enemas de 3g ou 4g de mesalazina manipulados têm custo substancialmente menor que os de referência de marca.",
+    "benefit2Title": "Prescrição Médica Necessária:",
+    "benefit2Desc": "Peça ao seu médico gastroenterologista para prescrever 'Mesalazina supositórios/enemas manipulados' com a fórmula exata.",
+    "benefit3Title": "Qualidade e Certificação:",
+    "benefit3Desc": "Certifique-se de escolher farmácias de manipulação registradas na ANVISA e com controle de qualidade de matéria-prima."
+  },
+  "rightsSection": {
+    "title": "Seus Direitos Legais e Proteções",
+    "badge": "Legislação & Apoio",
+    "desc": "Conheça os direitos que amparam os pacientes com Doença Inflamatória Intestinal no Brasil.",
+    "right1Title": "Lei do Acesso Rápido ao Banheiro:",
+    "right1Desc": "Diversos municípios e estados possuem leis que garantem o acesso imediato de portadores de DII aos banheiros de estabelecimentos comerciais, bancos e órgãos públicos.",
+    "right2Title": "Carteirinha de Identificação do Paciente DII:",
+    "right2Desc": "Associações de pacientes (como a ABCD - Associação Brasileira de Colite Ulcerativa e Doença de Crohn) e declarações do seu gastroenterologista servem como comprovação para atendimento prioritário.",
+    "right3Title": "Prioridade em Filas e Atendimento:",
+    "right3Desc": "Em muitos estados, pacientes com DII em crise têm direito a atendimento prioritário semelhante ao de pessoas com deficiência ou gestantes.",
+    "right4Title": "Isenção e Direitos Previdenciários:",
+    "right4Desc": "Em casos graves ou com necessidade de afastamento, o paciente tem direito a auxílio por incapacidade temporária (antigo auxílio-doença) pelo INSS."
+  },
+  "flareCareSection": {
+    "title": "Cuidados Práticos no Manejo de Crises",
+    "badge": "Alívio & Proteção",
+    "desc": "Medidas complementares essenciais para proteger seu intestino e aliviar o desconforto diário.",
+    "care1Title": "Hidratação Eletrolítica Contínua:",
+    "care1Desc": "Em episódios de diarreia frequente, beba água de coco, soro caseiro ou soluções de reidratação oral em pequenos goles para evitar desidratação e perda de potássio.",
+    "care2Title": "Cuidados Perianais e Higiene:",
+    "care2Desc": "Evite papel higiênico seco. Prefira ducha higiênica morna com sabonete neutro e seque suavemente com toalha macia. Pomadas com óxido de zinco ajudam a proteger a pele de assaduras.",
+    "care3Title": "Alimentação de Baixo Resíduo na Crise:",
+    "care3Desc": "Durante crises ativas, prefira alimentos cozidos e de fácil digestão (arroz branco, batata cozida, frango grelhado, banana-maçã). Evite fibras insolúveis, sementes, frituras, leite e excesso de café.",
+    "care4Title": "ALERTA: NUNCA Tome Anti-inflamatórios (AINEs):",
+    "care4Desc": "Medicamentos como ibuprofeno, diclofenaco, cetoprofeno, nimesulida e naproxeno atacam diretamente a mucosa gástrica e intestinal, podendo desencadear sangramentos graves e agravar a crise."
+  },
+  "doctorPrepSection": {
+    "title": "Preparação para a Consulta Médica",
+    "badge": "Checklist do Gastro",
+    "desc": "Aproveite ao máximo sua consulta com o gastroenterologista levando informações estruturadas.",
+    "prep1Title": "Apresente seu Relatório em PDF deste App:",
+    "prep1Desc": "Exporte o relatório dos últimos 30 a 90 dias na aba Histórico com os gráficos e tabela de evacuações e sangramento.",
+    "prep2Title": "Perguntas Essenciais para Fazer:",
+    "q1": "1. 'Minha dose de mesalazina está otimizada para manter a cicatrização da mucosa?'",
+    "q2": "2. 'Está na hora de fazermos um exame de Calprotectina Fecal para checar a inflamação oculta?'",
+    "q3": "3. 'Preciso atualizar minhas vacinas (especialmente antes de iniciar imunossupressores ou biológicos)?'",
+    "q4": "4. 'Quais exames de sangue de rotina (hemograma, ferritina, PCR, vitamina D/B12) devemos solicitar?'",
+    "prep3Title": "Sinais de Alerta para Informar:",
+    "prep3Desc": "Relate ao médico qualquer episódio de febre, dor intensa que não cede ou necessidade de acordar à noite para evacuar."
+  },
+  "actions": {
+    "close": "Fechar Guia",
+    "openSusWebsite": "Consultar Protocolos Estaduais",
+    "exportPdfReport": "Exportar Relatório Clínico em PDF"
+  }
+}

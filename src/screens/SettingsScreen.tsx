@@ -22,20 +22,26 @@ import {
   CheckCircle,
   FileSpreadsheet,
   Pill,
+  BookOpen,
+  Sparkles,
 } from 'lucide-react-native';
 import { biometricService } from '../security/biometricService';
 import { symptomRepository } from '../storage/symptomRepository';
 import { ExportPdfBottomSheet } from '../components/history/ExportPdfBottomSheet';
 import { MedicationManagerBottomSheet } from '../components/medications/MedicationManagerBottomSheet';
 import { MedicationModal } from '../components/medications/MedicationModal';
+import { CareGuideBottomSheet } from '../components/care-guide/CareGuideBottomSheet';
+import { BristolGuideBottomSheet } from '../components/daily-log/BristolGuideBottomSheet';
 import { useMedicationStore } from '../store/useMedicationStore';
 
 export const SettingsScreen: React.FC = () => {
-  const { t, i18n } = useTranslation(['settings', 'clinicalReport', 'medications']);
+  const { t, i18n } = useTranslation(['settings', 'clinicalReport', 'medications', 'careGuide', 'bristolGuide']);
   const insets = useSafeAreaInsets();
   const [biometricsEnabled, setBiometricsEnabled] = useState(false);
   const [biometricsAvailable, setBiometricsAvailable] = useState(false);
   const [isExportPdfOpen, setIsExportPdfOpen] = useState(false);
+  const [isCareGuideOpen, setIsCareGuideOpen] = useState(false);
+  const [isBristolGuideOpen, setIsBristolGuideOpen] = useState(false);
 
   const {
     medications,
@@ -248,6 +254,49 @@ export const SettingsScreen: React.FC = () => {
           </TouchableOpacity>
         </View>
 
+        {/* Section: Clinical Guides & Rights */}
+        <View style={styles.sectionCard}>
+          <View style={styles.sectionHeader}>
+            <BookOpen size={20} color="#7B61FF" />
+            <Text style={styles.sectionTitle}>{t('settings:guidesSection')}</Text>
+          </View>
+          <Text style={styles.sectionDesc}>{t('settings:guidesDesc')}</Text>
+
+          {/* Care Guide & SUS Access */}
+          <TouchableOpacity
+            style={styles.actionRow}
+            onPress={() => setIsCareGuideOpen(true)}
+            activeOpacity={0.7}
+          >
+            <View style={styles.actionInfo}>
+              <Text style={[styles.actionTitle, { color: '#7B61FF', fontWeight: '700' }]}>
+                {t('settings:careGuideLinkTitle')}
+              </Text>
+              <Text style={styles.actionDesc}>
+                {t('settings:careGuideLinkDesc')}
+              </Text>
+            </View>
+            <BookOpen size={18} color="#7B61FF" />
+          </TouchableOpacity>
+
+          {/* Bristol Stool Chart Guide */}
+          <TouchableOpacity
+            style={[styles.actionRow, { borderBottomWidth: 0, paddingBottom: 0 }]}
+            onPress={() => setIsBristolGuideOpen(true)}
+            activeOpacity={0.7}
+          >
+            <View style={styles.actionInfo}>
+              <Text style={styles.actionTitle}>
+                {t('settings:bristolGuideLinkTitle')}
+              </Text>
+              <Text style={styles.actionDesc}>
+                {t('settings:bristolGuideLinkDesc')}
+              </Text>
+            </View>
+            <Sparkles size={18} color="#8E63B8" />
+          </TouchableOpacity>
+        </View>
+
         {/* Section: Data Management (LGPD / HIPAA) */}
         <View style={styles.sectionCard}>
           <View style={styles.sectionHeader}>
@@ -312,6 +361,16 @@ export const SettingsScreen: React.FC = () => {
       <ExportPdfBottomSheet
         visible={isExportPdfOpen}
         onClose={() => setIsExportPdfOpen(false)}
+      />
+
+      <CareGuideBottomSheet
+        visible={isCareGuideOpen}
+        onClose={() => setIsCareGuideOpen(false)}
+      />
+
+      <BristolGuideBottomSheet
+        visible={isBristolGuideOpen}
+        onClose={() => setIsBristolGuideOpen(false)}
       />
 
       <MedicationModal
