@@ -8,10 +8,12 @@
 ## Comandos Úteis do GitHub CLI (`gh`)
 1. Adicionar Issue ao Kanban:
    `gh project item-add 4 --owner PhilipeEfrain --url <ISSUE_URL>`
-2. Listar Itens do Projeto:
+2. Mover Card de Status no Kanban (Ex: "In progress", "In review", "Done"):
+   `gh project item-edit 4 --owner PhilipeEfrain --url <ISSUE_URL> --field "Status" --value "In progress"`
+3. Listar Itens do Projeto:
    `gh project item-list 4 --owner PhilipeEfrain`
-3. Criar Pull Request vinculado:
+4. Criar Pull Request vinculado:
    `gh pr create --title "feat: ..." --body "Closes #<ISSUE_ID>" --label "in-review"`
-4. Aprovar e Realizar Merge:
+5. Aprovar e Realizar Merge:
    `gh pr review <PR_ID> --approve -b "Aprovado pelo QA"`
    `gh pr merge <PR_ID> --squash --delete-branch`
