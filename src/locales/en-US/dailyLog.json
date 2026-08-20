@@ -19,9 +19,9 @@
   "now": "Now",
   "period": {
     "title": "Time Period",
-    "waking_morning": "Upon Waking / Morning",
+    "waking_morning": "Upon Waking",
     "afternoon": "Afternoon",
-    "night": "Night / Early Hours"
+    "night": "Night"
   },
   "outputType": {
     "title": "What was passed during this episode?",

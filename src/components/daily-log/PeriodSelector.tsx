@@ -64,6 +64,7 @@ export const PeriodSelector: React.FC<PeriodSelectorProps> = ({
                 isSelected && {
                   backgroundColor: option.activeBg,
                   borderColor: option.activeColor,
+                  borderWidth: 2,
                 },
               ]}
               onPress={() => onSelectPeriod(option.id)}
@@ -71,7 +72,14 @@ export const PeriodSelector: React.FC<PeriodSelectorProps> = ({
               accessibilityRole="button"
               accessibilityState={{ selected: isSelected }}
             >
-              <IconComponent size={18} color={iconColor} />
+              <View
+                style={[
+                  styles.iconWrapper,
+                  isSelected && { backgroundColor: '#FFFFFF' },
+                ]}
+              >
+                <IconComponent size={20} color={iconColor} />
+              </View>
               <Text
                 style={[
                   styles.pillText,
@@ -81,6 +89,7 @@ export const PeriodSelector: React.FC<PeriodSelectorProps> = ({
                   },
                 ]}
                 numberOfLines={1}
+                adjustsFontSizeToFit
               >
                 {t(option.labelKey)}
               </Text>
@@ -110,21 +119,30 @@ const styles = StyleSheet.create({
   },
   pillButton: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 6,
-    paddingVertical: 12,
-    paddingHorizontal: 6,
+    paddingVertical: 10,
+    paddingHorizontal: 4,
     borderRadius: 18,
     backgroundColor: '#FFFFFF',
     borderWidth: 1.5,
     borderColor: '#E2E8F0',
-    minHeight: 50,
+    minHeight: 64,
+    gap: 4,
+  },
+  iconWrapper: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   pillText: {
     fontSize: 12,
     fontWeight: '600',
     color: '#64748B',
+    textAlign: 'center',
   },
 });
+

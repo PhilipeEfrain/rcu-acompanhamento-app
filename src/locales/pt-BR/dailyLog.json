@@ -19,9 +19,9 @@
   "now": "Agora",
   "period": {
     "title": "Período do Registro",
-    "waking_morning": "Ao Acordar / Manhã",
+    "waking_morning": "Ao Acordar",
     "afternoon": "Tarde",
-    "night": "Noite / Madrugada"
+    "night": "Noite"
   },
   "outputType": {
     "title": "O que você eliminou nesta ida ao banheiro?",
