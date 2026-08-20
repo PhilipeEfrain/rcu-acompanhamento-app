@@ -19,7 +19,7 @@
   "now": "Now",
   "period": {
     "title": "Time Period",
-    "waking_morning": "Upon Waking",
+    "waking_morning": "Morning",
     "afternoon": "Afternoon",
     "night": "Night"
   },

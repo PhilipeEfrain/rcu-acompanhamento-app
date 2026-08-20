@@ -245,7 +245,7 @@ export function buildReportHtml(stats: ReportStats, t: TFunction): string {
     // Period label
     let periodBadge = '';
     if (log.period === 'waking_morning') {
-      periodBadge = `<span style="font-size: 9px; font-weight: 700; color: #7C3AED; background: #EDE9FE; padding: 1px 4px; border-radius: 4px; display: inline-block; margin-top: 2px;">🌅 ${t('dailyLog:period.waking_morning', { defaultValue: 'Ao acordar' })}</span>`;
+      periodBadge = `<span style="font-size: 9px; font-weight: 700; color: #7C3AED; background: #EDE9FE; padding: 1px 4px; border-radius: 4px; display: inline-block; margin-top: 2px;">🌅 ${t('dailyLog:period.waking_morning', { defaultValue: 'Manhã' })}</span>`;
     } else if (log.period === 'afternoon') {
       periodBadge = `<span style="font-size: 9px; font-weight: 700; color: #B45309; background: #FEF3C7; padding: 1px 4px; border-radius: 4px; display: inline-block; margin-top: 2px;">🌤️ ${t('dailyLog:period.afternoon', { defaultValue: 'Tarde' })}</span>`;
     } else if (log.period === 'night') {
