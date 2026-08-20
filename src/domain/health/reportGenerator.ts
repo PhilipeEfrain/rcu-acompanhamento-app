@@ -15,6 +15,10 @@ export interface ReportStats {
   bloodCount: number;
   bloodPercentage: string;
   averagePain: string;
+  averageStress: string;
+  clotsCount: number;
+  mucusCount: number;
+  urgencyCount: number;
   bristolCounts: Record<BristolType, number>;
   bloodBreakdown: Record<BloodPresence, number>;
   logs: DailySymptomEntry[];
@@ -40,6 +44,11 @@ export async function calculateReportStats(days: number): Promise<ReportStats> {
 
   let bloodCount = 0;
   let painSum = 0;
+  let stressSum = 0;
+  let stressCount = 0;
+  let clotsCount = 0;
+  let mucusCount = 0;
+  let urgencyCount = 0;
 
   const bristolCounts: Record<BristolType, number> = {
     type_1: 0,
@@ -63,6 +72,20 @@ export async function calculateReportStats(days: number): Promise<ReportStats> {
       bloodCount++;
     }
     painSum += log.painLevel;
+    if (log.stressLevel !== undefined && log.stressLevel !== null) {
+      stressSum += log.stressLevel;
+      stressCount++;
+    }
+    if (log.hasClots) {
+      clotsCount++;
+    }
+    if (log.mucusPresence && log.mucusPresence !== 'none') {
+      mucusCount++;
+    }
+    if (log.urgencyLevel && log.urgencyLevel !== 'normal') {
+      urgencyCount++;
+    }
+
     if (bristolCounts[log.bristolType] !== undefined) {
       bristolCounts[log.bristolType]++;
     }
@@ -73,6 +96,7 @@ export async function calculateReportStats(days: number): Promise<ReportStats> {
 
   const bloodPercentage = totalLogs > 0 ? `${Math.round((bloodCount / totalLogs) * 100)}%` : '0%';
   const averagePain = totalLogs > 0 ? (painSum / totalLogs).toFixed(1) : '0.0';
+  const averageStress = stressCount > 0 ? (stressSum / stressCount).toFixed(1) : '-';
 
   return {
     periodDays: days,
@@ -84,6 +108,10 @@ export async function calculateReportStats(days: number): Promise<ReportStats> {
     bloodCount,
     bloodPercentage,
     averagePain,
+    averageStress,
+    clotsCount,
+    mucusCount,
+    urgencyCount,
     bristolCounts,
     bloodBreakdown,
     logs: filteredLogs,
@@ -132,21 +160,33 @@ export function buildReportHtml(stats: ReportStats, t: TFunction): string {
   const tableRows = stats.logs.map((log) => {
     const bloodLabel = t(`clinicalReport:pdf.${log.bloodPresence}`, { defaultValue: log.bloodPresence });
     const extras: string[] = [];
-    if (log.mucusPresence && log.mucusPresence !== 'none') extras.push(`Muco: ${log.mucusPresence}`);
-    if (log.urgencyLevel && log.urgencyLevel !== 'normal') extras.push(`Urgência: ${log.urgencyLevel}`);
-    if (log.hasClots) extras.push('Coágulos');
+    
+    if (log.stressLevel !== undefined && log.stressLevel !== null) {
+      extras.push(`<span style="color: #7B61FF; font-weight: 600;">🧠 ${t('clinicalExtras:stress.title', { defaultValue: 'Estresse' })}: ${log.stressLevel}/10</span>`);
+    }
+    if (log.hasClots) {
+      extras.push(`<span style="color: #DC2626; font-weight: 600;">🩸 ${t('clinicalExtras:clots.yes', { defaultValue: 'Coágulos' })}</span>`);
+    }
+    if (log.mucusPresence && log.mucusPresence !== 'none') {
+      const mucusLabel = t(`clinicalExtras:mucus.${log.mucusPresence}`, { defaultValue: log.mucusPresence });
+      extras.push(`<span style="color: #059669; font-weight: 600;">💧 ${t('clinicalExtras:mucus.title', { defaultValue: 'Muco' })}: ${mucusLabel}</span>`);
+    }
+    if (log.urgencyLevel && log.urgencyLevel !== 'normal') {
+      const urgencyLabel = t(`clinicalExtras:urgency.${log.urgencyLevel}`, { defaultValue: log.urgencyLevel });
+      extras.push(`<span style="color: #D97706; font-weight: 600;">⚡ ${t('clinicalExtras:urgency.title', { defaultValue: 'Urgência' })}: ${urgencyLabel}</span>`);
+    }
 
-    const extraText = extras.length > 0 ? extras.join(' | ') : '-';
+    const extraText = extras.length > 0 ? extras.join('<br>') : '-';
     const notesText = log.notes && log.notes.trim().length > 0 ? log.notes : '-';
 
     return `
       <tr>
         <td>${log.date}</td>
-        <td>${log.time}</td>
+        <td>${log.time || '-'}</td>
         <td><span class="badge bristol-${log.bristolType}">#${log.bristolType.replace('type_', '')}</span></td>
         <td><span class="badge blood-${log.bloodPresence}">${bloodLabel}</span></td>
-        <td>${log.painLevel}/10</td>
-        <td>${extraText}</td>
+        <td><strong>${log.painLevel}</strong>/10</td>
+        <td style="font-size: 10.5px; line-height: 1.4;">${extraText}</td>
         <td style="font-size: 10px; color: #475569;">${notesText}</td>
       </tr>
     `;
@@ -340,6 +380,25 @@ export function buildReportHtml(stats: ReportStats, t: TFunction): string {
         <div style="display: flex; justify-content: space-between; font-size: 11px;">
           <span>${t('clinicalReport:pdf.severe')}:</span>
           <strong>${stats.bloodBreakdown.severe} (${stats.totalLogs > 0 ? Math.round((stats.bloodBreakdown.severe / stats.totalLogs) * 100) : 0}%)</strong>
+        </div>
+
+        <div style="margin-top: 6px; border-top: 1px dashed #CBD5E1; padding-top: 6px;">
+          <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 3px;">
+            <span>🧠 ${t('clinicalReport:pdf.avgStress')}:</span>
+            <strong>${stats.averageStress}</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 3px;">
+            <span>🩸 ${t('clinicalReport:pdf.clotsIncidence')}:</span>
+            <strong>${stats.clotsCount} (${stats.totalLogs > 0 ? Math.round((stats.clotsCount / stats.totalLogs) * 100) : 0}%)</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 3px;">
+            <span>💧 ${t('clinicalReport:pdf.mucusIncidence')}:</span>
+            <strong>${stats.mucusCount} (${stats.totalLogs > 0 ? Math.round((stats.mucusCount / stats.totalLogs) * 100) : 0}%)</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 11px;">
+            <span>⚡ ${t('clinicalReport:pdf.urgencyIncidence')}:</span>
+            <strong>${stats.urgencyCount} (${stats.totalLogs > 0 ? Math.round((stats.urgencyCount / stats.totalLogs) * 100) : 0}%)</strong>
+          </div>
         </div>
       </div>
     </div>

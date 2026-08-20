@@ -78,6 +78,47 @@ export const ClinicalExtrasAccordion: React.FC<ClinicalExtrasAccordionProps> = (
         </View>
       </TouchableOpacity>
 
+      {/* Summary Preview Pills when collapsed */}
+      {!isOpen && hasAnyValueSelected && (
+        <View style={styles.collapsedPreviewRow}>
+          {stressLevel !== null && (
+            <View style={styles.previewPill}>
+              <Brain size={11} color="#8E63B8" />
+              <Text style={styles.previewPillText}>
+                {t('stress.scoreLabel', { score: stressLevel })}
+              </Text>
+            </View>
+          )}
+
+          {hasClots && (
+            <View style={[styles.previewPill, { backgroundColor: '#FFF5F5' }]}>
+              <ShieldAlert size={11} color="#E53E3E" />
+              <Text style={[styles.previewPillText, { color: '#E53E3E' }]}>
+                {t('clots.yes')}
+              </Text>
+            </View>
+          )}
+
+          {mucusPresence !== 'none' && (
+            <View style={[styles.previewPill, { backgroundColor: '#E6F9F0' }]}>
+              <Sparkles size={11} color="#276749" />
+              <Text style={[styles.previewPillText, { color: '#276749' }]}>
+                {t(`mucus.${mucusPresence}`)}
+              </Text>
+            </View>
+          )}
+
+          {urgencyLevel !== 'normal' && (
+            <View style={[styles.previewPill, { backgroundColor: '#FEF3C7' }]}>
+              <Zap size={11} color="#92400E" />
+              <Text style={[styles.previewPillText, { color: '#92400E' }]}>
+                {t(`urgency.${urgencyLevel}`)}
+              </Text>
+            </View>
+          )}
+        </View>
+      )}
+
       {/* Accordion Body */}
       {isOpen && (
         <View style={styles.body}>
@@ -313,5 +354,28 @@ const styles = StyleSheet.create({
   chipTextAlertSelected: {
     color: '#E53E3E',
     fontWeight: '700',
+  },
+  collapsedPreviewRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 6,
+    paddingHorizontal: 20,
+    marginTop: 6,
+  },
+  previewPill: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    backgroundColor: '#F3EEFB',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#E9D8FD',
+  },
+  previewPillText: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: '#8E63B8',
   },
 });
