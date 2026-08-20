@@ -1,0 +1,46 @@
+{
+  "title": "Exportar Relatório Clínico",
+  "subtitle": "Gere um PDF estruturado para apresentar ao seu gastroenterologista",
+  "selectPeriod": "Selecione o período do relatório:",
+  "periods": {
+    "days15": "Últimos 15 dias",
+    "days30": "Últimos 30 dias",
+    "days90": "Últimos 90 dias"
+  },
+  "summaryCard": {
+    "title": "Resumo dos Dados do Período",
+    "totalEpisodes": "Total de evacuações:",
+    "dateRange": "Intervalo: {{start}} até {{end}}",
+    "noData": "Nenhum registro de evacuação encontrado no período selecionado."
+  },
+  "generating": "Compilando relatório em PDF com carinho...",
+  "generateButton": "Gerar e Compartilhar PDF",
+  "close": "Fechar",
+  "errorGenerating": "Ocorreu um erro ao gerar o relatório. Tente novamente.",
+  "pdf": {
+    "documentTitle": "Relatório Clínico de Acompanhamento — Retocolite Ulcerativa (RCU)",
+    "generatedOn": "Emitido em: {{date}} às {{time}}",
+    "periodLabel": "Período Analisado: {{start}} a {{end}} ({{days}} dias)",
+    "patientSummaryTitle": "1. Síntese Clínica do Período",
+    "totalMovements": "Total de Evacuações",
+    "dailyAverage": "Média Diária",
+    "bloodIncidence": "Episódios c/ Sangue",
+    "avgPain": "Dor Média (0-10)",
+    "bristolTitle": "2. Distribuição da Consistência Fecal (Escala de Bristol)",
+    "bloodTitle": "3. Incidência de Sangramento nas Evacuações",
+    "tableTitle": "4. Registro Cronológico Detalhado das Evacuações",
+    "colDate": "Data",
+    "colTime": "Horário",
+    "colBristol": "Bristol",
+    "colBlood": "Sangue",
+    "colPain": "Dor",
+    "colExtra": "Biomarcadores",
+    "colNotes": "Anotações do Paciente",
+    "noNotes": "-",
+    "none": "Nenhum",
+    "traces": "Traços",
+    "moderate": "Evidente",
+    "severe": "Intenso",
+    "confidentialityNotice": "Documento confidencial gerado pelo paciente via aplicativo de monitoramento de RCU. Os dados refletem o autorrelato diário de sintomas para suporte à consulta médica. Em conformidade com a LGPD e diretrizes de sigilo médico."
+  }
+}

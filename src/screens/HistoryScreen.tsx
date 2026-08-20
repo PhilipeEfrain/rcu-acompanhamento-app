@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { StyleSheet, View, Text, ScrollView, RefreshControl } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, RefreshControl, TouchableOpacity } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ShieldAlert, Sparkles, AlertCircle, Activity } from 'lucide-react-native';
+import { ShieldAlert, Sparkles, AlertCircle, Activity, FileSpreadsheet } from 'lucide-react-native';
 import { symptomRepository, MonthlyStats } from '../storage/symptomRepository';
 import { DailySymptomEntry } from '../domain/health/types';
 import { FloCalendar } from '../components/history/FloCalendar';
 import { DayDetailCard } from '../components/history/DayDetailCard';
 import { EmotionalSupportCard } from '../components/feedback/EmotionalSupportCard';
+import { ExportPdfBottomSheet } from '../components/history/ExportPdfBottomSheet';
 import { useSymptomStore } from '../store/useSymptomStore';
 
 interface HistoryScreenProps {
@@ -15,12 +16,13 @@ interface HistoryScreenProps {
 }
 
 export const HistoryScreen: React.FC<HistoryScreenProps> = ({ onNavigateToToday }) => {
-  const { t } = useTranslation('history');
+  const { t } = useTranslation(['history', 'clinicalReport']);
   const insets = useSafeAreaInsets();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(() => new Date().toISOString().split('T')[0]);
   const [monthlyLogs, setMonthlyLogs] = useState<DailySymptomEntry[]>([]);
   const [selectedDayLogs, setSelectedDayLogs] = useState<DailySymptomEntry[]>([]);
+  const [isExportOpen, setIsExportOpen] = useState(false);
   const [stats, setStats] = useState<MonthlyStats>({
     totalLoggedMovements: 0,
     totalDaysRecorded: 0,
@@ -102,10 +104,24 @@ export const HistoryScreen: React.FC<HistoryScreenProps> = ({ onNavigateToToday 
         showsVerticalScrollIndicator={false}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#8E63B8" />}
       >
-        {/* Header */}
+        {/* Header with Export CTA */}
         <View style={styles.header}>
-          <Text style={styles.title}>{t('title')}</Text>
-          <Text style={styles.subtitle}>{t('subtitle')}</Text>
+          <View style={styles.headerTopRow}>
+            <View style={styles.headerTitleBox}>
+              <Text style={styles.title}>{t('history:title')}</Text>
+              <Text style={styles.subtitle}>{t('history:subtitle')}</Text>
+            </View>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => setIsExportOpen(true)}
+              style={styles.exportButton}
+            >
+              <FileSpreadsheet size={16} color="#7B61FF" />
+              <Text style={styles.exportButtonText}>
+                {t('clinicalReport:title')}
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
         {/* Monthly Summary Cards */}
@@ -184,6 +200,11 @@ export const HistoryScreen: React.FC<HistoryScreenProps> = ({ onNavigateToToday 
         {/* Emotional & Holistic Support Card (Issue #11) */}
         <EmotionalSupportCard unpadded style={{ marginTop: 16 }} />
       </ScrollView>
+
+      <ExportPdfBottomSheet
+        visible={isExportOpen}
+        onClose={() => setIsExportOpen(false)}
+      />
     </View>
   );
 };
@@ -201,6 +222,32 @@ const styles = StyleSheet.create({
   },
   header: {
     marginBottom: 20,
+  },
+  headerTopRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 12,
+  },
+  headerTitleBox: {
+    flex: 1,
+  },
+  exportButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    backgroundColor: '#F3E8FF',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: '#E9D8FD',
+    flexShrink: 0,
+  },
+  exportButtonText: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#7B61FF',
   },
   title: {
     fontSize: 26,

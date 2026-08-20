@@ -20,15 +20,18 @@ import {
   Trash2,
   Heart,
   CheckCircle,
+  FileSpreadsheet,
 } from 'lucide-react-native';
 import { biometricService } from '../security/biometricService';
 import { symptomRepository } from '../storage/symptomRepository';
+import { ExportPdfBottomSheet } from '../components/history/ExportPdfBottomSheet';
 
 export const SettingsScreen: React.FC = () => {
-  const { t, i18n } = useTranslation('settings');
+  const { t, i18n } = useTranslation(['settings', 'clinicalReport']);
   const insets = useSafeAreaInsets();
   const [biometricsEnabled, setBiometricsEnabled] = useState(false);
   const [biometricsAvailable, setBiometricsAvailable] = useState(false);
+  const [isExportPdfOpen, setIsExportPdfOpen] = useState(false);
 
   useEffect(() => {
     async function loadBiometricsState() {
@@ -200,8 +203,25 @@ export const SettingsScreen: React.FC = () => {
         <View style={styles.sectionCard}>
           <View style={styles.sectionHeader}>
             <Download size={20} color="#8E63B8" />
-            <Text style={styles.sectionTitle}>{t('dataSection')}</Text>
+            <Text style={styles.sectionTitle}>{t('settings:dataSection')}</Text>
           </View>
+
+          {/* Export Clinical PDF */}
+          <TouchableOpacity
+            style={styles.actionRow}
+            onPress={() => setIsExportPdfOpen(true)}
+            activeOpacity={0.7}
+          >
+            <View style={styles.actionInfo}>
+              <Text style={[styles.actionTitle, { color: '#7B61FF', fontWeight: '700' }]}>
+                {t('clinicalReport:title')}
+              </Text>
+              <Text style={styles.actionDesc}>
+                {t('clinicalReport:subtitle')}
+              </Text>
+            </View>
+            <FileSpreadsheet size={18} color="#7B61FF" />
+          </TouchableOpacity>
 
           {/* Export JSON */}
           <TouchableOpacity
@@ -210,8 +230,8 @@ export const SettingsScreen: React.FC = () => {
             activeOpacity={0.7}
           >
             <View style={styles.actionInfo}>
-              <Text style={styles.actionTitle}>{t('exportDataTitle')}</Text>
-              <Text style={styles.actionDesc}>{t('exportDataDesc')}</Text>
+              <Text style={styles.actionTitle}>{t('settings:exportDataTitle')}</Text>
+              <Text style={styles.actionDesc}>{t('settings:exportDataDesc')}</Text>
             </View>
             <Download size={18} color="#8E63B8" />
           </TouchableOpacity>
@@ -223,8 +243,8 @@ export const SettingsScreen: React.FC = () => {
             activeOpacity={0.7}
           >
             <View style={styles.actionInfo}>
-              <Text style={[styles.actionTitle, { color: '#E53E3E' }]}>{t('wipeDataTitle')}</Text>
-              <Text style={styles.actionDesc}>{t('wipeDataDesc')}</Text>
+              <Text style={[styles.actionTitle, { color: '#E53E3E' }]}>{t('settings:wipeDataTitle')}</Text>
+              <Text style={styles.actionDesc}>{t('settings:wipeDataDesc')}</Text>
             </View>
             <Trash2 size={18} color="#E53E3E" />
           </TouchableOpacity>
@@ -236,9 +256,14 @@ export const SettingsScreen: React.FC = () => {
             <Heart size={20} color="#D85A7F" />
             <Text style={styles.aboutTitle}>RCU Care</Text>
           </View>
-          <Text style={styles.aboutText}>{t('aboutDesc')}</Text>
+          <Text style={styles.aboutText}>{t('settings:aboutDesc')}</Text>
         </View>
       </ScrollView>
+
+      <ExportPdfBottomSheet
+        visible={isExportPdfOpen}
+        onClose={() => setIsExportPdfOpen(false)}
+      />
     </View>
   );
 };
