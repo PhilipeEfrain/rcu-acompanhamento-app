@@ -6,6 +6,7 @@
     "@gorhom/bottom-sheet": "^5.2.14",
     "drizzle-orm": "^0.45.2",
     "expo": "~54.0.37",
+    "expo-clipboard": "~8.0.8",
     "expo-local-authentication": "~17.0.9",
     "expo-localization": "~17.0.9",
     "expo-print": "~15.0.8",

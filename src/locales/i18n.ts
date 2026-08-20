@@ -13,6 +13,7 @@ import ptBREmotionalSupport from './pt-BR/emotionalSupport.json';
 import ptBRClinicalReport from './pt-BR/clinicalReport.json';
 import ptBRMedications from './pt-BR/medications.json';
 import ptBRCareGuide from './pt-BR/careGuide.json';
+import ptBRTipJar from './pt-BR/tipJar.json';
 
 import enUSCommon from './en-US/common.json';
 import enUSDailyLog from './en-US/dailyLog.json';
@@ -25,6 +26,7 @@ import enUSEmotionalSupport from './en-US/emotionalSupport.json';
 import enUSClinicalReport from './en-US/clinicalReport.json';
 import enUSMedications from './en-US/medications.json';
 import enUSCareGuide from './en-US/careGuide.json';
+import enUSTipJar from './en-US/tipJar.json';
 
 const resources = {
   'pt-BR': {
@@ -39,6 +41,7 @@ const resources = {
     clinicalReport: ptBRClinicalReport,
     medications: ptBRMedications,
     careGuide: ptBRCareGuide,
+    tipJar: ptBRTipJar,
   },
   'en-US': {
     common: enUSCommon,
@@ -52,6 +55,7 @@ const resources = {
     clinicalReport: enUSClinicalReport,
     medications: enUSMedications,
     careGuide: enUSCareGuide,
+    tipJar: enUSTipJar,
   },
 };
 
@@ -76,6 +80,7 @@ i18n.use(initReactI18next).init({
     'clinicalReport',
     'medications',
     'careGuide',
+    'tipJar',
   ],
   interpolation: {
     escapeValue: false,
