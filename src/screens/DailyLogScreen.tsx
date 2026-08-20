@@ -24,6 +24,10 @@ import { NotesInput } from '../components/daily-log/NotesInput';
 import { ClinicalExtrasAccordion } from '../components/daily-log/ClinicalExtrasAccordion';
 import { CrisisFeedbackBottomSheet } from '../components/feedback/CrisisFeedbackBottomSheet';
 import { EmotionalSupportCard } from '../components/feedback/EmotionalSupportCard';
+import { DailyMedicationTracker } from '../components/medications/DailyMedicationTracker';
+import { MedicationModal } from '../components/medications/MedicationModal';
+import { MedicationManagerBottomSheet } from '../components/medications/MedicationManagerBottomSheet';
+import { useMedicationStore } from '../store/useMedicationStore';
 import { HeartPulse, CheckCircle2, X } from 'lucide-react-native';
 
 export const DailyLogScreen: React.FC = () => {
@@ -67,11 +71,32 @@ export const DailyLogScreen: React.FC = () => {
     closeFeedbackModal,
   } = useSymptomStore();
 
+  const {
+    medications,
+    dailyItems,
+    isModalOpen,
+    isManagerOpen,
+    editingMedication,
+    loadMedications,
+    loadDailyItems,
+    toggleTaken,
+    saveMedication,
+    toggleActive,
+    deleteMedication,
+    openNewModal,
+    openEditModal,
+    closeModal,
+    openManager,
+    closeManager,
+  } = useMedicationStore();
+
   const [isBristolGuideOpen, setIsBristolGuideOpen] = useState(false);
 
   useEffect(() => {
     loadDateData(selectedDate);
-  }, [loadDateData, selectedDate]);
+    loadMedications();
+    loadDailyItems(selectedDate);
+  }, [loadDateData, loadMedications, loadDailyItems, selectedDate]);
 
   const handleSubmit = async () => {
     try {
@@ -120,6 +145,14 @@ export const DailyLogScreen: React.FC = () => {
                 onAddNew={() => startNewEntry(selectedDate)}
                 onEdit={startEditEntry}
                 onDelete={deleteEntry}
+              />
+              <DailyMedicationTracker
+                date={selectedDate}
+                items={dailyItems}
+                onToggleTaken={(id) => toggleTaken(id, selectedDate)}
+                onOpenManager={openManager}
+                onAddNew={openNewModal}
+                style={{ marginHorizontal: 20, marginBottom: 16 }}
               />
               <EmotionalSupportCard />
             </View>
@@ -211,6 +244,23 @@ export const DailyLogScreen: React.FC = () => {
           visible={showFeedbackModal}
           feedback={activeFeedback}
           onDismiss={closeFeedbackModal}
+        />
+
+        <MedicationModal
+          visible={isModalOpen}
+          medication={editingMedication}
+          onSave={saveMedication}
+          onClose={closeModal}
+        />
+
+        <MedicationManagerBottomSheet
+          visible={isManagerOpen}
+          medications={medications}
+          onAddNew={openNewModal}
+          onEdit={openEditModal}
+          onToggleActive={toggleActive}
+          onDelete={deleteMedication}
+          onClose={closeManager}
         />
       </KeyboardAvoidingView>
     </View>

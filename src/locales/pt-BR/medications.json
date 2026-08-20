@@ -1,0 +1,56 @@
+{
+  "title": "Medicamentos Contínuos",
+  "subtitle": "Acompanhe e confirme o uso diário dos seus tratamentos",
+  "dailyCard": {
+    "title": "Medicamentos do Dia",
+    "subtitle": "Toque na pílula para confirmar a dose",
+    "allTaken": "Todos os medicamentos foram tomados hoje! 💜",
+    "pending": "{{count}} dose pendente",
+    "pending_other": "{{count}} doses pendentes",
+    "taken": "Tomado",
+    "toTake": "Pendente",
+    "manageButton": "Gerenciar",
+    "emptyTitle": "Nenhum medicamento ativo cadastrado",
+    "emptyDesc": "Cadastre seus tratamentos contínuos para acompanhar sua rotina e adesão.",
+    "addFirst": "Cadastrar Medicamento"
+  },
+  "form": {
+    "addTitle": "Novo Medicamento",
+    "editTitle": "Editar Medicamento",
+    "nameLabel": "Nome do Medicamento",
+    "namePlaceholder": "Ex: Mesalazina, Azatioprina, Infliximabe...",
+    "dosageLabel": "Dosagem",
+    "dosagePlaceholder": "Ex: 1200mg, 50mg, 4g...",
+    "frequencyLabel": "Frequência de Uso",
+    "frequencies": {
+      "daily": "1x ao dia (Diário)",
+      "twice_daily": "2x ao dia",
+      "three_times_daily": "3x ao dia",
+      "weekly": "Semanal",
+      "biweekly": "A cada 2 semanas (Biológico)",
+      "every_eight_weeks": "A cada 8 semanas (Infusão)"
+    },
+    "timeLabel": "Horário Habitual",
+    "timePlaceholder": "08:00",
+    "instructionsLabel": "Instruções ou Observações (Opcional)",
+    "instructionsPlaceholder": "Ex: Tomar após o almoço com água",
+    "quickSuggestions": "Tratamentos comuns de RCU:",
+    "saveButton": "Salvar Medicamento",
+    "cancel": "Cancelar",
+    "validationError": "Por favor, preencha o nome e a dosagem do medicamento."
+  },
+  "manager": {
+    "title": "Gerenciador de Medicamentos",
+    "subtitle": "Tratamentos contínuos para Retocolite Ulcerativa",
+    "addNew": "Adicionar Novo Medicamento",
+    "activeList": "Medicamentos em Uso ({{count}})",
+    "inactiveList": "Tratamentos Pausados ({{count}})",
+    "pause": "Pausar",
+    "resume": "Reativar",
+    "delete": "Excluir",
+    "deleteConfirmTitle": "Excluir Medicamento",
+    "deleteConfirmMessage": "Deseja realmente remover este medicamento e seu histórico?",
+    "emptyActive": "Nenhum medicamento ativo.",
+    "emptyInactive": "Nenhum tratamento pausado."
+  }
+}

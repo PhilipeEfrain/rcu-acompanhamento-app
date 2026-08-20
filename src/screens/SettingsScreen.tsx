@@ -21,17 +21,41 @@ import {
   Heart,
   CheckCircle,
   FileSpreadsheet,
+  Pill,
 } from 'lucide-react-native';
 import { biometricService } from '../security/biometricService';
 import { symptomRepository } from '../storage/symptomRepository';
 import { ExportPdfBottomSheet } from '../components/history/ExportPdfBottomSheet';
+import { MedicationManagerBottomSheet } from '../components/medications/MedicationManagerBottomSheet';
+import { MedicationModal } from '../components/medications/MedicationModal';
+import { useMedicationStore } from '../store/useMedicationStore';
 
 export const SettingsScreen: React.FC = () => {
-  const { t, i18n } = useTranslation(['settings', 'clinicalReport']);
+  const { t, i18n } = useTranslation(['settings', 'clinicalReport', 'medications']);
   const insets = useSafeAreaInsets();
   const [biometricsEnabled, setBiometricsEnabled] = useState(false);
   const [biometricsAvailable, setBiometricsAvailable] = useState(false);
   const [isExportPdfOpen, setIsExportPdfOpen] = useState(false);
+
+  const {
+    medications,
+    isModalOpen,
+    isManagerOpen,
+    editingMedication,
+    loadMedications,
+    saveMedication,
+    toggleActive,
+    deleteMedication,
+    openNewModal,
+    openEditModal,
+    closeModal,
+    openManager,
+    closeManager,
+  } = useMedicationStore();
+
+  useEffect(() => {
+    loadMedications();
+  }, [loadMedications]);
 
   useEffect(() => {
     async function loadBiometricsState() {
@@ -199,6 +223,31 @@ export const SettingsScreen: React.FC = () => {
           </View>
         </View>
 
+        {/* Section: Continuous Medications */}
+        <View style={styles.sectionCard}>
+          <View style={styles.sectionHeader}>
+            <Pill size={20} color="#7B61FF" />
+            <Text style={styles.sectionTitle}>{t('medications:title')}</Text>
+          </View>
+          <Text style={styles.sectionDesc}>{t('medications:subtitle')}</Text>
+
+          <TouchableOpacity
+            style={[styles.actionRow, { borderBottomWidth: 0, paddingBottom: 0 }]}
+            onPress={openManager}
+            activeOpacity={0.7}
+          >
+            <View style={styles.actionInfo}>
+              <Text style={[styles.actionTitle, { color: '#7B61FF', fontWeight: '700' }]}>
+                {t('medications:manager.title')}
+              </Text>
+              <Text style={styles.actionDesc}>
+                {t('medications:manager.activeList', { count: medications.filter(m => m.active).length })}
+              </Text>
+            </View>
+            <Pill size={18} color="#7B61FF" />
+          </TouchableOpacity>
+        </View>
+
         {/* Section: Data Management (LGPD / HIPAA) */}
         <View style={styles.sectionCard}>
           <View style={styles.sectionHeader}>
@@ -263,6 +312,23 @@ export const SettingsScreen: React.FC = () => {
       <ExportPdfBottomSheet
         visible={isExportPdfOpen}
         onClose={() => setIsExportPdfOpen(false)}
+      />
+
+      <MedicationModal
+        visible={isModalOpen}
+        medication={editingMedication}
+        onSave={saveMedication}
+        onClose={closeModal}
+      />
+
+      <MedicationManagerBottomSheet
+        visible={isManagerOpen}
+        medications={medications}
+        onAddNew={openNewModal}
+        onEdit={openEditModal}
+        onToggleActive={toggleActive}
+        onDelete={deleteMedication}
+        onClose={closeManager}
       />
     </View>
   );

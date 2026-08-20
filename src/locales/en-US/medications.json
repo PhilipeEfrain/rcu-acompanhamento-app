@@ -1,0 +1,56 @@
+{
+  "title": "Continuous Medications",
+  "subtitle": "Track and confirm your daily prescribed treatments",
+  "dailyCard": {
+    "title": "Today's Medications",
+    "subtitle": "Tap a pill to confirm daily dose",
+    "allTaken": "All medications taken for today! 💜",
+    "pending": "{{count}} pending dose",
+    "pending_other": "{{count}} pending doses",
+    "taken": "Taken",
+    "toTake": "Pending",
+    "manageButton": "Manage",
+    "emptyTitle": "No active medications registered",
+    "emptyDesc": "Add your continuous treatments to track daily adherence and routine.",
+    "addFirst": "Add Medication"
+  },
+  "form": {
+    "addTitle": "New Medication",
+    "editTitle": "Edit Medication",
+    "nameLabel": "Medication Name",
+    "namePlaceholder": "E.g. Mesalamine, Azathioprine, Infliximab...",
+    "dosageLabel": "Dosage",
+    "dosagePlaceholder": "E.g. 1200mg, 50mg, 4g...",
+    "frequencyLabel": "Frequency",
+    "frequencies": {
+      "daily": "1x Daily",
+      "twice_daily": "2x Daily",
+      "three_times_daily": "3x Daily",
+      "weekly": "Weekly",
+      "biweekly": "Every 2 Weeks (Biologic)",
+      "every_eight_weeks": "Every 8 Weeks (Infusion)"
+    },
+    "timeLabel": "Scheduled Time",
+    "timePlaceholder": "08:00",
+    "instructionsLabel": "Instructions or Notes (Optional)",
+    "instructionsPlaceholder": "E.g. Take with meals and plenty of water",
+    "quickSuggestions": "Common UC Treatments:",
+    "saveButton": "Save Medication",
+    "cancel": "Cancel",
+    "validationError": "Please fill in both the medication name and dosage."
+  },
+  "manager": {
+    "title": "Medication Manager",
+    "subtitle": "Continuous treatments for Ulcerative Colitis",
+    "addNew": "Add New Medication",
+    "activeList": "Active Prescriptions ({{count}})",
+    "inactiveList": "Paused Treatments ({{count}})",
+    "pause": "Pause",
+    "resume": "Resume",
+    "delete": "Delete",
+    "deleteConfirmTitle": "Delete Medication",
+    "deleteConfirmMessage": "Are you sure you want to remove this medication and its history?",
+    "emptyActive": "No active medications.",
+    "emptyInactive": "No paused treatments."
+  }
+}

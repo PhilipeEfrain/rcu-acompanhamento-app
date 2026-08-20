@@ -23,6 +23,7 @@ const locales = [
   'bristolGuide.json',
   'emotionalSupport.json',
   'clinicalReport.json',
+  'medications.json',
 ];
 
 let i18nErrors = 0;
