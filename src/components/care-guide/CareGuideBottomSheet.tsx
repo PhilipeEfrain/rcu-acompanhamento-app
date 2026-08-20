@@ -90,7 +90,7 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
                 activeTab === 'sus' && styles.tabPillActive,
               ]}
             >
-              <Building2 size={16} color={activeTab === 'sus' ? '#FFFFFF' : '#64748B'} />
+              <Building2 size={18} color={activeTab === 'sus' ? '#FFFFFF' : '#64748B'} />
               <Text
                 style={[
                   styles.tabPillText,
@@ -109,7 +109,7 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
                 activeTab === 'compounding' && styles.tabPillActive,
               ]}
             >
-              <Pill size={16} color={activeTab === 'compounding' ? '#FFFFFF' : '#64748B'} />
+              <Pill size={18} color={activeTab === 'compounding' ? '#FFFFFF' : '#64748B'} />
               <Text
                 style={[
                   styles.tabPillText,
@@ -128,7 +128,7 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
                 activeTab === 'rights' && styles.tabPillActive,
               ]}
             >
-              <Scale size={16} color={activeTab === 'rights' ? '#FFFFFF' : '#64748B'} />
+              <Scale size={18} color={activeTab === 'rights' ? '#FFFFFF' : '#64748B'} />
               <Text
                 style={[
                   styles.tabPillText,
@@ -147,7 +147,7 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
                 activeTab === 'flareCare' && styles.tabPillActive,
               ]}
             >
-              <HeartPulse size={16} color={activeTab === 'flareCare' ? '#FFFFFF' : '#64748B'} />
+              <HeartPulse size={18} color={activeTab === 'flareCare' ? '#FFFFFF' : '#64748B'} />
               <Text
                 style={[
                   styles.tabPillText,
@@ -166,7 +166,7 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
                 activeTab === 'doctorPrep' && styles.tabPillActive,
               ]}
             >
-              <Stethoscope size={16} color={activeTab === 'doctorPrep' ? '#FFFFFF' : '#64748B'} />
+              <Stethoscope size={18} color={activeTab === 'doctorPrep' ? '#FFFFFF' : '#64748B'} />
               <Text
                 style={[
                   styles.tabPillText,
@@ -480,30 +480,40 @@ const styles = StyleSheet.create({
     backgroundColor: '#F1F5F9',
   },
   tabsContainer: {
-    paddingVertical: 12,
+    paddingVertical: 14,
     borderBottomWidth: 1,
-    borderBottomColor: '#F8FAFC',
+    borderBottomColor: '#F1F5F9',
   },
   tabsScroll: {
     paddingHorizontal: 20,
-    gap: 8,
+    gap: 10,
+    alignItems: 'center',
   },
   tabPill: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    borderRadius: 20,
-    backgroundColor: '#F1F5F9',
+    justifyContent: 'center',
+    gap: 8,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderRadius: 22,
+    backgroundColor: '#F8FAFC',
+    borderWidth: 1.5,
+    borderColor: '#E2E8F0',
   },
   tabPillActive: {
     backgroundColor: '#7B61FF',
+    borderColor: '#7B61FF',
+    shadowColor: '#7B61FF',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.25,
+    shadowRadius: 6,
+    elevation: 3,
   },
   tabPillText: {
-    fontSize: 13,
-    fontWeight: '600',
-    color: '#64748B',
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#334155',
   },
   tabPillTextActive: {
     color: '#FFFFFF',
