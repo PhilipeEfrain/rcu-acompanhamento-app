@@ -19,7 +19,7 @@ export const APP_CONFIG = {
     pixKeyType: 'E-mail',
     pixRecipientName: 'Philipe Efrain Figueiredo Gonzalez',
     // Optional external links for international supporters
-    buyMeACoffeeUrl: process.env.EXPO_PUBLIC_BMC_URL || 'https://buymeacoffee.com/philipefrain',
+    buyMeACoffeeUrl: process.env.EXPO_PUBLIC_BMC_URL || 'https://buymeacoffee.com/philipe.gonzalez',
     githubRepoUrl: 'https://github.com/PhilipeEfrain/rcu-acompanhamento-app',
   },
 };
