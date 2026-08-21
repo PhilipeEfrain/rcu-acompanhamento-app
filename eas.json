@@ -1,0 +1,41 @@
+{
+  "cli": {
+    "version": ">= 14.0.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "node": "20.18.0"
+    },
+    "preview": {
+      "distribution": "internal",
+      "node": "20.18.0",
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "apk": {
+      "node": "20.18.0",
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "production": {
+      "autoIncrement": true,
+      "node": "20.18.0",
+      "android": {
+        "buildType": "app-bundle"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "android": {
+        "serviceAccountKeyPath": "./google-service-account.json",
+        "track": "closedTesting"
+      }
+    }
+  }
+}
