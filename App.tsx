@@ -49,7 +49,7 @@ function MainApp() {
   }, []);
 
   const handleUnlock = async () => {
-    const success = await biometricService.authenticate('Desbloquear RCU Care');
+    const success = await biometricService.authenticate('Desbloquear RCU Acompanhamento');
     if (success) {
       setIsLocked(false);
     }

@@ -6,7 +6,7 @@
  */
 
 export const APP_CONFIG = {
-  appName: 'RCU Care',
+  appName: 'RCU Acompanhamento',
   version: '1.0.0',
   isCompletelyFree: true,
   author: {
