@@ -21,7 +21,7 @@ export const PrivacyShieldOverlay: React.FC<PrivacyShieldOverlayProps> = ({ visi
         <Text style={styles.title}>{t('privacyShieldMessage')}</Text>
         <View style={styles.badge}>
           <Heart size={14} color="#D85A7F" />
-          <Text style={styles.badgeText}>RCU Care</Text>
+          <Text style={styles.badgeText}>RCU Acompanhamento</Text>
         </View>
       </View>
     </View>

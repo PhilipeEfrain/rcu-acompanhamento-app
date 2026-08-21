@@ -378,7 +378,7 @@ export const SettingsScreen: React.FC = () => {
         <View style={styles.aboutCard}>
           <View style={styles.aboutHeader}>
             <Heart size={20} color="#D85A7F" />
-            <Text style={styles.aboutTitle}>RCU Care</Text>
+            <Text style={styles.aboutTitle}>RCU Acompanhamento</Text>
           </View>
           <Text style={styles.aboutText}>{t('settings:aboutDesc')}</Text>
         </View>

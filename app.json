@@ -1,21 +1,35 @@
 {
   "expo": {
-    "name": "RCU-Acompanhamento",
-    "slug": "RCU-Acompanhamento",
+    "name": "RCU Acompanhamento",
+    "slug": "rcu-acompanhamento",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FFFFFF"
+    },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.philipe.rcuapp"
     },
     "android": {
+      "package": "com.philipe.rcuapp",
+      "versionCode": 1,
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
+      "permissions": [
+        "USE_BIOMETRIC",
+        "USE_FINGERPRINT",
+        "android.permission.USE_BIOMETRIC",
+        "android.permission.USE_FINGERPRINT"
+      ],
       "predictiveBackGestureEnabled": false
     },
     "web": {
@@ -26,6 +40,11 @@
       "expo-secure-store",
       "expo-local-authentication",
       "expo-localization"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "5b0aaade-4cf5-4f9a-9233-b2ee4980422e"
+      }
+    }
   }
 }

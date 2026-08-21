@@ -1,4 +1,4 @@
-# 🌸 RCU Care / RCU Acompanhamento
+# 🌸 RCU Acompanhamento
 
 <p align="center">
   <img src="https://img.shields.io/badge/Expo-SDK%2054-000020?style=for-the-badge&logo=expo&logoColor=white" />
@@ -28,7 +28,7 @@
 
 ## 💜 Sobre o Projeto
 
-O **RCU Care** foi criado para transformar a jornada de acompanhamento da Retocolite Ulcerativa em um momento diário rápido, acolhedor e seguro. O aplicativo combina a fluidez estética e o acolhimento visual do *Flo Health* com o rigor de protocolos clínicos internacionais (**Escore Parcial de Mayo**, **Escala de Bristol** e critérios de emergência médica).
+O **RCU Acompanhamento** foi criado para transformar a jornada de acompanhamento da Retocolite Ulcerativa em um momento diário rápido, acolhedor e seguro. O aplicativo combina a fluidez estética e o acolhimento visual do *Flo Health* com o rigor de protocolos clínicos internacionais (**Escore Parcial de Mayo**, **Escala de Bristol** e critérios de emergência médica).
 
 O projeto é **100% gratuito, de código aberto, livre de anúncios invasivos e opera no modelo *Local-First*** (seus dados nunca saem do seu próprio celular).
 
