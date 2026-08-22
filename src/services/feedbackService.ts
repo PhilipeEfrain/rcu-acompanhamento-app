@@ -39,7 +39,12 @@ async function sendEmailNotification(payload: FeedbackReportPayload): Promise<vo
   const apiKey = process.env.EXPO_PUBLIC_RESEND_API_KEY;
   if (!apiKey) return;
 
-  const targetEmail = process.env.EXPO_PUBLIC_FEEDBACK_TARGET_EMAIL || 'figueiredogonzalez@live.com';
+  const targetEmailRaw = process.env.EXPO_PUBLIC_FEEDBACK_TARGET_EMAIL || 'figueiredogonzalez@live.com';
+  const targetEmails: string[] = targetEmailRaw
+    .split(',')
+    .map((e: string) => e.trim())
+    .filter((e: string) => e.length > 0);
+
   const isDoctor = payload.userType === 'doctor';
 
   const doctorHtml =
@@ -91,7 +96,7 @@ async function sendEmailNotification(payload: FeedbackReportPayload): Promise<vo
       },
       body: JSON.stringify({
         from: 'RCU Acompanhamento <onboarding@resend.dev>',
-        to: [targetEmail],
+        to: targetEmails,
         subject,
         html,
       }),
