@@ -24,6 +24,8 @@ import {
   Pill,
   BookOpen,
   Sparkles,
+  ShieldAlert,
+  MessageSquareHeart,
 } from 'lucide-react-native';
 import { biometricService } from '../security/biometricService';
 import { symptomRepository } from '../storage/symptomRepository';
@@ -33,10 +35,12 @@ import { MedicationModal } from '../components/medications/MedicationModal';
 import { CareGuideBottomSheet } from '../components/care-guide/CareGuideBottomSheet';
 import { BristolGuideBottomSheet } from '../components/daily-log/BristolGuideBottomSheet';
 import { TipJarBottomSheet } from '../components/support/TipJarBottomSheet';
+import { MedicalDisclaimerModal } from '../components/legal/MedicalDisclaimerModal';
+import { FeedbackModal } from '../components/feedback/FeedbackModal';
 import { useMedicationStore } from '../store/useMedicationStore';
 
 export const SettingsScreen: React.FC = () => {
-  const { t, i18n } = useTranslation(['settings', 'clinicalReport', 'medications', 'careGuide', 'bristolGuide', 'tipJar']);
+  const { t, i18n } = useTranslation(['settings', 'clinicalReport', 'medications', 'careGuide', 'bristolGuide', 'tipJar', 'medicalDisclaimer', 'feedback']);
   const insets = useSafeAreaInsets();
   const [biometricsEnabled, setBiometricsEnabled] = useState(false);
   const [biometricsAvailable, setBiometricsAvailable] = useState(false);
@@ -44,6 +48,8 @@ export const SettingsScreen: React.FC = () => {
   const [isCareGuideOpen, setIsCareGuideOpen] = useState(false);
   const [isBristolGuideOpen, setIsBristolGuideOpen] = useState(false);
   const [isTipJarOpen, setIsTipJarOpen] = useState(false);
+  const [isDisclaimerModalOpen, setIsDisclaimerModalOpen] = useState(false);
+  const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
 
   const {
     medications,
@@ -217,7 +223,7 @@ export const SettingsScreen: React.FC = () => {
           </View>
 
           {/* Privacy Shield Info */}
-          <View style={[styles.settingRow, { borderBottomWidth: 0, paddingBottom: 0 }]}>
+          <View style={styles.settingRow}>
             <View style={styles.settingInfo}>
               <View style={styles.settingLabelRow}>
                 <EyeOff size={18} color="#2D3142" />
@@ -229,6 +235,26 @@ export const SettingsScreen: React.FC = () => {
               <Text style={styles.statusPillText}>{t('privacyShieldActive')}</Text>
             </View>
           </View>
+
+          {/* Medical Disclaimer & Purpose Link */}
+          <TouchableOpacity
+            style={[styles.settingRow, { borderBottomWidth: 0, paddingBottom: 0 }]}
+            onPress={() => setIsDisclaimerModalOpen(true)}
+            activeOpacity={0.7}
+          >
+            <View style={styles.settingInfo}>
+              <View style={styles.settingLabelRow}>
+                <ShieldAlert size={18} color="#7B61FF" />
+                <Text style={[styles.settingLabel, { color: '#7B61FF', fontWeight: '700' }]}>
+                  {t('medicalDisclaimer:title')}
+                </Text>
+              </View>
+              <Text style={styles.settingSubLabel}>
+                {t('medicalDisclaimer:subtitle')}
+              </Text>
+            </View>
+            <ShieldAlert size={18} color="#7B61FF" />
+          </TouchableOpacity>
         </View>
 
         {/* Section: Continuous Medications */}
@@ -374,6 +400,31 @@ export const SettingsScreen: React.FC = () => {
           </TouchableOpacity>
         </View>
 
+        {/* Section: Feedback & Clinical Channel */}
+        <View style={styles.sectionCard}>
+          <View style={styles.sectionHeader}>
+            <MessageSquareHeart size={20} color="#7B61FF" />
+            <Text style={styles.sectionTitle}>{t('feedback:modalTitle')}</Text>
+          </View>
+          <Text style={styles.sectionDesc}>{t('feedback:modalSubtitle')}</Text>
+
+          <TouchableOpacity
+            style={[styles.actionRow, { borderBottomWidth: 0, paddingBottom: 0 }]}
+            onPress={() => setIsFeedbackModalOpen(true)}
+            activeOpacity={0.7}
+          >
+            <View style={styles.actionInfo}>
+              <Text style={[styles.actionTitle, { color: '#7B61FF', fontWeight: '700' }]}>
+                {t('feedback:submitButton')}
+              </Text>
+              <Text style={styles.actionDesc}>
+                {t('feedback:privacyNotice')}
+              </Text>
+            </View>
+            <MessageSquareHeart size={18} color="#7B61FF" />
+          </TouchableOpacity>
+        </View>
+
         {/* Section: About */}
         <View style={styles.aboutCard}>
           <View style={styles.aboutHeader}>
@@ -419,6 +470,17 @@ export const SettingsScreen: React.FC = () => {
         onToggleActive={toggleActive}
         onDelete={deleteMedication}
         onClose={closeManager}
+      />
+
+      <MedicalDisclaimerModal
+        visible={isDisclaimerModalOpen}
+        onAccept={() => setIsDisclaimerModalOpen(false)}
+        onClose={() => setIsDisclaimerModalOpen(false)}
+      />
+
+      <FeedbackModal
+        visible={isFeedbackModalOpen}
+        onClose={() => setIsFeedbackModalOpen(false)}
       />
     </View>
   );

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, AppState, AppStateStatus } from 'react-native';
+import { StyleSheet, View, AppState, AppStateStatus, Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import * as NavigationBar from 'expo-navigation-bar';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import './src/locales/i18n';
@@ -11,6 +12,7 @@ import { SettingsScreen } from './src/screens/SettingsScreen';
 import { BottomTabBar, AppTab } from './src/components/navigation/BottomTabBar';
 import { PrivacyShieldOverlay } from './src/components/security/PrivacyShieldOverlay';
 import { BiometricLockScreen } from './src/components/security/BiometricLockScreen';
+import { MedicalDisclaimerModal } from './src/components/legal/MedicalDisclaimerModal';
 import { biometricService } from './src/security/biometricService';
 
 function MainApp() {
@@ -18,16 +20,29 @@ function MainApp() {
   const [activeTab, setActiveTab] = useState<AppTab>('today');
   const [isShieldVisible, setIsShieldVisible] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
+  const [isDisclaimerVisible, setIsDisclaimerVisible] = useState(false);
 
-  // Check biometrics lock on startup
+  // Configure Android native navigation buttons style
   useEffect(() => {
-    async function checkLockOnStart() {
+    if (Platform.OS === 'android') {
+      NavigationBar.setButtonStyleAsync('dark').catch(() => {});
+    }
+  }, []);
+
+  // Check onboarding disclaimer & biometrics lock on startup
+  useEffect(() => {
+    async function checkAppInit() {
+      const hasSeenDisclaimer = await biometricService.hasSeenMedicalDisclaimer();
+      if (!hasSeenDisclaimer) {
+        setIsDisclaimerVisible(true);
+      }
+
       const isEnabled = await biometricService.isBiometricsEnabled();
       if (isEnabled) {
         setIsLocked(true);
       }
     }
-    checkLockOnStart();
+    checkAppInit();
   }, []);
 
   // Monitor AppState for Privacy Shield & Biometric Lock on backgrounding
@@ -55,6 +70,11 @@ function MainApp() {
     }
   };
 
+  const handleAcceptDisclaimer = async () => {
+    await biometricService.setHasSeenMedicalDisclaimer(true);
+    setIsDisclaimerVisible(false);
+  };
+
   return (
     <GestureHandlerRootView style={styles.container}>
       {/* Barra de Área Segura Superior 100% Sólida e Opaca */}
@@ -79,6 +99,13 @@ function MainApp() {
 
       {/* Biometric Lock Screen */}
       {isLocked && <BiometricLockScreen onUnlock={handleUnlock} />}
+
+      {/* First-access Medical Disclaimer Modal */}
+      <MedicalDisclaimerModal
+        visible={isDisclaimerVisible}
+        isOnboarding
+        onAccept={handleAcceptDisclaimer}
+      />
 
       <StatusBar style="dark" backgroundColor="#F8F9FE" translucent={false} />
     </GestureHandlerRootView>

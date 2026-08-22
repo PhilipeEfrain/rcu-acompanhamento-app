@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
-  Modal,
+  BackHandler,
   ScrollView,
   StyleSheet,
   Text,
@@ -8,12 +8,12 @@ import {
   View,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CrisisEvaluation } from '../../domain/health/types';
 import {
   AlertTriangle,
   CheckCircle2,
   HeartHandshake,
-  Info,
   ShieldAlert,
   Sparkles,
 } from 'lucide-react-native';
@@ -32,8 +32,18 @@ export const CrisisFeedbackBottomSheet: React.FC<CrisisFeedbackBottomSheetProps>
   onDismiss,
 }) => {
   const { t } = useTranslation(['crisisFeedback', 'common']);
+  const insets = useSafeAreaInsets();
 
-  if (!feedback) return null;
+  useEffect(() => {
+    if (!visible) return;
+    const subscription = BackHandler.addEventListener('hardwareBackPress', () => {
+      onDismiss();
+      return true;
+    });
+    return () => subscription.remove();
+  }, [visible, onDismiss]);
+
+  if (!visible || !feedback) return null;
 
   const isEmergency = feedback.severity === 'severe_emergency';
   const isFlare = feedback.severity === 'moderate_to_severe_flare';
@@ -70,101 +80,110 @@ export const CrisisFeedbackBottomSheet: React.FC<CrisisFeedbackBottomSheetProps>
   };
 
   return (
-    <Modal
-      visible={visible}
-      transparent
-      animationType="fade"
-      onRequestClose={onDismiss}
-    >
-      <View style={styles.overlay}>
-        <View style={styles.sheetContainer}>
-          <View style={styles.dragIndicator} />
-
-          <ScrollView
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={styles.scrollContent}
-          >
-            <View style={styles.header}>
-              {getHeaderIcon()}
-              <Text style={styles.title}>{t(feedback.titleKey)}</Text>
-              <Text style={styles.message}>{t(feedback.messageKey)}</Text>
-            </View>
-
-            {/* Contextual Psychoeducational Feedback (Issue #16 - Morning Pooling / Tenesmus) */}
-            {feedback.contextualFeedbackKey && (
-              <View style={styles.contextualBox}>
-                <View style={styles.contextualHeader}>
-                  <Sparkles size={16} color="#7C3AED" />
-                  <Text style={styles.contextualBadge}>
-                    {t(`${feedback.contextualFeedbackKey}.badge`)}
-                  </Text>
-                </View>
-                <Text style={styles.contextualTitle}>
-                  {t(`${feedback.contextualFeedbackKey}.title`)}
-                </Text>
-                <Text style={styles.contextualMessage}>
-                  {t(`${feedback.contextualFeedbackKey}.message`)}
-                </Text>
-                <Text style={styles.contextualAction}>
-                  💡 {t(`${feedback.contextualFeedbackKey}.action`)}
-                </Text>
-              </View>
-            )}
-
-            <View style={styles.guidelinesBox}>
-              <View style={styles.guidelinesHeader}>
-                <HeartHandshake size={18} color="#7B61FF" />
-                <Text style={styles.guidelinesTitle}>
-                  {t('crisisFeedback:actions.view_guidance')}
-                </Text>
-              </View>
-
-              {feedback.guidelinesKeys.map((key, index) => (
-                <View key={index} style={styles.guidelineItem}>
-                  <View style={styles.bulletDot} />
-                  <Text style={styles.guidelineText}>{t(key)}</Text>
-                </View>
-              ))}
-            </View>
-
-            {/* Emotional Support & Multidisciplinary Guidance (Issue #11) */}
-            <EmotionalSupportCard compact style={{ marginTop: 16 }} />
-          </ScrollView>
-
-          <View style={styles.footer}>
-            <TouchableOpacity
-              activeOpacity={0.8}
-              onPress={onDismiss}
-              style={[
-                styles.dismissButton,
-                { backgroundColor: isEmergency ? '#DC2626' : isFlare ? '#EF4444' : '#7B61FF' },
-              ]}
-            >
-              <Text style={styles.dismissButtonText}>
-                {isEmergency ? t('crisisFeedback:actions.emergency_dismiss', { defaultValue: 'Entendido, buscar atendimento' }) : t('crisisFeedback:actions.dismiss')}
-              </Text>
-            </TouchableOpacity>
+    <View style={styles.overlay}>
+      <TouchableOpacity
+        activeOpacity={1}
+        style={styles.backdropTouch}
+        onPress={onDismiss}
+      />
+      <View style={styles.sheetContainer}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.scrollContent}
+        >
+          <View style={styles.header}>
+            {getHeaderIcon()}
+            <Text style={styles.title}>{t(feedback.titleKey)}</Text>
+            <Text style={styles.message}>{t(feedback.messageKey)}</Text>
           </View>
+
+          {/* Contextual Psychoeducational Feedback (Issue #16 - Morning Pooling / Tenesmus) */}
+          {feedback.contextualFeedbackKey && (
+            <View style={styles.contextualBox}>
+              <View style={styles.contextualHeader}>
+                <Sparkles size={16} color="#7C3AED" />
+                <Text style={styles.contextualBadge}>
+                  {t(`${feedback.contextualFeedbackKey}.badge`)}
+                </Text>
+              </View>
+              <Text style={styles.contextualTitle}>
+                {t(`${feedback.contextualFeedbackKey}.title`)}
+              </Text>
+              <Text style={styles.contextualMessage}>
+                {t(`${feedback.contextualFeedbackKey}.message`)}
+              </Text>
+              <Text style={styles.contextualAction}>
+                💡 {t(`${feedback.contextualFeedbackKey}.action`)}
+              </Text>
+            </View>
+          )}
+
+          <View style={styles.guidelinesBox}>
+            <View style={styles.guidelinesHeader}>
+              <HeartHandshake size={18} color="#7B61FF" />
+              <Text style={styles.guidelinesTitle}>
+                {t('crisisFeedback:actions.view_guidance')}
+              </Text>
+            </View>
+
+            {feedback.guidelinesKeys.map((key, index) => (
+              <View key={index} style={styles.guidelineItem}>
+                <View style={styles.bulletDot} />
+                <Text style={styles.guidelineText}>{t(key)}</Text>
+              </View>
+            ))}
+          </View>
+
+          {/* Emotional Support & Multidisciplinary Guidance (Issue #11) */}
+          <EmotionalSupportCard compact unpadded style={{ marginTop: 16 }} />
+        </ScrollView>
+
+        <View style={styles.footer}>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={onDismiss}
+            style={[
+              styles.dismissButton,
+              { backgroundColor: isEmergency ? '#DC2626' : isFlare ? '#EF4444' : '#7B61FF' },
+            ]}
+          >
+            <Text style={styles.dismissButtonText}>
+              {isEmergency ? t('crisisFeedback:actions.emergency_dismiss', { defaultValue: 'Entendido, buscar atendimento' }) : t('crisisFeedback:actions.dismiss')}
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
-    </Modal>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   overlay: {
-    flex: 1,
+    ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(15, 23, 42, 0.55)',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 32,
+    zIndex: 9999,
+    elevation: 20,
+  },
+  backdropTouch: {
+    ...StyleSheet.absoluteFillObject,
   },
   sheetContainer: {
     backgroundColor: '#FFFFFF',
-    borderTopLeftRadius: 32,
-    borderTopRightRadius: 32,
-    paddingTop: 12,
-    paddingBottom: 28,
+    borderRadius: 28,
+    width: '100%',
+    maxHeight: '92%',
+    paddingTop: 24,
+    paddingBottom: 20,
     paddingHorizontal: 20,
-    maxHeight: '85%',
+    shadowColor: '#0F172A',
+    shadowOffset: { width: 0, height: 12 },
+    shadowOpacity: 0.15,
+    shadowRadius: 24,
+    elevation: 10,
   },
   dragIndicator: {
     width: 44,
