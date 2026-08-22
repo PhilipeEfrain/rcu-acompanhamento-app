@@ -86,14 +86,7 @@ export const CrisisFeedbackBottomSheet: React.FC<CrisisFeedbackBottomSheetProps>
         style={styles.backdropTouch}
         onPress={onDismiss}
       />
-      <View
-        style={[
-          styles.sheetContainer,
-          { paddingBottom: Math.max(Math.round(insets.bottom / 2), 10) },
-        ]}
-      >
-        <View style={styles.dragIndicator} />
-
+      <View style={styles.sheetContainer}>
         <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
@@ -168,7 +161,10 @@ const styles = StyleSheet.create({
   overlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(15, 23, 42, 0.55)',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 32,
     zIndex: 9999,
     elevation: 20,
   },
@@ -177,11 +173,17 @@ const styles = StyleSheet.create({
   },
   sheetContainer: {
     backgroundColor: '#FFFFFF',
-    borderTopLeftRadius: 32,
-    borderTopRightRadius: 32,
-    paddingTop: 12,
+    borderRadius: 28,
+    width: '100%',
+    maxHeight: '92%',
+    paddingTop: 24,
+    paddingBottom: 20,
     paddingHorizontal: 20,
-    maxHeight: '85%',
+    shadowColor: '#0F172A',
+    shadowOffset: { width: 0, height: 12 },
+    shadowOpacity: 0.15,
+    shadowRadius: 24,
+    elevation: 10,
   },
   dragIndicator: {
     width: 44,
