@@ -12,6 +12,8 @@
   "quickAddToday": "Registrar sintomas de hoje",
   "editDayLog": "Editar",
   "addPastLog": "Registrar ida ao banheiro",
+  "futureDateNotice": "Não é possível registrar sintomas em datas futuras.",
+  "futureDayDisabled": "Data futura indisponível para registro",
   "dayMovements": "Evacuações do Dia ({{count}})",
   "movementsCount": "{{count}} evacuações",
   "addNewMovementForDay": "Nova Evacuação neste Dia",

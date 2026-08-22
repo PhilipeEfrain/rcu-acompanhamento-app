@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { ChevronLeft, ChevronRight } from 'lucide-react-native';
 import { DailySymptomEntry } from '../../domain/health/types';
 import { evaluateDailySummary } from '../../domain/health/evaluateCrisis';
+import { getLocalDateString, isFutureDate } from '../../domain/health/dateUtils';
 
 interface FloCalendarProps {
   currentDate: Date;
@@ -86,7 +87,7 @@ export const FloCalendar: React.FC<FloCalendarProps> = ({
     gridCells.push(d);
   }
 
-  const todayStr = new Date().toISOString().split('T')[0];
+  const todayStr = getLocalDateString();
 
   return (
     <View style={styles.container}>
@@ -139,6 +140,7 @@ export const FloCalendar: React.FC<FloCalendarProps> = ({
 
           const isSelected = selectedDate === dateString;
           const isToday = todayStr === dateString;
+          const isFuture = isFutureDate(dateString);
           const daySummary = dateSummaries.get(dateString);
 
           let badgeColor: string | null = null;
@@ -155,15 +157,25 @@ export const FloCalendar: React.FC<FloCalendarProps> = ({
                 styles.dayCell,
                 isSelected && styles.selectedDayCell,
                 isToday && !isSelected && styles.todayDayCell,
+                isFuture && styles.futureDayCell,
               ]}
-              onPress={() => onSelectDate(dateString)}
-              activeOpacity={0.7}
+              onPress={() => !isFuture && onSelectDate(dateString)}
+              disabled={isFuture}
+              activeOpacity={isFuture ? 1 : 0.7}
+              accessibilityRole="button"
+              accessibilityState={{ disabled: isFuture, selected: isSelected }}
+              accessibilityLabel={
+                isFuture
+                  ? `${dayNum}, ${t('history:futureDayDisabled')}`
+                  : `${dayNum}`
+              }
             >
               <Text
                 style={[
                   styles.dayText,
                   isSelected && styles.selectedDayText,
                   isToday && !isSelected && styles.todayDayText,
+                  isFuture && styles.futureDayText,
                 ]}
               >
                 {dayNum}
@@ -260,6 +272,13 @@ const styles = StyleSheet.create({
   todayDayText: {
     color: '#8E63B8',
     fontWeight: '700',
+  },
+  futureDayCell: {
+    opacity: 0.35,
+  },
+  futureDayText: {
+    color: '#94A3B8',
+    fontWeight: '400',
   },
   statusDot: {
     width: 6,

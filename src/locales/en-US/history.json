@@ -12,6 +12,8 @@
   "quickAddToday": "Log today's symptoms",
   "editDayLog": "Edit",
   "addPastLog": "Log bowel movement",
+  "futureDateNotice": "You cannot log symptoms for future dates.",
+  "futureDayDisabled": "Future date unavailable for logging",
   "dayMovements": "Day's Bowel Movements ({{count}})",
   "movementsCount": "{{count}} bowel movements",
   "addNewMovementForDay": "+ New Bowel Movement for this Day",

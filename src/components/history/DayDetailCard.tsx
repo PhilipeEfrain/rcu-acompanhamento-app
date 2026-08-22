@@ -1,9 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { PlusCircle } from 'lucide-react-native';
+import { PlusCircle, CalendarOff } from 'lucide-react-native';
 import { DailySymptomEntry } from '../../domain/health/types';
 import { evaluateDailySummary } from '../../domain/health/evaluateCrisis';
+import { isFutureDate } from '../../domain/health/dateUtils';
 import { BowelMovementCard } from '../daily-log/BowelMovementCard';
 
 interface DayDetailCardProps {
@@ -25,6 +26,21 @@ export const DayDetailCard: React.FC<DayDetailCardProps> = ({
 
   const summary = evaluateDailySummary(date, logs);
   const totalCount = logs.length;
+  const isFuture = isFutureDate(date);
+
+  if (isFuture) {
+    return (
+      <View style={styles.futureNoticeCard}>
+        <CalendarOff size={24} color="#94A3B8" />
+        <Text style={styles.dateHeader}>
+          {t('selectedDayTitle', { ns: 'history', date })}
+        </Text>
+        <Text style={styles.futureNoticeText}>
+          {t('futureDateNotice', { ns: 'history' })}
+        </Text>
+      </View>
+    );
+  }
 
   if (totalCount === 0) {
     return (
@@ -84,15 +100,17 @@ export const DayDetailCard: React.FC<DayDetailCardProps> = ({
           </View>
         </View>
 
-        <TouchableOpacity
-          style={styles.addMoreButton}
-          onPress={() => onAddNewForDay(date)}
-          activeOpacity={0.8}
-          accessibilityRole="button"
-        >
-          <PlusCircle size={16} color="#8E63B8" />
-          <Text style={styles.addMoreText}>{t('addNewMovementForDay', { ns: 'history' })}</Text>
-        </TouchableOpacity>
+        {!isFuture && (
+          <TouchableOpacity
+            style={styles.addMoreButton}
+            onPress={() => onAddNewForDay(date)}
+            activeOpacity={0.8}
+            accessibilityRole="button"
+          >
+            <PlusCircle size={16} color="#8E63B8" />
+            <Text style={styles.addMoreText}>{t('addNewMovementForDay', { ns: 'history' })}</Text>
+          </TouchableOpacity>
+        )}
       </View>
 
       {/* List of episodes for this day */}
@@ -201,6 +219,22 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginBottom: 16,
     textAlign: 'center',
+  },
+  futureNoticeCard: {
+    backgroundColor: '#F8FAFC',
+    borderRadius: 20,
+    padding: 24,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+    marginBottom: 24,
+    gap: 8,
+  },
+  futureNoticeText: {
+    fontSize: 14,
+    color: '#64748B',
+    textAlign: 'center',
+    fontWeight: '500',
   },
   quickAddButton: {
     flexDirection: 'row',

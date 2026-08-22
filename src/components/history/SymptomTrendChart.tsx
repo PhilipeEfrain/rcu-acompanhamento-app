@@ -5,21 +5,15 @@ import {
   Text,
   TouchableOpacity,
   View,
+  ViewStyle,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { BarChart3, TrendingUp } from 'lucide-react-native';
 import { DailySymptomEntry } from '../../domain/health/types';
-
-interface SymptomTrendChartProps {
-  logs: DailySymptomEntry[];
-  days?: number;
-  selectedDate?: string;
-  onSelectDate?: (date: string) => void;
-  style?: object;
-}
+import { getLocalDateString } from '../../domain/health/dateUtils';
 
 interface DayAggregate {
-  date: string;
+  date: string; // YYYY-MM-DD
   dayNumber: string;
   count: number;
   hasBlood: boolean;
@@ -28,9 +22,17 @@ interface DayAggregate {
   severityColor: string;
 }
 
+interface SymptomTrendChartProps {
+  logs: DailySymptomEntry[];
+  days?: number; // default 14
+  selectedDate?: string;
+  onSelectDate?: (date: string) => void;
+  style?: ViewStyle;
+}
+
 export const SymptomTrendChart: React.FC<SymptomTrendChartProps> = ({
   logs,
-  days = 15,
+  days = 14,
   selectedDate,
   onSelectDate,
   style,
@@ -44,7 +46,7 @@ export const SymptomTrendChart: React.FC<SymptomTrendChartProps> = ({
 
     for (let i = days - 1; i >= 0; i--) {
       const d = new Date(now.getTime() - i * 24 * 60 * 60 * 1000);
-      const dateStr = d.toISOString().split('T')[0];
+      const dateStr = getLocalDateString(d);
       const dayNum = String(d.getDate()).padStart(2, '0');
 
       const dayLogs = logs.filter((l) => l.date === dateStr);
