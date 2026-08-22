@@ -58,7 +58,12 @@ export const feedbackService = {
         createdAt: serverTimestamp(),
       };
 
-      const docRef = await addDoc(collectionRef, dataToSave);
+      const timeoutPromise = new Promise<never>((_, reject) => {
+        setTimeout(() => reject(new Error('Timeout: Conexão com Firestore excedeu 8 segundos')), 8000);
+      });
+
+      const addDocPromise = addDoc(collectionRef, dataToSave);
+      const docRef = await Promise.race([addDocPromise, timeoutPromise]);
       return { success: true, id: docRef.id };
     } catch (err: unknown) {
       const errorMessage = err instanceof Error ? err.message : 'Unknown error submitting feedback';
