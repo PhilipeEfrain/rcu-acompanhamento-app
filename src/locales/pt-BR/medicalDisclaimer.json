@@ -1,0 +1,15 @@
+{
+  "title": "Aviso Médico & Finalidade do App",
+  "subtitle": "Informações essenciais sobre o uso do RCU Acompanhamento",
+  "badge": "Transparência & Ética Clínica",
+  "purposeTitle": "1. Finalidade do Aplicativo",
+  "purposeText": "O RCU Acompanhamento é uma ferramenta digital voltada exclusivamente ao registro pessoal de hábitos, sintomas diários e adesão terapêutica de pacientes diagnosticados com Retocolite Ulcerativa (RCU) e Doenças Inflamatórias Intestinais (DII).",
+  "noSubstituteTitle": "2. Não Substituição Médica",
+  "noSubstituteText": "Os cálculos (Escore Parcial de Mayo, Escala de Bristol) e orientações informativas exibidos no aplicativo NÃO constituem diagnóstico clínico, prescrição médica ou protocolo de tratamento. NUNCA inicie, altere ou suspenda medicamentos (biológicos, corticoides, imunossupressores ou mesalazina) sem expressa orientação do seu médico gastroenterologista.",
+  "errorsTitle": "3. Limitações e Possibilidade de Erros",
+  "errorsText": "Estimativas algorítmicas são referenciais estatísticos de apoio ao autocuidado e podem apresentar divergências ou limitações em relação ao seu quadro clínico individual. O app é um suporte ao diálogo com sua equipe de saúde.",
+  "emergencyTitle": "4. Sinais de Alarme & Emergência",
+  "emergencyText": "Se você apresentar sangramento retal volumoso com coágulos, febre alta persistente (> 38,5°C), dor abdominal aguda severa com distensão ou tonturas/desmaios, NÃO aguarde: procure IMEDIATAMENTE um serviço de Pronto-Socorro hospitalar.",
+  "acceptButton": "Li e Compreendo os Termos",
+  "dismissButton": "Entendido, fechar"
+}
