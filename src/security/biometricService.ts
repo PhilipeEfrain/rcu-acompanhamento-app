@@ -3,8 +3,33 @@ import * as SecureStore from 'expo-secure-store';
 import { Platform } from 'react-native';
 
 const BIOMETRICS_ENABLED_KEY = 'rcu_biometrics_enabled';
+const MEDICAL_DISCLAIMER_KEY = 'rcu_medical_disclaimer_accepted';
 
 export const biometricService = {
+  async hasSeenMedicalDisclaimer(): Promise<boolean> {
+    try {
+      if (Platform.OS === 'web') {
+        return localStorage.getItem(MEDICAL_DISCLAIMER_KEY) === 'true';
+      }
+      const val = await SecureStore.getItemAsync(MEDICAL_DISCLAIMER_KEY);
+      return val === 'true';
+    } catch {
+      return false;
+    }
+  },
+
+  async setHasSeenMedicalDisclaimer(accepted: boolean): Promise<void> {
+    try {
+      if (Platform.OS === 'web') {
+        localStorage.setItem(MEDICAL_DISCLAIMER_KEY, accepted ? 'true' : 'false');
+        return;
+      }
+      await SecureStore.setItemAsync(MEDICAL_DISCLAIMER_KEY, accepted ? 'true' : 'false');
+    } catch {
+      // Secure fallback
+    }
+  },
+
   async isHardwareAvailable(): Promise<boolean> {
     try {
       if (Platform.OS === 'web') return true; // Web simulated/supported

@@ -1,0 +1,15 @@
+{
+  "title": "Medical Disclaimer & App Purpose",
+  "subtitle": "Essential clinical and legal notice for UC Tracker",
+  "badge": "Clinical Ethics & Transparency",
+  "purposeTitle": "1. App Purpose",
+  "purposeText": "UC Tracker is a digital tool designed solely for personal self-monitoring of daily habits, symptoms, and medication adherence for individuals diagnosed with Ulcerative Colitis (UC) and Inflammatory Bowel Disease (IBD).",
+  "noSubstituteTitle": "2. Not Medical Advice",
+  "noSubstituteText": "Calculations (Partial Mayo Score, Bristol Stool Scale) and educational guidance DO NOT constitute a medical diagnosis, clinical prescription, or treatment plan. NEVER start, modify, or stop any medications (biologics, steroids, immunosuppressants, or mesalamine) without explicit guidance from your gastroenterologist.",
+  "errorsTitle": "3. Limitations & Potential Errors",
+  "errorsText": "Algorithmic estimates are statistical self-care references and may contain technical limitations or diverge from your individual clinical course. This application serves to support your communication with your healthcare team.",
+  "emergencyTitle": "4. Emergency Red Flags",
+  "emergencyText": "If you experience massive rectal bleeding with clots, high persistent fever (> 38.5°C), excruciating abdominal pain with distension, or fainting/severe dizziness, DO NOT wait: seek IMMEDIATE emergency hospital care.",
+  "acceptButton": "I Have Read and Understand",
+  "dismissButton": "Understood, close"
+}

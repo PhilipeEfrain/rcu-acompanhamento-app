@@ -12,6 +12,7 @@ import { SettingsScreen } from './src/screens/SettingsScreen';
 import { BottomTabBar, AppTab } from './src/components/navigation/BottomTabBar';
 import { PrivacyShieldOverlay } from './src/components/security/PrivacyShieldOverlay';
 import { BiometricLockScreen } from './src/components/security/BiometricLockScreen';
+import { MedicalDisclaimerModal } from './src/components/legal/MedicalDisclaimerModal';
 import { biometricService } from './src/security/biometricService';
 
 function MainApp() {
@@ -19,6 +20,7 @@ function MainApp() {
   const [activeTab, setActiveTab] = useState<AppTab>('today');
   const [isShieldVisible, setIsShieldVisible] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
+  const [isDisclaimerVisible, setIsDisclaimerVisible] = useState(false);
 
   // Configure Android native navigation buttons style
   useEffect(() => {
@@ -27,15 +29,20 @@ function MainApp() {
     }
   }, []);
 
-  // Check biometrics lock on startup
+  // Check onboarding disclaimer & biometrics lock on startup
   useEffect(() => {
-    async function checkLockOnStart() {
+    async function checkAppInit() {
+      const hasSeenDisclaimer = await biometricService.hasSeenMedicalDisclaimer();
+      if (!hasSeenDisclaimer) {
+        setIsDisclaimerVisible(true);
+      }
+
       const isEnabled = await biometricService.isBiometricsEnabled();
       if (isEnabled) {
         setIsLocked(true);
       }
     }
-    checkLockOnStart();
+    checkAppInit();
   }, []);
 
   // Monitor AppState for Privacy Shield & Biometric Lock on backgrounding
@@ -63,6 +70,11 @@ function MainApp() {
     }
   };
 
+  const handleAcceptDisclaimer = async () => {
+    await biometricService.setHasSeenMedicalDisclaimer(true);
+    setIsDisclaimerVisible(false);
+  };
+
   return (
     <GestureHandlerRootView style={styles.container}>
       {/* Barra de Área Segura Superior 100% Sólida e Opaca */}
@@ -87,6 +99,13 @@ function MainApp() {
 
       {/* Biometric Lock Screen */}
       {isLocked && <BiometricLockScreen onUnlock={handleUnlock} />}
+
+      {/* First-access Medical Disclaimer Modal */}
+      <MedicalDisclaimerModal
+        visible={isDisclaimerVisible}
+        isOnboarding
+        onAccept={handleAcceptDisclaimer}
+      />
 
       <StatusBar style="dark" backgroundColor="#F8F9FE" translucent={false} />
     </GestureHandlerRootView>
