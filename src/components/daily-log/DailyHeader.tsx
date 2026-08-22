@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Calendar, RotateCcw, ArrowLeft, Sparkles } from 'lucide-react-native';
+import { getLocalDateString } from '../../domain/health/dateUtils';
 
 interface DailyHeaderProps {
   dateString: string;
@@ -22,7 +23,7 @@ export const DailyHeader: React.FC<DailyHeaderProps> = ({
 }) => {
   const { t } = useTranslation(['dailyLog', 'common']);
 
-  const todayString = new Date().toISOString().split('T')[0];
+  const todayString = getLocalDateString();
   const isToday = dateString === todayString;
 
   const getGreetingKey = () => {

@@ -11,6 +11,7 @@ import { EmotionalSupportCard } from '../components/feedback/EmotionalSupportCar
 import { ExportPdfBottomSheet } from '../components/history/ExportPdfBottomSheet';
 import { SymptomTrendChart } from '../components/history/SymptomTrendChart';
 import { useSymptomStore } from '../store/useSymptomStore';
+import { getLocalDateString } from '../domain/health/dateUtils';
 
 interface HistoryScreenProps {
   onNavigateToToday: () => void;
@@ -20,7 +21,7 @@ export const HistoryScreen: React.FC<HistoryScreenProps> = ({ onNavigateToToday 
   const { t } = useTranslation(['history', 'clinicalReport']);
   const insets = useSafeAreaInsets();
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(() => new Date().toISOString().split('T')[0]);
+  const [selectedDate, setSelectedDate] = useState(() => getLocalDateString());
   const [monthlyLogs, setMonthlyLogs] = useState<DailySymptomEntry[]>([]);
   const [selectedDayLogs, setSelectedDayLogs] = useState<DailySymptomEntry[]>([]);
   const [isExportOpen, setIsExportOpen] = useState(false);

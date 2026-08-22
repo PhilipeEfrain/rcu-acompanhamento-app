@@ -179,6 +179,28 @@ if (emergencyPainEval.severity !== 'severe_emergency') {
 }
 console.log('✔ Dor abdominal aguda extrema (>= 9) dispara Alerta Vermelho de Emergência.');
 
+console.log('\n=== [QA Suite] 4. Validação de Cronologia & Bloqueio de Datas Futuras ===');
+const { getLocalDateString, isFutureDate } = require('../domain/health/dateUtils');
+const today = getLocalDateString();
+const tomorrow = new Date(Date.now() + 86400000);
+const tomorrowStr = getLocalDateString(tomorrow);
+const yesterday = new Date(Date.now() - 86400000);
+const yesterdayStr = getLocalDateString(yesterday);
+
+if (isFutureDate(today)) {
+  console.error('❌ Data de hoje não deve ser considerada futura!');
+  process.exit(1);
+}
+if (isFutureDate(yesterdayStr)) {
+  console.error('❌ Data de ontem não deve ser considerada futura!');
+  process.exit(1);
+}
+if (!isFutureDate(tomorrowStr)) {
+  console.error('❌ Data de amanhã DEVE ser identificada como futura!');
+  process.exit(1);
+}
+console.log('✔ Verificação de datas futuras (dateUtils.isFutureDate) opera com 100% de precisão.');
+
 console.log('\n✔ Todos os testes de qualidade foram aprovados com sucesso!');
 
 

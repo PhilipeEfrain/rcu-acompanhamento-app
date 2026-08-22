@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { Medication, DailyMedicationDoseItem, MedicationFrequency } from '../domain/medications/types';
 import { medicationRepository } from '../storage/medicationRepository';
+import { getLocalDateString } from '../domain/health/dateUtils';
 
 interface MedicationState {
   medications: Medication[];
@@ -113,7 +114,7 @@ export const useMedicationStore = create<MedicationState>((set, get) => ({
         active: data.active !== undefined ? data.active : true,
       });
 
-      const today = new Date().toISOString().split('T')[0];
+      const today = getLocalDateString();
       await get().loadMedications();
       await get().loadDailyItems(today);
 
@@ -128,7 +129,7 @@ export const useMedicationStore = create<MedicationState>((set, get) => ({
   toggleActive: async (id: string, active: boolean) => {
     try {
       await medicationRepository.toggleMedicationActive(id, active);
-      const today = new Date().toISOString().split('T')[0];
+      const today = getLocalDateString();
       await get().loadMedications();
       await get().loadDailyItems(today);
     } catch {
@@ -139,7 +140,7 @@ export const useMedicationStore = create<MedicationState>((set, get) => ({
   deleteMedication: async (id: string) => {
     try {
       await medicationRepository.deleteMedication(id);
-      const today = new Date().toISOString().split('T')[0];
+      const today = getLocalDateString();
       await get().loadMedications();
       await get().loadDailyItems(today);
     } catch {

@@ -12,6 +12,7 @@ import {
   UrgencyLevel,
 } from '../domain/health/types';
 import { evaluateCrisis, evaluateDailySummary } from '../domain/health/evaluateCrisis';
+import { getLocalDateString, isFutureDate } from '../domain/health/dateUtils';
 import { symptomRepository } from '../storage/symptomRepository';
 
 const getCurrentTimeString = () => {
@@ -28,7 +29,7 @@ const getCurrentPeriod = (): TimePeriod => {
   return 'night';
 };
 
-const getTodayDateString = () => new Date().toISOString().split('T')[0];
+const getTodayDateString = () => getLocalDateString();
 
 interface SymptomState {
   selectedDate: string;
@@ -158,7 +159,10 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
   toggleTachycardia: () => set((state) => ({ hasTachycardia: !state.hasTachycardia })),
 
   startNewEntry: (date?: string) => {
-    const targetDate = date || get().selectedDate;
+    let targetDate = date || get().selectedDate;
+    if (isFutureDate(targetDate)) {
+      targetDate = getTodayDateString();
+    }
     set({
       selectedDate: targetDate,
       editingEntryId: null,
@@ -291,9 +295,11 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
       hasTachycardia,
     });
 
+    const effectiveDate = isFutureDate(selectedDate) ? getTodayDateString() : selectedDate;
+
     const entry: DailySymptomEntry = {
       id: editingEntryId || undefined,
-      date: selectedDate,
+      date: effectiveDate,
       time,
       outputType,
       period,
@@ -316,9 +322,10 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
 
     try {
       await symptomRepository.save(entry);
-      await get().loadDateData(selectedDate);
+      await get().loadDateData(effectiveDate);
 
       set({
+        selectedDate: effectiveDate,
         isSaving: false,
         isFormOpen: false,
         editingEntryId: null,
