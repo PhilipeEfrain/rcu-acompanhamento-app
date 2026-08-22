@@ -27,6 +27,7 @@ const locales = [
   'careGuide.json',
   'tipJar.json',
   'medicalDisclaimer.json',
+  'feedback.json',
 ];
 
 let i18nErrors = 0;
