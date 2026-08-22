@@ -82,7 +82,7 @@ export const CrisisFeedbackBottomSheet: React.FC<CrisisFeedbackBottomSheetProps>
         <View
           style={[
             styles.sheetContainer,
-            { paddingBottom: Math.max(insets.bottom, 20) },
+            { paddingBottom: Math.max(Math.round(insets.bottom / 2), 10) },
           ]}
         >
           <View style={styles.dragIndicator} />
