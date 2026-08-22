@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Modal,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -8,6 +9,8 @@ import {
   View,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import * as NavigationBar from 'expo-navigation-bar';
 import { CrisisEvaluation } from '../../domain/health/types';
 import {
   AlertTriangle,
@@ -32,6 +35,13 @@ export const CrisisFeedbackBottomSheet: React.FC<CrisisFeedbackBottomSheetProps>
   onDismiss,
 }) => {
   const { t } = useTranslation(['crisisFeedback', 'common']);
+  const insets = useSafeAreaInsets();
+
+  useEffect(() => {
+    if (Platform.OS === 'android' && visible) {
+      NavigationBar.setButtonStyleAsync('dark').catch(() => {});
+    }
+  }, [visible]);
 
   if (!feedback) return null;
 
@@ -74,10 +84,20 @@ export const CrisisFeedbackBottomSheet: React.FC<CrisisFeedbackBottomSheetProps>
       visible={visible}
       transparent
       animationType="fade"
+      onShow={() => {
+        if (Platform.OS === 'android') {
+          NavigationBar.setButtonStyleAsync('dark').catch(() => {});
+        }
+      }}
       onRequestClose={onDismiss}
     >
       <View style={styles.overlay}>
-        <View style={styles.sheetContainer}>
+        <View
+          style={[
+            styles.sheetContainer,
+            { paddingBottom: Math.max(Math.round(insets.bottom / 2), 10) },
+          ]}
+        >
           <View style={styles.dragIndicator} />
 
           <ScrollView
@@ -128,7 +148,7 @@ export const CrisisFeedbackBottomSheet: React.FC<CrisisFeedbackBottomSheetProps>
             </View>
 
             {/* Emotional Support & Multidisciplinary Guidance (Issue #11) */}
-            <EmotionalSupportCard compact style={{ marginTop: 16 }} />
+            <EmotionalSupportCard compact unpadded style={{ marginTop: 16 }} />
           </ScrollView>
 
           <View style={styles.footer}>
@@ -162,7 +182,6 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 32,
     borderTopRightRadius: 32,
     paddingTop: 12,
-    paddingBottom: 28,
     paddingHorizontal: 20,
     maxHeight: '85%',
   },
