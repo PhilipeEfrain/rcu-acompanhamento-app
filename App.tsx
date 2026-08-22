@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, AppState, AppStateStatus } from 'react-native';
+import { StyleSheet, View, AppState, AppStateStatus, Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import * as NavigationBar from 'expo-navigation-bar';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import './src/locales/i18n';
@@ -18,6 +19,13 @@ function MainApp() {
   const [activeTab, setActiveTab] = useState<AppTab>('today');
   const [isShieldVisible, setIsShieldVisible] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
+
+  // Configure Android native navigation buttons style
+  useEffect(() => {
+    if (Platform.OS === 'android') {
+      NavigationBar.setButtonStyleAsync('dark').catch(() => {});
+    }
+  }, []);
 
   // Check biometrics lock on startup
   useEffect(() => {

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Modal,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -9,6 +10,7 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import * as NavigationBar from 'expo-navigation-bar';
 import { CrisisEvaluation } from '../../domain/health/types';
 import {
   AlertTriangle,
@@ -34,6 +36,12 @@ export const CrisisFeedbackBottomSheet: React.FC<CrisisFeedbackBottomSheetProps>
 }) => {
   const { t } = useTranslation(['crisisFeedback', 'common']);
   const insets = useSafeAreaInsets();
+
+  useEffect(() => {
+    if (Platform.OS === 'android' && visible) {
+      NavigationBar.setButtonStyleAsync('dark').catch(() => {});
+    }
+  }, [visible]);
 
   if (!feedback) return null;
 
@@ -76,6 +84,11 @@ export const CrisisFeedbackBottomSheet: React.FC<CrisisFeedbackBottomSheetProps>
       visible={visible}
       transparent
       animationType="fade"
+      onShow={() => {
+        if (Platform.OS === 'android') {
+          NavigationBar.setButtonStyleAsync('dark').catch(() => {});
+        }
+      }}
       onRequestClose={onDismiss}
     >
       <View style={styles.overlay}>
