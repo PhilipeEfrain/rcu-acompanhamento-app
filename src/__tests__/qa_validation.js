@@ -121,12 +121,12 @@ console.log('✔ Saída com sangue/muco ao acordar identifica pooling matinal (p
 const mockDailyLogs = [
   {
     date: '2026-08-20',
-    outputType: 'gas_bloody_false_alarm',
+    outputType: 'blood_mucus_only',
     period: 'waking_morning',
     bristolType: 'type_4',
-    bloodPresence: 'traces',
+    bloodPresence: 'severe',
     painLevel: 2,
-    severity: 'mild_activity',
+    severity: 'moderate_to_severe_flare',
     createdAt: Date.now() - 3600000,
   },
   {
@@ -145,13 +145,14 @@ const dailySummary = evaluateDailySummary('2026-08-20', mockDailyLogs);
 if (
   dailySummary.totalMovements !== 2 ||
   dailySummary.totalFecesMovements !== 1 ||
-  dailySummary.totalTenesmusCount !== 1 ||
-  !dailySummary.hasMorningPooling
+  dailySummary.totalBloodMucusOnlyCount !== 1 ||
+  !dailySummary.hasMorningPooling ||
+  !dailySummary.hasBlood
 ) {
   console.error('❌ Falha na agregação do resumo diário:', dailySummary);
   process.exit(1);
 }
-console.log('✔ Resumo diário agrega totalFecesMovements, totalTenesmusCount e hasMorningPooling corretamente.');
+console.log('✔ Resumo diário agrega totalFecesMovements, totalBloodMucusOnlyCount e hasMorningPooling corretamente.');
 
 // 4. Severe Emergency (Truelove & Witts / ASUC)
 const emergencyEval = evaluateCrisis({
@@ -179,8 +180,8 @@ if (emergencyPainEval.severity !== 'severe_emergency') {
 }
 console.log('✔ Dor abdominal aguda extrema (>= 9) dispara Alerta Vermelho de Emergência.');
 
-console.log('\n=== [QA Suite] 4. Validação de Cronologia & Bloqueio de Datas Futuras ===');
-const { getLocalDateString, isFutureDate } = require('../domain/health/dateUtils');
+console.log('\n=== [QA Suite] 4. Validação de Cronologia, Período Automático & Datas Futuras ===');
+const { getLocalDateString, isFutureDate, inferTimePeriod } = require('../domain/health/dateUtils');
 const today = getLocalDateString();
 const tomorrow = new Date(Date.now() + 86400000);
 const tomorrowStr = getLocalDateString(tomorrow);
@@ -201,6 +202,34 @@ if (!isFutureDate(tomorrowStr)) {
 }
 console.log('✔ Verificação de datas futuras (dateUtils.isFutureDate) opera com 100% de precisão.');
 
-console.log('\n✔ Todos os testes de qualidade foram aprovados com sucesso!');
+// BDD: Teste de inferência de períodos automática
+if (inferTimePeriod('08:30') !== 'waking_morning') {
+  console.error('❌ 08:30 deve ser waking_morning!');
+  process.exit(1);
+}
+if (inferTimePeriod('14:45') !== 'afternoon') {
+  console.error('❌ 14:45 deve ser afternoon!');
+  process.exit(1);
+}
+if (inferTimePeriod('22:10') !== 'night' || inferTimePeriod('03:15') !== 'night') {
+  console.error('❌ 22:10 e 03:15 devem ser night!');
+  process.exit(1);
+}
+console.log('✔ Inferência automática de períodos (inferTimePeriod) aprovada para todos os horários.');
 
+console.log('\n=== [QA Suite] 5. Validação de UI & Zero Redundância (Issue #34) ===');
+const dailyLogScreenCode = fs.readFileSync(path.join(__dirname, '../screens/DailyLogScreen.tsx'), 'utf8');
+if (dailyLogScreenCode.includes('<PeriodSelector')) {
+  console.error('❌ PeriodSelector não deve estar presente no JSX de DailyLogScreen!');
+  process.exit(1);
+}
+console.log('✔ PeriodSelector removido da UI (sem redundância de período).');
 
+const outputTypeSelectorCode = fs.readFileSync(path.join(__dirname, '../components/daily-log/OutputTypeSelector.tsx'), 'utf8');
+if (outputTypeSelectorCode.includes('gas_bloody_false_alarm')) {
+  console.error('❌ gas_bloody_false_alarm não deve estar nas opções de OutputTypeSelector!');
+  process.exit(1);
+}
+console.log('✔ Opção de falso alarme / tenesmo removida do OutputTypeSelector.');
+
+console.log('\n✔ Todos os testes de qualidade foram aprovados com 100% de sucesso!');

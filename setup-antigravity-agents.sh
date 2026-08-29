@@ -13,23 +13,22 @@ echo -e "${PURPLE}  🚀 Configurando Agentes RCU + Kanban CLI + i18n no Antigra
 echo -e "${PURPLE}======================================================================${NC}\n"
 
 # ----------------------------------------------------
-# 1. Estrutura de Pastas
+# 1. Estrutura de Pastas (.agents padrão do Antigravity)
 # ----------------------------------------------------
-echo -e "${BLUE}[1/6] Criando estrutura de diretórios...${NC}"
-mkdir -p .antigravity/agents
-mkdir -p .antigravity/skills
-mkdir -p .antigravity/knowledge
-mkdir -p .antigravity/workflows
+echo -e "${BLUE}[1/6] Criando estrutura de diretórios padrão (.agents)...${NC}"
+mkdir -p .agents/rules
+mkdir -p .agents/skills/kanban-operations
+mkdir -p .agents/skills/i18n-guidelines
 mkdir -p src/locales/pt-BR
 mkdir -p src/locales/en-US
 
 # ----------------------------------------------------
-# 2. Configuração dos 8 Agentes com Operação no Kanban
+# 2. Configuração dos 8 Agentes com Operação no Kanban (Rules)
 # ----------------------------------------------------
 echo -e "${BLUE}[2/6] Gerando personas dos 8 Agentes integrados ao Kanban...${NC}"
 
 # @agent-pm
-cat << 'EOF' > .antigravity/agents/01_pm.md
+cat << 'EOF' > .agents/rules/agent-pm.md
 # Persona: Product Manager (@agent-pm)
 **Role:** Estrategista de Produto HealthTech e Operador de Discovery no Kanban.
 
@@ -48,7 +47,7 @@ cat << 'EOF' > .antigravity/agents/01_pm.md
 EOF
 
 # @agent-po
-cat << 'EOF' > .antigravity/agents/02_po.md
+cat << 'EOF' > .agents/rules/agent-po.md
 # Persona: Product Owner (@agent-po)
 **Role:** PO Técnico focado em Retocolite Ulcerativa, BDD e Internacionalização (i18n).
 
@@ -69,7 +68,7 @@ cat << 'EOF' > .antigravity/agents/02_po.md
 EOF
 
 # @agent-flo-ui
-cat << 'EOF' > .antigravity/agents/03_flo_ui.md
+cat << 'EOF' > .agents/rules/agent-flo-ui.md
 # Persona: Flo UI/UX Mobile Designer (@agent-flo-ui)
 **Role:** Especialista em UI/UX Mobile, Design System e Interfaces Orgânicas (estilo Flo).
 
@@ -84,7 +83,7 @@ cat << 'EOF' > .antigravity/agents/03_flo_ui.md
 EOF
 
 # @agent-health-domain
-cat << 'EOF' > .antigravity/agents/04_health_domain.md
+cat << 'EOF' > .agents/rules/agent-health-domain.md
 # Persona: Health & RCU Domain Specialist (@agent-health-domain)
 **Role:** Especialista Clínico em Retocolite Ulcerativa e Classificação de Crises.
 
@@ -104,7 +103,7 @@ cat << 'EOF' > .antigravity/agents/04_health_domain.md
 EOF
 
 # @agent-dev
-cat << 'EOF' > .antigravity/agents/05_dev.md
+cat << 'EOF' > .agents/rules/agent-dev.md
 # Persona: Lead Mobile Developer (@agent-dev)
 **Role:** Tech Lead Mobile em React Native, Expo e TypeScript Strict. **Único agente autorizado a escrever código.**
 
@@ -132,7 +131,7 @@ cat << 'EOF' > .antigravity/agents/05_dev.md
 EOF
 
 # @agent-storage-engine
-cat << 'EOF' > .antigravity/agents/06_storage_engine.md
+cat << 'EOF' > .agents/rules/agent-storage-engine.md
 # Persona: Data & Storage Architect (@agent-storage-engine)
 **Role:** Arquiteto de Dados e Estratégia de Persistência Offline-First.
 
@@ -146,7 +145,7 @@ cat << 'EOF' > .antigravity/agents/06_storage_engine.md
 EOF
 
 # @agent-qa
-cat << 'EOF' > .antigravity/agents/07_qa.md
+cat << 'EOF' > .agents/rules/agent-qa.md
 # Persona: QA & Health Safety Engineer (@agent-qa)
 **Role:** Engenheiro de Qualidade, Integridade Funcional e Paridade de i18n.
 
@@ -163,7 +162,7 @@ cat << 'EOF' > .antigravity/agents/07_qa.md
 EOF
 
 # @agent-sec
-cat << 'EOF' > .antigravity/agents/08_sec.md
+cat << 'EOF' > .agents/rules/agent-sec.md
 # Persona: Security & Health Privacy Specialist (@agent-sec)
 **Role:** Especialista em Privacidade de Dados Médicos (LGPD/HIPAA) e Segurança Mobile.
 
@@ -185,7 +184,12 @@ EOF
 echo -e "${BLUE}[3/6] Gerando Skills, Matriz Clínica e Instruções de Kanban...${NC}"
 
 # Skill: Operações de Kanban via CLI
-cat << 'EOF' > .antigravity/skills/kanban-operations.md
+cat << 'EOF' > .agents/skills/kanban-operations/SKILL.md
+---
+name: kanban-operations
+description: Procedimentos e comandos do GitHub CLI (gh) para gerenciar o Kanban do projeto no GitHub Projects (#4 - PhilipeEfrain).
+---
+
 # Guia de Operações no GitHub Projects (#4 - PhilipeEfrain)
 
 ## Identificação do Projeto
@@ -206,7 +210,12 @@ cat << 'EOF' > .antigravity/skills/kanban-operations.md
 EOF
 
 # Skill: Diretrizes de i18n
-cat << 'EOF' > .antigravity/skills/i18n-guidelines.md
+cat << 'EOF' > .agents/skills/i18n-guidelines/SKILL.md
+---
+name: i18n-guidelines
+description: Diretrizes estritas de Internacionalização (i18n) e tolerância zero a strings hardcoded no projeto.
+---
+
 # Diretrizes Estritas de Internacionalização (i18n)
 
 ## 1. Regra de Tolerância Zero para Strings Hardcoded
@@ -217,4 +226,9 @@ cat << 'EOF' > .antigravity/skills/i18n-guidelines.md
   ```
 EOF
 
-echo -e "\n${GREEN}✔ Configuração dos agentes e diretrizes concluída com sucesso!${NC}"
+# Limpar diretório legado .antigravity se existir
+if [ -d ".antigravity" ]; then
+  rm -rf .antigravity
+fi
+
+echo -e "\n${GREEN}✔ Configuração dos agentes e diretrizes concluída com sucesso no padrão .agents!${NC}"
