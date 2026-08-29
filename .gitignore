@@ -36,6 +36,8 @@ yarn-error.*
 
 # archives
 *.zip
+*.apk
+*.aab
 
 # typescript
 *.tsbuildinfo
