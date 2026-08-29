@@ -77,6 +77,7 @@ interface SymptomState {
 
   startNewEntry: (date?: string) => void;
   startEditEntry: (entry: DailySymptomEntry) => void;
+  cloneEntry: (entry: DailySymptomEntry) => void;
   cancelForm: () => void;
   deleteEntry: (id: string) => Promise<void>;
   loadDateData: (date: string) => Promise<void>;
@@ -84,6 +85,7 @@ interface SymptomState {
   resetToToday: () => Promise<void>;
   closeFeedbackModal: () => void;
   submitDailyLog: () => Promise<CrisisEvaluation>;
+  submitClonedEntry: (lastEntry: DailySymptomEntry) => Promise<CrisisEvaluation>;
 }
 
 const initialTimeString = getCurrentTimeString();
@@ -225,6 +227,27 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
     });
   },
 
+  cloneEntry: (entry: DailySymptomEntry) => {
+    const currentTime = get().time || getCurrentTimeString();
+    set({
+      outputType: entry.outputType || 'feces',
+      bristolType: entry.bristolType || 'type_4',
+      bloodPresence: entry.outputType === 'blood_mucus_only' ? 'severe' : entry.bloodPresence,
+      bloodAspect: entry.outputType === 'blood_mucus_only' ? 'pure_blood' : (entry.bloodAspect || 'none'),
+      painLevel: entry.painLevel ?? 0,
+      notes: entry.notes || '',
+      stressLevel: entry.stressLevel !== undefined ? entry.stressLevel : null,
+      hasClots: Boolean(entry.hasClots),
+      mucusPresence: entry.mucusPresence || 'none',
+      urgencyLevel: entry.urgencyLevel || 'normal',
+      hasFever: Boolean(entry.hasFever),
+      hasDizziness: Boolean(entry.hasDizziness),
+      hasExtremeFatigue: Boolean(entry.hasExtremeFatigue),
+      hasTachycardia: Boolean(entry.hasTachycardia),
+      period: inferTimePeriod(currentTime),
+    });
+  },
+
   cancelForm: () => {
     set({
       isFormOpen: false,
@@ -338,6 +361,77 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
       hasDizziness,
       hasExtremeFatigue,
       hasTachycardia,
+    };
+
+    try {
+      await symptomRepository.save(entry);
+      await get().loadDateData(effectiveDate);
+
+      set({
+        selectedDate: effectiveDate,
+        isSaving: false,
+        isFormOpen: false,
+        editingEntryId: null,
+        activeFeedback: feedback,
+        showFeedbackModal: true,
+      });
+
+      return feedback;
+    } catch (error) {
+      set({ isSaving: false });
+      throw error;
+    }
+  },
+
+  submitClonedEntry: async (lastEntry: DailySymptomEntry) => {
+    const { selectedDate, time } = get();
+    set({ isSaving: true });
+
+    const currentTime = time || getCurrentTimeString();
+    const effectivePeriod = inferTimePeriod(currentTime);
+    const effectiveOutputType = lastEntry.outputType || 'feces';
+    const effectiveBloodPresence = effectiveOutputType === 'blood_mucus_only' ? 'severe' : lastEntry.bloodPresence;
+    const effectiveBloodAspect = effectiveOutputType === 'blood_mucus_only' ? 'pure_blood' : (lastEntry.bloodAspect || 'none');
+    const effectiveBristol = effectiveOutputType === 'feces' ? lastEntry.bristolType : 'type_4';
+
+    const feedback = evaluateCrisis({
+      bristolType: effectiveBristol,
+      bloodPresence: effectiveBloodPresence,
+      painLevel: lastEntry.painLevel,
+      outputType: effectiveOutputType,
+      period: effectivePeriod,
+      bloodAspect: effectiveBloodAspect,
+      hasClots: Boolean(lastEntry.hasClots),
+      mucusPresence: lastEntry.mucusPresence || 'none',
+      urgencyLevel: lastEntry.urgencyLevel || 'normal',
+      hasFever: Boolean(lastEntry.hasFever),
+      hasDizziness: Boolean(lastEntry.hasDizziness),
+      hasExtremeFatigue: Boolean(lastEntry.hasExtremeFatigue),
+      hasTachycardia: Boolean(lastEntry.hasTachycardia),
+    });
+
+    const effectiveDate = isFutureDate(selectedDate) ? getTodayDateString() : selectedDate;
+
+    const entry: DailySymptomEntry = {
+      date: effectiveDate,
+      time: currentTime,
+      outputType: effectiveOutputType,
+      period: effectivePeriod,
+      bristolType: effectiveBristol,
+      bloodPresence: effectiveBloodPresence,
+      bloodAspect: effectiveBloodAspect,
+      painLevel: lastEntry.painLevel,
+      notes: lastEntry.notes?.trim() || undefined,
+      severity: feedback.severity,
+      createdAt: Date.now(),
+      stressLevel: lastEntry.stressLevel !== undefined ? lastEntry.stressLevel : undefined,
+      hasClots: Boolean(lastEntry.hasClots) || effectiveBloodAspect === 'clots',
+      mucusPresence: lastEntry.mucusPresence || 'none',
+      urgencyLevel: lastEntry.urgencyLevel || 'normal',
+      hasFever: Boolean(lastEntry.hasFever),
+      hasDizziness: Boolean(lastEntry.hasDizziness),
+      hasExtremeFatigue: Boolean(lastEntry.hasExtremeFatigue),
+      hasTachycardia: Boolean(lastEntry.hasTachycardia),
     };
 
     try {
