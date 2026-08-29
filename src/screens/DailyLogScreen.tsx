@@ -16,6 +16,8 @@ import { useSymptomStore } from '../store/useSymptomStore';
 import { DailyHeader } from '../components/daily-log/DailyHeader';
 import { DailyTimeline } from '../components/daily-log/DailyTimeline';
 import { TimePickerInput } from '../components/daily-log/TimePickerInput';
+import { RepeatLastLogChip } from '../components/daily-log/RepeatLastLogChip';
+import { RepeatLogModal } from '../components/daily-log/RepeatLogModal';
 import { OutputTypeSelector } from '../components/daily-log/OutputTypeSelector';
 import { BristolPicker } from '../components/daily-log/BristolPicker';
 import { BristolGuideBottomSheet } from '../components/daily-log/BristolGuideBottomSheet';
@@ -37,6 +39,7 @@ export const DailyLogScreen: React.FC = () => {
   const { t } = useTranslation(['dailyLog', 'common']);
   const insets = useSafeAreaInsets();
   const [isCareGuideOpen, setIsCareGuideOpen] = useState(false);
+  const [isRepeatModalOpen, setIsRepeatModalOpen] = useState(false);
 
   const {
     selectedDate,
@@ -77,11 +80,13 @@ export const DailyLogScreen: React.FC = () => {
     toggleTachycardia,
     startNewEntry,
     startEditEntry,
+    cloneEntry,
     cancelForm,
     deleteEntry,
     loadDateData,
     resetToToday,
     submitDailyLog,
+    submitClonedEntry,
     closeFeedbackModal,
   } = useSymptomStore();
 
@@ -122,6 +127,7 @@ export const DailyLogScreen: React.FC = () => {
   };
 
   const isEditing = Boolean(editingEntryId);
+  const lastLog = dayLogs.length > 0 ? dayLogs[dayLogs.length - 1] : null;
 
   return (
     <View style={styles.container}>
@@ -178,6 +184,13 @@ export const DailyLogScreen: React.FC = () => {
             /* Form View (Single episode check-in / edit) */
             <View style={styles.formContainer}>
               <TimePickerInput time={time} onChangeTime={setTime} />
+
+              {!isEditing && lastLog && (
+                <RepeatLastLogChip
+                  lastLog={lastLog}
+                  onPress={() => setIsRepeatModalOpen(true)}
+                />
+              )}
 
               <OutputTypeSelector
                 selectedType={outputType}
@@ -271,6 +284,31 @@ export const DailyLogScreen: React.FC = () => {
             </View>
           )}
         </ScrollView>
+
+        <RepeatLogModal
+          visible={isRepeatModalOpen}
+          lastLog={lastLog}
+          currentTime={time}
+          isSaving={isSaving}
+          onClose={() => setIsRepeatModalOpen(false)}
+          onSaveDirectly={async () => {
+            if (lastLog) {
+              try {
+                await submitClonedEntry(lastLog);
+                setIsRepeatModalOpen(false);
+              } catch (error) {
+                const message = error instanceof Error ? error.message : t('dailyLog:actions.saving');
+                Alert.alert(t('common:error'), message);
+              }
+            }
+          }}
+          onContinueEditing={() => {
+            if (lastLog) {
+              cloneEntry(lastLog);
+              setIsRepeatModalOpen(false);
+            }
+          }}
+        />
 
         <BristolGuideBottomSheet
           visible={isBristolGuideOpen}

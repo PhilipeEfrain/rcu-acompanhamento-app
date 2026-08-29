@@ -117,7 +117,7 @@ if (morningEval.contextualFeedbackKey !== 'crisisFeedback:poolingMorning') {
 }
 console.log('✔ Saída com sangue/muco ao acordar identifica pooling matinal (poolingMorning).');
 
-// 3. Daily Summary with Tenesmus & Stool breakdown
+// 3. Daily Summary with Stool breakdown
 const mockDailyLogs = [
   {
     date: '2026-08-20',
@@ -231,5 +231,19 @@ if (outputTypeSelectorCode.includes('gas_bloody_false_alarm')) {
   process.exit(1);
 }
 console.log('✔ Opção de falso alarme / tenesmo removida do OutputTypeSelector.');
+
+console.log('\n=== [QA Suite] 6. Validação de Repetição de Registro & Modal (Issue #36) ===');
+if (!dailyLogScreenCode.includes('<RepeatLastLogChip') || !dailyLogScreenCode.includes('<RepeatLogModal')) {
+  console.error('❌ RepeatLastLogChip e RepeatLogModal devem estar integrados no DailyLogScreen!');
+  process.exit(1);
+}
+console.log('✔ RepeatLastLogChip e RepeatLogModal integrados no DailyLogScreen.');
+
+const ptDailyLog = JSON.parse(fs.readFileSync(path.join(__dirname, '../locales/pt-BR/dailyLog.json'), 'utf8'));
+if (ptDailyLog.actions.submit !== 'Salvar' || ptDailyLog.actions.update !== 'Salvar') {
+  console.error('❌ actions.submit e actions.update devem ser "Salvar"!');
+  process.exit(1);
+}
+console.log('✔ Botão renomeado para "Salvar" com sucesso em pt-BR.');
 
 console.log('\n✔ Todos os testes de qualidade foram aprovados com 100% de sucesso!');

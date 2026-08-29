@@ -98,9 +98,23 @@
     "title": "Anotações Adicionais (Opcional)",
     "placeholder": "Alimentação diferente, estresse, cansaço..."
   },
+  "repeatModal": {
+    "chipTitle": "Repetir dados da anterior ({{time}})",
+    "chipSummary": "{{bristol}} • {{blood}} • Dor {{pain}}/10",
+    "chipSummaryBloodOnly": "Apenas Sangue/Muco • Dor {{pain}}/10",
+    "title": "Repetir Registro Anterior",
+    "subtitle": "Novo registro para agora ({{currentTime}})",
+    "previousTimeLabel": "Copiando dados da evacuação das {{time}}:",
+    "outputLabel": "Tipo:",
+    "bristolLabel": "Consistência:",
+    "bloodLabel": "Sangue:",
+    "painLabel": "Dor:",
+    "saveNow": "Salvar",
+    "continueEditing": "Continuar editando"
+  },
   "actions": {
-    "submit": "Salvar Evacuação",
-    "update": "Atualizar Evacuação",
+    "submit": "Salvar",
+    "update": "Salvar",
     "editingDate": "Registrando para {{date}}",
     "saving": "Salvando...",
     "success": "Registro salvo com sucesso!"

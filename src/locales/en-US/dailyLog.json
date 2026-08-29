@@ -98,9 +98,23 @@
     "title": "Additional Notes (Optional)",
     "placeholder": "Unusual foods, stress, fatigue..."
   },
+  "repeatModal": {
+    "chipTitle": "Repeat previous log ({{time}})",
+    "chipSummary": "{{bristol}} • {{blood}} • Pain {{pain}}/10",
+    "chipSummaryBloodOnly": "Blood/Mucus only • Pain {{pain}}/10",
+    "title": "Repeat Previous Log",
+    "subtitle": "New log for now ({{currentTime}})",
+    "previousTimeLabel": "Copying details from {{time}} episode:",
+    "outputLabel": "Type:",
+    "bristolLabel": "Consistency:",
+    "bloodLabel": "Blood:",
+    "painLabel": "Pain:",
+    "saveNow": "Save",
+    "continueEditing": "Continue editing"
+  },
   "actions": {
-    "submit": "Save Bowel Movement",
-    "update": "Update Bowel Movement",
+    "submit": "Save",
+    "update": "Save",
     "editingDate": "Logging for {{date}}",
     "saving": "Saving...",
     "success": "Log saved successfully!"
