@@ -68,14 +68,18 @@ export const DayDetailCard: React.FC<DayDetailCardProps> = ({
   let statusTextColor = '#276749';
   let statusLabelKey = 'status.remission';
 
-  if (summary.overallSeverity === 'mild_activity') {
-    statusBadgeBg = '#FEF3C7';
-    statusTextColor = '#92400E';
-    statusLabelKey = 'status.mild_activity';
+  if (summary.overallSeverity === 'severe_emergency') {
+    statusBadgeBg = '#FEE2E2';
+    statusTextColor = '#DC2626';
+    statusLabelKey = 'status.severe_emergency';
   } else if (summary.overallSeverity === 'moderate_to_severe_flare') {
     statusBadgeBg = '#FEE2E2';
     statusTextColor = '#991B1B';
     statusLabelKey = 'status.moderate_to_severe_flare';
+  } else if (summary.overallSeverity === 'mild_activity') {
+    statusBadgeBg = '#FEF3C7';
+    statusTextColor = '#92400E';
+    statusLabelKey = 'status.mild_activity';
   }
 
   return (

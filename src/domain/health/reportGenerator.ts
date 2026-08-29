@@ -5,6 +5,15 @@ import { symptomRepository } from '../../storage/symptomRepository';
 import { DailySymptomEntry, BristolType, BloodPresence } from './types';
 import { TFunction } from 'i18next';
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 export interface ReportStats {
   periodDays: number;
   startDate: string;
@@ -331,7 +340,7 @@ export function buildReportHtml(stats: ReportStats, t: TFunction): string {
       : `<span style="color: #64748B !important; font-style: italic;">Sem alterações</span>`;
 
     const notesContent = log.notes && log.notes.trim().length > 0
-      ? `<div style="background-color: #F8FAFC !important; border-left: 3px solid #7B61FF !important; padding: 4px 8px !important; border-radius: 4px !important; font-style: italic !important; color: #1E293B !important; font-size: 10px !important;">"${log.notes}"</div>`
+      ? `<div style="background-color: #F8FAFC !important; border-left: 3px solid #7B61FF !important; padding: 4px 8px !important; border-radius: 4px !important; font-style: italic !important; color: #1E293B !important; font-size: 10px !important;">"${escapeHtml(log.notes)}"</div>`
       : `<span style="color: #94A3B8 !important;">-</span>`;
 
     return `

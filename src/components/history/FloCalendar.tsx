@@ -145,9 +145,10 @@ export const FloCalendar: React.FC<FloCalendarProps> = ({
 
           let badgeColor: string | null = null;
           if (daySummary) {
-            if (daySummary.severity === 'remission') badgeColor = '#48BB78'; // Soft mint green
+            if (daySummary.severity === 'severe_emergency') badgeColor = '#DC2626'; // Deep Red emergency
+            else if (daySummary.severity === 'moderate_to_severe_flare') badgeColor = '#D85A7F'; // Berry red
             else if (daySummary.severity === 'mild_activity') badgeColor = '#ED8936'; // Warm amber
-            else if (daySummary.severity === 'moderate_to_severe_flare') badgeColor = '#D85A7F'; // Berry red/lavender
+            else if (daySummary.severity === 'remission') badgeColor = '#48BB78'; // Soft mint green
           }
 
           return (
