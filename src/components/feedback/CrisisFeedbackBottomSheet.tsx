@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Modal,
   ScrollView,
@@ -6,9 +6,9 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from 'react-native';
-import { useTranslation } from 'react-i18next';
-import { CrisisEvaluation } from '../../domain/health/types';
+} from "react-native";
+import { useTranslation } from "react-i18next";
+import { CrisisEvaluation } from "../../domain/health/types";
 import {
   AlertTriangle,
   CheckCircle2,
@@ -16,9 +16,9 @@ import {
   Info,
   ShieldAlert,
   Sparkles,
-} from 'lucide-react-native';
+} from "lucide-react-native";
 
-import { EmotionalSupportCard } from './EmotionalSupportCard';
+import { EmotionalSupportCard } from "./EmotionalSupportCard";
 
 interface CrisisFeedbackBottomSheetProps {
   visible: boolean;
@@ -26,44 +26,51 @@ interface CrisisFeedbackBottomSheetProps {
   onDismiss: () => void;
 }
 
-export const CrisisFeedbackBottomSheet: React.FC<CrisisFeedbackBottomSheetProps> = ({
-  visible,
-  feedback,
-  onDismiss,
-}) => {
-  const { t } = useTranslation(['crisisFeedback', 'common']);
+export const CrisisFeedbackBottomSheet: React.FC<
+  CrisisFeedbackBottomSheetProps
+> = ({ visible, feedback, onDismiss }) => {
+  const { t } = useTranslation(["crisisFeedback", "common"]);
 
   if (!feedback) return null;
 
-  const isEmergency = feedback.severity === 'severe_emergency';
-  const isFlare = feedback.severity === 'moderate_to_severe_flare';
-  const isMild = feedback.severity === 'mild_activity';
-  const isRemission = feedback.severity === 'remission';
+  const isEmergency = feedback.severity === "severe_emergency";
+  const isFlare = feedback.severity === "moderate_to_severe_flare";
+  const isMild = feedback.severity === "mild_activity";
+  const isRemission = feedback.severity === "remission";
 
   const getHeaderIcon = () => {
     if (isEmergency) {
       return (
-        <View style={[styles.iconWrapper, { backgroundColor: '#FEE2E2', borderColor: '#DC2626', borderWidth: 2 }]}>
+        <View
+          style={[
+            styles.iconWrapper,
+            {
+              backgroundColor: "#FEE2E2",
+              borderColor: "#DC2626",
+              borderWidth: 2,
+            },
+          ]}
+        >
           <ShieldAlert size={38} color="#DC2626" />
         </View>
       );
     }
     if (isFlare) {
       return (
-        <View style={[styles.iconWrapper, { backgroundColor: '#FEE2E2' }]}>
+        <View style={[styles.iconWrapper, { backgroundColor: "#FEE2E2" }]}>
           <ShieldAlert size={36} color="#EF4444" />
         </View>
       );
     }
     if (isMild) {
       return (
-        <View style={[styles.iconWrapper, { backgroundColor: '#FEF3C7' }]}>
+        <View style={[styles.iconWrapper, { backgroundColor: "#FEF3C7" }]}>
           <AlertTriangle size={36} color="#F59E0B" />
         </View>
       );
     }
     return (
-      <View style={[styles.iconWrapper, { backgroundColor: '#DCFCE7' }]}>
+      <View style={[styles.iconWrapper, { backgroundColor: "#DCFCE7" }]}>
         <CheckCircle2 size={36} color="#10B981" />
       </View>
     );
@@ -115,7 +122,7 @@ export const CrisisFeedbackBottomSheet: React.FC<CrisisFeedbackBottomSheetProps>
               <View style={styles.guidelinesHeader}>
                 <HeartHandshake size={18} color="#7B61FF" />
                 <Text style={styles.guidelinesTitle}>
-                  {t('crisisFeedback:actions.view_guidance')}
+                  {t("crisisFeedback:actions.view_guidance")}
                 </Text>
               </View>
 
@@ -137,11 +144,21 @@ export const CrisisFeedbackBottomSheet: React.FC<CrisisFeedbackBottomSheetProps>
               onPress={onDismiss}
               style={[
                 styles.dismissButton,
-                { backgroundColor: isEmergency ? '#DC2626' : isFlare ? '#EF4444' : '#7B61FF' },
+                {
+                  backgroundColor: isEmergency
+                    ? "#DC2626"
+                    : isFlare
+                      ? "#EF4444"
+                      : "#7B61FF",
+                },
               ]}
             >
               <Text style={styles.dismissButtonText}>
-                {isEmergency ? t('crisisFeedback:actions.emergency_dismiss', { defaultValue: 'Entendido, buscar atendimento' }) : t('crisisFeedback:actions.dismiss')}
+                {isEmergency
+                  ? t("crisisFeedback:actions.emergency_dismiss", {
+                      defaultValue: "Entendido, buscar atendimento",
+                    })
+                  : t("crisisFeedback:actions.dismiss")}
               </Text>
             </TouchableOpacity>
           </View>
@@ -154,116 +171,116 @@ export const CrisisFeedbackBottomSheet: React.FC<CrisisFeedbackBottomSheetProps>
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(15, 23, 42, 0.55)',
-    justifyContent: 'flex-end',
+    backgroundColor: "rgba(15, 23, 42, 0.55)",
+    justifyContent: "flex-end",
   },
   sheetContainer: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: "#FFFFFF",
     borderTopLeftRadius: 32,
     borderTopRightRadius: 32,
     paddingTop: 12,
     paddingBottom: 28,
     paddingHorizontal: 20,
-    maxHeight: '85%',
+    maxHeight: "85%",
   },
   dragIndicator: {
     width: 44,
     height: 5,
     borderRadius: 3,
-    backgroundColor: '#CBD5E1',
-    alignSelf: 'center',
+    backgroundColor: "#CBD5E1",
+    alignSelf: "center",
     marginBottom: 16,
   },
   scrollContent: {
     paddingBottom: 16,
   },
   header: {
-    alignItems: 'center',
+    alignItems: "center",
     marginBottom: 20,
   },
   iconWrapper: {
     width: 72,
     height: 72,
     borderRadius: 36,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     marginBottom: 16,
   },
   title: {
     fontSize: 20,
-    fontWeight: '700',
-    color: '#1E293B',
-    textAlign: 'center',
+    fontWeight: "700",
+    color: "#1E293B",
+    textAlign: "center",
     marginBottom: 8,
   },
   message: {
     fontSize: 14,
-    fontWeight: '400',
-    color: '#475569',
-    textAlign: 'center',
+    fontWeight: "400",
+    color: "#475569",
+    textAlign: "center",
     lineHeight: 21,
     paddingHorizontal: 10,
   },
   contextualBox: {
-    backgroundColor: '#F5F3FF',
+    backgroundColor: "#F5F3FF",
     borderRadius: 20,
     padding: 16,
     borderWidth: 1.5,
-    borderColor: '#DDD6FE',
+    borderColor: "#DDD6FE",
     marginBottom: 14,
   },
   contextualHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 6,
     marginBottom: 6,
   },
   contextualBadge: {
     fontSize: 11,
-    fontWeight: '700',
-    color: '#7C3AED',
-    textTransform: 'uppercase',
+    fontWeight: "700",
+    color: "#7C3AED",
+    textTransform: "uppercase",
     letterSpacing: 0.5,
   },
   contextualTitle: {
     fontSize: 15,
-    fontWeight: '700',
-    color: '#4C1D95',
+    fontWeight: "700",
+    color: "#4C1D95",
     marginBottom: 4,
   },
   contextualMessage: {
     fontSize: 13,
-    color: '#5B21B6',
+    color: "#5B21B6",
     lineHeight: 18,
     marginBottom: 8,
   },
   contextualAction: {
     fontSize: 12,
-    fontWeight: '600',
-    color: '#6D28D9',
+    fontWeight: "600",
+    color: "#6D28D9",
   },
   guidelinesBox: {
-    backgroundColor: '#F8F9FE',
+    backgroundColor: "#F8F9FE",
     borderRadius: 24,
     padding: 18,
     borderWidth: 1,
-    borderColor: '#E2E8F0',
+    borderColor: "#E2E8F0",
     marginTop: 4,
   },
   guidelinesHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 8,
     marginBottom: 12,
   },
   guidelinesTitle: {
     fontSize: 14,
-    fontWeight: '700',
-    color: '#1E293B',
+    fontWeight: "700",
+    color: "#1E293B",
   },
   guidelineItem: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
+    flexDirection: "row",
+    alignItems: "flex-start",
     marginBottom: 10,
     gap: 10,
   },
@@ -271,12 +288,12 @@ const styles = StyleSheet.create({
     width: 6,
     height: 6,
     borderRadius: 3,
-    backgroundColor: '#7B61FF',
+    backgroundColor: "#7B61FF",
     marginTop: 7,
   },
   guidelineText: {
     fontSize: 13,
-    color: '#334155',
+    color: "#334155",
     lineHeight: 19,
     flex: 1,
   },
@@ -286,9 +303,9 @@ const styles = StyleSheet.create({
   dismissButton: {
     height: 54,
     borderRadius: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#7B61FF',
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: "#7B61FF",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 8,
@@ -296,7 +313,7 @@ const styles = StyleSheet.create({
   },
   dismissButtonText: {
     fontSize: 16,
-    fontWeight: '700',
-    color: '#FFFFFF',
+    fontWeight: "700",
+    color: "#FFFFFF",
   },
 });

@@ -28,40 +28,40 @@
 
 ## 💜 Sobre o Projeto
 
-O **RCU Acompanhamento** foi criado para transformar a jornada de acompanhamento da Retocolite Ulcerativa em um momento diário rápido, acolhedor e seguro. O aplicativo combina a fluidez estética e o acolhimento visual do *Flo Health* com o rigor de protocolos clínicos internacionais (**Escore Parcial de Mayo**, **Escala de Bristol** e critérios de emergência médica).
+O **RCU Acompanhamento** foi criado para transformar a jornada de acompanhamento da Retocolite Ulcerativa em um momento diário rápido, acolhedor e seguro. O aplicativo combina a fluidez estética e o acolhimento visual do *Flo Health* com o rigor de protocolos clínicos internacionais (**Escore Parcial de Mayo**, **Escala de Bristol**, **Critérios de Truelove & Witts** e sinais de alarme para Colite Aguda Grave / ASUC).
 
-O projeto é **100% gratuito, de código aberto, livre de anúncios invasivos e opera no modelo *Local-First*** (seus dados nunca saem do seu próprio celular).
+O projeto é **100% gratuito, de código aberto, livre de anúncios invasivos e opera no modelo *Local-First*** (seus dados médicos nunca saem do seu próprio celular).
 
 ---
 
 ## ✨ Funcionalidades Completas
 
-### ⏱️ 1. Registro Clínico em Menos de 15 Segundos
-- **Diferenciação Inteligente de Saídas:** Registra fezes formadas/líquidas, tenesmo falso (*apenas gases com sangue/muco sem fezes*) e acúmulo matinal (*pooling matinal*).
-- **Escala de Bristol Integrada:** Classificação visual de tipos 1 a 7 com ocultação automática quando não há fezes presentes (economizando toques).
-- **Grau de Sangramento & Escala de Dor:** Seletor intuitivo de presença de sangue (ausente, traços, moderado, severo) e slider de dor abdominal de 0 a 10.
-- **Biomarcadores Estendidos (Accordion):** Nível de estresse, presença de coágulos, urgência evacuatória e muco.
+### ⏱️ 1. Registro Clínico Ágil & Zero Redundância (< 15 segundos)
+- **⚡ Repetir Registro Anterior (1-Tap Clone < 2s):** Em crises com até 15 evacuações ao dia, um botão de ação rápida permite clonar os dados do último episódio mantendo o horário atual intacto, com modal de gravação direta ou ajuste contínuo.
+- **🌅 Inferência Automática de Período:** O período (Manhã, Tarde ou Noite) é deduzido automaticamente a partir do horário registrado, eliminando cliques repetitivos.
+- **💩 Diferenciação Inteligente de Saídas:** Registra fezes formadas/líquidas e saída inflamatória exclusiva (*apenas sangue/muco sem bolo fecal*), com ocultação automática dos campos de Bristol e presença de sangue para evitar redundâncias.
+- **📊 Escala de Bristol & Grau de Sangramento:** Classificação visual de tipos 1 a 7 e seletor intuitivo de intensidade de sangramento e dor abdominal (0 a 10).
+- **🔬 Biomarcadores Estendidos (Acordeão):** Nível de estresse, presença de coágulos, urgência evacuatória e muco.
 
-### 🚨 2. Sinais de Alarme Sistêmicos & Protocolo de Emergência Vermelha
+### 🚨 2. Sinais de Alarme Sistêmicos & Protocolo de Emergência Médica
 - **Rastreamento de Sinais Vitais de Crise:** Monitoramento de febre ($\ge 37,8^\circ\text{C}$), tontura/fraqueza, fadiga extrema e taquicardia.
-- **Triagem em Tempo Real:** Disparo imediato de **Alerta Vermelho de Emergência** em casos de dor aguda intensa ($\ge 9$) ou sangramento severo combinado a sinais sistêmicos, com orientações claras para procura de pronto-atendimento hospitalar.
+- **Triagem em Tempo Real:** Disparo imediato de **Alerta Vermelho de Emergência** em casos de dor aguda extrema ($\ge 9$) ou sangramento severo combinado a sinais sistêmicos, com orientações claras para procura de pronto-atendimento hospitalar.
 
-### 📅 3. Calendário Visual & Linha do Tempo (Flo UI)
-- **Visualização Mensal:** Calendário com indicadores coloridos do estado clínico de cada dia.
-- **Timeline de Episódios:** Lista cronológica dos registros do dia com horário, tags de período (Manhã, Tarde, Noite), badges de tenesmo e pooling matinal.
-- **Resumo Diário:** Agregação automática do total de evacuações, episódios com sangue e contagem de tenesmo.
+### 📅 3. Calendário Visual, Linha do Tempo & Indicador de Ciclo Biológico
+- **Indicador Contextual no Header:** O topo do app altera dinamicamente seu ícone e paleta de cores acompanhando o ciclo biológico do paciente (🌅 *Sunrise* de manhã, ☀️ *Sun* de tarde e 🌙 *Moon* à noite).
+- **Calendário Mensal Color-Coded:** Indicadores de estado clínico diário em 4 níveis (*Remissão*, *Alerta Leve*, *Crise Ativa* e *Emergência Médica*).
+- **Timeline de Episódios:** Lista cronológica dos registros do dia com horário, tags de período, badges de pooling matinal e resumo diário consolidado.
 
 ### 📄 4. Exportação de Relatório Clínico em PDF para Gastroenterologista
-- **Geração 100% Offline:** Criação de relatório médico formatado e profissional diretamente no dispositivo via `expo-print` e `expo-sharing`.
+- **Geração 100% Offline & Sanitizada:** Criação de laudo médico formatado e profissional diretamente no dispositivo via `expo-print` e `expo-sharing`, com sanitização estrita contra injeção de código.
 - **Conteúdo do Laudo:**
-  - Média diária de evacuações e episódios de sangramento.
-  - Distribuição percentual da Escala de Bristol.
-  - Histórico de medicamentos contínuos utilizados.
-  - Alertas de sintomas de crise e notas clínicas detalhadas.
+  - Média diária de evacuações e incidência de sangramento.
+  - Gráfico visual de evolução diária e distribuição da Escala de Bristol.
+  - Histórico de medicamentos contínuos e notas clínicas detalhadas.
 
 ### 💊 5. Gestão de Medicamentos Contínuos & Rastreador Diário
 - **Cadastro Personalizado:** Mesalazina (comprimidos, enemas, supositórios), imunossupressores, corticoides, biológicos e suplementos.
-- **Multi-Doses Diárias:** Configuração de posologia por turnos (Manhã, Tarde, Noite).
+- **Multi-Doses Diárias:** Configuração de posologia por turnos e horários flexíveis.
 - **Rastreador na Tela Principal:** Marcação de doses tomadas com 1 toque e cálculo automático de adesão medicamentosa.
 
 ### 🏛️ 6. Guia de Cuidados, Direitos e Acesso ao SUS (CEAF / Alto Custo)
@@ -71,12 +71,9 @@ O projeto é **100% gratuito, de código aberto, livre de anúncios invasivos e 
 - **🩺 Consulta Médica:** Checklist com perguntas essenciais para levar ao gastroenterologista (otimização de dose, calprotectina fecal, imunizações).
 - **⚖️ Seus Direitos:** Lei do Acesso Rápido ao Banheiro (DII), Carteirinha de Identificação DII (ABCD), atendimento prioritário e direitos previdenciários.
 
-### 📊 7. Guia Visual da Escala de Bristol
-- **Catálogo Educativo:** Detalhamento dos 7 formatos de fezes, tempo médio de trânsito intestinal e significado clínico para pacientes com DII.
-
-### 💜 8. Acolhimento Psicoemocional & Suporte Multidisciplinar
+### 💜 7. Acolhimento Psicoemocional & Suporte Multidisciplinar
 - **Mensagens Humanizadas:** Feedback contextual pós-registro sem julgamentos ou positividade tóxica.
-- **Apoio Psicológico:** Orientações sobre a conexão cérebro-intestino, manejo de ansiedade e suporte profissional.
+- **Apoio Multidisciplinar:** Orientações sobre a conexão cérebro-intestino, manejo de ansiedade e apoio de gastroenterologia e psicologia.
 
 ---
 
@@ -86,7 +83,8 @@ O projeto é **100% gratuito, de código aberto, livre de anúncios invasivos e 
 - **Proteção Biométrica:** Exigência de Face ID / Touch ID / Impressão Digital ao abrir ou retomar o app.
 - **Privacy Shield (Anti-Spy):** Ocultação automática de telas sensíveis ao alternar entre aplicativos ou colocar o app em segundo plano.
 - **Portabilidade & Exclusão Total:** Exportação de todos os registros em JSON aberto e função de exclusão irreversível de dados (*Wipe Data*).
-- **Zero Rastreamento:** Sem Google Analytics, sem SDKs de publicidade e sem venda de dados de saúde.
+- **Sanitização de Dados:** Sanitização completa de HTML em laudos exportados.
+- **Zero Telemetria:** Sem Google Analytics, sem SDKs de publicidade e sem venda de dados de saúde.
 
 ---
 
@@ -95,7 +93,7 @@ O projeto é **100% gratuito, de código aberto, livre de anúncios invasivos e 
 - **Tipografia & Cores:** Tons pastéis acolhedores (`#7B61FF`, `#FAF5FF`, `#EDE9FE`, `#F8F9FE`), evitando tons agressivos em momentos de crise.
 - **Ergonomia Móvel:** Área de toque mínima de `44px` em todos os botões e abas.
 - **Blindagem de Layout:** Componentes com `flexShrink: 0` e `numberOfLines={1}` para perfeita legibilidade em qualquer densidade de tela Android e iOS.
-- **Micro-interações:** Feedback tátil e transições suaves em acordeões, sliders e seletores.
+- **Micro-interações:** Feedback tátil e transições suaves em acordeões, sliders, modais e seletores.
 
 ---
 
@@ -108,7 +106,7 @@ O projeto é **100% gratuito, de código aberto, livre de anúncios invasivos e 
 | **Armazenamento** | [expo-sqlite](https://docs.expo.dev/versions/latest/sdk/sqlite/) + [Drizzle ORM](https://orm.drizzle.team/) | Banco relacional local com suporte a migrações e índices |
 | **Estado Global** | [Zustand](https://github.com/pmndrs/zustand) | Gerenciamento de estado leve, desacoplado e performático |
 | **Internacionalização** | [i18next](https://www.i18next.com/) + [react-i18next](https://react.i18next.com/) | 100% de paridade tipada em Português (`pt-BR`) e Inglês (`en-US`) |
-| **Segurança** | [expo-local-authentication](https://docs.expo.dev/versions/latest/sdk/local-authentication/) | Autenticação biométrica nativa |
+| **Segurança** | [expo-local-authentication](https://docs.expo.dev/versions/latest/sdk/local-authentication/) + [expo-secure-store](https://docs.expo.dev/versions/latest/sdk/secure-store/) | Autenticação biométrica nativa e armazenamento seguro de chaves |
 | **Relatórios & PDF** | [expo-print](https://docs.expo.dev/versions/latest/sdk/print/) + [expo-sharing](https://docs.expo.dev/versions/latest/sdk/sharing/) | Geração e compartilhamento nativo de laudos médicos |
 | **Ícones** | [lucide-react-native](https://lucide.dev/) | Iconografia moderna e consistente |
 
@@ -158,12 +156,12 @@ npx tsx src/__tests__/qa_validation.js
 
 ## 🤖 Arquitetura Multi-Agente & Engenharia
 
-O **RCU Care** foi especificado, auditado e desenvolvido utilizando um fluxo colaborativo de agentes especializados no **Antigravity IDE**:
+O **RCU Acompanhamento** é desenvolvido e mantido por um time multidisciplinar de agentes operando sob a especificação do **Antigravity IDE**:
 
 - 👔 **`@agent-pm` (Product Manager):** Visão estratégica, priorização de valor e jornadas clínicas.
 - 📋 **`@agent-po` (Product Owner):** Critérios de aceite BDD, detalhamento de estórias e regras de negócio.
 - 🎨 **`@agent-flo-ui` (Design Specialist):** Interface humanizada, paletas acolhedoras e design system.
-- 🩺 **`@agent-health-domain` (Clinical Specialist):** Protocolos clínicos (Mayo, Bristol, Sinais de Alarme e DII).
+- 🩺 **`@agent-health-domain` (Clinical Specialist):** Protocolos clínicos (Mayo, Bristol, ASUC e DII).
 - 💻 **`@agent-dev` (Lead Mobile Developer):** Implementação em React Native/Expo, componentização e performance.
 - 💾 **`@agent-storage-engine` (Storage Architect):** Modelagem de dados relacional SQLite, migrações e índices.
 - 🧪 **`@agent-qa` (Health Safety QA):** Validação de regras clínicas, testes de paridade i18n e cobertura.
@@ -173,7 +171,7 @@ O **RCU Care** foi especificado, auditado e desenvolvido utilizando um fluxo col
 
 ## ☕ Apoio Comunitário & Tip Jar
 
-O **RCU Care** é um projeto independente e sem fins lucrativos. Caso este aplicativo tenha te ajudado ou feito a diferença na vida de alguém que você ama, você pode contribuir voluntariamente para cobrir os custos de manutenção e taxas de desenvolvedor:
+O **RCU Acompanhamento** é um projeto independente e sem fins lucrativos. Caso este aplicativo tenha te ajudado ou feito a diferença na vida de alguém que você ama, você pode contribuir voluntariamente para cobrir os custos de manutenção e taxas de desenvolvedor:
 
 - 🪙 **PIX (Brasil):** `figueiredogonzalez@live.com` (*Chave de E-mail — Favorecido: Philipe Efrain Figueiredo Gonzalez*)
 - ☕ **Apoio Internacional / Cartão:** [Buy Me a Coffee (buymeacoffee.com/philipe.gonzalez)](https://buymeacoffee.com/philipe.gonzalez)
