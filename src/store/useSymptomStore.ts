@@ -132,7 +132,6 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
         outputType,
         bloodPresence: 'severe',
         bloodAspect: 'pure_blood',
-        mucusPresence: get().mucusPresence === 'none' ? 'mild' : get().mucusPresence,
       });
     } else {
       set({
