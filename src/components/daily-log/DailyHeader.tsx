@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { Calendar, RotateCcw, ArrowLeft, Sparkles } from 'lucide-react-native';
+import { Calendar, RotateCcw, ArrowLeft, Sunrise, Sun, Moon } from 'lucide-react-native';
 import { getLocalDateString } from '../../domain/health/dateUtils';
 
 interface DailyHeaderProps {
@@ -26,12 +26,41 @@ export const DailyHeader: React.FC<DailyHeaderProps> = ({
   const todayString = getLocalDateString();
   const isToday = dateString === todayString;
 
+  const hour = new Date().getHours();
+
   const getGreetingKey = () => {
-    const hour = new Date().getHours();
     if (hour < 12) return 'common:greetingMorning';
     if (hour < 18) return 'common:greetingAfternoon';
     return 'common:greetingEvening';
   };
+
+  const getPeriodTheme = () => {
+    if (hour >= 5 && hour < 12) {
+      return {
+        Icon: Sunrise,
+        color: '#D97706',
+        bgColor: '#FEF3C7',
+        borderColor: '#FDE68A',
+      };
+    }
+    if (hour >= 12 && hour < 18) {
+      return {
+        Icon: Sun,
+        color: '#EA580C',
+        bgColor: '#FFEDD5',
+        borderColor: '#FED7AA',
+      };
+    }
+    return {
+      Icon: Moon,
+      color: '#7C3AED',
+      bgColor: '#F5F3FF',
+      borderColor: '#DDD6FE',
+    };
+  };
+
+  const periodTheme = getPeriodTheme();
+  const PeriodIcon = periodTheme.Icon;
 
   let title = t(getGreetingKey());
   let subtitle = t('dailyLog:subtitle');
@@ -81,8 +110,17 @@ export const DailyHeader: React.FC<DailyHeaderProps> = ({
             <Text style={styles.resetButtonText}>{t('dailyLog:backToToday')}</Text>
           </TouchableOpacity>
         ) : (
-          <View style={styles.iconCircle}>
-            <Sparkles size={16} color="#7B61FF" />
+          <View
+            style={[
+              styles.iconCircle,
+              {
+                backgroundColor: periodTheme.bgColor,
+                borderColor: periodTheme.borderColor,
+                borderWidth: 1,
+              },
+            ]}
+          >
+            <PeriodIcon size={16} color={periodTheme.color} />
           </View>
         )}
       </View>
