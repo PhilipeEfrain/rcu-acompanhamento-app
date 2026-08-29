@@ -12,7 +12,7 @@ import {
   UrgencyLevel,
 } from '../domain/health/types';
 import { evaluateCrisis, evaluateDailySummary } from '../domain/health/evaluateCrisis';
-import { getLocalDateString, isFutureDate } from '../domain/health/dateUtils';
+import { getLocalDateString, isFutureDate, inferTimePeriod } from '../domain/health/dateUtils';
 import { symptomRepository } from '../storage/symptomRepository';
 
 const getCurrentTimeString = () => {
@@ -20,13 +20,6 @@ const getCurrentTimeString = () => {
   const hours = String(now.getHours()).padStart(2, '0');
   const minutes = String(now.getMinutes()).padStart(2, '0');
   return `${hours}:${minutes}`;
-};
-
-const getCurrentPeriod = (): TimePeriod => {
-  const hours = new Date().getHours();
-  if (hours >= 5 && hours < 12) return 'waking_morning';
-  if (hours >= 12 && hours < 18) return 'afternoon';
-  return 'night';
 };
 
 const getTodayDateString = () => getLocalDateString();
@@ -93,12 +86,14 @@ interface SymptomState {
   submitDailyLog: () => Promise<CrisisEvaluation>;
 }
 
+const initialTimeString = getCurrentTimeString();
+
 export const useSymptomStore = create<SymptomState>((set, get) => ({
   selectedDate: getTodayDateString(),
   editingEntryId: null,
-  time: getCurrentTimeString(),
+  time: initialTimeString,
   outputType: 'feces',
-  period: getCurrentPeriod(),
+  period: inferTimePeriod(initialTimeString),
   bristolType: 'type_4',
   bloodPresence: 'none',
   bloodAspect: 'none',
@@ -126,8 +121,27 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
     await get().loadDateData(date);
   },
 
-  setTime: (time: string) => set({ time }),
-  setOutputType: (outputType: OutputType) => set({ outputType }),
+  setTime: (time: string) => {
+    const period = inferTimePeriod(time);
+    set({ time, period });
+  },
+
+  setOutputType: (outputType: OutputType) => {
+    if (outputType === 'blood_mucus_only') {
+      set({
+        outputType,
+        bloodPresence: 'severe',
+        bloodAspect: 'pure_blood',
+        mucusPresence: get().mucusPresence === 'none' ? 'mild' : get().mucusPresence,
+      });
+    } else {
+      set({
+        outputType,
+        bloodPresence: get().bloodPresence === 'severe' && get().bloodAspect === 'pure_blood' ? 'none' : get().bloodPresence,
+      });
+    }
+  },
+
   setPeriod: (period: TimePeriod) => set({ period }),
   setBristolType: (bristolType: BristolType) => set({ bristolType }),
   setBloodPresence: (bloodPresence: BloodPresence) => set({ bloodPresence }),
@@ -163,12 +177,13 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
     if (isFutureDate(targetDate)) {
       targetDate = getTodayDateString();
     }
+    const currentTime = getCurrentTimeString();
     set({
       selectedDate: targetDate,
       editingEntryId: null,
-      time: getCurrentTimeString(),
+      time: currentTime,
       outputType: 'feces',
-      period: getCurrentPeriod(),
+      period: inferTimePeriod(currentTime),
       bristolType: 'type_4',
       bloodPresence: 'none',
       bloodAspect: 'none',
@@ -187,12 +202,13 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
   },
 
   startEditEntry: (entry: DailySymptomEntry) => {
+    const entryTime = entry.time || getCurrentTimeString();
     set({
       selectedDate: entry.date,
       editingEntryId: entry.id || null,
-      time: entry.time || getCurrentTimeString(),
+      time: entryTime,
       outputType: entry.outputType || 'feces',
-      period: entry.period || getCurrentPeriod(),
+      period: entry.period || inferTimePeriod(entryTime),
       bristolType: entry.bristolType,
       bloodPresence: entry.bloodPresence,
       bloodAspect: entry.bloodAspect || (entry.hasClots ? 'clots' : entry.bloodPresence === 'severe' ? 'pure_blood' : entry.bloodPresence === 'moderate' ? 'mixed' : entry.bloodPresence === 'traces' ? 'traces' : 'none'),
@@ -279,13 +295,18 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
 
     set({ isSaving: true });
 
+    const effectivePeriod = period || inferTimePeriod(time);
+    const effectiveBloodPresence = outputType === 'blood_mucus_only' ? 'severe' : bloodPresence;
+    const effectiveBloodAspect = outputType === 'blood_mucus_only' ? 'pure_blood' : bloodAspect;
+    const effectiveBristol = outputType === 'feces' ? bristolType : 'type_4';
+
     const feedback = evaluateCrisis({
-      bristolType: outputType === 'feces' ? bristolType : 'type_4',
-      bloodPresence,
+      bristolType: effectiveBristol,
+      bloodPresence: effectiveBloodPresence,
       painLevel,
       outputType,
-      period,
-      bloodAspect,
+      period: effectivePeriod,
+      bloodAspect: effectiveBloodAspect,
       hasClots,
       mucusPresence,
       urgencyLevel,
@@ -302,16 +323,16 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
       date: effectiveDate,
       time,
       outputType,
-      period,
-      bristolType: outputType === 'feces' ? bristolType : 'type_4',
-      bloodPresence,
-      bloodAspect,
+      period: effectivePeriod,
+      bristolType: effectiveBristol,
+      bloodPresence: effectiveBloodPresence,
+      bloodAspect: effectiveBloodAspect,
       painLevel,
       notes: notes.trim() || undefined,
       severity: feedback.severity,
       createdAt: Date.now(),
       stressLevel: stressLevel !== null ? stressLevel : undefined,
-      hasClots: hasClots || bloodAspect === 'clots',
+      hasClots: hasClots || effectiveBloodAspect === 'clots',
       mucusPresence,
       urgencyLevel,
       hasFever,
@@ -340,4 +361,3 @@ export const useSymptomStore = create<SymptomState>((set, get) => ({
     }
   },
 }));
-

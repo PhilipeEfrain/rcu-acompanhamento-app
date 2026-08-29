@@ -16,7 +16,6 @@ import { useSymptomStore } from '../store/useSymptomStore';
 import { DailyHeader } from '../components/daily-log/DailyHeader';
 import { DailyTimeline } from '../components/daily-log/DailyTimeline';
 import { TimePickerInput } from '../components/daily-log/TimePickerInput';
-import { PeriodSelector } from '../components/daily-log/PeriodSelector';
 import { OutputTypeSelector } from '../components/daily-log/OutputTypeSelector';
 import { BristolPicker } from '../components/daily-log/BristolPicker';
 import { BristolGuideBottomSheet } from '../components/daily-log/BristolGuideBottomSheet';
@@ -44,7 +43,6 @@ export const DailyLogScreen: React.FC = () => {
     editingEntryId,
     time,
     outputType,
-    period,
     bristolType,
     bloodPresence,
     painLevel,
@@ -65,7 +63,6 @@ export const DailyLogScreen: React.FC = () => {
     dailySummary,
     setTime,
     setOutputType,
-    setPeriod,
     setBristolType,
     setBloodPresence,
     setPainLevel,
@@ -182,28 +179,25 @@ export const DailyLogScreen: React.FC = () => {
             <View style={styles.formContainer}>
               <TimePickerInput time={time} onChangeTime={setTime} />
 
-              <PeriodSelector
-                selectedPeriod={period}
-                onSelectPeriod={setPeriod}
-              />
-
               <OutputTypeSelector
                 selectedType={outputType}
                 onSelectType={setOutputType}
               />
 
               {outputType === 'feces' && (
-                <BristolPicker
-                  selectedType={bristolType}
-                  onSelectType={setBristolType}
-                  onOpenGuide={() => setIsBristolGuideOpen(true)}
-                />
-              )}
+                <>
+                  <BristolPicker
+                    selectedType={bristolType}
+                    onSelectType={setBristolType}
+                    onOpenGuide={() => setIsBristolGuideOpen(true)}
+                  />
 
-              <BloodPresencePicker
-                selectedPresence={bloodPresence}
-                onSelectPresence={setBloodPresence}
-              />
+                  <BloodPresencePicker
+                    selectedPresence={bloodPresence}
+                    onSelectPresence={setBloodPresence}
+                  />
+                </>
+              )}
 
               <PainScaleSlider
                 painLevel={painLevel}

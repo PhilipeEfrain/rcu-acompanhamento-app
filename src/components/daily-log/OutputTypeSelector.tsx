@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { Layers, Droplets, Wind } from 'lucide-react-native';
+import { Layers, Droplets } from 'lucide-react-native';
 import { OutputType } from '../../domain/health/types';
 
 interface OutputTypeSelectorProps {
@@ -37,15 +37,6 @@ const OUTPUT_OPTIONS: OutputOption[] = [
     activeColor: '#E11D48',
     activeBg: '#FFF1F2',
     badgeBg: '#FFE4E6',
-  },
-  {
-    id: 'gas_bloody_false_alarm',
-    titleKey: 'dailyLog:outputType.gas_bloody_false_alarm',
-    subtitleKey: 'dailyLog:outputType.gas_bloody_false_alarmSubtitle',
-    icon: Wind,
-    activeColor: '#D97706',
-    activeBg: '#FFFBEB',
-    badgeBg: '#FEF3C7',
   },
 ];
 
