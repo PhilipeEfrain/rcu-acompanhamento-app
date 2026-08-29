@@ -49,7 +49,7 @@ export const EmotionalSupportCard: React.FC<EmotionalSupportCardProps> = ({
   const horizontalPadding = unpadded ? 0 : 20;
 
   return (
-    <View style={[styles.container, style]}>
+    <View style={[styles.container, compact && { marginVertical: 0 }, style]}>
       {/* Section Header */}
       {!compact && (
         <View style={[styles.sectionHeader, { paddingHorizontal: horizontalPadding }]}>

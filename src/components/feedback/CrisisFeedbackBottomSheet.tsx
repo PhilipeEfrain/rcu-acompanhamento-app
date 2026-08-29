@@ -128,7 +128,7 @@ export const CrisisFeedbackBottomSheet: React.FC<CrisisFeedbackBottomSheetProps>
             </View>
 
             {/* Emotional Support & Multidisciplinary Guidance (Issue #11) */}
-            <EmotionalSupportCard compact style={{ marginTop: 16 }} />
+            <EmotionalSupportCard compact unpadded style={{ marginTop: 14 }} />
           </ScrollView>
 
           <View style={styles.footer}>
