@@ -1,11 +1,11 @@
-import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { useTranslation } from 'react-i18next';
-import { PlusCircle, CalendarOff } from 'lucide-react-native';
-import { DailySymptomEntry } from '../../domain/health/types';
-import { evaluateDailySummary } from '../../domain/health/evaluateCrisis';
-import { isFutureDate } from '../../domain/health/dateUtils';
-import { BowelMovementCard } from '../daily-log/BowelMovementCard';
+import React from "react";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { useTranslation } from "react-i18next";
+import { PlusCircle, CalendarOff } from "lucide-react-native";
+import { DailySymptomEntry } from "../../domain/health/types";
+import { evaluateDailySummary } from "../../domain/health/evaluateCrisis";
+import { isFutureDate } from "../../domain/health/dateUtils";
+import { BowelMovementCard } from "../daily-log/BowelMovementCard";
 
 interface DayDetailCardProps {
   date: string;
@@ -22,7 +22,7 @@ export const DayDetailCard: React.FC<DayDetailCardProps> = ({
   onEditEntry,
   onDeleteEntry,
 }) => {
-  const { t } = useTranslation(['history', 'dailyLog', 'common']);
+  const { t } = useTranslation(["history", "dailyLog", "common"]);
 
   const summary = evaluateDailySummary(date, logs);
   const totalCount = logs.length;
@@ -33,10 +33,10 @@ export const DayDetailCard: React.FC<DayDetailCardProps> = ({
       <View style={styles.futureNoticeCard}>
         <CalendarOff size={24} color="#94A3B8" />
         <Text style={styles.dateHeader}>
-          {t('selectedDayTitle', { ns: 'history', date })}
+          {t("selectedDayTitle", { ns: "history", date })}
         </Text>
         <Text style={styles.futureNoticeText}>
-          {t('futureDateNotice', { ns: 'history' })}
+          {t("futureDateNotice", { ns: "history" })}
         </Text>
       </View>
     );
@@ -46,9 +46,11 @@ export const DayDetailCard: React.FC<DayDetailCardProps> = ({
     return (
       <View style={styles.emptyCard}>
         <Text style={styles.dateHeader}>
-          {t('selectedDayTitle', { ns: 'history', date })}
+          {t("selectedDayTitle", { ns: "history", date })}
         </Text>
-        <Text style={styles.emptyText}>{t('noLogSelectedDay', { ns: 'history' })}</Text>
+        <Text style={styles.emptyText}>
+          {t("noLogSelectedDay", { ns: "history" })}
+        </Text>
 
         <TouchableOpacity
           style={styles.quickAddButton}
@@ -57,29 +59,31 @@ export const DayDetailCard: React.FC<DayDetailCardProps> = ({
           accessibilityRole="button"
         >
           <PlusCircle size={18} color="#8E63B8" />
-          <Text style={styles.quickAddText}>{t('addPastLog', { ns: 'history' })}</Text>
+          <Text style={styles.quickAddText}>
+            {t("addPastLog", { ns: "history" })}
+          </Text>
         </TouchableOpacity>
       </View>
     );
   }
 
   // Determine daily overall status color
-  let statusBadgeBg = '#E6F9F0';
-  let statusTextColor = '#276749';
-  let statusLabelKey = 'status.remission';
+  let statusBadgeBg = "#E6F9F0";
+  let statusTextColor = "#276749";
+  let statusLabelKey = "status.remission";
 
-  if (summary.overallSeverity === 'severe_emergency') {
-    statusBadgeBg = '#FEE2E2';
-    statusTextColor = '#DC2626';
-    statusLabelKey = 'status.severe_emergency';
-  } else if (summary.overallSeverity === 'moderate_to_severe_flare') {
-    statusBadgeBg = '#FEE2E2';
-    statusTextColor = '#991B1B';
-    statusLabelKey = 'status.moderate_to_severe_flare';
-  } else if (summary.overallSeverity === 'mild_activity') {
-    statusBadgeBg = '#FEF3C7';
-    statusTextColor = '#92400E';
-    statusLabelKey = 'status.mild_activity';
+  if (summary.overallSeverity === "severe_emergency") {
+    statusBadgeBg = "#FEE2E2";
+    statusTextColor = "#DC2626";
+    statusLabelKey = "status.severe_emergency";
+  } else if (summary.overallSeverity === "moderate_to_severe_flare") {
+    statusBadgeBg = "#FEE2E2";
+    statusTextColor = "#991B1B";
+    statusLabelKey = "status.moderate_to_severe_flare";
+  } else if (summary.overallSeverity === "mild_activity") {
+    statusBadgeBg = "#FEF3C7";
+    statusTextColor = "#92400E";
+    statusLabelKey = "status.mild_activity";
   }
 
   return (
@@ -88,17 +92,19 @@ export const DayDetailCard: React.FC<DayDetailCardProps> = ({
       <View style={styles.headerCard}>
         <View style={styles.headerLeft}>
           <Text style={styles.dateHeader}>
-            {t('selectedDayTitle', { ns: 'history', date })}
+            {t("selectedDayTitle", { ns: "history", date })}
           </Text>
           <View style={styles.badgeRow}>
-            <View style={[styles.statusBadge, { backgroundColor: statusBadgeBg }]}>
+            <View
+              style={[styles.statusBadge, { backgroundColor: statusBadgeBg }]}
+            >
               <Text style={[styles.statusText, { color: statusTextColor }]}>
-                {t(statusLabelKey, { ns: 'common' })}
+                {t(statusLabelKey, { ns: "common" })}
               </Text>
             </View>
             <View style={styles.countBadge}>
               <Text style={styles.countText}>
-                {t('movementsCount', { ns: 'history', count: totalCount })}
+                {t("movementsCount", { ns: "history", count: totalCount })}
               </Text>
             </View>
           </View>
@@ -112,7 +118,9 @@ export const DayDetailCard: React.FC<DayDetailCardProps> = ({
             accessibilityRole="button"
           >
             <PlusCircle size={16} color="#8E63B8" />
-            <Text style={styles.addMoreText}>{t('addNewMovementForDay', { ns: 'history' })}</Text>
+            <Text style={styles.addMoreText}>
+              {t("addNewMovementForDay", { ns: "history" })}
+            </Text>
           </TouchableOpacity>
         )}
       </View>
@@ -138,30 +146,30 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   headerCard: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: "#FFFFFF",
     borderRadius: 20,
     padding: 16,
     marginBottom: 12,
-    shadowColor: '#8E63B8',
+    shadowColor: "#8E63B8",
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.05,
     shadowRadius: 8,
     elevation: 2,
     borderWidth: 1,
-    borderColor: '#F0EFF5',
+    borderColor: "#F0EFF5",
   },
   headerLeft: {
     marginBottom: 12,
   },
   dateHeader: {
     fontSize: 16,
-    fontWeight: '700',
-    color: '#2D3142',
+    fontWeight: "700",
+    color: "#2D3142",
     marginBottom: 6,
   },
   badgeRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 8,
   },
   statusBadge: {
@@ -171,46 +179,46 @@ const styles = StyleSheet.create({
   },
   statusText: {
     fontSize: 11,
-    fontWeight: '700',
+    fontWeight: "700",
   },
   countBadge: {
-    backgroundColor: '#FAF5FF',
+    backgroundColor: "#FAF5FF",
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#E9D8FD',
+    borderColor: "#E9D8FD",
   },
   countText: {
     fontSize: 11,
-    fontWeight: '700',
-    color: '#8E63B8',
+    fontWeight: "700",
+    color: "#8E63B8",
   },
   addMoreButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#FAF5FF',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#FAF5FF",
     paddingVertical: 10,
     borderRadius: 14,
     gap: 6,
     borderWidth: 1,
-    borderColor: '#E9D8FD',
+    borderColor: "#E9D8FD",
   },
   addMoreText: {
     fontSize: 13,
-    fontWeight: '700',
-    color: '#8E63B8',
+    fontWeight: "700",
+    color: "#8E63B8",
   },
   episodesList: {
     gap: 4,
   },
   emptyCard: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: "#FFFFFF",
     borderRadius: 20,
     padding: 24,
-    alignItems: 'center',
-    shadowColor: '#8E63B8',
+    alignItems: "center",
+    shadowColor: "#8E63B8",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.06,
     shadowRadius: 12,
@@ -219,41 +227,41 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     fontSize: 14,
-    color: '#8E94A0',
+    color: "#8E94A0",
     marginTop: 8,
     marginBottom: 16,
-    textAlign: 'center',
+    textAlign: "center",
   },
   futureNoticeCard: {
-    backgroundColor: '#F8FAFC',
+    backgroundColor: "#F8FAFC",
     borderRadius: 20,
     padding: 24,
-    alignItems: 'center',
+    alignItems: "center",
     borderWidth: 1,
-    borderColor: '#E2E8F0',
+    borderColor: "#E2E8F0",
     marginBottom: 24,
     gap: 8,
   },
   futureNoticeText: {
     fontSize: 14,
-    color: '#64748B',
-    textAlign: 'center',
-    fontWeight: '500',
+    color: "#64748B",
+    textAlign: "center",
+    fontWeight: "500",
   },
   quickAddButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#FAF5FF',
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#FAF5FF",
     paddingHorizontal: 16,
     paddingVertical: 10,
     borderRadius: 14,
     gap: 8,
     borderWidth: 1,
-    borderColor: '#E9D8FD',
+    borderColor: "#E9D8FD",
   },
   quickAddText: {
     fontSize: 14,
-    fontWeight: '600',
-    color: '#8E63B8',
+    fontWeight: "600",
+    color: "#8E63B8",
   },
 });

@@ -1,10 +1,13 @@
-import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { useTranslation } from 'react-i18next';
-import { ChevronLeft, ChevronRight } from 'lucide-react-native';
-import { DailySymptomEntry } from '../../domain/health/types';
-import { evaluateDailySummary } from '../../domain/health/evaluateCrisis';
-import { getLocalDateString, isFutureDate } from '../../domain/health/dateUtils';
+import React from "react";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { useTranslation } from "react-i18next";
+import { ChevronLeft, ChevronRight } from "lucide-react-native";
+import { DailySymptomEntry } from "../../domain/health/types";
+import { evaluateDailySummary } from "../../domain/health/evaluateCrisis";
+import {
+  getLocalDateString,
+  isFutureDate,
+} from "../../domain/health/dateUtils";
 
 interface FloCalendarProps {
   currentDate: Date;
@@ -23,34 +26,34 @@ export const FloCalendar: React.FC<FloCalendarProps> = ({
   onPrevMonth,
   onNextMonth,
 }) => {
-  const { t } = useTranslation('history');
+  const { t } = useTranslation("history");
 
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth(); // 0-indexed
 
   const monthNames = [
-    t('months.jan'),
-    t('months.feb'),
-    t('months.mar'),
-    t('months.apr'),
-    t('months.may'),
-    t('months.jun'),
-    t('months.jul'),
-    t('months.aug'),
-    t('months.sep'),
-    t('months.oct'),
-    t('months.nov'),
-    t('months.dec'),
+    t("months.jan"),
+    t("months.feb"),
+    t("months.mar"),
+    t("months.apr"),
+    t("months.may"),
+    t("months.jun"),
+    t("months.jul"),
+    t("months.aug"),
+    t("months.sep"),
+    t("months.oct"),
+    t("months.nov"),
+    t("months.dec"),
   ];
 
   const weekDayKeys = [
-    t('weekDays.sun'),
-    t('weekDays.mon'),
-    t('weekDays.tue'),
-    t('weekDays.wed'),
-    t('weekDays.thu'),
-    t('weekDays.fri'),
-    t('weekDays.sat'),
+    t("weekDays.sun"),
+    t("weekDays.mon"),
+    t("weekDays.tue"),
+    t("weekDays.wed"),
+    t("weekDays.thu"),
+    t("weekDays.fri"),
+    t("weekDays.sat"),
   ];
 
   // Calculate days in month & starting weekday
@@ -135,7 +138,8 @@ export const FloCalendar: React.FC<FloCalendarProps> = ({
           }
 
           const dayFormatted = dayNum < 10 ? `0${dayNum}` : `${dayNum}`;
-          const monthFormatted = month + 1 < 10 ? `0${month + 1}` : `${month + 1}`;
+          const monthFormatted =
+            month + 1 < 10 ? `0${month + 1}` : `${month + 1}`;
           const dateString = `${year}-${monthFormatted}-${dayFormatted}`;
 
           const isSelected = selectedDate === dateString;
@@ -145,12 +149,11 @@ export const FloCalendar: React.FC<FloCalendarProps> = ({
 
           let badgeColor: string | null = null;
           if (daySummary) {
-            if (daySummary.severity === 'severe_emergency') badgeColor = '#DC2626'; // Deep Red emergency
-            else if (daySummary.severity === 'moderate_to_severe_flare') badgeColor = '#D85A7F'; // Berry red
-            else if (daySummary.severity === 'mild_activity') badgeColor = '#ED8936'; // Warm amber
-            else if (daySummary.severity === 'remission') badgeColor = '#48BB78'; // Soft mint green
+            if (daySummary.severity === "severe_emergency")
+              badgeColor = "#DC2626"; // Deep Red emergency
+            else if (daySummary.severity === "remission")
+              badgeColor = "#48BB78"; // Soft mint green
           }
-
           return (
             <TouchableOpacity
               key={`day-${dateString}`}
@@ -167,7 +170,7 @@ export const FloCalendar: React.FC<FloCalendarProps> = ({
               accessibilityState={{ disabled: isFuture, selected: isSelected }}
               accessibilityLabel={
                 isFuture
-                  ? `${dayNum}, ${t('history:futureDayDisabled')}`
+                  ? `${dayNum}, ${t("history:futureDayDisabled")}`
                   : `${dayNum}`
               }
             >
@@ -183,7 +186,9 @@ export const FloCalendar: React.FC<FloCalendarProps> = ({
               </Text>
 
               {badgeColor && (
-                <View style={[styles.statusDot, { backgroundColor: badgeColor }]} />
+                <View
+                  style={[styles.statusDot, { backgroundColor: badgeColor }]}
+                />
               )}
             </TouchableOpacity>
           );
@@ -195,10 +200,10 @@ export const FloCalendar: React.FC<FloCalendarProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: "#FFFFFF",
     borderRadius: 24,
     padding: 16,
-    shadowColor: '#8E63B8',
+    shadowColor: "#8E63B8",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.06,
     shadowRadius: 12,
@@ -206,80 +211,80 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     marginBottom: 16,
     paddingHorizontal: 8,
   },
   monthTitle: {
     fontSize: 17,
-    fontWeight: '700',
-    color: '#2D3142',
+    fontWeight: "700",
+    color: "#2D3142",
   },
   navButton: {
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: '#F5EEFB',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "#F5EEFB",
+    justifyContent: "center",
+    alignItems: "center",
   },
   weekdaysRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around",
     marginBottom: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#F0EFF5',
+    borderBottomColor: "#F0EFF5",
     paddingBottom: 8,
   },
   weekdayLabel: {
     fontSize: 12,
-    fontWeight: '600',
-    color: '#8E94A0',
-    textAlign: 'center',
+    fontWeight: "600",
+    color: "#8E94A0",
+    textAlign: "center",
     width: 38,
   },
   grid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
   },
   dayCell: {
     width: 42,
     height: 44,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     borderRadius: 14,
     marginVertical: 2,
   },
   selectedDayCell: {
-    backgroundColor: '#8E63B8',
+    backgroundColor: "#8E63B8",
   },
   todayDayCell: {
     borderWidth: 1.5,
-    borderColor: '#8E63B8',
-    backgroundColor: '#FAF5FF',
+    borderColor: "#8E63B8",
+    backgroundColor: "#FAF5FF",
   },
   dayText: {
     fontSize: 14,
-    fontWeight: '500',
-    color: '#2D3142',
+    fontWeight: "500",
+    color: "#2D3142",
   },
   selectedDayText: {
-    color: '#FFFFFF',
-    fontWeight: '700',
+    color: "#FFFFFF",
+    fontWeight: "700",
   },
   todayDayText: {
-    color: '#8E63B8',
-    fontWeight: '700',
+    color: "#8E63B8",
+    fontWeight: "700",
   },
   futureDayCell: {
     opacity: 0.35,
   },
   futureDayText: {
-    color: '#94A3B8',
-    fontWeight: '400',
+    color: "#94A3B8",
+    fontWeight: "400",
   },
   statusDot: {
     width: 6,
