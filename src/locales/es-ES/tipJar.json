@@ -1,0 +1,25 @@
+{
+  "title": "Apoya a RCU Acompanhamento",
+  "subtitle": "Contribución voluntaria para mantener el proyecto gratuito y en evolución",
+  "cardTitle": "Apoyo Voluntario & Sostenibilidad",
+  "cardDesc": "RCU Acompanhamento es 100% gratuito, de código abierto y sin anuncios para todas las personas con EII.",
+  "philosophyBadge": "100% Gratuito & Abierto",
+  "philosophyTitle": "¿Por qué RCU Acompanhamento es Gratuito?",
+  "philosophyDesc": "Creemos que el seguimiento de la salud no debe tener barreras de acceso. Ninguna función de esta aplicación está o estará bloqueada por pago. Tu donación es una contribución voluntaria para cubrir costes de mantenimiento, certificados y nuevas funciones clínicas.",
+  "pixSectionTitle": "Donación Rápida vía PIX (Brasil)",
+  "pixSectionDesc": "Contribuye con cualquier valor directo desde tu cuenta bancaria sin intermediarios ni comisiones:",
+  "pixKeyLabel": "Clave PIX (E-mail):",
+  "pixRecipientLabel": "Beneficiario:",
+  "copyPixButton": "Copiar Clave PIX",
+  "copiedPixToast": "¡Clave PIX copiada con éxito!",
+  "pasteInBankTip": "💡 Abre la app de tu banco y pega en la opción PIX > Clave de E-mail.",
+  "internationalTitle": "Apoyo Internacional / Otros Medios",
+  "internationalDesc": "¿Prefieres donar con tarjeta de crédito o apoyar el código abierto?",
+  "buyMeCoffeeButton": "Invitar a un Café (Buy Me a Coffee)",
+  "githubSponsorsButton": "Ver Proyecto en GitHub",
+  "thankYouTitle": "¡Gratitud de Corazón! 💜",
+  "thankYouDesc": "Gracias a cada persona que apoya y ayuda a construir una herramienta cada vez más acogedora y segura para quienes viven con EII.",
+  "actions": {
+    "close": "Cerrar"
+  }
+}

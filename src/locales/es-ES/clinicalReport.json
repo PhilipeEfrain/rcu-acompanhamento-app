@@ -1,0 +1,57 @@
+{
+  "title": "Exportar Informe Clínico",
+  "subtitle": "Genera un PDF estructurado para presentar a tu gastroenterólogo",
+  "selectPeriod": "Selecciona el período del informe:",
+  "periods": {
+    "days15": "Últimos 15 días",
+    "days30": "Últimos 30 días",
+    "days90": "Últimos 90 días"
+  },
+  "summaryCard": {
+    "title": "Resumen de Datos del Período",
+    "totalEpisodes": "Total de evacuaciones:",
+    "dateRange": "Intervalo: {{start}} hasta {{end}}",
+    "noData": "Ningún registro de evacuación encontrado en el período seleccionado."
+  },
+  "generating": "Compilando informe en PDF...",
+  "generateButton": "Generar y Compartir PDF",
+  "close": "Cerrar",
+  "errorGenerating": "Ocurrió un error al generar el informe. Inténtalo de nuevo.",
+  "pdf": {
+    "documentTitle": "Informe Clínico de Seguimiento — Colitis Ulcerosa (CU)",
+    "generatedOn": "Emitido el: {{date}} a las {{time}}",
+    "periodLabel": "Período Analizado: {{start}} a {{end}} ({{days}} días)",
+    "patientSummaryTitle": "1. Síntesis Clínica del Período",
+    "totalMovements": "Total de Evacuaciones",
+    "dailyAverage": "Media Diaria",
+    "bloodIncidence": "Episodios c/ Sangre",
+    "avgPain": "Dolor Medio (0-10)",
+    "avgStress": "Estrés Medio (0-10)",
+    "clotsIncidence": "Episodios c/ Coágulos",
+    "mucusIncidence": "Episodios c/ Moco",
+    "urgencyIncidence": "Episodios c/ Urgencia",
+    "dailyTrendTitle": "2. Evolución Cronológica Diaria (Frecuencia y Gravedad de las Evacuaciones)",
+    "normalThreshold": "Meta de remisión (≤ 2 evacuaciones/día)",
+    "chartLegend": {
+      "remission": "Remisión (0-2 evacuaciones sin sangre)",
+      "mild": "Actividad Leve (3-4 evacuaciones o trazas)",
+      "flare": "Brote / Alerta (5+ evacuaciones o sangre evidente)"
+    },
+    "bristolTitle": "3. Distribución de la Consistencia Fecal (Escala de Bristol)",
+    "bloodTitle": "4. Perfil de Sangrado y Biomarcadores",
+    "tableTitle": "5. Registro Cronológico Detallado de las Evacuaciones",
+    "colDate": "Fecha",
+    "colTime": "Hora",
+    "colBristol": "Bristol",
+    "colBlood": "Sangre",
+    "colPain": "Dolor",
+    "colExtra": "Biomarcadores",
+    "colNotes": "Notas del Paciente",
+    "noNotes": "-",
+    "none": "Ninguno",
+    "traces": "Trazas",
+    "moderate": "Evidente",
+    "severe": "Intenso",
+    "confidentialityNotice": "Documento confidencial generado por el paciente a través de la aplicación de monitorización de CU. Los datos reflejan el autorreporte diario de síntomas para apoyo en la consulta médica. En conformidad con el RGPD y directrices de confidencialidad médica."
+  }
+}

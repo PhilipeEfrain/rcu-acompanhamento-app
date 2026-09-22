@@ -1,0 +1,80 @@
+{
+  "title": "Guía de la Escala de Bristol",
+  "subtitle": "Comprende la consistencia de las heces y el reflejo en tu CU",
+  "selectPrompt": "Toca una tarjeta para seleccionarla directamente en el formulario",
+  "tabs": {
+    "all": "Todos (7)",
+    "constipation": "Estreñimiento (1-2)",
+    "ideal": "Ideal / Remisión (3-4)",
+    "diarrhea": "Diarrea / Inflamación (5-7)"
+  },
+  "headerTip": {
+    "title": "¿Cómo interpretar en la Colitis Ulcerosa?",
+    "desc": "El Tipo 4 es el estándar de oro de remisión clínica (mucosa cicatrizada). Los Tipos 6 y 7 revelan tránsito acelerado por inflamación activa, exigiendo hidratación inmediata y atención a los síntomas."
+  },
+  "labels": {
+    "transit": "Tiempo en el colon:",
+    "meaning": "Significado en la CU:",
+    "care": "Orientación de cuidado:"
+  },
+  "type1": {
+    "title": "Tipo 1: Trozos duros separados",
+    "shapeDesc": "Pequeñas bolitas duras y secas, semejantes a nueces, difíciles de evacuar.",
+    "transitTime": "> 100 horas (tránsito excesivamente lento)",
+    "clinicalMeaning": "Estreñimiento severo. El colon reabsorbió casi toda el agua. Puede generar esfuerzo y fisuras.",
+    "actionTip": "Aumenta la ingesta de agua y consulta con tu gastroenterólogo sobre fibras solubles adecuadas para CU."
+  },
+  "type2": {
+    "title": "Tipo 2: Forma de salchicha nudosa",
+    "shapeDesc": "Masa cilíndrica firme con varios grumos y relieve irregular agrupado.",
+    "transitTime": "~72 horas (tránsito lento)",
+    "clinicalMeaning": "Estreñimiento leve. Heces compactadas que indican paso prolongado por el intestino.",
+    "actionTip": "Mantén una hidratación constante a lo largo del día y evita retener las ganas de evacuar."
+  },
+  "type3": {
+    "title": "Tipo 3: Salchicha con grietas en la superficie",
+    "shapeDesc": "Forma cilíndrica alargada con pequeñas grietas superficiales, fácil de evacuar.",
+    "transitTime": "~48 horas (tránsito normal)",
+    "clinicalMeaning": "Consistencia saludable y equilibrada. Indica buena absorción de nutrientes e hidratación.",
+    "actionTip": "Excelente patrón. Continúa con tu rutina actual de alimentación y medicamentos prescritos."
+  },
+  "type4": {
+    "title": "Tipo 4: Salchicha suave, lisa y blanda",
+    "shapeDesc": "Forma de serpiente o salchicha lisa y suave. Se desliza sin esfuerzo ni molestia.",
+    "transitTime": "~30 a 40 horas (estándar de oro)",
+    "clinicalMeaning": "¡Ideal! Representa el objetivo clínico de remisión de la CU, con la mucosa cólica desinflamada.",
+    "actionTip": "¡Meta alcanzada! Mantén la adherencia estricta al tratamiento de mantenimiento prescrito por tu especialista."
+  },
+  "type5": {
+    "title": "Tipo 5: Trozos blandos con bordes definidos",
+    "shapeDesc": "Trozos pastosos y blandos con bordes claros, evacuados con facilidad.",
+    "transitTime": "~18 a 24 horas (tránsito acelerado)",
+    "clinicalMeaning": "Tendencia a diarrea. El colon comenzó a acelerar el paso de las heces sin reabsorber toda el agua.",
+    "actionTip": "Observa si hay evolución hacia heces más líquidas en las siguientes visitas y refuerza la ingesta de líquidos."
+  },
+  "type6": {
+    "title": "Tipo 6: Trozos esponjosos, deshechos y pastosos",
+    "shapeDesc": "Heces pastosas y deshechas, con bordes desgarrados y sin consistencia firme.",
+    "transitTime": "~10 a 14 horas (tránsito rápido)",
+    "clinicalMeaning": "Diarrea leve a moderada. Frecuente en fases de actividad inflamatoria de la CU o intolerancias.",
+    "actionTip": "Evita alimentos ultraprocesados o irritantes, hidrátate con agua y suero oral y vigila moco/sangre."
+  },
+  "type7": {
+    "title": "Tipo 7: Totalmente líquido sin partes sólidas",
+    "shapeDesc": "Consistencia acuosa y fluida, sin ningún trozo sólido presente.",
+    "transitTime": "< 10 horas (tránsito muy rápido)",
+    "clinicalMeaning": "Diarrea severa / Hiperactividad inflamatoria. La mucosa no está logrando retener agua.",
+    "actionTip": "¡Alerta de deshidratación! Bebe suero oral/agua de coco. Si persiste con sangre o fiebre, contacta a tu médico."
+  },
+  "status": {
+    "constipation": "Estreñimiento Severo",
+    "mildConstipation": "Estreñimiento Leve",
+    "normal": "Normal / Saludable",
+    "ideal": "Meta CU (Ideal)",
+    "mildDiarrhea": "Heces Blandas",
+    "diarrhea": "Diarrea / Inflamación",
+    "severeDiarrhea": "Diarrea Severa / Brote"
+  },
+  "close": "Cerrar Guía",
+  "guideButton": "Guía Bristol"
+}

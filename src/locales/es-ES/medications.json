@@ -1,0 +1,60 @@
+{
+  "title": "Medicamentos Continuos",
+  "subtitle": "Sigue y confirma la toma diaria de tus tratamientos",
+  "dailyCard": {
+    "title": "Medicamentos del Día",
+    "subtitle": "Toca la píldora para confirmar la dosis",
+    "allTaken": "¡Todos los medicamentos han sido tomados hoy! 💜",
+    "pending": "{{count}} dosis pendiente",
+    "pending_other": "{{count}} dosis pendientes",
+    "taken": "Tomado",
+    "toTake": "Pendiente",
+    "manageButton": "Gestionar",
+    "emptyTitle": "Ningún medicamento activo registrado",
+    "emptyDesc": "Registra tus tratamientos continuos para seguir tu rutina y adherencia.",
+    "addFirst": "Registrar Medicamento",
+    "doseLabel": "{{current}}/{{total}}ª dosis"
+  },
+  "form": {
+    "addTitle": "Nuevo Medicamento",
+    "editTitle": "Editar Medicamento",
+    "nameLabel": "Nombre del Medicamento",
+    "namePlaceholder": "Ej: Mesalazina, Azatioprina, Infliximab...",
+    "dosageLabel": "Dosis",
+    "dosagePlaceholder": "Ej: 1200mg, 50mg, 4g...",
+    "frequencyLabel": "Frecuencia de Uso",
+    "frequencies": {
+      "daily": "1x al día (Diario)",
+      "twice_daily": "2x al día",
+      "three_times_daily": "3x al día",
+      "weekly": "Semanal",
+      "biweekly": "Cada 2 semanas (Biológico)",
+      "every_eight_weeks": "Cada 8 semanas (Infusión)"
+    },
+    "timeLabel": "Horario Habitual",
+    "timePlaceholder": "08:00",
+    "timesLabel": "Horarios Programados de las Dosis",
+    "doseTime": "Horario de la {{index}}ª dosis",
+    "doseCountDesc": "Define los {{count}} horarios a lo largo del día para este medicamento",
+    "instructionsLabel": "Instrucciones u Observaciones (Opcional)",
+    "instructionsPlaceholder": "Ej: Tomar después del almuerzo con agua",
+    "quickSuggestions": "Tratamientos comunes de CU:",
+    "saveButton": "Guardar Medicamento",
+    "cancel": "Cancelar",
+    "validationError": "Por favor, completa el nombre y la dosis del medicamento."
+  },
+  "manager": {
+    "title": "Gestor de Medicamentos",
+    "subtitle": "Tratamientos continuos para Colitis Ulcerosa",
+    "addNew": "Añadir Nuevo Medicamento",
+    "activeList": "Medicamentos en Uso ({{count}})",
+    "inactiveList": "Tratamientos Pausados ({{count}})",
+    "pause": "Pausar",
+    "resume": "Reactivar",
+    "delete": "Eliminar",
+    "deleteConfirmTitle": "Eliminar Medicamento",
+    "deleteConfirmMessage": "¿Realmente deseas eliminar este medicamento y su historial?",
+    "emptyActive": "Ningún medicamento activo.",
+    "emptyInactive": "Ningún tratamiento pausado."
+  }
+}

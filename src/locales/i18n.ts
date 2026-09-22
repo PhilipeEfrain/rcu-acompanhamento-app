@@ -28,6 +28,19 @@ import enUSMedications from './en-US/medications.json';
 import enUSCareGuide from './en-US/careGuide.json';
 import enUSTipJar from './en-US/tipJar.json';
 
+import esESCommon from './es-ES/common.json';
+import esESDailyLog from './es-ES/dailyLog.json';
+import esESCrisisFeedback from './es-ES/crisisFeedback.json';
+import esESHistory from './es-ES/history.json';
+import esESSettings from './es-ES/settings.json';
+import esESClinicalExtras from './es-ES/clinicalExtras.json';
+import esESBristolGuide from './es-ES/bristolGuide.json';
+import esESEmotionalSupport from './es-ES/emotionalSupport.json';
+import esESClinicalReport from './es-ES/clinicalReport.json';
+import esESMedications from './es-ES/medications.json';
+import esESCareGuide from './es-ES/careGuide.json';
+import esESTipJar from './es-ES/tipJar.json';
+
 const resources = {
   'pt-BR': {
     common: ptBRCommon,
@@ -57,11 +70,27 @@ const resources = {
     careGuide: enUSCareGuide,
     tipJar: enUSTipJar,
   },
+  'es-ES': {
+    common: esESCommon,
+    dailyLog: esESDailyLog,
+    crisisFeedback: esESCrisisFeedback,
+    history: esESHistory,
+    settings: esESSettings,
+    clinicalExtras: esESClinicalExtras,
+    bristolGuide: esESBristolGuide,
+    emotionalSupport: esESEmotionalSupport,
+    clinicalReport: esESClinicalReport,
+    medications: esESMedications,
+    careGuide: esESCareGuide,
+    tipJar: esESTipJar,
+  },
 };
 
 const systemLocales = Localization.getLocales();
 const deviceLanguage = systemLocales && systemLocales.length > 0 ? systemLocales[0].languageTag : 'pt-BR';
-const initialLanguage = deviceLanguage.startsWith('en') ? 'en-US' : 'pt-BR';
+const initialLanguage = deviceLanguage.startsWith('es')
+  ? 'es-ES'
+  : (deviceLanguage.startsWith('en') ? 'en-US' : 'pt-BR');
 
 i18n.use(initReactI18next).init({
   resources,

@@ -1,0 +1,49 @@
+{
+  "remission": {
+    "title": "Cuadro Estable / En Remisión",
+    "message": "¡Excelente noticia! Tus registros indican estabilidad intestinal hoy. Continúa manteniendo tus hábitos y medicamentos prescritos.",
+    "care_habits": "Mantén la dieta equilibrada y la hidratación diaria.",
+    "care_medication": "Continúa con el tratamiento de mantenimiento según lo prescrito por tu médico."
+  },
+  "mild": {
+    "title": "Actividad Leve Observada",
+    "message": "Notamos algunas alteraciones leves. Bebe abundante agua, evita alimentos irritantes y continúa monitoreando tus próximas evacuaciones.",
+    "care_hydration": "Bebe al menos 2 a 3 litros de agua y líquidos claros a lo largo del día.",
+    "care_diet": "Evita alimentos grasos, ultraprocesados, exceso de café y lactosa si eres sensible.",
+    "care_monitor": "Observa si los síntomas persisten por más de 48 horas."
+  },
+  "flare": {
+    "title": "Alerta de Brote: Apoyo y Cuidados",
+    "message": "Respira hondo, los momentos de brote son difíciles pero temporales. Estamos contigo. Consulta las pautas de seguridad a continuación:",
+    "care_hydration": "Hidrátate con agua y suero oral o soluciones electrolíticas para reponer pérdidas.",
+    "care_no_nsaids": "ATENCIÓN: NUNCA tomes antiinflamatorios (AINEs como ibuprofeno, ketoprofeno o diclofenaco), ya que inflaman la mucosa intestinal.",
+    "care_contact_doctor": "Avisa a tu médico gastroenterólogo sobre el aumento de frecuencia o presencia de sangre.",
+    "care_red_flags": "Acude a urgencias inmediatamente si tienes fiebre superior a 38°C, mareos intensos, debilidad extrema o sangrado abundante continuo."
+  },
+  "poolingMorning": {
+    "title": "Acumulación Nocturna de Sangre (Pooling)",
+    "badge": "Informativo Clínico",
+    "message": "Durante la noche, el reposo facilita la acumulación de sangre y moco en la ampolla rectal. Al despertar, la expulsión de este volumen con gases es esperada y no indica necesariamente un sangrado activo continuo.",
+    "action": "Monitorea las próximas evacuaciones del día con calma."
+  },
+  "tenesmusSupport": {
+    "title": "Urgencia con Gases (Tenesmo Rectal)",
+    "badge": "Apoyo Emocional",
+    "message": "La inflamación en la mucosa rectal envía señales falsas de urgencia al cerebro. Sentir una necesidad intensa y eliminar solo gases o estrías es parte del cuadro inflamatorio.",
+    "action": "Respira hondo. No hiciste nada malo."
+  },
+  "emergency": {
+    "title": "🚨 ALERTA ROJA: Busca Atención Médica Inmediatamente",
+    "badge": "Emergencia Médica",
+    "message": "Identificamos una combinación de síntomas con riesgo potencial para tu salud (sangrado significativo asociado a signos sistémicos de fiebre/mareo o dolor agudo). No dudes en acudir a un centro de urgencias ahora.",
+    "care_hospital": "Dirígete a urgencias o contacta a tu gastroenterólogo con máxima urgencia.",
+    "care_hydration": "Mantente hidratado con pequeños sorbos de agua o suero durante el traslado.",
+    "care_no_nsaids": "ATENCIÓN: NUNCA tomes antiinflamatorios (ibuprofeno, diclofenaco, ketoprofeno), ya que agravan severamente el sangrado intestinal.",
+    "care_monitor": "Presenta el historial de la aplicación o exporta el informe en PDF en el triaje médico."
+  },
+  "actions": {
+    "view_guidance": "Ver Pautas Clínicas",
+    "dismiss": "¡Entendido, gracias!",
+    "emergency_dismiss": "Entendido, buscar atención"
+  }
+}

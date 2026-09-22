@@ -1,0 +1,62 @@
+{
+  "title": "Historial y Patrones",
+  "subtitle": "Sigue la evolución de tu bienestar",
+  "monthlySummary": "Resumen del Mes",
+  "remissionDays": "Días en Remisión",
+  "mildDays": "Días de Alerta",
+  "flareDays": "Días de Brote",
+  "totalMovements": "Total de Evacuaciones",
+  "noLogsThisMonth": "Ningún registro encontrado para este mes.",
+  "selectedDayTitle": "Registro del día {{date}}",
+  "noLogSelectedDay": "Ninguna evacuación registrada en este día.",
+  "quickAddToday": "Registrar síntomas de hoy",
+  "editDayLog": "Editar",
+  "addPastLog": "Registrar visita al baño",
+  "futureDateNotice": "No es posible registrar síntomas en fechas futuras.",
+  "futureDayDisabled": "Fecha futura no disponible para registro",
+  "dayMovements": "Evacuaciones del Día ({{count}})",
+  "movementsCount": "{{count}} evacuaciones",
+  "addNewMovementForDay": "Nueva Evacuación en este Día",
+  "legend": {
+    "title": "Leyenda Clínica",
+    "remission": "Remisión / Estable",
+    "mild": "Alerta Leve",
+    "flare": "Brote Moderado / Severo",
+    "unlogged": "Sin registro"
+  },
+  "trendChart": {
+    "title": "Gráfico de Tendencia (Evacuaciones/Día)",
+    "subtitle": "Visualiza la frecuencia y picos inflamatorios en el período",
+    "target": "Meta de remisión (≤ 2/día)",
+    "empty": "Sin registros suficientes en el período"
+  },
+  "metrics": {
+    "bristol": "Bristol",
+    "blood": "Sangre",
+    "pain": "Dolor",
+    "notes": "Notas"
+  },
+  "weekDays": {
+    "sun": "Dom",
+    "mon": "Lun",
+    "tue": "Mar",
+    "wed": "Mié",
+    "thu": "Jue",
+    "fri": "Vie",
+    "sat": "Sáb"
+  },
+  "months": {
+    "jan": "Enero",
+    "feb": "Febrero",
+    "mar": "Marzo",
+    "apr": "Abril",
+    "may": "Mayo",
+    "jun": "Junio",
+    "jul": "Julio",
+    "aug": "Agosto",
+    "sep": "Septiembre",
+    "oct": "Octubre",
+    "nov": "Noviembre",
+    "dec": "Diciembre"
+  }
+}

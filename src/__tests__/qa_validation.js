@@ -12,7 +12,7 @@ function getKeys(obj, prefix = '') {
   }, []);
 }
 
-console.log('=== [QA Suite] 1. Validando Paridade de i18n (pt-BR vs en-US) ===');
+console.log('=== [QA Suite] 1. Validando Paridade de i18n (pt-BR vs en-US vs es-ES) ===');
 const locales = [
   'common.json',
   'dailyLog.json',
@@ -32,15 +32,20 @@ let i18nErrors = 0;
 locales.forEach((file) => {
   const ptPath = path.join(__dirname, '../locales/pt-BR', file);
   const enPath = path.join(__dirname, '../locales/en-US', file);
+  const esPath = path.join(__dirname, '../locales/es-ES', file);
 
   const ptContent = JSON.parse(fs.readFileSync(ptPath, 'utf8'));
   const enContent = JSON.parse(fs.readFileSync(enPath, 'utf8'));
+  const esContent = JSON.parse(fs.readFileSync(esPath, 'utf8'));
 
   const ptKeys = getKeys(ptContent);
   const enKeys = getKeys(enContent);
+  const esKeys = getKeys(esContent);
 
   const missingInEn = ptKeys.filter((k) => !enKeys.includes(k));
   const missingInPt = enKeys.filter((k) => !ptKeys.includes(k));
+  const missingInEs = ptKeys.filter((k) => !esKeys.includes(k));
+  const extraInEs = esKeys.filter((k) => !ptKeys.includes(k));
 
   if (missingInEn.length > 0) {
     console.error(`❌ [${file}] Chaves faltando em en-US:`, missingInEn);
@@ -50,9 +55,17 @@ locales.forEach((file) => {
     console.error(`❌ [${file}] Chaves faltando em pt-BR:`, missingInPt);
     i18nErrors++;
   }
+  if (missingInEs.length > 0) {
+    console.error(`❌ [${file}] Chaves faltando em es-ES:`, missingInEs);
+    i18nErrors++;
+  }
+  if (extraInEs.length > 0) {
+    console.error(`❌ [${file}] Chaves extras em es-ES:`, extraInEs);
+    i18nErrors++;
+  }
 
-  if (missingInEn.length === 0 && missingInPt.length === 0) {
-    console.log(`✔ [${file}] 100% de paridade (${ptKeys.length} chaves sincronizadas)`);
+  if (missingInEn.length === 0 && missingInPt.length === 0 && missingInEs.length === 0 && extraInEs.length === 0) {
+    console.log(`✔ [${file}] 100% de paridade (${ptKeys.length} chaves sincronizadas pt-BR / en-US / es-ES)`);
   }
 });
 

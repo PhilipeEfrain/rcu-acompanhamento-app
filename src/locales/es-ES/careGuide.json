@@ -1,0 +1,81 @@
+{
+  "title": "Guía de Cuidados & Derechos",
+  "subtitle": "Pautas prácticas de acceso a medicamentos, derechos del paciente y consejos para el día a día",
+  "tabs": {
+    "sus": "Medicamentos en Sanidad Pública",
+    "compounding": "Fórmulas Magistrales",
+    "rights": "Tus Derechos",
+    "flareCare": "Cuidados en Brote",
+    "doctorPrep": "Consulta Médica"
+  },
+  "susSection": {
+    "title": "Cómo Obtener Medicamentos Especializados a través del Sistema de Salud",
+    "badge": "Farmacia Hospitalaria / Especializada",
+    "desc": "Los sistemas públicos de salud proporcionan cobertura para el tratamiento completo de la Colitis Ulcerosa a través de protocolos farmacológicos especializados.",
+    "stepTitle": "Documentos Necesarios (Checklist):",
+    "step1": "Informe médico oficial de solicitud de fármacos especializados cumplimentado y firmado por tu Gastroenterólogo.",
+    "step2": "Receta médica oficial en vigor con el principio activo (ej: Mesalazina 800mg o 1200mg) emitida en los últimos 30-90 días.",
+    "step3": "Informe clínico detallado que incluya historial médico, código diagnóstico CIE-10 K51 (Colitis Ulcerosa) y justificación de la dosis.",
+    "step4": "Informe de Colonoscopia con Biopsia (estudio histopatológico) que confirme el diagnóstico de EII.",
+    "step5": "Copia de documentos de identidad, tarjeta sanitaria pública y comprobante de empadronamiento/residencia.",
+    "medsTitle": "Medicamentos Suministrados por Protocolo:",
+    "medsList": "Mesalazina (comprimidos, enemas y supositorios), Sulfasalazina, Azatioprina y Terapias Biológicas / Moléculas Pequeñas (Infliximab, Vedolizumab, Ustekinumab, Tofacitinib, etc.).",
+    "tip": "💡 Consejo de Oro: Renueva tu documentación cada 3 a 6 meses según las normas de farmacia de tu comunidad o región para no interrumpir el tratamiento."
+  },
+  "compoundingSection": {
+    "title": "Ahorro con Farmacias de Fórmulas Magistrales Autorizadas",
+    "badge": "Consejo de Ahorro",
+    "desc": "Para presentaciones tópicas (enemas y supositorios de mesalazina), las farmacias elaboradoras certificadas ofrecen alternativas idénticas con un ahorro significativo.",
+    "benefit1Title": "Ahorro de hasta un 60% a 70%:",
+    "benefit1Desc": "Supositorios de 500mg o 1g y enemas de 3g o 4g de mesalazina preparados tienen un coste sustancialmente menor que los de marca comercial.",
+    "benefit2Title": "Receta Médica Necesaria:",
+    "benefit2Desc": "Pide a tu gastroenterólogo que prescriba 'Mesalazina supositorios/enemas magistrales' con la fórmula exacta.",
+    "benefit3Title": "Calidad y Certificación:",
+    "benefit3Desc": "Asegúrate de elegir farmacias autorizadas por la agencia sanitaria competente y con control de calidad de materia prima."
+  },
+  "rightsSection": {
+    "title": "Tus Derechos Legales y Protecciones",
+    "badge": "Legislación & Apoyo",
+    "desc": "Conoce los derechos y normativas que amparan a los pacientes con Enfermedad Inflamatoria Intestinal.",
+    "right1Title": "Acceso Rápido y Urgente a Aseos:",
+    "right1Desc": "Diversas normativas y tarjetas sanitarias garantizan el acceso urgente de pacientes con EII a baños en comercios, entidades públicas y transportes.",
+    "right2Title": "Tarjeta Identificativa de Paciente EII:",
+    "right2Desc": "Asociaciones de pacientes (como ACCU) y certificados médicos sirven como acreditación para atención prioritaria y justificación de urgencia.",
+    "right3Title": "Prioridad en Esperas y Trámites:",
+    "right3Desc": "En muchas normativas, los pacientes con EII en brote tienen consideración prioritaria para evitar esperas prolongadas.",
+    "right4Title": "Derechos Laborales y Bajas Médicas:",
+    "right4Desc": "En brotes graves o que requieran reposo, el paciente tiene derecho a bajas por incapacidad temporal o adaptaciones en el puesto de trabajo."
+  },
+  "flareCareSection": {
+    "title": "Cuidados Prácticos en el Manejo de Brotes",
+    "badge": "Alivio & Protección",
+    "desc": "Medidas complementarias esenciales para proteger tu intestino y aliviar el malestar diario.",
+    "care1Title": "Hidratación Electrolítica Continua:",
+    "care1Desc": "En episodios de diarrea frecuente, bebe agua de coco, suero casero o soluciones de rehidratación oral en pequeños sorbos para evitar deshidratación y pérdida de potasio.",
+    "care2Title": "Cuidados Perianales e Higiene:",
+    "care2Desc": "Evita el papel higiénico seco. Prefiere bidé o ducha templada con jabón neutro y seca suavemente con toalla limpia. Pomadas con óxido de zinc ayudan a proteger la piel de irritaciones.",
+    "care3Title": "Alimentación de Bajo Residuo en Brote:",
+    "care3Desc": "Durante brotes activos, prefiere alimentos cocinados y de fácil digestión (arroz blanco, patata cocida, pollo a la plancha, plátano maduro). Evita fibras insolubles, semillas, fritos, lácteos y exceso de café.",
+    "care4Title": "ALERTA: NUNCA Tomes Antiinflamatorios (AINEs):",
+    "care4Desc": "Medicamentos como ibuprofeno, diclofenaco, ketoprofeno, nimesulida y naproxeno dañan directamente la mucosa intestinal, pudiendo desencadenar sangrados graves y empeorar el brote."
+  },
+  "doctorPrepSection": {
+    "title": "Preparación para la Consulta Médica",
+    "badge": "Checklist del Gastro",
+    "desc": "Aprovecha al máximo tu consulta con el gastroenterólogo llevando información estructurada y objetiva.",
+    "prep1Title": "Presenta tu Informe en PDF de esta App:",
+    "prep1Desc": "Exporta el informe de los últimos 30 a 90 días en la pestaña Historial con los gráficos y tabla de frecuencia y sangrado.",
+    "prep2Title": "Preguntas Esenciales para Plantear:",
+    "q1": "1. '¿Mi dosis de mesalazina está optimizada para mantener la cicatrización completa de la mucosa?'",
+    "q2": "2. '¿Es momento de solicitar una prueba de Calprotectina Fecal para comprobar si hay inflamación oculta?'",
+    "q3": "3. '¿Necesito actualizar mis vacunas (especialmente antes de valorar inmunosupresores o terapias biológicas)?'",
+    "q4": "4. '¿Qué análisis de sangre de control (hemograma, ferritina, PCR, vitamina D/B12) debemos realizar?'",
+    "prep3Title": "Señales de Alerta a Comunicar:",
+    "prep3Desc": "Informa al especialista de cualquier episodio de fiebre, dolor intenso que no cede o necesidad de despertar por la noche para evacuar."
+  },
+  "actions": {
+    "close": "Cerrar Guía",
+    "openSusWebsite": "Consultar Protocolos de Salud",
+    "exportPdfReport": "Exportar Informe Clínico en PDF"
+  }
+}

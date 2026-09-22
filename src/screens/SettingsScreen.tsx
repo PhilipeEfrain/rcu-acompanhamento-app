@@ -75,7 +75,7 @@ export const SettingsScreen: React.FC = () => {
     loadBiometricsState();
   }, []);
 
-  const handleLanguageChange = (lang: 'pt-BR' | 'en-US') => {
+  const handleLanguageChange = (lang: 'pt-BR' | 'en-US' | 'es-ES') => {
     i18n.changeLanguage(lang);
   };
 
@@ -135,7 +135,10 @@ export const SettingsScreen: React.FC = () => {
     );
   };
 
-  const isPt = i18n.language.startsWith('pt');
+  const currentLang = i18n.language || 'pt-BR';
+  const isPt = currentLang.startsWith('pt');
+  const isEs = currentLang.startsWith('es');
+  const isEn = !isPt && !isEs;
 
   return (
     <View style={styles.container}>
@@ -177,14 +180,25 @@ export const SettingsScreen: React.FC = () => {
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={[styles.langButton, !isPt && styles.langButtonActive]}
+              style={[styles.langButton, isEn && styles.langButtonActive]}
               onPress={() => handleLanguageChange('en-US')}
               activeOpacity={0.8}
             >
-              <Text style={[styles.langButtonText, !isPt && styles.langButtonTextActive]}>
+              <Text style={[styles.langButtonText, isEn && styles.langButtonTextActive]}>
                 🇺🇸 English (US)
               </Text>
-              {!isPt && <CheckCircle size={16} color="#8E63B8" />}
+              {isEn && <CheckCircle size={16} color="#8E63B8" />}
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[styles.langButton, isEs && styles.langButtonActive]}
+              onPress={() => handleLanguageChange('es-ES')}
+              activeOpacity={0.8}
+            >
+              <Text style={[styles.langButtonText, isEs && styles.langButtonTextActive]}>
+                🇪🇸 Español (ES)
+              </Text>
+              {isEs && <CheckCircle size={16} color="#8E63B8" />}
             </TouchableOpacity>
           </View>
         </View>

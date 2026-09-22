@@ -1,0 +1,26 @@
+{
+  "appName": "RCU Acompanhamento",
+  "today": "Hoy",
+  "yesterday": "Ayer",
+  "cancel": "Cancelar",
+  "confirm": "Confirmar",
+  "back": "Volver",
+  "save": "Guardar",
+  "loading": "Cargando...",
+  "error": "Ocurrió un error",
+  "success": "Éxito",
+  "greetingMorning": "Buenos días",
+  "greetingAfternoon": "Buenas tardes",
+  "greetingEvening": "Buenas noches",
+  "nav": {
+    "today": "Hoy",
+    "history": "Historial",
+    "settings": "Privacidad"
+  },
+  "status": {
+    "remission": "Remisión",
+    "mild_activity": "Alerta Leve",
+    "moderate_to_severe_flare": "Brote Activo",
+    "severe_emergency": "Emergencia Médica"
+  }
+}

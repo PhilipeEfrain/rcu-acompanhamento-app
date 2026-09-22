@@ -1,0 +1,122 @@
+{
+  "title": "Seguimiento Diario",
+  "subtitle": "Monitorea tus visitas al baño y bienestar",
+  "editingBadge": "Editando evacuación de {{date}} ({{time}})",
+  "backToToday": "Volver a Hoy",
+  "newEntry": "Nueva Visita al Baño",
+  "newEntrySubtitle": "Registra consistencia, sangre y dolor de este episodio",
+  "todayTimeline": "Episodios Registrados",
+  "emptyTimeline": "Ninguna visita al baño registrada para este día todavía.",
+  "addNewMovement": "Registrar Visita al Baño",
+  "entryNumber": "Evacuación #{{number}}",
+  "entryTime": "Hora: {{time}}",
+  "dailySummaryTitle": "Resumen del Día ({{count}} evacuaciones)",
+  "deletePromptTitle": "¿Eliminar este episodio?",
+  "deletePromptMessage": "Este registro de evacuación será eliminado permanentemente.",
+  "deleteSuccess": "Registro eliminado con éxito.",
+  "cancelEdit": "Cancelar Edición",
+  "timePicker": "Hora de la Evacuación",
+  "now": "Ahora",
+  "period": {
+    "title": "Período del Registro",
+    "waking_morning": "Mañana",
+    "afternoon": "Tarde",
+    "night": "Noche"
+  },
+  "outputType": {
+    "title": "¿Qué eliminaste en esta visita al baño?",
+    "feces": "Heces Formadas / Diarrea",
+    "fecesSubtitle": "Evacuación con bolo fecal o consistencia líquida (Bristol 1 a 7)",
+    "blood_mucus_only": "Solo Sangre / Moco (Sin Heces)",
+    "blood_mucus_onlySubtitle": "Secreción inflamatoria o moco puro sin presencia de bolo fecal",
+    "gas_bloody_false_alarm": "Gases con Sangre / Tenesmo",
+    "gas_bloody_false_alarmSubtitle": "Sensación de urgencia con salida de gases o estrías (falsa alarma)"
+  },
+  "bloodAspect": {
+    "title": "Aspecto del Sangrado",
+    "none": "Ninguno",
+    "streaks": "Tiras / Estrías",
+    "mixed": "Mezclado",
+    "pure_blood": "Sangre Viva Pura",
+    "clots": "Coágulos"
+  },
+  "systemicSymptoms": {
+    "title": "Síntomas Sistémicos y Señales de Alerta",
+    "subtitle": "Marca si sientes algún reflejo en el cuerpo",
+    "fever": "Fiebre (> 37,8°C)",
+    "dizziness": "Mareo / Debilidad",
+    "extremeFatigue": "Cansancio Extremo",
+    "tachycardia": "Corazón Acelerado"
+  },
+  "bristol": {
+    "title": "Consistencia de las Heces (Escala Bristol)",
+    "type_1": {
+      "label": "Tipo 1: Trozos duros separados",
+      "desc": "Como nueces, difíciles de evacuar"
+    },
+    "type_2": {
+      "label": "Tipo 2: Forma de salchicha, nudoso",
+      "desc": "Firme, irregular y grumoso"
+    },
+    "type_3": {
+      "label": "Tipo 3: Salchicha con grietas",
+      "desc": "Consistencia normal y consistente"
+    },
+    "type_4": {
+      "label": "Tipo 4: Salchicha suave y lisa",
+      "desc": "Formato ideal, fácil de evacuar"
+    },
+    "type_5": {
+      "label": "Tipo 5: Trozos blandos separados",
+      "desc": "Bordes definidos, poca fibra"
+    },
+    "type_6": {
+      "label": "Tipo 6: Trozos esponjosos y deshechos",
+      "desc": "Heces pastosas / diarrea leve"
+    },
+    "type_7": {
+      "label": "Tipo 7: Totalmente líquido",
+      "desc": "Sin trozos sólidos / diarrea severa"
+    }
+  },
+  "blood": {
+    "title": "Presencia de Sangre",
+    "none": "Ninguna sangre",
+    "traces": "Trazas o estrías",
+    "moderate": "Sangre evidente",
+    "severe": "Solo sangre / Intenso"
+  },
+  "pain": {
+    "title": "Nivel de Dolor Abdominal",
+    "none": "Sin dolor (0)",
+    "mild": "Dolor Leve (1 - 3)",
+    "moderate": "Dolor Moderado (4 - 6)",
+    "severe": "Dolor Intenso (7 - 10)",
+    "score_label": "Nivel de dolor: {{score}}/10"
+  },
+  "notes": {
+    "title": "Notas Adicionales (Opcional)",
+    "placeholder": "Comida diferente, estrés, cansancio..."
+  },
+  "repeatModal": {
+    "chipTitle": "Repetir datos de la anterior ({{time}})",
+    "chipSummary": "{{bristol}} • {{blood}} • Dolor {{pain}}/10",
+    "chipSummaryBloodOnly": "Solo Sangre/Moco • Dolor {{pain}}/10",
+    "title": "Repetir Registro Anterior",
+    "subtitle": "Nuevo registro para ahora ({{currentTime}})",
+    "previousTimeLabel": "Copiando datos de la evacuación de las {{time}}:",
+    "outputLabel": "Tipo:",
+    "bristolLabel": "Consistencia:",
+    "bloodLabel": "Sangre:",
+    "painLabel": "Dolor:",
+    "saveNow": "Guardar",
+    "continueEditing": "Continuar editando"
+  },
+  "actions": {
+    "submit": "Guardar",
+    "update": "Guardar",
+    "editingDate": "Registrando para {{date}}",
+    "saving": "Guardando...",
+    "success": "¡Registro guardado con éxito!"
+  }
+}
