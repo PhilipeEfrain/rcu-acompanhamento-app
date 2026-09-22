@@ -80,7 +80,7 @@ function MainApp() {
       {/* Biometric Lock Screen */}
       {isLocked && <BiometricLockScreen onUnlock={handleUnlock} />}
 
-      <StatusBar style="dark" backgroundColor="#F8F9FE" translucent={false} />
+      <StatusBar style="dark" />
     </GestureHandlerRootView>
   );
 }
