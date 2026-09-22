@@ -7,7 +7,7 @@
 
 export const APP_CONFIG = {
   appName: 'RCU Acompanhamento',
-  version: '1.0.1',
+  version: '1.0.3',
   isCompletelyFree: true,
   author: {
     name: 'Philipe Efrain Figueiredo Gonzalez',
