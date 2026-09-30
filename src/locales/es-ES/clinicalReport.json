@@ -1,6 +1,6 @@
 {
-  "title": "Exportar Informe Clínico",
-  "subtitle": "Genera un PDF estructurado para presentar a tu gastroenterólogo",
+  "title": "Exportar Resumen para Consulta",
+  "subtitle": "Genera un documento PDF de tus notas para presentar a tu gastroenterólogo",
   "selectPeriod": "Selecciona el período del informe:",
   "periods": {
     "days15": "Últimos 15 días",
@@ -13,45 +13,45 @@
     "dateRange": "Intervalo: {{start}} hasta {{end}}",
     "noData": "Ningún registro de evacuación encontrado en el período seleccionado."
   },
-  "generating": "Compilando informe en PDF...",
+  "generating": "Compilando resumen en PDF con esmero...",
   "generateButton": "Generar y Compartir PDF",
   "close": "Cerrar",
   "errorGenerating": "Ocurrió un error al generar el informe. Inténtalo de nuevo.",
   "pdf": {
-    "documentTitle": "Informe Clínico de Seguimiento — Colitis Ulcerosa (CU)",
+    "documentTitle": "Diario de Notas Personales — Seguimiento CU",
     "generatedOn": "Emitido el: {{date}} a las {{time}}",
     "periodLabel": "Período Analizado: {{start}} a {{end}} ({{days}} días)",
-    "patientSummaryTitle": "1. Síntesis Clínica del Período",
+    "patientSummaryTitle": "1. Resumen de Notas del Período",
     "totalMovements": "Total de Evacuaciones",
     "dailyAverage": "Media Diaria",
     "bloodIncidence": "Episodios c/ Sangre",
-    "avgPain": "Dolor Medio (0-10)",
+    "avgPain": "Molestia Media (0-10)",
     "avgStress": "Estrés Medio (0-10)",
     "clotsIncidence": "Episodios c/ Coágulos",
     "mucusIncidence": "Episodios c/ Moco",
     "urgencyIncidence": "Episodios c/ Urgencia",
-    "dailyTrendTitle": "2. Evolución Cronológica Diaria (Frecuencia y Gravedad de las Evacuaciones)",
-    "normalThreshold": "Meta de remisión (≤ 2 evacuaciones/día)",
+    "dailyTrendTitle": "2. Evolución Cronológica Diaria (Frecuencia Registrada)",
+    "normalThreshold": "Frecuencia habitual (≤ 2 evacuaciones/día)",
     "chartLegend": {
-      "remission": "Remisión (0-2 evacuaciones sin sangre)",
-      "mild": "Actividad Leve (3-4 evacuaciones o trazas)",
-      "flare": "Brote / Alerta (5+ evacuaciones o sangre evidente)"
+      "remission": "Días Estables (0-2 evacuaciones sin sangre)",
+      "mild": "Molestia Leve (3-4 evacuaciones o trazas)",
+      "flare": "Molestia Notable (5+ evacuaciones o sangre evidente)"
     },
     "bristolTitle": "3. Distribución de la Consistencia Fecal (Escala de Bristol)",
-    "bloodTitle": "4. Perfil de Sangrado y Biomarcadores",
+    "bloodTitle": "4. Perfil de Sangrado y Detalles Anotados",
     "tableTitle": "5. Registro Cronológico Detallado de las Evacuaciones",
     "colDate": "Fecha",
     "colTime": "Hora",
     "colBristol": "Bristol",
     "colBlood": "Sangre",
     "colPain": "Dolor",
-    "colExtra": "Biomarcadores",
-    "colNotes": "Notas del Paciente",
+    "colExtra": "Detalles",
+    "colNotes": "Notas Personales",
     "noNotes": "-",
     "none": "Ninguno",
     "traces": "Trazas",
     "moderate": "Evidente",
     "severe": "Intenso",
-    "confidentialityNotice": "Documento confidencial generado por el paciente a través de la aplicación de monitorización de CU. Los datos reflejan el autorreporte diario de síntomas para apoyo en la consulta médica. En conformidad con el RGPD y directrices de confidencialidad médica."
+    "confidentialityNotice": "Documento informativo generado por el usuario a través de la aplicación de diario personal. Los datos reflejan el autorreporte voluntario de síntomas para facilitar el diálogo con el médico tratante. No constituye un diagnóstico clínico ni una prescripción médica."
   }
 }

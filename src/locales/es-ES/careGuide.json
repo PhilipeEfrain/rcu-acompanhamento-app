@@ -5,7 +5,7 @@
     "sus": "Medicamentos en Sanidad Pública",
     "compounding": "Fórmulas Magistrales",
     "rights": "Tus Derechos",
-    "flareCare": "Cuidados en Brote",
+    "flareCare": "Días Sensibles",
     "doctorPrep": "Consulta Médica"
   },
   "susSection": {
@@ -47,17 +47,17 @@
     "right4Desc": "En brotes graves o que requieran reposo, el paciente tiene derecho a bajas por incapacidad temporal o adaptaciones en el puesto de trabajo."
   },
   "flareCareSection": {
-    "title": "Cuidados Prácticos en el Manejo de Brotes",
-    "badge": "Alivio & Protección",
-    "desc": "Medidas complementarias esenciales para proteger tu intestino y aliviar el malestar diario.",
+    "title": "Consejos de Confort para Días Sensibles",
+    "badge": "Alivio & Autocuidado",
+    "desc": "Medidas complementarias para apoyar tu rutina y aliviar el malestar intestinal.",
     "care1Title": "Hidratación Electrolítica Continua:",
-    "care1Desc": "En episodios de diarrea frecuente, bebe agua de coco, suero casero o soluciones de rehidratación oral en pequeños sorbos para evitar deshidratación y pérdida de potasio.",
+    "care1Desc": "En días de evacuaciones frecuentes o líquidas, bebe agua de coco o soluciones electrolíticas a pequeños sorbos para reponer sales minerales.",
     "care2Title": "Cuidados Perianales e Higiene:",
-    "care2Desc": "Evita el papel higiénico seco. Prefiere bidé o ducha templada con jabón neutro y seca suavemente con toalla limpia. Pomadas con óxido de zinc ayudan a proteger la piel de irritaciones.",
-    "care3Title": "Alimentación de Bajo Residuo en Brote:",
-    "care3Desc": "Durante brotes activos, prefiere alimentos cocinados y de fácil digestión (arroz blanco, patata cocida, pollo a la plancha, plátano maduro). Evita fibras insolubles, semillas, fritos, lácteos y exceso de café.",
-    "care4Title": "ALERTA: NUNCA Tomes Antiinflamatorios (AINEs):",
-    "care4Desc": "Medicamentos como ibuprofeno, diclofenaco, ketoprofeno, nimesulida y naproxeno dañan directamente la mucosa intestinal, pudiendo desencadenar sangrados graves y empeorar el brote."
+    "care2Desc": "Evita el papel higiénico seco. Prefiere bidé o ducha templada con jabón neutro y seca suavemente con toalla limpia.",
+    "care3Title": "Alimentación Suave en tu Rutina:",
+    "care3Desc": "En momentos de sensibilidad, prefiere alimentos cocinados y de fácil digestión (arroz, patata cocida, pollo a la plancha). Evita fritos y exceso de café.",
+    "care4Title": "Atención: Uso de Antiinflamatorios (AINEs):",
+    "care4Desc": "Medicamentos como ibuprofeno, diclofenaco, ketoprofeno y naproxeno pueden irritar la mucosa intestinal. Consulta siempre a tu médico antes de tomar analgésicos comunes."
   },
   "doctorPrepSection": {
     "title": "Preparación para la Consulta Médica",

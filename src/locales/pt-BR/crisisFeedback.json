@@ -1,49 +1,49 @@
 {
   "remission": {
-    "title": "Quadro Estável / Em Remissão",
-    "message": "Ótima notícia! Seus registros indicam estabilidade intestinal hoje. Continue mantendo seus hábitos e medicações prescritas.",
+    "title": "Quadro Estável / Sem Desconfortos",
+    "message": "Ótima notícia! Seus registros indicam estabilidade intestinal hoje. Continue mantendo seus hábitos e rotina de autocuidado.",
     "care_habits": "Mantenha a dieta balanceada e a hidratação diária.",
-    "care_medication": "Continue com o tratamento de manutenção conforme prescrito pelo seu médico."
+    "care_medication": "Continue com o tratamento de rotina conforme prescrito pelo seu médico."
   },
   "mild": {
-    "title": "Atividade Leve Observada",
-    "message": "Notamos algumas alterações leves. Beba bastante água, evite alimentos irritantes e continue monitorando suas próximas evacuações.",
-    "care_hydration": "Beba pelo menos 2 a 3 litros de água e líquidos claros ao longo do dia.",
+    "title": "Sintomas Discretos Registrados",
+    "message": "Anotamos algumas alterações leves. Beba bastante água, evite alimentos que possam irritar o intestino e continue acompanhando suas próximas idas ao banheiro.",
+    "care_hydration": "Beba pelo menos 2 a 3 litros de água e líquidos ao longo do dia.",
     "care_diet": "Evite alimentos gordurosos, ultraprocessados, excesso de café e lactose se for sensível.",
-    "care_monitor": "Acompanhe se os sintomas persistem por mais de 48 horas."
+    "care_monitor": "Acompanhe suas anotações se os desconfortos persistirem por mais de 48 horas."
   },
   "flare": {
-    "title": "Alerta de Crise: Acolhimento e Cuidados",
-    "message": "Respire fundo, momentos de crise são desafiadores mas temporários. Estamos com você. Veja as orientações de segurança abaixo:",
-    "care_hydration": "Hidrate-se com água e soro caseiro ou soluções eletrolíticas para repor perdas.",
-    "care_no_nsaids": "ATENÇÃO: NUNCA tome anti-inflamatórios (AINEs como ibuprofeno, cetoprofeno ou diclofenaco), pois eles inflamam a mucosa intestinal.",
-    "care_contact_doctor": "Avise seu médico gastroenterologista sobre o aumento da frequência ou presença de sangue.",
-    "care_red_flags": "Procure o pronto-socorro imediatamente se tiver febre acima de 38°C, tonturas intensas, fraqueza extrema ou sangramento volumoso contínuo."
+    "title": "Registro com Sintomas Notáveis",
+    "message": "Anotamos alterações na sua rotina intestinal. Respire fundo, momentos atípicos acontecem. Veja algumas dicas de conforto abaixo:",
+    "care_hydration": "Mantenha-se bem hidratado com água e soluções isotônicas para repor líquidos.",
+    "care_no_nsaids": "Aviso informativo: Lembre-se de consultar seu médico antes de tomar anti-inflamatórios comuns (AINEs).",
+    "care_contact_doctor": "Compartilhe com seu médico gastroenterologista o aumento da frequência ou presença de sangue.",
+    "care_red_flags": "Caso sinta febre acima de 38°C, tonturas intensas ou fraqueza, considere buscar avaliação médica presencial."
   },
   "poolingMorning": {
-    "title": "Acúmulo Noturno de Sangue (Pooling)",
-    "badge": "Informativo Clínico",
-    "message": "Durante a noite, o repouso facilita o acúmulo de sangue e muco na ampola retal. Ao acordar, a expulsão desse volume com gases é esperada e não indica necessariamente um sangramento ativo contínuo.",
-    "action": "Acompanhe as próximas evacuações do dia com calma."
+    "title": "Acúmulo Noturno (Pooling)",
+    "badge": "Anotação Informativa",
+    "message": "Durante a noite, o repouso pode favorecer o acúmulo de secreções e sangue na ampola retal. Ao acordar, a saída desse volume é comum e não significa necessariamente um sangramento contínuo.",
+    "action": "Acompanhe as próximas anotações do dia com calma."
   },
   "tenesmusSupport": {
-    "title": "Urgência com Gases (Tenesmo Retal)",
+    "title": "Sensação de Urgência (Tenesmo)",
     "badge": "Acolhimento",
-    "message": "A inflamação na mucosa retal envia sinais falsos de urgência ao cérebro. Sentir necessidade intensa e eliminar apenas gases ou raias faz parte do quadro inflamatório.",
-    "action": "Respire fundo. Você não fez nada de errado."
+    "message": "A sensibilidade na mucosa retal pode gerar sensação intensa de ir ao banheiro mesmo com pouca ou nenhuma saída. Isso é comum em episódios inflamatórios.",
+    "action": "Respire fundo. Esse registro foi guardado no seu histórico."
   },
   "emergency": {
-    "title": "🚨 ALERTA VERMELHO: Procure Atendimento Médico Imediatamente",
-    "badge": "Emergência Médica",
-    "message": "Identificamos uma combinação de sintomas com potencial risco à sua saúde (sangramento expressivo associado a sinais sistêmicos de febre/tontura ou dor aguda). Não hesite em buscar um pronto-atendimento hospitalar agora.",
-    "care_hospital": "Dirija-se ao pronto-socorro ou contate seu médico gastroenterologista com urgência.",
-    "care_hydration": "Mantenha-se hidratado em pequenos goles com água ou soro caseiro no deslocamento.",
-    "care_no_nsaids": "ATENÇÃO: NUNCA tome anti-inflamatórios (ibuprofeno, diclofenaco, cetoprofeno), pois agravam gravemente o sangramento intestinal.",
-    "care_monitor": "Apresente o histórico do aplicativo ou exporte o relatório PDF na triagem médica."
+    "title": "Atenção aos Sintomas Registrados",
+    "badge": "Sintomas Intensos",
+    "message": "Você anotou desconfortos intensos combinados a outros sintomas físicos (como dor aguda, cansaço ou tontura). Não hesite em buscar uma avaliação médica presencial ou pronto-atendimento se julgar necessário.",
+    "care_hospital": "Considere entrar em contato com seu médico ou buscar um serviço de saúde de referência.",
+    "care_hydration": "Mantenha-se hidratado com pequenos goles de água durante o seu deslocamento.",
+    "care_no_nsaids": "Aviso: Lembre-se de consultar um médico antes de usar anti-inflamatórios comuns.",
+    "care_monitor": "Você pode apresentar este diário ou exportar o resumo em PDF para auxiliar seu médico."
   },
   "actions": {
-    "view_guidance": "Ver Orientações Clínicas",
-    "dismiss": "Entendido, obrigado!",
-    "emergency_dismiss": "Entendido, buscar atendimento"
+    "view_guidance": "Ver Dicas de Autocuidado",
+    "dismiss": "Entendido, salvar",
+    "emergency_dismiss": "Entendido, buscar auxílio"
   }
 }

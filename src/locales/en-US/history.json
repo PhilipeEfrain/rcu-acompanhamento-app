@@ -2,9 +2,9 @@
   "title": "History & Patterns",
   "subtitle": "Track your wellness trends gently",
   "monthlySummary": "Monthly Summary",
-  "remissionDays": "Remission Days",
-  "mildDays": "Mild Alert Days",
-  "flareDays": "Flare-up Days",
+  "remissionDays": "Stable Days",
+  "mildDays": "Mild Discomfort Days",
+  "flareDays": "Notable Discomfort Days",
   "totalMovements": "Total Bowel Movements",
   "noLogsThisMonth": "No symptom logs found for this month.",
   "selectedDayTitle": "Log for {{date}}",
@@ -18,16 +18,16 @@
   "movementsCount": "{{count}} bowel movements",
   "addNewMovementForDay": "+ New Bowel Movement for this Day",
   "legend": {
-    "title": "Clinical Legend",
-    "remission": "Remission / Stable",
-    "mild": "Mild Alert",
-    "flare": "Moderate / Severe Flare",
+    "title": "Symptom Intensity",
+    "remission": "Stable / Comfortable",
+    "mild": "Mild Discomfort",
+    "flare": "Notable Discomfort",
     "unlogged": "No records"
   },
   "trendChart": {
     "title": "Trend Chart (Movements/Day)",
-    "subtitle": "Visualize daily frequency and inflammatory spikes over time",
-    "target": "Remission target (≤ 2/day)",
+    "subtitle": "Visualize daily frequency and fluctuations over time",
+    "target": "Usual target (≤ 2/day)",
     "empty": "Not enough records in this period"
   },
   "metrics": {

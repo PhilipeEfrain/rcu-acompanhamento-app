@@ -1,12 +1,12 @@
 {
-  "sectionTitle": "Additional Clinical Details",
+  "sectionTitle": "Additional Episode Details",
   "sectionSubtitle": "Optional: stress, mucus, clots and urgency",
   "stress": {
     "title": "Stress & Anxiety Level",
     "scoreLabel": "Stress: {{score}}/10",
     "calm": "Calm (0-2)",
     "moderate": "Moderate (3-6)",
-    "high": "High / Anxiety Spike (7-10)"
+    "high": "High Stress / Anxiety Peak (7-10)"
   },
   "clots": {
     "title": "Presence of Blood Clots",
@@ -14,15 +14,15 @@
     "yes": "Visible clots"
   },
   "mucus": {
-    "title": "Mucus or Pus in Stool",
+    "title": "Presence of Mucus",
     "none": "No mucus",
     "mild": "Mild mucus",
-    "abundant": "Abundant mucus / Pus"
+    "abundant": "Abundant mucus"
   },
   "urgency": {
-    "title": "Bowel Urgency (Tenesmus)",
+    "title": "Urgency to Reach the Bathroom",
     "normal": "Normal (able to wait)",
     "moderate": "Moderate urgency",
-    "severe": "Extreme / Incontinent"
+    "severe": "Intense urgency / Immediate"
   }
 }

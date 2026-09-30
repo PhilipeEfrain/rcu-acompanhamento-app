@@ -18,9 +18,9 @@
     "settings": "Privacy"
   },
   "status": {
-    "remission": "Remission",
-    "mild_activity": "Mild Flare",
-    "moderate_to_severe_flare": "Active Flare",
-    "severe_emergency": "Medical Emergency"
+    "remission": "Stable",
+    "mild_activity": "Mild Discomfort",
+    "moderate_to_severe_flare": "Moderate Discomfort",
+    "severe_emergency": "Intense Symptoms"
   }
 }

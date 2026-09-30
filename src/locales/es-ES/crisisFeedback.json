@@ -1,49 +1,49 @@
 {
   "remission": {
-    "title": "Cuadro Estable / En Remisión",
-    "message": "¡Excelente noticia! Tus registros indican estabilidad intestinal hoy. Continúa manteniendo tus hábitos y medicamentos prescritos.",
+    "title": "Cuadro Estable / Sin Molestias",
+    "message": "¡Excelente noticia! Tus registros indican estabilidad intestinal hoy. Continúa manteniendo tus hábitos y tu rutina de autocuidado.",
     "care_habits": "Mantén la dieta equilibrada y la hidratación diaria.",
-    "care_medication": "Continúa con el tratamiento de mantenimiento según lo prescrito por tu médico."
+    "care_medication": "Continúa con el tratamiento de rutina según lo prescrito por tu médico."
   },
   "mild": {
-    "title": "Actividad Leve Observada",
-    "message": "Notamos algunas alteraciones leves. Bebe abundante agua, evita alimentos irritantes y continúa monitoreando tus próximas evacuaciones.",
+    "title": "Síntomas Leves Registrados",
+    "message": "Anotamos algunas alteraciones leves. Bebe abundante agua, evita alimentos que puedan irritar el intestino y continúa monitoreando tus próximas visitas al baño.",
     "care_hydration": "Bebe al menos 2 a 3 litros de agua y líquidos claros a lo largo del día.",
     "care_diet": "Evita alimentos grasos, ultraprocesados, exceso de café y lactosa si eres sensible.",
-    "care_monitor": "Observa si los síntomas persisten por más de 48 horas."
+    "care_monitor": "Observa tus notas si las molestias persisten por más de 48 horas."
   },
   "flare": {
-    "title": "Alerta de Brote: Apoyo y Cuidados",
-    "message": "Respira hondo, los momentos de brote son difíciles pero temporales. Estamos contigo. Consulta las pautas de seguridad a continuación:",
-    "care_hydration": "Hidrátate con agua y suero oral o soluciones electrolíticas para reponer pérdidas.",
-    "care_no_nsaids": "ATENCIÓN: NUNCA tomes antiinflamatorios (AINEs como ibuprofeno, ketoprofeno o diclofenaco), ya que inflaman la mucosa intestinal.",
-    "care_contact_doctor": "Avisa a tu médico gastroenterólogo sobre el aumento de frecuencia o presencia de sangre.",
-    "care_red_flags": "Acude a urgencias inmediatamente si tienes fiebre superior a 38°C, mareos intensos, debilidad extrema o sangrado abundante continuo."
+    "title": "Registro con Síntomas Notables",
+    "message": "Anotamos alteraciones en tu rutina intestinal. Respira hondo, los días atípicos ocurren. Consulta algunos consejos de alivio a continuación:",
+    "care_hydration": "Mantén una buena hidratación con agua y soluciones orales o electrolitos para reponer líquidos.",
+    "care_no_nsaids": "Aviso informativo: Recuerda consultar a tu médico antes de tomar antiinflamatorios comunes (AINEs).",
+    "care_contact_doctor": "Comparte con tu médico gastroenterólogo el aumento de frecuencia o presencia de sangre.",
+    "care_red_flags": "En caso de presentar fiebre superior a 38°C, mareos intensos o debilidad extrema, considera buscar atención médica presencial."
   },
   "poolingMorning": {
-    "title": "Acumulación Nocturna de Sangre (Pooling)",
-    "badge": "Informativo Clínico",
-    "message": "Durante la noche, el reposo facilita la acumulación de sangre y moco en la ampolla rectal. Al despertar, la expulsión de este volumen con gases es esperada y no indica necesariamente un sangrado activo continuo.",
-    "action": "Monitorea las próximas evacuaciones del día con calma."
+    "title": "Acumulación Nocturna (Pooling)",
+    "badge": "Nota Informativa",
+    "message": "Durante la noche, el reposo puede facilitar la acumulación de secreciones y sangre en la ampolla rectal. Al despertar, la expulsión de este volumen es común y no indica necesariamente un sangrado activo continuo.",
+    "action": "Monitorea las próximas notas del día con calma."
   },
   "tenesmusSupport": {
-    "title": "Urgencia con Gases (Tenesmo Rectal)",
+    "title": "Sensación de Urgencia (Tenesmo)",
     "badge": "Apoyo Emocional",
-    "message": "La inflamación en la mucosa rectal envía señales falsas de urgencia al cerebro. Sentir una necesidad intensa y eliminar solo gases o estrías es parte del cuadro inflamatorio.",
-    "action": "Respira hondo. No hiciste nada malo."
+    "message": "La sensibilidad en la mucosa rectal puede provocar una necesidad intensa de ir al baño incluso con poca o ninguna evacuación. Esto es habitual en episodios inflamatorios.",
+    "action": "Respira hondo. Este registro ha sido guardado en tu historial."
   },
   "emergency": {
-    "title": "🚨 ALERTA ROJA: Busca Atención Médica Inmediatamente",
-    "badge": "Emergencia Médica",
-    "message": "Identificamos una combinación de síntomas con riesgo potencial para tu salud (sangrado significativo asociado a signos sistémicos de fiebre/mareo o dolor agudo). No dudes en acudir a un centro de urgencias ahora.",
-    "care_hospital": "Dirígete a urgencias o contacta a tu gastroenterólogo con máxima urgencia.",
+    "title": "Atención a los Síntomas Registrados",
+    "badge": "Síntomas Intensos",
+    "message": "Has registrado molestias intensas combinadas con otros síntomas físicos (como dolor agudo, cansancio o mareo). No dudes en acudir a un centro médico o solicitar atención presencial si lo crees necesario.",
+    "care_hospital": "Considera contactar a tu médico o acudir a un centro de salud de referencia.",
     "care_hydration": "Mantente hidratado con pequeños sorbos de agua o suero durante el traslado.",
-    "care_no_nsaids": "ATENCIÓN: NUNCA tomes antiinflamatorios (ibuprofeno, diclofenaco, ketoprofeno), ya que agravan severamente el sangrado intestinal.",
-    "care_monitor": "Presenta el historial de la aplicación o exporta el informe en PDF en el triaje médico."
+    "care_no_nsaids": "Aviso: Recuerda consultar con un médico antes de tomar antiinflamatorios comunes (AINEs).",
+    "care_monitor": "Puedes mostrar este diario personal o exportar el resumen en PDF para apoyar a tu médico."
   },
   "actions": {
-    "view_guidance": "Ver Pautas Clínicas",
-    "dismiss": "¡Entendido, gracias!",
-    "emergency_dismiss": "Entendido, buscar atención"
+    "view_guidance": "Ver Consejos de Autocuidado",
+    "dismiss": "Entendido, guardar",
+    "emergency_dismiss": "Entendido, buscar auxilio"
   }
 }

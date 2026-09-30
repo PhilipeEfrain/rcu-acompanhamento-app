@@ -18,9 +18,9 @@
     "settings": "Privacidad"
   },
   "status": {
-    "remission": "Remisión",
-    "mild_activity": "Alerta Leve",
-    "moderate_to_severe_flare": "Brote Activo",
-    "severe_emergency": "Emergencia Médica"
+    "remission": "Estable",
+    "mild_activity": "Molestia Leve",
+    "moderate_to_severe_flare": "Molestia Moderada",
+    "severe_emergency": "Síntomas Intensos"
   }
 }

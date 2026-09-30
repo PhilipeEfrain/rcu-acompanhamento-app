@@ -41,11 +41,11 @@
     "clots": "Coágulos"
   },
   "systemicSymptoms": {
-    "title": "Síntomas Sistémicos y Señales de Alerta",
-    "subtitle": "Marca si sientes algún reflejo en el cuerpo",
+    "title": "Otros Síntomas Físicos (¿Sentiste hoy?)",
+    "subtitle": "Marca si sentiste algún malestar general en el cuerpo",
     "fever": "Fiebre (> 37,8°C)",
     "dizziness": "Mareo / Debilidad",
-    "extremeFatigue": "Cansancio Extremo",
+    "extremeFatigue": "Cansancio Intenso",
     "tachycardia": "Corazón Acelerado"
   },
   "bristol": {

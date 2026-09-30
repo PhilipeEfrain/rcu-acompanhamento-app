@@ -41,11 +41,11 @@
     "clots": "Blood Clots"
   },
   "systemicSymptoms": {
-    "title": "Systemic Symptoms & Warning Signs",
-    "subtitle": "Check if you are experiencing any body-wide symptoms",
+    "title": "Other Physical Symptoms (Experienced today?)",
+    "subtitle": "Check if you felt any general physical discomfort",
     "fever": "Fever (> 37.8°C / 100°F)",
     "dizziness": "Dizziness / Weakness",
-    "extremeFatigue": "Extreme Fatigue",
+    "extremeFatigue": "Noticeable Fatigue",
     "tachycardia": "Rapid Heartbeat"
   },
   "bristol": {

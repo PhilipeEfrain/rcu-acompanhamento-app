@@ -2,9 +2,9 @@
   "title": "Historial y Patrones",
   "subtitle": "Sigue la evolución de tu bienestar",
   "monthlySummary": "Resumen del Mes",
-  "remissionDays": "Días en Remisión",
-  "mildDays": "Días de Alerta",
-  "flareDays": "Días de Brote",
+  "remissionDays": "Días Estables",
+  "mildDays": "Días c/ Molestias Leves",
+  "flareDays": "Días c/ Molestias Notables",
   "totalMovements": "Total de Evacuaciones",
   "noLogsThisMonth": "Ningún registro encontrado para este mes.",
   "selectedDayTitle": "Registro del día {{date}}",
@@ -18,16 +18,16 @@
   "movementsCount": "{{count}} evacuaciones",
   "addNewMovementForDay": "Nueva Evacuación en este Día",
   "legend": {
-    "title": "Leyenda Clínica",
-    "remission": "Remisión / Estable",
-    "mild": "Alerta Leve",
-    "flare": "Brote Moderado / Severo",
+    "title": "Intensidad de los Síntomas",
+    "remission": "Estable / Sin molestias",
+    "mild": "Molestia Leve",
+    "flare": "Molestia Notable",
     "unlogged": "Sin registro"
   },
   "trendChart": {
     "title": "Gráfico de Tendencia (Evacuaciones/Día)",
-    "subtitle": "Visualiza la frecuencia y picos inflamatorios en el período",
-    "target": "Meta de remisión (≤ 2/día)",
+    "subtitle": "Visualiza la frecuencia y variaciones en el período",
+    "target": "Frecuencia habitual (≤ 2/día)",
     "empty": "Sin registros suficientes en el período"
   },
   "metrics": {

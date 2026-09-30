@@ -1,6 +1,6 @@
 {
-  "title": "Exportar Relatório Clínico",
-  "subtitle": "Gere um PDF estruturado para apresentar ao seu gastroenterologista",
+  "title": "Exportar Resumo para Consulta",
+  "subtitle": "Gere um documento em PDF das suas anotações para apresentar ao seu gastroenterologista",
   "selectPeriod": "Selecione o período do relatório:",
   "periods": {
     "days15": "Últimos 15 dias",
@@ -13,15 +13,15 @@
     "dateRange": "Intervalo: {{start}} até {{end}}",
     "noData": "Nenhum registro de evacuação encontrado no período selecionado."
   },
-  "generating": "Compilando relatório em PDF com carinho...",
+  "generating": "Compilando resumo em PDF com carinho...",
   "generateButton": "Gerar e Compartilhar PDF",
   "close": "Fechar",
   "errorGenerating": "Ocorreu um erro ao gerar o relatório. Tente novamente.",
   "pdf": {
-    "documentTitle": "Relatório Clínico de Acompanhamento — Retocolite Ulcerativa (RCU)",
+    "documentTitle": "Diário de Anotações Pessoais — Acompanhamento RCU",
     "generatedOn": "Emitido em: {{date}} às {{time}}",
     "periodLabel": "Período Analisado: {{start}} a {{end}} ({{days}} dias)",
-    "patientSummaryTitle": "1. Síntese Clínica do Período",
+    "patientSummaryTitle": "1. Resumo das Anotações do Período",
     "totalMovements": "Total de Evacuações",
     "dailyAverage": "Média Diária",
     "bloodIncidence": "Episódios c/ Sangue",
@@ -30,12 +30,12 @@
     "clotsIncidence": "Episódios c/ Coágulos",
     "mucusIncidence": "Episódios c/ Muco",
     "urgencyIncidence": "Episódios c/ Urgência",
-    "dailyTrendTitle": "2. Evolução Cronológica Diária (Frequência e Gravidade das Evacuações)",
+    "dailyTrendTitle": "2. Evolução Cronológica Diária (Frequência Registrada)",
     "normalThreshold": "Meta de remissão (≤ 2 evacuações/dia)",
     "chartLegend": {
-      "remission": "Remissão (0-2 evacuações s/ sangue)",
-      "mild": "Atividade Leve (3-4 evacuações ou traços)",
-      "flare": "Crise / Alerta (5+ evacuações ou sangue evidente)"
+      "remission": "Dias Estáveis (0-2 evacuações s/ sangue)",
+      "mild": "Desconforto Leve (3-4 evacuações ou traços)",
+      "flare": "Desconforto Notável (5+ evacuações ou sangue evidente)"
     },
     "bristolTitle": "3. Distribuição da Consistência Fecal (Escala de Bristol)",
     "bloodTitle": "4. Perfil de Sangramento e Biomarcadores",
@@ -52,6 +52,6 @@
     "traces": "Traços",
     "moderate": "Evidente",
     "severe": "Intenso",
-    "confidentialityNotice": "Documento confidencial gerado pelo paciente via aplicativo de monitoramento de RCU. Os dados refletem o autorrelato diário de sintomas para suporte à consulta médica. Em conformidade com a LGPD e diretrizes de sigilo médico."
+    "confidentialityNotice": "Documento informativo gerado pelo usuário via aplicativo de diário pessoal. Os dados refletem o autorrelato voluntário de sintomas para apoio e diálogo com o médico assistente. Não constitui laudo ou prescrição médica."
   }
 }

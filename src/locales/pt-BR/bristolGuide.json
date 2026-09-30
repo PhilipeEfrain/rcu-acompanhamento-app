@@ -5,75 +5,75 @@
   "tabs": {
     "all": "Todos (7)",
     "constipation": "Constipação (1-2)",
-    "ideal": "Ideal / Remissão (3-4)",
-    "diarrhea": "Diarreia / Inflamação (5-7)"
+    "ideal": "Ideal / Equilibrado (3-4)",
+    "diarrhea": "Amolecido / Líquido (5-7)"
   },
   "headerTip": {
-    "title": "Como interpretar na Retocolite Ulcerativa?",
-    "desc": "O Tipo 4 é o padrão ouro de remissão clínica (mucosa cicatrizada). Os Tipos 6 e 7 revelam trânsito acelerado por inflamação ativa, exigindo hidratação imediata e atenção aos sintomas."
+    "title": "Como interpretar na sua rotina diária?",
+    "desc": "O Tipo 4 representa a consistência considerada suave e equilibrada. Os Tipos 6 e 7 indicam trânsito intestinal mais acelerado, sendo útil reforçar a hidratação e manter as anotações do diário atualizadas."
   },
   "labels": {
-    "transit": "Tempo no cólon:",
-    "meaning": "Significado na RCU:",
-    "care": "Orientação de cuidado:"
+    "transit": "Tempo aproximado:",
+    "meaning": "O que indica:",
+    "care": "Dica de rotina:"
   },
   "type1": {
     "title": "Tipo 1: Caroços duros separados",
     "shapeDesc": "Pequenas bolinhas duras e secas, semelhantes a nozes, difíceis de eliminar.",
-    "transitTime": "> 100 horas (trânsito excessivamente lento)",
-    "clinicalMeaning": "Constipação severa. O cólon reabsorveu quase toda a água. Pode gerar esforço e fissuras.",
-    "actionTip": "Aumente a ingestão de água e converse com seu gastro sobre fibras solúveis adequadas para RCU."
+    "transitTime": "> 100 horas (trânsito lento)",
+    "clinicalMeaning": "Constipação. O cólon reabsorveu grande parte da água. Pode gerar esforço.",
+    "actionTip": "Aumente a ingestão de água e converse com seu gastro sobre fibras solúveis adequadas para sua rotina."
   },
   "type2": {
     "title": "Tipo 2: Formato de salsicha nodosa",
     "shapeDesc": "Massa cilíndrica firme com vários caroços e relevo irregular agrupado.",
-    "transitTime": "~72 horas (trânsito lento)",
-    "clinicalMeaning": "Constipação leve. Fezes compactadas que indicam passagem prolongada pelo intestino.",
-    "actionTip": "Mantenha hidratação constante ao longo do dia e evite segurar a vontade de evacuar."
+    "transitTime": "~72 horas (trânsito mais lento)",
+    "clinicalMeaning": "Constipação leve. Fezes mais compactadas.",
+    "actionTip": "Mantenha hidratação constante ao longo do dia e evite segurar a vontade de ir ao banheiro."
   },
   "type3": {
     "title": "Tipo 3: Salsicha com fendas na superfície",
     "shapeDesc": "Formato cilíndrico alongado com pequenas rachaduras superficiais, fácil de eliminar.",
-    "transitTime": "~48 horas (trânsito normal)",
-    "clinicalMeaning": "Consistência saudável e equilibrada. Indica boa absorção de nutrientes e hidratação.",
-    "actionTip": "Excelente padrão. Continue com sua rotina atual de alimentação e medicamentos prescritos."
+    "transitTime": "~48 horas (trânsito regular)",
+    "clinicalMeaning": "Consistência saudável e equilibrada. Indica boa hidratação.",
+    "actionTip": "Excelente padrão. Continue com sua rotina atual de alimentação e autocuidado."
   },
   "type4": {
     "title": "Tipo 4: Salsicha suave, lisa e macia",
-    "shapeDesc": "Formato de cobra ou salsicha lisa e macia. Desliza sem esforço ou desconforto.",
-    "transitTime": "~30 a 40 horas (padrão ouro)",
-    "clinicalMeaning": "Ideal! Representa o objetivo clínico de remissão da RCU, com a mucosa cólica desinflamada.",
-    "actionTip": "Meta alcançada! Mantenha a adesão estrita ao tratamento de manutenção prescrito pelo gastro."
+    "shapeDesc": "Formato suave e macio. Desliza facilmente sem esforço ou desconforto.",
+    "transitTime": "~30 a 40 horas (padrão ideal)",
+    "clinicalMeaning": "Ideal! Representa um formato suave, macio e equilibrado.",
+    "actionTip": "Padrão excelente! Mantenha seus hábitos de rotina e o acompanhamento com seu médico."
   },
   "type5": {
     "title": "Tipo 5: Pedaços macios com bordas nítidas",
     "shapeDesc": "Pedaços pastosos e macios com contornos bem definidos, eliminados com facilidade.",
     "transitTime": "~18 a 24 horas (trânsito acelerado)",
-    "clinicalMeaning": "Tendência a diarreia. O cólon começou a acelerar a passagem das fezes sem reabsorver toda a água.",
-    "actionTip": "Monitore se há evolução para fezes mais líquidas nas próximas idas e reforce a ingestão de líquidos."
+    "clinicalMeaning": "Tendência a fezes mais soltas. O trânsito intestinal está ligeiramente mais rápido.",
+    "actionTip": "Monitore suas próximas idas ao banheiro e reforce a ingestão de água e líquidos."
   },
   "type6": {
     "title": "Tipo 6: Pedaços fofos, esfarrapados e pastosos",
     "shapeDesc": "Fezes pastosas e disformes, com pedaços esfarrapados e sem consistência firme.",
     "transitTime": "~10 a 14 horas (trânsito rápido)",
-    "clinicalMeaning": "Diarreia leve a moderada. Frequente em fases de atividade inflamatória da RCU ou intolerâncias.",
-    "actionTip": "Evite alimentos ultraprocessados ou irritantes, hidrate-se com água e isotônicos e observe muco/sangue."
+    "clinicalMeaning": "Fezes amolecidas. Frequente em momentos de sensibilidade intestinal.",
+    "actionTip": "Evite alimentos ultraprocessados ou irritantes, hidrate-se com água e observe se há muco/sangue."
   },
   "type7": {
     "title": "Tipo 7: Totalmente líquido sem partes sólidas",
     "shapeDesc": "Consistência aquosa e fluida, sem nenhum pedaço sólido presente.",
     "transitTime": "< 10 horas (trânsito muito rápido)",
-    "clinicalMeaning": "Diarreia severa / Hiperatividade inflamatória. A mucosa não está conseguindo reter água.",
-    "actionTip": "Alerta de desidratação! Beba soro oral/água de coco. Se persistir com sangue ou febre, contate seu gastro."
+    "clinicalMeaning": "Fezes totalmente líquidas. O intestino não está retendo água adequadamente.",
+    "actionTip": "Atenção à hidratação! Beba água e soluções isotônicas. Se persistir, consulte seu médico."
   },
   "status": {
-    "constipation": "Constipação Severa",
+    "constipation": "Constipação",
     "mildConstipation": "Constipação Leve",
     "normal": "Normal / Saudável",
-    "ideal": "Meta RCU (Ideal)",
+    "ideal": "Formato Ideal",
     "mildDiarrhea": "Fezes Amolecidas",
-    "diarrhea": "Diarreia / Inflamação",
-    "severeDiarrhea": "Diarreia Severa / Crise"
+    "diarrhea": "Fezes Pastosas",
+    "severeDiarrhea": "Fezes Líquidas"
   },
   "close": "Fechar Guia",
   "guideButton": "Guia Bristol"

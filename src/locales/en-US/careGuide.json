@@ -5,7 +5,7 @@
     "sus": "Public Healthcare / Meds",
     "compounding": "Compounding",
     "rights": "Patient Rights",
-    "flareCare": "Flare Management",
+    "flareCare": "Sensitive Days",
     "doctorPrep": "Doctor Prep"
   },
   "susSection": {
@@ -47,17 +47,17 @@
     "right4Desc": "Severe or refractory cases may qualify for temporary medical leave or disability benefits under labor regulations."
   },
   "flareCareSection": {
-    "title": "Practical Tips for Flare Management",
-    "badge": "Relief & Protection",
-    "desc": "Essential complementary measures to protect your bowel and soothe discomfort.",
+    "title": "Comfort Tips for Sensitive Days",
+    "badge": "Relief & Self-Care",
+    "desc": "Complementary measures to support your bowel and soothe daily discomfort.",
     "care1Title": "Continuous Electrolyte Hydration:",
-    "care1Desc": "With frequent loose stools, drink oral rehydration solutions, coconut water, or diluted electrolyte drinks in small sips to prevent dehydration and potassium loss.",
+    "care1Desc": "On days with frequent or loose stools, drink oral rehydration solutions, coconut water, or fluids in small sips.",
     "care2Title": "Perianal Skin Care & Hygiene:",
-    "care2Desc": "Avoid dry toilet paper. Use warm water bidets or handheld showers with neutral soap, and pat dry gently. Zinc oxide barrier creams protect against painful irritation.",
-    "care3Title": "Low-Residue Diet During Flares:",
-    "care3Desc": "During active inflammation, favor easily digestible cooked foods (white rice, boiled potatoes, baked poultry, bananas). Avoid insoluble fiber, seeds, deep-fried foods, dairy, and excess caffeine.",
-    "care4Title": "CRITICAL: NEVER Take NSAIDs:",
-    "care4Desc": "NSAIDs like ibuprofen, naproxen, and diclofenac erode mucosal lining and can trigger severe bleeding or precipitate a severe flare."
+    "care2Desc": "Avoid dry toilet paper. Use warm water bidets with gentle cleanser, and pat dry gently.",
+    "care3Title": "Gentle Foods in Your Routine:",
+    "care3Desc": "During sensitive periods, favor easily digestible cooked foods (white rice, boiled potatoes, baked poultry, bananas). Avoid deep-fried foods and excess caffeine.",
+    "care4Title": "Note: Use of Pain Relievers (NSAIDs):",
+    "care4Desc": "NSAIDs like ibuprofen, naproxen, and diclofenac may irritate the gut lining. Always consult your doctor before using pain medications."
   },
   "doctorPrepSection": {
     "title": "Preparing for Your Gastroenterology Visit",

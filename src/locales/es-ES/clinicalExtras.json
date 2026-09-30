@@ -1,12 +1,12 @@
 {
-  "sectionTitle": "Detalles Clínicos Complementarios",
+  "sectionTitle": "Detalles Adicionales del Episodio",
   "sectionSubtitle": "Opcional: estrés, moco, coágulos y urgencia",
   "stress": {
     "title": "Nivel de Estrés / Ansiedad",
     "scoreLabel": "Estrés: {{score}}/10",
     "calm": "Tranquilo (0-2)",
     "moderate": "Moderado (3-6)",
-    "high": "Brote / Picos de Ansiedad (7-10)"
+    "high": "Picos de Estrés / Ansiedad (7-10)"
   },
   "clots": {
     "title": "Presencia de Coágulos",
@@ -14,15 +14,15 @@
     "yes": "Coágulos visibles"
   },
   "mucus": {
-    "title": "Eliminación de Moco o Pus",
+    "title": "Presencia de Moco",
     "none": "Ningún moco",
     "mild": "Poco moco",
-    "abundant": "Moco abundante / Pus"
+    "abundant": "Moco abundante"
   },
   "urgency": {
-    "title": "Urgencia Evacuatoria (Tenesmo)",
+    "title": "Sensación de Urgencia para Ir al Baño",
     "normal": "Normal (puede esperar)",
     "moderate": "Urgencia moderada",
-    "severe": "Extrema / Incontinencia"
+    "severe": "Urgencia intensa / Inmediata"
   }
 }
