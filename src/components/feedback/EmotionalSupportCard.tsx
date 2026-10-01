@@ -2,14 +2,14 @@ import React, { useMemo, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import {
-  Brain,
+  FileText,
   ChevronDown,
   ChevronUp,
   Droplets,
   HeartHandshake,
   Moon,
   Sparkles,
-  Stethoscope,
+  Sun,
   Utensils,
 } from "lucide-react-native";
 
@@ -167,7 +167,7 @@ export const EmotionalSupportCard: React.FC<EmotionalSupportCardProps> = ({
             <View
               style={[styles.proIconCircle, { backgroundColor: "#EDE9FE" }]}
             >
-              <Stethoscope size={18} color="#7B61FF" />
+              <FileText size={18} color="#7B61FF" />
             </View>
             <View style={styles.proBadge}>
               <Text style={styles.proBadgeText}>
@@ -189,7 +189,7 @@ export const EmotionalSupportCard: React.FC<EmotionalSupportCardProps> = ({
             <View
               style={[styles.proIconCircle, { backgroundColor: "#FCE7F3" }]}
             >
-              <Brain size={18} color="#EC4899" />
+              <Sun size={18} color="#EC4899" />
             </View>
             <View style={[styles.proBadge, { backgroundColor: "#FDF2F8" }]}>
               <Text style={[styles.proBadgeText, { color: "#DB2777" }]}>

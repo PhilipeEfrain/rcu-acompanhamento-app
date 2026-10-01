@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { ChevronDown, ChevronUp, Brain, ShieldAlert, Sparkles, Zap } from 'lucide-react-native';
+import { ChevronDown, ChevronUp, Sun, ShieldAlert, Sparkles, Zap } from 'lucide-react-native';
 import { MucusPresence, UrgencyLevel } from '../../domain/health/types';
 
 interface ClinicalExtrasAccordionProps {
@@ -83,7 +83,7 @@ export const ClinicalExtrasAccordion: React.FC<ClinicalExtrasAccordionProps> = (
         <View style={styles.collapsedPreviewRow}>
           {stressLevel !== null && (
             <View style={styles.previewPill}>
-              <Brain size={11} color="#8E63B8" />
+              <Sun size={11} color="#8E63B8" />
               <Text style={styles.previewPillText}>
                 {t('stress.scoreLabel', { score: stressLevel })}
               </Text>
@@ -122,10 +122,10 @@ export const ClinicalExtrasAccordion: React.FC<ClinicalExtrasAccordionProps> = (
       {/* Accordion Body */}
       {isOpen && (
         <View style={styles.body}>
-          {/* 1. Nível de Estresse / Ansiedade */}
+          {/* 1. Nível de Tranquilidade / Agitação */}
           <View style={styles.fieldSection}>
             <View style={styles.fieldHeader}>
-              <Brain size={15} color="#8E63B8" />
+              <Sun size={15} color="#8E63B8" />
               <Text style={styles.fieldTitle}>{t('stress.title')}</Text>
             </View>
             <View style={styles.chipsRow}>

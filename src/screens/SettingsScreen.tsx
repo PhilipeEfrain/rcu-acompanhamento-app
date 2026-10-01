@@ -21,7 +21,7 @@ import {
   Heart,
   CheckCircle,
   FileSpreadsheet,
-  Pill,
+  CalendarCheck,
   BookOpen,
   Sparkles,
 } from 'lucide-react-native';
@@ -245,10 +245,10 @@ export const SettingsScreen: React.FC = () => {
           </View>
         </View>
 
-        {/* Section: Continuous Medications */}
+        {/* Section: Continuous Medications / Routine Reminders */}
         <View style={styles.sectionCard}>
           <View style={styles.sectionHeader}>
-            <Pill size={20} color="#7B61FF" />
+            <CalendarCheck size={20} color="#7B61FF" />
             <Text style={styles.sectionTitle}>{t('medications:title')}</Text>
           </View>
           <Text style={styles.sectionDesc}>{t('medications:subtitle')}</Text>
@@ -266,7 +266,7 @@ export const SettingsScreen: React.FC = () => {
                 {t('medications:manager.activeList', { count: medications.filter(m => m.active).length })}
               </Text>
             </View>
-            <Pill size={18} color="#7B61FF" />
+            <CalendarCheck size={18} color="#7B61FF" />
           </TouchableOpacity>
         </View>
 

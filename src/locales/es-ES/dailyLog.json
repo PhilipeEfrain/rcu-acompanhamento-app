@@ -96,7 +96,7 @@
   },
   "notes": {
     "title": "Notas Adicionales (Opcional)",
-    "placeholder": "Comida diferente, estrés, cansancio..."
+    "placeholder": "Comida diferente, día ajetreado, cansancio..."
   },
   "repeatModal": {
     "chipTitle": "Repetir datos de la anterior ({{time}})",

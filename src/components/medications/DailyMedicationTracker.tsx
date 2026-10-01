@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import {
   Check,
   Clock,
-  Pill,
+  CalendarCheck,
   Plus,
   Settings,
   Sparkles,
@@ -50,7 +50,7 @@ export const DailyMedicationTracker: React.FC<DailyMedicationTrackerProps> = ({
       <View style={styles.header}>
         <View style={styles.headerLeft}>
           <View style={styles.iconCircle}>
-            <Pill size={18} color="#7B61FF" />
+            <CalendarCheck size={18} color="#7B61FF" />
           </View>
           <View>
             <Text style={styles.title}>{t('dailyCard.title')}</Text>
@@ -141,7 +141,7 @@ export const DailyMedicationTracker: React.FC<DailyMedicationTrackerProps> = ({
                   {isTaken ? (
                     <Check size={14} color="#FFFFFF" />
                   ) : (
-                    <Pill size={12} color="#7B61FF" />
+                    <CalendarCheck size={12} color="#7B61FF" />
                   )}
                 </View>
 
