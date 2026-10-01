@@ -175,7 +175,6 @@ export const DailyLogScreen: React.FC = () => {
                 }
                 onOpenManager={openManager}
                 onAddNew={openNewModal}
-                onOpenCareGuide={() => setIsCareGuideOpen(true)}
                 style={{ marginHorizontal: 20, marginBottom: 20 }}
               />
               <EmotionalSupportCard />

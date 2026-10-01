@@ -1,6 +1,6 @@
 {
   "title": "Exportar Resumen para Consulta",
-  "subtitle": "Genera un documento PDF de tus notas para presentar a tu gastroenterólogo",
+  "subtitle": "Genera un documento PDF de tus notas para llevar a tu consulta",
   "selectPeriod": "Selecciona el período del informe:",
   "periods": {
     "days15": "Últimos 15 días",
@@ -26,7 +26,7 @@
     "dailyAverage": "Media Diaria",
     "bloodIncidence": "Episodios c/ Sangre",
     "avgPain": "Molestia Media (0-10)",
-    "avgStress": "Estrés Medio (0-10)",
+    "avgStress": "Ritmo Medio del Día (0-10)",
     "clotsIncidence": "Episodios c/ Coágulos",
     "mucusIncidence": "Episodios c/ Moco",
     "urgencyIncidence": "Episodios c/ Urgencia",

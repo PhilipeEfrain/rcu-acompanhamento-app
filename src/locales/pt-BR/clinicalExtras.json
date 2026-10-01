@@ -1,12 +1,12 @@
 {
   "sectionTitle": "Detalhes Adicionais do Episódio",
-  "sectionSubtitle": "Opcional: estresse, muco, coágulos e urgência",
+  "sectionSubtitle": "Opcional: ritmo do dia, muco, coágulos e urgência",
   "stress": {
-    "title": "Nível de Estresse / Ansiedade",
-    "scoreLabel": "Estresse: {{score}}/10",
-    "calm": "Calmo (0-2)",
+    "title": "Nível de Tranquilidade / Agitação",
+    "scoreLabel": "Ritmo: {{score}}/10",
+    "calm": "Tranquilo (0-2)",
     "moderate": "Moderado (3-6)",
-    "high": "Picos de Estresse / Ansiedade (7-10)"
+    "high": "Dia Agitado / Corrido (7-10)"
   },
   "clots": {
     "title": "Presença de Coágulos",
