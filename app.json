@@ -2,18 +2,18 @@
   "expo": {
     "name": "RCU Acompanhamento",
     "slug": "rcu-acompanhamento",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.philipe.rcuapp",
-      "buildNumber": "7"
+      "buildNumber": "8"
     },
     "android": {
       "package": "com.philipe.rcuapp",
-      "versionCode": 7,
+      "versionCode": 8,
       "adaptiveIcon": {
         "backgroundColor": "#FAF5FF",
         "foregroundImage": "./assets/android-icon-foreground.png",

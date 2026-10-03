@@ -10,17 +10,16 @@ import {
 import { useTranslation } from 'react-i18next';
 import {
   BookOpen,
-  Pill,
+  Droplets,
+  Sun,
   Shield,
-  HeartPulse,
-  Stethoscope,
   Sparkles,
+  FileText,
   CheckCircle2,
   AlertTriangle,
   ChevronRight,
   ChevronDown,
   X,
-  Building2,
   FileCheck,
   Scale,
 } from 'lucide-react-native';
@@ -82,7 +81,7 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
             contentContainerStyle={styles.tabsScroll}
             style={styles.tabsContainer}
           >
-            {/* 1. SUS */}
+            {/* 1. Hidratação */}
             <TouchableOpacity
               activeOpacity={0.8}
               onPress={() => setActiveTab('sus')}
@@ -91,7 +90,7 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
                 activeTab === 'sus' && styles.tabPillActive,
               ]}
             >
-              <Building2 size={18} color={activeTab === 'sus' ? '#FFFFFF' : '#64748B'} />
+              <Droplets size={18} color={activeTab === 'sus' ? '#FFFFFF' : '#64748B'} />
               <Text
                 numberOfLines={1}
                 style={[
@@ -99,11 +98,11 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
                   activeTab === 'sus' && styles.tabPillTextActive,
                 ]}
               >
-                {t('careGuide:tabs.sus', { defaultValue: 'Remédios pelo SUS' })}
+                {t('careGuide:tabs.sus', { defaultValue: 'Hidratação & Rotina' })}
               </Text>
             </TouchableOpacity>
 
-            {/* 2. Manipulação */}
+            {/* 2. Conforto */}
             <TouchableOpacity
               activeOpacity={0.8}
               onPress={() => setActiveTab('compounding')}
@@ -112,7 +111,7 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
                 activeTab === 'compounding' && styles.tabPillActive,
               ]}
             >
-              <Pill size={18} color={activeTab === 'compounding' ? '#FFFFFF' : '#64748B'} />
+              <Sun size={18} color={activeTab === 'compounding' ? '#FFFFFF' : '#64748B'} />
               <Text
                 numberOfLines={1}
                 style={[
@@ -120,11 +119,11 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
                   activeTab === 'compounding' && styles.tabPillTextActive,
                 ]}
               >
-                {t('careGuide:tabs.compounding', { defaultValue: 'Manipulação' })}
+                {t('careGuide:tabs.compounding', { defaultValue: 'Conforto Diário' })}
               </Text>
             </TouchableOpacity>
 
-            {/* 3. Cuidados em Crise */}
+            {/* 3. Dias Sensíveis */}
             <TouchableOpacity
               activeOpacity={0.8}
               onPress={() => setActiveTab('flareCare')}
@@ -133,7 +132,7 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
                 activeTab === 'flareCare' && styles.tabPillActive,
               ]}
             >
-              <HeartPulse size={18} color={activeTab === 'flareCare' ? '#FFFFFF' : '#64748B'} />
+              <Sparkles size={18} color={activeTab === 'flareCare' ? '#FFFFFF' : '#64748B'} />
               <Text
                 numberOfLines={1}
                 style={[
@@ -141,7 +140,7 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
                   activeTab === 'flareCare' && styles.tabPillTextActive,
                 ]}
               >
-                {t('careGuide:tabs.flareCare', { defaultValue: 'Cuidados em Crise' })}
+                {t('careGuide:tabs.flareCare', { defaultValue: 'Dias Sensíveis' })}
               </Text>
             </TouchableOpacity>
 
@@ -154,7 +153,7 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
                 activeTab === 'doctorPrep' && styles.tabPillActive,
               ]}
             >
-              <Stethoscope size={18} color={activeTab === 'doctorPrep' ? '#FFFFFF' : '#64748B'} />
+              <FileText size={18} color={activeTab === 'doctorPrep' ? '#FFFFFF' : '#64748B'} />
               <Text
                 numberOfLines={1}
                 style={[
@@ -248,7 +247,7 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
 
                 <View style={[styles.infoHighlightBox, { backgroundColor: '#F0FDF4', borderColor: '#BBF7D0' }]}>
                   <Text style={[styles.infoHighlightTitle, { color: '#166534' }]}>
-                    📦 {t('careGuide:susSection.medsTitle')}
+                    🥤 {t('careGuide:susSection.medsTitle')}
                   </Text>
                   <Text style={[styles.infoHighlightDesc, { color: '#15803D' }]}>
                     {t('careGuide:susSection.medsList')}
@@ -276,17 +275,17 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
                 <Text style={styles.cardDesc}>{t('careGuide:compoundingSection.desc')}</Text>
 
                 <View style={styles.benefitCard}>
-                  <Text style={styles.benefitTitle}>💰 {t('careGuide:compoundingSection.benefit1Title')}</Text>
+                  <Text style={styles.benefitTitle}>🌿 {t('careGuide:compoundingSection.benefit1Title')}</Text>
                   <Text style={styles.benefitDesc}>{t('careGuide:compoundingSection.benefit1Desc')}</Text>
                 </View>
 
                 <View style={styles.benefitCard}>
-                  <Text style={styles.benefitTitle}>📝 {t('careGuide:compoundingSection.benefit2Title')}</Text>
+                  <Text style={styles.benefitTitle}>🛋️ {t('careGuide:compoundingSection.benefit2Title')}</Text>
                   <Text style={styles.benefitDesc}>{t('careGuide:compoundingSection.benefit2Desc')}</Text>
                 </View>
 
                 <View style={styles.benefitCard}>
-                  <Text style={styles.benefitTitle}>🔬 {t('careGuide:compoundingSection.benefit3Title')}</Text>
+                  <Text style={styles.benefitTitle}>👕 {t('careGuide:compoundingSection.benefit3Title')}</Text>
                   <Text style={styles.benefitDesc}>{t('careGuide:compoundingSection.benefit3Desc')}</Text>
                 </View>
               </View>
@@ -321,11 +320,11 @@ export const CareGuideBottomSheet: React.FC<CareGuideBottomSheetProps> = ({
                   <Text style={styles.flareCardDesc}>{t('careGuide:flareCareSection.care3Desc')}</Text>
                 </View>
 
-                <View style={[styles.flareCard, { backgroundColor: '#FEF2F2', borderColor: '#FCA5A5' }]}>
-                  <Text style={[styles.flareCardTitle, { color: '#B91C1C' }]}>
-                    🚫 {t('careGuide:flareCareSection.care4Title')}
+                <View style={[styles.flareCard, { backgroundColor: '#FFFBEB', borderColor: '#FDE68A' }]}>
+                  <Text style={[styles.flareCardTitle, { color: '#B45309' }]}>
+                    ☕ {t('careGuide:flareCareSection.care4Title')}
                   </Text>
-                  <Text style={[styles.flareCardDesc, { color: '#991B1C' }]}>
+                  <Text style={[styles.flareCardDesc, { color: '#92400E' }]}>
                     {t('careGuide:flareCareSection.care4Desc')}
                   </Text>
                 </View>
