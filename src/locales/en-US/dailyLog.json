@@ -96,7 +96,7 @@
   },
   "notes": {
     "title": "Additional Notes (Optional)",
-    "placeholder": "Unusual foods, stress, fatigue..."
+    "placeholder": "Unusual foods, busy day, fatigue..."
   },
   "repeatModal": {
     "chipTitle": "Repeat previous log ({{time}})",

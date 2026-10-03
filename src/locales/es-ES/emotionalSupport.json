@@ -1,30 +1,30 @@
 {
   "sectionTitle": "Acogida & Apoyo",
-  "sectionSubtitle": "Cuidado integral del cuerpo, mente y eje cerebro-intestino",
+  "sectionSubtitle": "Inspiraciones y hábitos para acompañar tu día",
   "quotes": {
-    "quote1": "Tu cuerpo no está fallando; está atravesando un momento de inflamación que exige calma y tiempo.",
-    "quote2": "El dolor y el cansancio de la CU son reales. Respeta los límites de tu cuerpo y permítete descansar sin culpa.",
-    "quote3": "El cerebro y el intestino dialogan constantemente. Calmar la respiración y la mente es parte activa de tu tratamiento.",
-    "quote4": "Un día con más episodios no anula tu progreso. Respira hondo: un momento a la vez."
+    "quote1": "Tu cuerpo no está fallando; respeta tu propio ritmo con calma y tiempo.",
+    "quote2": "El cansancio del día a día es real. Respeta los límites de tu cuerpo y permítete descansar sin culpa.",
+    "quote3": "Cuidar de la mente y tomar pausas conscientes es parte activa de tu autocuidado.",
+    "quote4": "Un día con más registros no anula tu progreso. Respira hondo: un momento a la vez."
   },
   "guidelinesAccordion": {
-    "title": "Pautas Prácticas de Cuidado",
-    "subtitle": "Toca para ver los cuidados recomendados",
+    "title": "Consejos de Hábitos y Bienestar",
+    "subtitle": "Toca para ver los hábitos recomendados",
     "hydrationTitle": "Hidratación Constante",
-    "hydrationDesc": "En períodos de heces blandas o diarrea, repón líquidos con agua, suero oral y agua de coco para evitar debilidad y pérdida de sales.",
-    "foodTitle": "Alimentación Suave y Fraccionada",
-    "foodDesc": "Prefiere porciones más pequeñas a lo largo del día. Evita alimentos ultraprocesados, picantes o ricos en cafeína que puedan sensibilizar el colon.",
-    "restTitle": "Descanso y Respiración Consciente",
-    "restDesc": "El estrés activa vías inflamatorias en el intestino. Pausas para respirar y un descanso de calidad ayudan a modular el eje neuroinmunológico."
+    "hydrationDesc": "Mantén una buena ingesta de agua y líquidos a lo largo del día para apoyar el equilibrio natural del cuerpo.",
+    "foodTitle": "Alimentación Suave y Equilibrada",
+    "foodDesc": "Prefiere porciones equilibradas a lo largo del día, priorizando alimentos ligeros que aporten comodidad a tu rutina.",
+    "restTitle": "Descanso y Pausas Regulares",
+    "restDesc": "Pausas regulares y un descanso de calidad aportan calma y apoyan el bienestar general de tu rutina."
   },
   "gastroCard": {
-    "title": "Equipo Médico & Gastroenterólogo",
-    "desc": "Si los síntomas persisten por más de 48h o si tienes fiebre, contacta a tu gastroenterólogo. No alteres las dosis de medicamentos por tu cuenta.",
-    "tag": "Cuidado Clínico"
+    "title": "Diálogo en la Consulta Médica",
+    "desc": "Presenta tus notas organizadas a tu médico para facilitar el seguimiento de rutina.",
+    "tag": "Notas"
   },
   "psychoCard": {
-    "title": "Cuidado Emocional & Psicoterapia",
-    "desc": "Vivir con EII impacta las emociones y el sueño. El acompañamiento psicológico ayuda en el manejo del estrés y la calidad de vida.",
-    "tag": "Eje Cerebro-Intestino"
+    "title": "Pausas y Tranquilidad",
+    "desc": "Reservar momentos para relajarse y cuidar de la rutina diaria aporta más ligereza a tu vida.",
+    "tag": "Bienestar"
   }
 }

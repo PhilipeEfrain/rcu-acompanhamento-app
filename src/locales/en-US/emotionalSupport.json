@@ -1,30 +1,30 @@
 {
   "sectionTitle": "Care & Support",
-  "sectionSubtitle": "Holistic care for body, mind and gut-brain axis",
+  "sectionSubtitle": "Inspirations and habits to guide your day",
   "quotes": {
-    "quote1": "Your body is not failing; it is navigating an inflammatory process that needs patience and gentle time.",
-    "quote2": "The fatigue and discomfort of UC are real. Honor your body's signals and allow yourself to rest without guilt.",
-    "quote3": "The gut and brain communicate constantly. Calming your breath and mind is an active part of your healing.",
-    "quote4": "A day with more bowel movements does not erase your progress. Breathe gently: one moment at a time."
+    "quote1": "Your body is not failing; honor your own pace with calm and patience.",
+    "quote2": "Daily fatigue is real. Honor your body's signals and allow yourself to rest without guilt.",
+    "quote3": "Caring for your mind and taking mindful pauses is an active part of your self-care.",
+    "quote4": "A day with more entries does not erase your progress. Breathe gently: one moment at a time."
   },
   "guidelinesAccordion": {
-    "title": "Practical Care Guidelines",
-    "subtitle": "Tap to view recommended care",
+    "title": "Habit & Wellness Tips",
+    "subtitle": "Tap to view recommended habits",
     "hydrationTitle": "Continuous Hydration",
-    "hydrationDesc": "During periods of loose stool or diarrhea, replenish fluids with water, oral rehydration salts, and coconut water to prevent electrolyte loss.",
-    "foodTitle": "Gentle, Frequent Meals",
-    "foodDesc": "Opt for smaller portions throughout the day. Avoid ultra-processed, spicy, or high-caffeine foods that may irritate your mucosal lining.",
-    "restTitle": "Rest and Mindful Breathing",
-    "restDesc": "Stress activates inflammatory pathways in the bowel. Gentle breathing pauses and quality rest help soothe the gut-brain axis."
+    "hydrationDesc": "Maintain good water and fluid intake throughout the day to support your body's natural balance.",
+    "foodTitle": "Gentle, Balanced Meals",
+    "foodDesc": "Opt for balanced portions throughout the day, prioritizing light foods that bring comfort to your routine.",
+    "restTitle": "Rest and Regular Breaks",
+    "restDesc": "Regular breaks and quality rest bring calm and support overall routine wellbeing."
   },
   "gastroCard": {
-    "title": "Medical Team & Gastroenterologist",
-    "desc": "If symptoms persist for over 48 hours or fever occurs, contact your GI specialist. Never adjust medication doses alone.",
-    "tag": "Clinical Care"
+    "title": "Doctor Appointment Dialogue",
+    "desc": "Share your organized daily notes with your doctor to make routine check-ups easier.",
+    "tag": "Notes"
   },
   "psychoCard": {
-    "title": "Emotional Wellbeing & Mental Health",
-    "desc": "Living with IBD affects emotions and sleep. Specialized therapy provides valuable support for stress and gut health.",
-    "tag": "Gut-Brain Axis"
+    "title": "Calm & Restful Moments",
+    "desc": "Setting aside time to relax and care for your daily routine brings ease to your life.",
+    "tag": "Wellbeing"
   }
 }

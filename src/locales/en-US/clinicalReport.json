@@ -1,6 +1,6 @@
 {
   "title": "Export Summary for Appointment",
-  "subtitle": "Generate a PDF document of your logs to share with your gastroenterologist",
+  "subtitle": "Generate a PDF document of your notes to take to your appointment",
   "selectPeriod": "Select summary time range:",
   "periods": {
     "days15": "Last 15 days",
@@ -26,7 +26,7 @@
     "dailyAverage": "Daily Average",
     "bloodIncidence": "Episodes w/ Blood",
     "avgPain": "Avg Discomfort (0-10)",
-    "avgStress": "Avg Stress (0-10)",
+    "avgStress": "Avg Daily Pace (0-10)",
     "clotsIncidence": "Episodes w/ Clots",
     "mucusIncidence": "Episodes w/ Mucus",
     "urgencyIncidence": "Episodes w/ Urgency",

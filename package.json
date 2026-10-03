@@ -1,6 +1,6 @@
 {
   "name": "rcu-acompanhamento",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "main": "index.ts",
   "dependencies": {
     "@gorhom/bottom-sheet": "^5.2.14",

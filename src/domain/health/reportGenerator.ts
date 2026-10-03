@@ -329,7 +329,7 @@ export function buildReportHtml(stats: ReportStats, t: TFunction): string {
 
         extras.push(`
         <div style="margin-bottom: 3px;">
-          <span style="color: #7B61FF; font-weight: 700;">🧠 ${t("clinicalExtras:stress.title", { defaultValue: "Estresse" })}:</span>
+          <span style="color: #7B61FF; font-weight: 700;">☀️ ${t("clinicalExtras:stress.title", { defaultValue: "Ritmo" })}:</span>
           <span>${log.stressLevel}/10 (${stressRating})</span>
         </div>
       `);
@@ -693,7 +693,7 @@ export function buildReportHtml(stats: ReportStats, t: TFunction): string {
 
         <div style="margin-top: 6px; border-top: 1px dashed #CBD5E1; padding-top: 6px;">
           <div style="display: flex; justify-content: space-between; font-size: 10.5px; margin-bottom: 3px;">
-            <span>🧠 ${t("clinicalReport:pdf.avgStress")}:</span>
+            <span>☀️ ${t("clinicalReport:pdf.avgStress")}:</span>
             <strong>${stats.averageStress}</strong>
           </div>
           <div style="display: flex; justify-content: space-between; font-size: 10.5px; margin-bottom: 3px;">
